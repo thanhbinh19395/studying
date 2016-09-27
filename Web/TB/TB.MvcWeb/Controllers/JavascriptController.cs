@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Yahoo.Yui.Compressor;
 
 namespace TB.MvcWeb.Controllers
 {
@@ -19,7 +22,12 @@ namespace TB.MvcWeb.Controllers
             string path = Session[id].ToString();
             Session.Remove(id);
 
-            return File(path, "application/javascript");
+            //minify js code
+            string unMinifiedString = System.IO.File.ReadAllText(path);
+            var compressor = new JavaScriptCompressor();
+            var minifiedString = compressor.Compress(unMinifiedString);
+
+            return File(Encoding.ASCII.GetBytes(minifiedString), "application/javascript");
         }
     }
 }

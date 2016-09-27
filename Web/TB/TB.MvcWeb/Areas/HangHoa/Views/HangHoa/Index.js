@@ -1,1 +1,0 @@
-﻿$('#hellobtn').click(function () { alert('hello'); });

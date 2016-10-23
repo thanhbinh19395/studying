@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entity", "Entity", "{CC2589
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.HangHoa", "TB.MvcWeb\Areas\HangHoa\UI.HangHoa.csproj", "{301F69AE-4B22-469B-A75F-6175941C9F46}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.Framework", "01.Framework", "{559E1553-D130-4141-AA71-4CBA0AF8F631}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TB", "TB\TB.csproj", "{B0003285-CFF0-45EB-AD37-D5AB69CB374A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{301F69AE-4B22-469B-A75F-6175941C9F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{301F69AE-4B22-469B-A75F-6175941C9F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{301F69AE-4B22-469B-A75F-6175941C9F46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0003285-CFF0-45EB-AD37-D5AB69CB374A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0003285-CFF0-45EB-AD37-D5AB69CB374A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0003285-CFF0-45EB-AD37-D5AB69CB374A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0003285-CFF0-45EB-AD37-D5AB69CB374A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,5 +46,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{32951B64-8713-4FFF-93B6-1496EB5B494B} = {78B13D65-7EBB-4E62-B24A-CBC485C386D8}
 		{301F69AE-4B22-469B-A75F-6175941C9F46} = {78B13D65-7EBB-4E62-B24A-CBC485C386D8}
+		{B0003285-CFF0-45EB-AD37-D5AB69CB374A} = {559E1553-D130-4141-AA71-4CBA0AF8F631}
 	EndGlobalSection
 EndGlobal

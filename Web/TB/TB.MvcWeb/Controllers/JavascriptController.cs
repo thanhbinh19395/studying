@@ -26,8 +26,7 @@ namespace TB.MvcWeb.Controllers
             string unMinifiedString = System.IO.File.ReadAllText(path);
             var compressor = new JavaScriptCompressor();
             var minifiedString = compressor.Compress(unMinifiedString);
-
-            return File(Encoding.ASCII.GetBytes(minifiedString), "application/javascript");
+            return File(Encoding.UTF8.GetBytes(minifiedString), "application/javascript");
         }
     }
 }

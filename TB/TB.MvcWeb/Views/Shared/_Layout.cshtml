@@ -469,13 +469,15 @@
     <!--flaty scripts-->
     <script src="~/Content/flaty/js/flaty.js"></script>
     <script src="~/Content/flaty/js/flaty-demo-codes.js"></script>*@
-
+    @using TB.MvcWeb.Extensions
+    @Html.AqViewBag()
+    @RenderSection("scripts", required: false)
     <script src="/Content/plugins/requirejs/require.js"></script>
     <script>
         require(['/Content/js/require.config.js'], function () {
             require(['jquery', 'jqueryUIDiaglogExtend', 'flatyScript', 'jqueryCookie', 'jquerySlimscroll', 'bootstrap'], function () {
                 require(['framework'], function () {
-                     @RenderSection("scripts", required: false)
+                     @RenderSection("PageMainModule", required: false)
                 });
             });
         });

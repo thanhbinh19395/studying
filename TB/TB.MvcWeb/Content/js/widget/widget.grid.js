@@ -16,6 +16,7 @@
         }
        
         var grid = this.element.w2grid(this.options);
+        grid.add(this.options.recordss);
         if (this.options.paginateOptions) {
             var pagi = $('#' + pagiName).pagination(this.options.paginateOptions);
             var pagiData = pagi.data("widget-pagination").options.__data;

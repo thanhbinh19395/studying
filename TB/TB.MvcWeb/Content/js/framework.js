@@ -21,7 +21,9 @@ $.extend(framework, {
     factory: function (id, options) {
         require(['layout', 'panel'], function () {
             options.parentId = $('#page').attr('data-parentid') || null;
-
+            $.extend(options, {
+                data: ViewBag.data,
+            });
             var pageOptions = {
                 dataIn: options
             };
@@ -108,6 +110,7 @@ $.extend(framework, {
                 //    };
                 //}
             });
+            delete ViewBag;
             $(page).trigger('pageLoadComplete');
             
         });

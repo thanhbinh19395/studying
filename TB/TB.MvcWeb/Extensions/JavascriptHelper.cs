@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 public static class JavascriptHelper
 {
-    public static MvcHtmlString InitPageMainModule<TModel>(this HtmlHelper<TModel> helper, string path = null)
+    public static MvcHtmlString InitPageMainModule<TModel>(this HtmlHelper<TModel> helper, string path = null, params string[] moduleName)
     {
         #region Tạo link với current session là 1 guid, chỉ load được 1 lần khi mở page
 
@@ -32,19 +32,15 @@ public static class JavascriptHelper
         var scriptsPath = "~/Content/js/";
 
         var absolutePath = VirtualPathUtility.ToAbsolute(scriptsPath);
-
-        //require.AppendLine("<script>");
-        //require.AppendFormat("    require([\"{0}require.config.js\"]," + Environment.NewLine, absolutePath);
-        //require.Append("       function () {");
-        //require.Append("           require([\"domReady!\", \"framework\"],");
-        //require.Append("               function () {");
-        //require.AppendFormat("                   require([\"{0}\"]);", getJSPath);
-        //require.Append("               }");
-        //require.Append("           );");
-        //require.Append("       }");
-        //require.Append("   );");
-        //require.AppendLine("</script>");
-        require.AppendFormat("require([\"{0}\"]);", getJSPath);
+        if (moduleName.Length != 0)
+        {
+            var listModule = string.Join(",", moduleName.Select(item => string.Format("\"{0}\"", item)));
+            require.Append("require([" + listModule + "], function () {");
+            require.Append("    require([\"" + getJSPath + "\"]);");
+            require.Append("});");
+        }
+        else
+            require.AppendFormat("require([\"{0}\"]);", getJSPath);
         return new MvcHtmlString(require.ToString());
 
         #endregion

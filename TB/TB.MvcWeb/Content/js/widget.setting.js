@@ -415,9 +415,9 @@ define(function () {
 
                     },
                     addRecords: function (records) {
-                        if (!obj.records)
-                            obj.records = [];
-                        $.extend(obj.records, records);
+                        if (!obj.recordss)
+                            obj.recordss = [];
+                        $.extend(obj.recordss, records);
                         return this;
                     },
                     createEvent: function (event, callback) {

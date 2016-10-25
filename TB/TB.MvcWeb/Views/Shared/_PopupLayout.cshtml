@@ -1,0 +1,13 @@
+﻿@{
+    Layout = null;
+}
+@if (true)
+{
+    WriteTo(new StringWriter(), RenderSection("styles", false));
+}
+@if (true)
+{
+    WriteTo(new StringWriter(), RenderSection("scripts", false));
+}
+@RenderSection("PageMainModule", required: false)
+@RenderBody()

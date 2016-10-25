@@ -1,0 +1,11 @@
+﻿@using TB.MvcWeb.Extensions
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = ViewHelper.GetLayout(ViewBag.ParentId);
+}
+
+@section PageMainModule{
+    @Html.InitPageMainModule()
+}
+<div id="page" data-parentid="@ViewBag.ParentId"></div>

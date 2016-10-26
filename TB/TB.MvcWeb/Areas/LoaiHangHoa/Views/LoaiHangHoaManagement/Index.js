@@ -1,4 +1,5 @@
 ﻿framework.factory('loaihanghoa', {
+
     onMessageReceive: function (sender, message) {
         console.log(sender);
         console.log(message);
@@ -11,37 +12,15 @@
         var form = widget.setting.form();
 
         form.setName('searchForm')
-            .setFieldPerRow(3) // so cot trong form
+            .setFieldPerRow(1) // so cot trong form
             .setWidth(700)
             .addFields([
-                { field: 'first_name', type: 'text', required: true, caption: "First Name", span: 2 },
-                { field: 'last_name', type: 'text', required: true, caption: "Last Name", span: 2 },
-                { field: 'comments', type: 'textarea', caption: "Comments", span: 3 },
-                { field: 'address1', type: 'text', required: true, caption: "Address 1", span: 2 },
-                { type: 'empty' }, // de trong 1 o trong table
-                { type: 'empty' },
-                { field: 'address2', type: 'text', caption: "Address 2", span: 2 },
-                { field: 'city', type: 'text', required: true, caption: "City" },
-                { field: 'color', type: 'color', required: true, caption: "Color" },
-                { field: 'birth', type: 'date', required: true, caption: "Birthday" },
-                { type: 'empty', span: 3 },
-                {
-                    field: 'field_list', type: 'list', required: true,
-                    options: { items: ['Adams, John', 'Johnson, Peter', 'Lewis, Frank', 'Cruz, Steve', 'Donnun, Nick'] }
-                },
-                {
-                    field: 'field_select', type: 'select', required: true,
-                    options: { items: ['Adams, John', 'Johnson, Peter', 'Lewis, Frank', 'Cruz, Steve', 'Donnun, Nick'] }
-                },
-                { type: 'empty' },
-                {
-                    field: 'field_enum', type: 'enum', required: true, span: 2,
-                    options: { items: ['Adams, John', 'Johnson, Peter', 'Lewis, Frank', 'Cruz, Steve', 'Donnun, Nick'] }
-                },
-                { field: 'field_textarea', type: 'textarea', span: 3 }
+                { field: 'Ma', type: 'text', required: false, caption: "Ma"},
+                { field: 'Ten', type: 'text', required: false, caption: "Ten"},
+               
             ])
         ;
-        header.setTitle('Danh sách sản phẩm')
+        header.setTitle('Danh sách Loại hàng hóa')
             .setIcon('fa-bar-chart-o');
 
         var formFooter = widget.setting.toolbar();
@@ -54,7 +33,16 @@
                 var form = self.findElement('searchForm');
                 if (form.length > 0)
                     form = form[0];
-                grid.search('fname', form.record['first_name']);
+
+                self.searchParam = form.record;
+                $.get('/LoaiHangHoa/LoaiHangHoaManagement/Search', form.record, function (d) {
+                    grid.clear();
+                    grid.add(d.Data);
+                    console.log(d);
+                    // reset lai tong so trang neu so tong so trang thay doi.
+                    grid.pagination.reset(d.Page, d.PageCount);
+                });
+
                 var headerContent = self.findElement('headerContent');
                 headerContent[0].toggle();
             }
@@ -98,9 +86,9 @@
         content.setName('content');
         var pagi = widget.setting.pagination();
         pagi.setName('page')
-            .setTotalPages(20)
-            .setStartPage(1)
-        //.setPageClickHandler(self.onpageClick.bind(this))
+            .setTotalPages(self.ViewBag.PageCount)
+            .setStartPage(self.ViewBag.Page)
+        .setPageClickHandler(self.onPageClick.bind(this))
         ;
 
         var grid = widget.setting.grid();
@@ -113,7 +101,7 @@
             ])
             .addButton('btnDelete', 'Xoa', 'glyphicon-remove', self.onbtnXoaClickGrid1.bind(this)).setIdColumn('LoaiHangHoaId')
             //.setRowExpandHandler(self.onrowExpand.bind(this))
-            .addRecords(self.data) // du lieu random tu controller
+            .addRecords(self.ViewBag.Data) // du lieu random tu controller
             .createEvent('add', function () { alert('onAdd'); })
             .setPaginateOptions(pagi.end())
         ;
@@ -140,25 +128,6 @@
     onbtnSearchClickSearchForm: function () {
 
     },
-    onpageClick: function (e, p) {
-        console.log('you clicked page ' + p);
-
-        var grid = this.findElement('grid1');
-        if (grid.length > 0)
-            grid = grid[0];
-        //var page = this.findElement('page');
-        //if (page.length > 0)
-        //    page = page[0];
-
-        $.get('/home/data?page=' + p, function (resp) {
-            var d = JSON.parse(resp);
-            grid.clear();
-            grid.add(d.Data);
-
-            // reset lai tong so trang neu so tong so trang thay doi.
-            grid.pagination.reset(d.Page, d.TotalPage);
-        });
-    },
     onrowExpand: function (event) {
         console.log(event);
         var grid = this.findElement('grid1');
@@ -170,5 +139,12 @@
 
         var box = $('#' + event.box_id);
         box.html(html).animate({ height: 26 * 3 }, 100);
+    },
+    onPageClick: function (event, page) {
+        console.log(page);
+        var grid = this.findElement('grid1');
+        if (grid.length > 0)
+            grid = grid[0];
+        this.reloadGridData('/LoaiHangHoa/LoaiHangHoaManagement/Search', grid, page, this.searchParam);
     }
 });

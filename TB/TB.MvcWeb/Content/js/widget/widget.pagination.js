@@ -39,7 +39,7 @@
                 //console.log('destroy');
                 this.pagi.twbsPagination('destroy');
             }
-            this.options.totalPages = total;
+            this.options.totalPages = total != 0 ? total : 1;
             this.options.startPage = page;
             //console.log(this.options);
             this.pagi.twbsPagination(this.options);

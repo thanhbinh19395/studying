@@ -22,7 +22,7 @@ $.extend(framework, {
         require(['layout', 'panel'], function () {
             options.parentId = $('#page').attr('data-parentid') || null;
             $.extend(options, {
-                data: ViewBag.data,
+                ViewBag: ViewBag.data,
             });
             var pageOptions = {
                 dataIn: options
@@ -32,10 +32,6 @@ $.extend(framework, {
             var page = $('#page').panel(layoutSetting);
             
             $.extend(pageOptions, { dataOut: $(page).data("widget-panel").options });
-
-            //if (pageOptions.parentId) {
-            //    $.extend(pageOptions, { $popupEl: $('<div>') });
-            //}
 
             framework.global.registerPage(pageOptions.dataOut._pageId, pageOptions);
             page.attr('id', pageOptions.dataOut._pageId);
@@ -73,17 +69,6 @@ $.extend(framework, {
                 }());
             }
 
-            //child function
-            //if (pageOptions.parentId) {
-                $.extend(options, {
-                    sendMessage: function (message) {
-                        
-                        var parentPage = framework.global.findPage(pageOptions.dataOut.parentId);
-                        if (parentPage.onMessageReceive)
-                            parentPage.onMessageReceive(options,message);
-                    },
-                });
-            //}
 
             //default function
             if (options.onMessageReceive) {
@@ -94,6 +79,29 @@ $.extend(framework, {
             }
 
             $.extend(options, {
+                sendMessage: function (message) {
+
+                    var parentPage = framework.global.findPage(pageOptions.dataOut.parentId);
+                    if (parentPage.onMessageReceive)
+                        parentPage.onMessageReceive(options, message);
+                },
+                reloadGridData: function (link, grid, page, param) {
+                    console.log(page);
+                    var data = $.extend({}, {
+                        Page: page || 1
+                    }, param || {});
+                    $.get(link, data, function (d) {
+                        grid.clear();
+                        grid.add(d.Data);
+                        
+                        // reset lai tong so trang neu so tong so trang thay doi.
+                        if (grid.pagination)
+                            grid.pagination.reset(d.Page, d.PageCount);
+                    });
+                },
+                getSearchParam: function (page, param) {
+                    return;
+                },
                 openPopup: function (options) {
                     framework.common.openPopup(pageOptions.dataOut._pageId, options);
                 },

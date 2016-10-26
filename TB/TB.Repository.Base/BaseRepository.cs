@@ -10,7 +10,7 @@ namespace TB.BaseRepo
     public class BaseRepository
     {
         protected QLBH db { get; set; }
-        protected int? Page { get; set; }
+        public int? Page { get; set; }
         protected int PageSize { get; set; }
         public BaseRepository()
         {

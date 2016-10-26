@@ -6,13 +6,32 @@ using System.Text;
 using System.Threading.Tasks;
 using TB.BaseRepo;
 using TB.Domain.EntityModel;
+using X.PagedList;
+
 namespace TB.LoaiHangHoaRepo
 {
-    public class LoaiHangHoaGetListRepository: BaseRepository
+    public class LoaiHangHoaGetListRepository : BaseRepository
     {
-        public List<LoaiHangHoa> Excute()
+        public dynamic Excute()
         {
-            return db.LoaiHangHoas.ToList();
+            var result = db.LoaiHangHoas;
+            if (Page != null)
+            {
+                //Phan trang
+                var page = result.ToPagedListForEntityFramework((LoaiHangHoa s) => s.LoaiHangHoaId, Convert.ToInt32(Page), 2);
+                return new
+                {
+                    data = page.ToList(),
+                    PageCount = page.PageCount,
+                    Page = page.PageNumber,
+                };
+            }
+            else
+                return new
+                {
+                    data = result.ToList()
+                };
+            
         }
         public string ExcuteJson()
         {

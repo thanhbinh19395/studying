@@ -1,16 +1,35 @@
 ﻿/* This widget contains only fields */
 $.widget('widget.form', $.widget.base, {
+    template: [
+        "<table>",
+            "{0}",
+        "</table>"
+    ].join(),
     options: {
         name: null,
         fieldPerRow: 2,
         fields: [],
         actions: [],
-        boderSpacing:0,
+        boderSpacing: 0,
+        labelWidth: 150
     },
     _create: function () {
         this.element.empty();
         this.element.append(this._createFormElement());
         var form = this.element.w2form(this.options);
+
+        $.extend(form, {
+            findElement: function (element) {
+                var el = $(form.$el).find(element);
+                if (el.length > 0) {
+                    return el;
+                }
+                if (element && element[0] && element[0].match(/[a-zA-Z]/g)) {
+                    element = '#' + element;
+                }
+                return $(form.$el).find(element);
+            }
+        });
 
         this._super();
         this._saveData(form);
@@ -21,10 +40,10 @@ $.widget('widget.form', $.widget.base, {
                         .addClass('table-form') // this class needs to be added in order to styling correctly
                         .css('border-spacing', this.options.boderSpacing)
                         .css('width', '100%')
-                        .css('margin','-3px -1px')
+                        .css('margin', '0px 0px')
         ;
                             
-        var tr = $('<tr>');
+        var tr = $('<tr>');//.css('border', '1px solid');
 
         for (var i = 0, v = 0, field; (field = this.options.fields[i]) ; i++) {
             var fieldElement = this._createInputElement(field);
@@ -71,7 +90,7 @@ $.widget('widget.form', $.widget.base, {
             .append(table)
 			.css({
 			    'width': '100%',
-			    'padding': '3px'
+			    'padding': '5px'
 			});
     },
     _createInputElement: function (fieldOption) {
@@ -79,12 +98,18 @@ $.widget('widget.form', $.widget.base, {
             return null;
         }
         var inputDiv = $('<div>').addClass('w2ui-field');
-        var label = $('<label>').text(fieldOption.caption || fieldOption.field);
-        var input = this._getInputByType(fieldOption.type).attr('name', fieldOption.field);
-
-        var inputBox = $('<div>').append(input).css({
-            
-        });
+        var label = $('<label>').css({ 'width': (this.options.labelWidth + 'px'), 'text-align': 'left', 'margin-left': '2px' });
+        var input = this._getInputByOption(fieldOption).attr('name', fieldOption.field);
+        if (fieldOption.html){
+            label.text(fieldOption.html.caption || (fieldOption.caption || fieldOption.field));
+            if(fieldOption.html.attr)
+                input.attr(fieldOption.html.attr);
+        }
+        else {
+            label.text(fieldOption.caption || fieldOption.field);
+        }
+        
+        var inputBox = $('<div>').append(input).css('margin-left', (this.options.labelWidth + 1) + 'px');
 
         input.css({
             border: 0
@@ -111,9 +136,10 @@ $.widget('widget.form', $.widget.base, {
 
         return inputDiv.append(label).append(inputBox);
     },
-    _getInputByType: function (inputType) {
+    _getInputByOption: function (fieldOption) {
+        var self = this;
         var tmp = null;
-        switch (inputType) {
+        switch (fieldOption.type) {
             case 'textarea':
                 tmp = $('<textarea>').css('resize', 'vertical');
                 break;

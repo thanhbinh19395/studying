@@ -9,6 +9,7 @@ namespace TB.Domain.EntityModel
     [Table("ChiTietDonHang")]
     public partial class ChiTietDonHang
     {
+
         public long ChiTietDonHangId { get; set; }
 
         public long? DonHangId { get; set; }

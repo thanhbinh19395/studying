@@ -15,33 +15,48 @@ framework.global = (function (scope) {
             return id + '_' + this.uuid();
         },
         registerPage: function (pageId, instance) {
-          
-            //console.log(pageId + ' registered');
             __mainfest[pageId] = instance;
+        },
+        getRootPageId:function(){
+            return __mainfest['rootPageId'];
+        },
+        registerRootPage: function (pageId, instance) {
+            if (__mainfest['rootPageId'])
+                throw 'Error ! root page id is exist';
+            __mainfest['rootPageId'] = pageId;
+            this.registerPage(pageId, instance);
         },
         registerElementByPageId: function (pageId, elementName, data) {
             __mainfest[pageId].dataOut.elements[pageId + '_' + elementName] = data;
         },
-        findElementByPageId: function (pageId, elementName) {
+        unregisterElementByPageId: function (pageId, elementName) {
+            __mainfest[pageId].dataOut.elements[pageId + '_' + elementName] = undefined;
+        },
+        findElementByPageId: function (pageId, elementName, findAll) {
+
             var pageOptions = this.findPage(pageId);
-            //console.log(pageOptions);
             var result = [];
             (function find(elements, name) {
                 if (elements[name]) {
-                    console.log('founded');
                     result.push(elements[name]);
+                    console.log('found');
                 }
                 else {
                     $.each(elements, function (key, value) {
-                        if (value.elements) {
+                        if (value && value.elements) {
                             return find(value.elements, name);
                         }
                     });
                 }
-                
             })(pageOptions.dataOut.elements, pageOptions.dataOut._pageId + '_' + elementName);
-            return result;
-
+            if (result.length != 0) {
+                if (findAll)
+                    return result;
+                else
+                    return result[0];
+            }
+            else
+                return null;
         },
         findPage: function (pageId) {
             //$.each(__mainfest, function (index, value) {

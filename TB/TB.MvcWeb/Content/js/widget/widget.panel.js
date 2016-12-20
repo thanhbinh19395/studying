@@ -63,6 +63,7 @@
                 value._pageId = self.options._pageId;
             }
             if (value._type.startsWith('w2')) {
+                
                 var w2ui = $(value.template)[value._type](value);
                 self.options.elements[value.name] = w2ui;
             } else {
@@ -71,7 +72,6 @@
                     self.options.elements[value.name] = ($(myWidget).data('widget-' + value._type).options).__data;
                 });
             }
-
             // binding events
             //var keys = Object.keys(value.events || {}) || [];
 

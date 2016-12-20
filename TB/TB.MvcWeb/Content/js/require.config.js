@@ -1,7 +1,6 @@
 ﻿require.config({
     baseUrl: '/Content/js',
     paths: {
-        //framework
         framework: 'framework',
         common: 'framework.common',
         global: 'framework.global',
@@ -10,7 +9,6 @@
         widget: 'widget.setting',
         layout: 'layout.setting',
         domReady: '../plugins/requirejs/domReady',
-
         // widgets
         base: 'widget/widget.base',
         button: 'widget/widget.button',
@@ -20,9 +18,14 @@
         grid: 'widget/widget.grid',
         texteditor: 'widget/widget.texteditor',
         gallery: 'widget/widget.gallery',
-
+        uploader: 'widget/widget.uploader',
+        tabs: 'widget/widget.tabs',
+        field: 'widget/widget.field',
+        boxcontent: 'widget/widget.boxcontent',
         //plugin
         ckeditor: '../plugins/ckeditor/ckeditor',
+        pluploadcore: '../plugins/plupload-2.1.9/js/plupload.full.min',
+        pluploadui: '../plugins/plupload-2.1.9/js/jquery.ui.plupload/jquery.ui.plupload.min',
         jquery: '../flaty/assets/jquery/jquery-2.1.1.min',
         bootstrap: '../plugins/bootstrap-3.3.7/js/bootstrap',
         jquerySlimscroll: '../flaty/assets/jquery-slimscroll/jquery.slimscroll.min',
@@ -35,11 +38,12 @@
         flotTooltip: '../flaty/assets/flot/jquery.flot.tooltip.min',
         sparkline: '../flaty/assets/sparkline/jquery.sparkline.min',
         flatyScript: '../flaty/js/flaty',
-        w2ui: '../plugins/w2ui/w2ui-1.4.3',
+        w2ui: '../plugins/w2ui/w2ui-1.5.rc1',
         twbspagination: '../plugins/twbspagination/jquery.twbsPagination',
         jqueryUI: '../plugins/jquery-ui-1.11.4/jquery-ui',
         jqueryUIDiaglogExtend: '../plugins/jquery-ui-DialogExtend/jquery.dialogextend',
-
+        noty: '../plugins/noty-2.3.8/jquery.noty',
+        notyLayoutTopRight: '../plugins/noty-2.3.8/layouts/topRight'
     },
     shim: {
         //jquery deps
@@ -57,7 +61,8 @@
         flotStack: ['flot'],
         flotCrosshair: ['flot'],
         flotTooltip: ['flot'],
-
+        noty: ['jquery'],
+        notyLayoutTopRight:['noty'],
         //framework
         framework: ['widget', 'global', 'common'],
 
@@ -69,11 +74,23 @@
         // widget
         base: ['w2ui', 'jqueryUI'],
         button: ['base'],
-        form: ['base'],
+        form: ['base', 'field'],
         pagination: ['base', 'twbspagination'],
         panel: ['base'],
         grid: ['base', 'pagination'],
         texteditor: ['base', 'ckeditor'],
         gallery: ['base'],
-    },
+        uploader: ['base', 'pluploadcore', 'pluploadui'],
+        tabs: ['base'],
+        boxcontent: ['base'],
+        
+        // layouts
+        inputpage: ['framework', 'widget'],
+        listpage: ['framework', 'widget', 'panel'],
+
+        layout: ['global', 'widget'],
+
+        //plugins
+        pluploadui: ['pluploadcore']
+    }
 });

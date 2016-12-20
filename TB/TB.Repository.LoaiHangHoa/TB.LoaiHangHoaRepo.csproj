@@ -83,8 +83,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoaiHangHoaGetByIdRepository.cs" />
     <Compile Include="LoaiHangHoaGetListRepository.cs" />
+    <Compile Include="LoaiHangHoaInsertRepository.cs" />
     <Compile Include="LoaiHangHoaSearchRepository.cs" />
+    <Compile Include="LoaiHangHoaDeleteRepository.cs" />
+    <Compile Include="LoaiHangHoaUpdateRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

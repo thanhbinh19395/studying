@@ -9,37 +9,48 @@ namespace LoaiHangHoa.Controllers
 {
     public class LoaiHangHoaManagementController : Controller
     {
-        public ActionResult Index(string ParentId)
+        //View
+        public ActionResult ListLoaiHangHoa(LoaiHangHoaSearchRepository repo)
         {
-            LoaiHangHoaSearchRepository repo = new LoaiHangHoaSearchRepository();
             repo.Page = 1;
-            ViewBag.data = repo.Excute();
+            repo.Execute(this);
+            return View();
+        }
+    
+        public ActionResult InsertLoaiHangHoa(string ParentId)
+        {
             ViewBag.ParentId = ParentId;
             return View();
         }
-
-        public ActionResult GetList(LoaiHangHoaGetListRepository repo)
+        public ActionResult UpdateLoaiHangHoa(LoaiHangHoaGetByIdRepository repo)
         {
-            var list = repo.Excute();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult Search(LoaiHangHoaSearchRepository repo)
-        {
-            var list = repo.Excute();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
+            repo.Execute(this);
             return View();
         }
 
-        public ActionResult Contact()
+        //API
+        [HttpPost]
+        public ActionResult ExecuteSearch(LoaiHangHoaSearchRepository repo)
         {
-            ViewBag.Message = "Your contact page.";
+            var list = repo.Execute(this);
+            return Json(list);
+        }
+        [HttpPost]
+        public ActionResult ExecuteUpdateLoaiHangHoa(LoaiHangHoaUpdateRepository repo)
+        {
+            return Json(repo.Execute(this));
+        }
 
-            return View();
+        [HttpPost]
+        public ActionResult ExecuteInsertLoaiHangHoa(LoaiHangHoaInsertRepository repo)
+        {
+            return Json(repo.Execute(this));
+        }
+        
+        [HttpPost]
+        public ActionResult ExecuteDeleteLoaiHangHoa(LoaiHangHoaDeleteRepository repo)
+        {
+            return Json(repo.Execute(this));
         }
     }
 }

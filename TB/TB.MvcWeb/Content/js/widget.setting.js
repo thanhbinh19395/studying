@@ -55,9 +55,113 @@ define(function () {
         }
 
         return {
+            boxcontent: function (options) {
+                var obj = {};
+                $.extend(obj, options || {});
+                $.extend(obj, { _type: "boxcontent", template: $("<div>") });
+                return {
+                    setColor:function(color){
+                        $.extend(obj, { color: color });
+                        return this;
+                    },
+                    addButton: function (button) {
+                        if (!obj.buttons)
+                            obj.buttons = [];
+                        obj.buttons.push(button);
+                        return this;
+                    },
+                    setBoxCss: function (cssObj) {
+                        $.extend(obj, { boxCss: cssObj });
+                        return this;
+                    },
+                    setData:function(data){
+                        $.extend(obj, { data: data });
+                        return this;
+                    },
+                    setName: function (name) {
+                        $.extend(obj, { name: name });
+                        return this;
+                    },
+                    setIcon: function (icon) {
+                        $.extend(obj, { icon: icon });
+                        return this;
+                    },
+                    end: function () {
+                        return obj;
+                    }
+                }
+            },
+
+            tabs: function (options) {
+                var obj = {};
+                $.extend(obj, options || {});
+                $.extend(obj, { _type: "tabs", template: $("<div>") });
+                return {
+                    setAttr: function(name, value){
+                        if (!value) {
+                            $.extend(obj, name);
+                        } else {
+                            $.extend(obj[name], value );
+                        }
+                        return this;
+                    },
+                    event: function (eventName, handler) {
+                        obj[eventName] = handler;
+                        return this;
+                    },
+                    addTabs:function(tabs){
+                        if (!obj.tabs)
+                            obj.tabs = [];
+                        if ($.isArray(tabs))
+                            $.each(tabs, function (key, value) {
+                                obj.tabs.push(value);
+                            });
+                        else
+                            obj.tabs.push(tabs);
+                        return this;
+                    },
+                    setActiveTab:function(tabid){
+                        $.extend(obj, { active: tabid });
+                        return this;
+                    },
+                    setOnClickHandler:function(handler){
+                        $.extend(obj, {
+                            onClick: function (e) {
+                                handler(e);
+                            }
+                        });
+                        return this;
+                    },
+                    setName: function (name) {
+                        $.extend(obj, { name: name });
+                        return this;
+                    },
+                    end: function () {
+                        console.log(obj);
+                        return obj;
+                    }
+                }
+            },
             uploader: function (options) {
                 var obj = {};
+                $.extend(obj, options || {});
+                $.extend(obj, { _type: "uploader", template: $("<div>") });
                 return {
+                    onImageClick:function(handler){
+                        $.extend(obj, {
+                            onImageClick: function (data) {
+                                handler(data);
+                            }
+                        });
+                    },
+                    setAttr: function(name, value){
+                        if (!value) {
+                            $.extend(obj, name);
+                        } else {
+                            $.extend(obj, { name: value });
+                        }
+                        return this;
+                    },
                     setName: function (name) {
                         $.extend(obj, { name: name });
                         return this;
@@ -110,6 +214,7 @@ define(function () {
                         return this;
                     },
                     end: function () {
+                        console.log(obj);
                         return obj;
                     }
                 }
@@ -123,12 +228,15 @@ define(function () {
                         $.extend(obj, { name: name });
                         return this;
                     },
-                    addImages: function (images) {
+                    addImages: function (imgUrl, thumbUrl) {
                         if (!obj.images)
                             obj.images = [];
-                        $.each(images, function (key, value) {
-                            obj.images.push(value);
-                        });
+                        if ($.isArray(imgUrl))
+                            $.each(imgUrl, function (key, value) {
+                                obj.images.push(value);
+                            });
+                        else
+                            obj.images.push({ ImageUrl: imgUrl, ThumbnailUrl: thumbUrl });
 
                         return this;
                     },
@@ -158,6 +266,10 @@ define(function () {
                 return {
                     setName: function (name) {
                         $.extend(obj, { 'name': name });
+                        return this;
+                    },
+                    setData: function (data) {
+                        $.extend(obj, { 'data': data });
                         return this;
                     },
                     setWidth: function (width) {
@@ -287,7 +399,7 @@ define(function () {
             title: function (options) {
                 var _toolbar = widget.setting.toolbar();
 
-                var _title = { id: 'title', caption: 'Default Name', icon: 'fa-list' };
+                var _title = { id: 'title', caption: '', icon: 'fa-list' };
                 var _leftItem = [];
                 var _rightItem = [];
 
@@ -349,8 +461,8 @@ define(function () {
                 $.extend(obj, options || {});
                 $.extend(obj, {
                     _type: "grid",
-                    template: $('<div style=" border-radius: 0; height:91.5vh;" >'),
-                    //fixedBody:false,
+                    template: $('<div style=" border-radius: 0">'),
+                    fixedBody:false,
                 });
                 return {
                     setIdColumn: function (colName) {
@@ -366,7 +478,7 @@ define(function () {
                         return this;
                     },
                     hide: function () {
-                        if (obj.show)
+                        if (!obj.show)
                             obj.show = {};
                         $.each(arguments, function (key, value) {
                             obj.show[value] = false;
@@ -395,15 +507,23 @@ define(function () {
                         $.extend(obj.columns, cols);
                         return this;
                     },
-                    addButton: function (id, text, icon, callback) {
+                    addButton: function (id, text, icon, callback, addBreakBefore) {
                         if (!obj.show) {
                             obj.show = {};
                             $.extend(obj.show, { toolbar: true });
                         }
+                        else
+                            if (!obj.show.toolbar)
+                                $.extend(obj.show, { toolbar: true });
+                            
                         if (!obj.toolbar) {
                             obj.toolbar = {};
                             obj.toolbar.items = [];
                         }
+                        if (addBreakBefore||true)
+                            obj.toolbar.items.push({
+                                type: 'break',
+                            });
                         obj.toolbar.items.push({
                             type: 'button',
                             id: id,
@@ -415,15 +535,16 @@ define(function () {
 
                     },
                     addRecords: function (records) {
-                        if (!obj.recordss)
-                            obj.recordss = [];
-                        $.extend(obj.recordss, records);
+                        if (!obj.data)
+                            obj.data = [];
+                        $.extend(obj.data, records);
                         return this;
                     },
                     createEvent: function (event, callback) {
-                        name = event.slice(0, 1).toUpperCase();
-                        var eventName = 'on' + name.concat(event.slice(1));
-                        obj[eventName] = function () { callback(); };
+                        //name = event.slice(0, 1).toUpperCase();
+                        //var eventName = 'on' + name.concat(event.slice(1));
+                        console.log(event);
+                        obj[event] = function (e) { callback(e); };
                         return this;
                     },
                     setRowExpandHandler: function (handler) {
@@ -442,6 +563,10 @@ define(function () {
                 return {
                     css: function (css) {
                         _css(obj, css);
+                        return this;
+                    },
+                    setHtml:function(html){
+                        obj.template.html(html);
                         return this;
                     },
                     setTemplate: function (template) {
@@ -524,6 +649,10 @@ define(function () {
                 $.extend(obj, options || {});
                 $.extend(obj, { _type: "form", template: $('<div style="border-radius: 0">') });
                 return {
+                    setLabelWidth:function(width){
+                        $.extend(obj, { labelWidth: width });
+                        return this;
+                    },
                     setName: function (name) {
                         $.extend(obj, { 'name': name });
                         return this;
@@ -556,6 +685,10 @@ define(function () {
                         if (!obj.actions)
                             obj.actions = {};
                         $.extend(obj.actions, e);
+                        return this;
+                    },
+                    setRecord:function(record){
+                        $.extend(obj, { record: record });
                         return this;
                     },
                     createEvent: function (event, callback) {
@@ -622,11 +755,12 @@ define(function () {
                 };
             },
             header: function (options) {
-                var _panel = widget.setting.panel();
+                var _header = widget.setting.panel();
                 var _title = widget.setting.title();
                 var _content = widget.setting.panel();
-                var _end = _panel.end();
+                var _end = _header.end();
 
+                _header.setName('header');
                 _content.setWidth('auto');
                 _content.addClass('collapse').css({
                     right:'0px',
@@ -634,7 +768,7 @@ define(function () {
                     zIndex: 3,
                 });
 
-                $.extend(_panel, {
+                $.extend(_header, {
                     title: function () { return _title; },
                     content: function () { return _content; },
                     setTitle: function (title) {
@@ -653,18 +787,20 @@ define(function () {
                     }
                 });
 
-                _panel.addItem(_title);
-                _panel.addItem(_content);
-                delete _panel.addItem;
-                _panel.css({ padding: '0px' });
-                return _panel;
+                _header.addItem(_title);
+                _header.addItem(_content);
+                delete _header.addItem;
+                _header.css({ padding: '0px' });
+                return _header;
             },
             content: function (options) {
                 var _panel = widget.setting.panel();
+                _panel.setName('content');
                 return _panel;
             },
             footer: function (options) {
                 var _panel = widget.setting.panel();
+                _panel.setName('footer');
                 return _panel;
             },
             toolbar: function (options) {

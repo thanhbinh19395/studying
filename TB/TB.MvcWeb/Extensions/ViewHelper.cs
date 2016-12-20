@@ -11,7 +11,7 @@ namespace TB.MvcWeb.Extensions
 {
     public static class ViewHelper
     {
-        public static string GetLayout(string parentId, string popupLayoutUrl = "~/Views/Shared/_PopupLayout.cshtml", string pageLayout = "~/Views/Shared/_Layout.cshtml")
+        public static string GetLayout(string parentId, string popupLayoutUrl = "~/Views/Shared/_PopupLayout.cshtml", string pageLayout = "~/Views/Shared/_MainLayout.cshtml")
         {
             if (string.IsNullOrWhiteSpace(parentId))
             {

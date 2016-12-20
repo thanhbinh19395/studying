@@ -18,6 +18,7 @@ namespace TB.Domain.EntityModel
         public long LoaiHangHoaId { get; set; }
 
         [StringLength(50)]
+        [CaseSensitive]
         public string Ma { get; set; }
 
         [StringLength(100)]

@@ -4,6 +4,7 @@ namespace TB.Domain.EntityModel
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using System.Data.Entity.ModelConfiguration.Conventions;
 
     public partial class QLBH : DbContext
     {
@@ -32,6 +33,10 @@ namespace TB.Domain.EntityModel
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Add(new AttributeToColumnAnnotationConvention<CaseSensitiveAttribute, bool>(
+                "CaseSensitive",
+                (property, attributes) => attributes.Single().IsEnabled));
+
             modelBuilder.Entity<AnhHangHoa>()
                 .Property(e => e.LinkAnh)
                 .IsUnicode(false);
@@ -67,6 +72,7 @@ namespace TB.Domain.EntityModel
             modelBuilder.Entity<User>()
                 .Property(e => e.Email)
                 .IsUnicode(false);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

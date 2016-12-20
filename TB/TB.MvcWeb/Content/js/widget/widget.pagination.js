@@ -1,7 +1,7 @@
 ﻿$.widget('widget.pagination', $.widget.base, {
     options: {
         name: null,
-        totalPages: 0,
+        totalPages: 1,
         startPage: 1,
         position: 'left',
         first: "&laquo;",
@@ -39,7 +39,7 @@
                 //console.log('destroy');
                 this.pagi.twbsPagination('destroy');
             }
-            this.options.totalPages = total != 0 ? total : 1;
+            this.options.totalPages = total;
             this.options.startPage = page;
             //console.log(this.options);
             this.pagi.twbsPagination(this.options);

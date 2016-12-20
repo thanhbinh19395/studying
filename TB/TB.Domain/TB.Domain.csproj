@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityModel\AnhHangHoa.cs" />
+    <Compile Include="EntityModel\CaseSensitiveAnnotation.cs" />
     <Compile Include="EntityModel\ChiTietDonHang.cs" />
     <Compile Include="EntityModel\ChiTietPhieuChi.cs" />
     <Compile Include="EntityModel\DonHang.cs" />

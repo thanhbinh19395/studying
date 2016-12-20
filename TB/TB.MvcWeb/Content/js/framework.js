@@ -26,6 +26,7 @@ $.extend(framework, {
             if (ViewBag.Message)
                 options.Data = ViewBag.Message.Data;
             delete ViewBag;
+            $('#ViewBag').remove();
             var pageOptions = {
                 dataIn: options
             };

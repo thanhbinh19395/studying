@@ -34,7 +34,7 @@ namespace TB.MvcWeb.Extensions
                 DefaultValueHandling = DefaultValueHandling.Ignore
             };
 
-            stringBuilder.Append("<script type=\"text/javascript\">")
+            stringBuilder.Append("<script id=\"ViewBag\" type=\"text/javascript\">")
                          .Append("var ").Append(viewBagVarName).Append("=")
                          .Append(JsonConvert.SerializeObject(helper.ViewBag, Formatting.None, settings));
 

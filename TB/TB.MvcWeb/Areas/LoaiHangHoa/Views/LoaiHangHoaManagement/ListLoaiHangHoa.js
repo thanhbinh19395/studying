@@ -107,15 +107,17 @@
     onbtnUpdateClickCategoryGrid: function () {
         var grid = this.findElement('categoryGrid');
         var id = grid.getSelection()[0];
-        this.openPopup({
-            name: 'insertCategoryPopup',
-            url: '/LoaiHangHoa/LoaiHangHoaManagement/UpdateLoaiHangHoa',
-            title: 'Thêm Loại Hàng hóa',
-            width: 800
-        },
-        {
-            LoaiHangHoaId: id
-        });
+        if (id != null) {
+            this.openPopup({
+                name: 'insertCategoryPopup',
+                url: '/LoaiHangHoa/LoaiHangHoaManagement/UpdateLoaiHangHoa',
+                title: 'Thêm Loại Hàng hóa',
+                width: 800
+            },
+            {
+                LoaiHangHoaId: id
+            });
+        }else{alert("Hạy chọn 1 hàng cụ thể để cập nhập")}
 
     },
     onbtnDeleteClickCategoryGrid: function () {

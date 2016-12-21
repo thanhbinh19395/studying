@@ -8,16 +8,6 @@ $.extend(framework, {
         }
         return o;
     },
-    lazyLoad: function (url, callback) {
-        var url = url || url.url;
-        var callback = callback || url.callback;
-        $.ajax({
-            url: url,
-            dataType: 'script',
-            success: callback,
-            async: true
-        });
-    },
     factory: function (id, options) {
         require(['layout', 'panel'], function () {
             //gán ParentId và ViewBag
@@ -86,8 +76,7 @@ $.extend(framework, {
                         Page: page || 1
                     }, param || {});
                     $.post(link, data, function (d) {
-                        debugger
-                        grid.clear();
+                        grid.clear(true);
                         grid.add(d.Data.Data);
                         // reset lai tong so trang neu so tong so trang thay doi.
                         if (grid.pagination)

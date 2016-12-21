@@ -58,7 +58,7 @@ namespace TB.BaseRepo
             return new Result<T>
             {
                 IsSuccess = false,
-                Message = message ?? "success"
+                Message = message ?? "fail"
             };
         }
     }

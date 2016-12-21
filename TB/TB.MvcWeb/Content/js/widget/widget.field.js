@@ -9,9 +9,9 @@
     //this sau khi extend sẽ được chứa trong $(this.el).data('w2field')
     $.extend(self, {
         onMessageReceive: function (sender, message) {
-            $(self.el).val(message.CategoryId);
+            $(self.el).val(message.LoaiHangHoaId);
             $(self.el).change();
-            $(input).val(message.Name)
+            $(input).val(message.Ten)
             $(self.el).data('data', message);
         }
     });
@@ -44,15 +44,13 @@
             FieldName: $(self.el).attr('name'),
             SearchOnOpen: true,
             CommandAction: {
-                Name: input.val(),
+                Ten: input.val(),
                 Or: false,
-                currentPage: 1
+                Page: 1
             }
         });
-        $.post('/Documents/Category/Search', {
-            CommandAction: data.param.CommandAction
-        }, function (result) {
-            var records = JSON.parse(result.Data);
+        $.post('/LoaiHangHoa/LoaiHangHoaManagement/ExecuteSearch', data.param.CommandAction, function (result) {
+            var records = result.Data.Data;
             if (records.length == 0) {
                 alert("không có loại hàng hóa cần tìm");
                 return;
@@ -65,7 +63,7 @@
             else {
                 options.caller.openPopup({
                     name: 'themPopup',
-                    url: '/Documents/Category/ListCategory',
+                    url: '/LoaiHangHoa/LoaiHangHoaManagement/ListLoaiHangHoa',
                     width: data.width || (options.width || 600),
                     height: data.height || (options.height || 'auto'),
                     resizable: true

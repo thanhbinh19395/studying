@@ -13,8 +13,8 @@
             .setFieldPerRow(1) // so cot trong form
             //.setWidth(700)
             .addFields([
-                { field: 'Ma', type: 'text', required: true, caption: "Ma" },
-                { field: 'Ten', type: 'text', required: false, caption: "Ten"},
+                { field: 'Ma', type: 'popupListCategory', required: true, caption: "Ma", options: { caller: self } },
+                { field: 'Ten', type: 'text', required: false, caption: "Ten" },
             ])
         ;
         header.setTitle('Danh sách Loại hàng hóa')
@@ -72,9 +72,9 @@
         grid.setName('categoryGrid')
             .addColumns([
                 //{ field: 'LoaiHangHoaId', caption: 'ID', size: '50px', sortable: true, attr: 'align=center' },
-                { field: 'Ma', caption: 'Ma',size:'40%', sortable: true, resizable: true },
-                { field: 'Ten', caption: 'Ten',size:'50%',sortable: true, resizable: true },
-           
+                { field: 'Ma', caption: 'Ma', size: '40%', sortable: true, resizable: true },
+                { field: 'Ten', caption: 'Ten', size: '50%', sortable: true, resizable: true },
+
             ])
             .addButton('btnInsert', 'Thêm', 'fa fa-plus', self.onbtnInsertClickCategoryGrid.bind(this))
             .addButton('btnUpdate', 'Cập nhật', 'fa fa-pencil', self.onbtnUpdateClickCategoryGrid.bind(this))
@@ -114,9 +114,9 @@
             width: 800
         },
         {
-            LoaiHangHoaId:id
+            LoaiHangHoaId: id
         });
-        
+
     },
     onbtnDeleteClickCategoryGrid: function () {
         var self = this;

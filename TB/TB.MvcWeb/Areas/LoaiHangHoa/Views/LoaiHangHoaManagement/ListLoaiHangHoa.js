@@ -124,6 +124,7 @@ framework.factory('loaihanghoa', {
         var id = grid.getSelection()[0];
         if (!id) {
             //thong bao = noty 
+            return;
         }
         this.openPopup({
             name: 'updatePopup',

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FCC06980-057E-4B93-AD9F-0FA40467CEF0}</ProjectGuid>
+    <ProjectGuid>{E2A80703-1310-4A15-962C-4C8473079CBC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TB.LoaiHangHoaRepo</RootNamespace>
-    <AssemblyName>TB.LoaiHangHoaRepo</AssemblyName>
+    <RootNamespace>TB.HangHoaRepo</RootNamespace>
+    <AssemblyName>TB.HangHoaRepo</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -83,11 +83,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoaiHangHoaGetByIdRepository.cs" />
-    <Compile Include="LoaiHangHoaInsertRepository.cs" />
-    <Compile Include="LoaiHangHoaSearchRepository.cs" />
-    <Compile Include="LoaiHangHoaDeleteRepository.cs" />
-    <Compile Include="LoaiHangHoaUpdateRepository.cs" />
+    <Compile Include="HangHoaGetByIdRepository.cs" />
+    <Compile Include="HangHoaInsertRepository.cs" />
+    <Compile Include="HangHoaSearchRepository.cs" />
+    <Compile Include="HangHoaDeleteRepository.cs" />
+    <Compile Include="HangHoaUpdateRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

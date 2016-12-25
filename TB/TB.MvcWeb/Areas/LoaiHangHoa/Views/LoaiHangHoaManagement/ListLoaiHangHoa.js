@@ -1,24 +1,55 @@
-﻿framework.factory('loaihanghoa', {
+﻿var commonOptions = {
+    header: {
+        pageTitle: 'Danh sách Loại hàng hóa',
+        pageIcon: 'fa fa-list',
+        fieldsSearchForm: [
+           { field: 'Ma', type: 'text', required: true, caption: "Ma" },
+           { field: 'Ten', type: 'text', required: false, caption: "Ten" },
+        ],
+        searchFormPanelWidth: '700px',
+    },
+    content: {
+        gridColumn: [
+            { field: 'Ma', caption: 'Ma', size: '40%', sortable: true, resizable: true, test: function () { console.log(this); } },
+            { field: 'Ten', caption: 'Ten', size: '50%', sortable: true, resizable: true },
+        ],
+    },
+    //nhớ sửa param
+    popup: {
+        insert: {
+            title: 'Thêm Loại Hàng hóa',
+            url: '/LoaiHangHoa/LoaiHangHoaManagement/InsertLoaiHangHoa',
+            width: 600
+        },
+        update: {
+            title: 'Cập nhật Loại Hàng hóa',
+            url: '/LoaiHangHoa/LoaiHangHoaManagement/UpdateLoaiHangHoa',
+            width: 600
+        },
+    },
+    //nhớ sửa param
+    apiExecuteUrl: {
+        searchUrl: '/LoaiHangHoa/LoaiHangHoaManagement/ExecuteSearch',
+        deleteUrl: '/LoaiHangHoa/LoaiHangHoaManagement/ExecuteDeleteLoaiHangHoa',
+    }
+};
+
+framework.factory('loaihanghoa', {
     onMessageReceive: function (sender, message) {
         if (message.type == 'reload')
             this.onbtnReloadClick();
     },
     onInitHeader: function (header) {
-        console.log(this.ViewBag);
         header.setName('header');
         var self = this;
         var form = widget.setting.form();
 
         form.setName('searchForm')
             .setFieldPerRow(1) // so cot trong form
-            //.setWidth(700)
-            .addFields([
-                { field: 'Ma', type: 'popupListCategory', required: true, caption: "Ma", options: { caller: self } },
-                { field: 'Ten', type: 'text', required: false, caption: "Ten" },
-            ])
+            .addFields(commonOptions.header.fieldsSearchForm)
         ;
-        header.setTitle('Danh sách Loại hàng hóa')
-            .setIcon('fa fa-list');
+        header.setTitle(commonOptions.header.pageTitle)
+            .setIcon(commonOptions.header.pageIcon);
 
         var formFooter = widget.setting.toolbar();
         formFooter.addItem({
@@ -27,7 +58,7 @@
         });
 
         var formPanel = widget.setting.panel();
-        formPanel.setWidth('700px').addClass('pull-right');
+        formPanel.setWidth(commonOptions.header.searchFormPanelWidth).addClass('pull-right');
         formPanel.addItem(form.end());
         formPanel.addItem(formFooter.end());
 
@@ -47,19 +78,12 @@
                     var searchForm = self.findElement('searchForm');
                     searchForm.resize();
                 }
-            }).addRight({
-                type: 'button', id: 'btn-test1', caption: 'TestPopup', icon: 'fa-space-shuttle ', onClick: function () {
-                    self.openPopup({ name: 'testPopup', url: '/LoaiHangHoa/LoaiHangHoaManagement/ListLoaiHangHoa', title: 'List Person', maximizable: false, collapsable: true, width: 800, height: 400, resizable: true });
-                }
-            }).addRight({
-                type: 'button', id: 'btn-test2', caption: 'Multiple Popup', icon: 'fa-rocket', onClick: function () {
-                    self.openPopup({ name: 'multiplePopup', url: '/LoaiHangHoa/LoaiHangHoaManagement', title: 'Multiple Popup', width: 800, resizable: true, openMultiple: true });
-                }
             })
         ;
     },
     onInitContent: function (content) {
         var self = this;
+
         content.setName('content');
         var pagi = widget.setting.pagination();
         pagi.setName('page')
@@ -69,28 +93,19 @@
         ;
 
         var grid = widget.setting.grid();
-        grid.setName('categoryGrid')
-            .addColumns([
-                //{ field: 'LoaiHangHoaId', caption: 'ID', size: '50px', sortable: true, attr: 'align=center' },
-                { field: 'Ma', caption: 'Ma', size: '40%', sortable: true, resizable: true },
-                { field: 'Ten', caption: 'Ten', size: '50%', sortable: true, resizable: true },
-
-            ])
+        grid.setName('grid')
+            .addColumns(commonOptions.content.gridColumn)
             .addButton('btnInsert', 'Thêm', 'fa fa-plus', self.onbtnInsertClickCategoryGrid.bind(this))
             .addButton('btnUpdate', 'Cập nhật', 'fa fa-pencil', self.onbtnUpdateClickCategoryGrid.bind(this))
             .addButton('btnDelete', 'Xóa', 'fa fa-trash-o', self.onbtnDeleteClickCategoryGrid.bind(this))
             .setIdColumn('LoaiHangHoaId')
-            //.setRowExpandHandler(self.onrowExpand.bind(this))
-            .addRecords(self.Data.Data) // du lieu random tu controller
-            .createEvent('onAdd', function () { alert('onAdd'); })
+            .addRecords(self.Data.Data)
             .setPaginateOptions(pagi.end())
         ;
 
         var panel = widget.setting.panel();
 
-
         panel
-        //.addItem(pagi.end())
         .addItem(grid.end())
         ;
 
@@ -98,20 +113,23 @@
     },
     onbtnInsertClickCategoryGrid: function () {
         this.openPopup({
-            name: 'insertCategoryPopup',
-            url: '/LoaiHangHoa/LoaiHangHoaManagement/InsertLoaiHangHoa',
-            title: 'Thêm Loại Hàng hóa',
-            width: 800
+            name: 'insertPopup',
+            url: commonOptions.popup.insert.url,
+            title: commonOptions.popup.insert.title,
+            width: commonOptions.popup.insert.width
         });
     },
     onbtnUpdateClickCategoryGrid: function () {
-        var grid = this.findElement('categoryGrid');
+        var grid = this.findElement('grid');
         var id = grid.getSelection()[0];
+        if (!id) {
+            //thong bao = noty 
+        }
         this.openPopup({
-            name: 'insertCategoryPopup',
-            url: '/LoaiHangHoa/LoaiHangHoaManagement/UpdateLoaiHangHoa',
-            title: 'Thêm Loại Hàng hóa',
-            width: 800
+            name: 'updatePopup',
+            url: commonOptions.popup.update.url,
+            title: commonOptions.popup.update.title,
+            width: commonOptions.popup.update.width
         },
         {
             LoaiHangHoaId: id
@@ -121,9 +139,9 @@
     onbtnDeleteClickCategoryGrid: function () {
         var self = this;
         w2confirm('Bạn có chắc chắn muốn xóa dòng này không ?').yes(function () {
-            var grid = self.findElement('categoryGrid');
+            var grid = self.findElement('grid');
             var id = grid.getSelection()[0];
-            $.post('/LoaiHangHoa/LoaiHangHoaManagement/ExecuteDeleteLoaiHangHoa', { LoaiHangHoaId: id }, function (data) {
+            $.post(commonOptions.apiExecuteUrl.deleteUrl, { LoaiHangHoaId: id }, function (data) {
                 console.log(data);
                 self.onbtnReloadClick();
             });
@@ -131,13 +149,14 @@
     },
     onbtnSearchClickSearchForm: function (evt) {
         var self = this;
-        var grid = self.findElement('categoryGrid');
+        var grid = self.findElement('grid');
 
         var form = self.findElement('searchForm');
         self.searchParam = form.record;
-        $.post('/LoaiHangHoa/LoaiHangHoaManagement/ExecuteSearch', form.record, function (d) {
+
+        $.post(commonOptions.apiExecuteUrl.searchUrl, { LoaiHangHoa: form.record }, function (d) {
             grid.clear();
-            grid.add(d.Data);
+            grid.add(d.Data.Data);
             console.log(d);
             // reset lai tong so trang neu so tong so trang thay doi.
             grid.pagination.reset(d.Data.Page, d.Data.PageCount);
@@ -146,28 +165,16 @@
         var headerContent = self.findElement('headerContent');
         headerContent.toggle();
     },
-    onrowExpand: function (event) {
-        console.log(event);
-        var grid = this.findElement('categoryGrid');
-        if (grid.length > 0)
-            grid = grid[0];
-        var record = grid.records[parseInt(event.recid) - 1];
-
-        var html = 'Hello "' + record.fname + ' ' + record.lname + '"!';
-
-        var box = $('#' + event.box_id);
-        box.html(html).animate({ height: 26 * 3 }, 100);
-    },
     onPageClick: function (event, page) {
         console.log(page);
-        var grid = this.findElement('categoryGrid');
+        var grid = this.findElement('grid');
 
-        this.reloadGridData('/LoaiHangHoa/LoaiHangHoaManagement/ExecuteSearch', grid, page, this.searchParam);
+        this.reloadGridData(commonOptions.apiExecuteUrl.searchUrl, grid, page, this.searchParam);
     },
     onbtnReloadClick: function (evt) {
-        var grid = this.findElement('categoryGrid');
+        var grid = this.findElement('grid');
         var form = this.findElement('searchForm');
-        this.reloadGridData('/LoaiHangHoa/LoaiHangHoaManagement/ExecuteSearch', grid);
+        this.reloadGridData(commonOptions.apiExecuteUrl.searchUrl, grid);
         this.searchParam = {};
         form.clear();
     }

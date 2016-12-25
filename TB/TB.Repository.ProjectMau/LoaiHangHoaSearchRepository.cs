@@ -12,14 +12,15 @@ namespace TB.LoaiHangHoaRepo
 {
     public class LoaiHangHoaSearchRepository : BaseRepository<dynamic>
     {
-        public LoaiHangHoa LoaiHangHoa { get; set; }
+        public string Ma { get; set; }
+        public string Ten { get; set; }
         public override Result<dynamic> ExecuteCore(Controller CurrentContext)
         {
             #region Get List
-            if (LoaiHangHoa == null || Extensions.DeepEquals(LoaiHangHoa, new LoaiHangHoa()))
+            if (String.IsNullOrWhiteSpace(Ma + Ten))
             {
                 var tmp = db.LoaiHangHoas.ToPagedListForEntityFramework(s => s.LoaiHangHoaId, Convert.ToInt32(Page), PageSize);
-                var data = new
+                var data =  new
                 {
                     Data = tmp.ToList(),
                     PageCount = tmp.PageCount,
@@ -33,8 +34,8 @@ namespace TB.LoaiHangHoaRepo
             #region Search
             var result = db.LoaiHangHoas.Where(
                 p =>
-                p.Ma.Contains(LoaiHangHoa.Ma) ||
-                p.Ten.Contains(LoaiHangHoa.Ten));
+                p.Ma.Contains(Ma) ||
+                p.Ten.Contains(Ten));
             var page = result.ToPagedListForEntityFramework(s => s.LoaiHangHoaId, Convert.ToInt32(Page), PageSize);
             var dataSearch = new
             {

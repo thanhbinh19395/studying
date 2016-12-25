@@ -24,7 +24,7 @@
     @RenderBody()
     @using TB.MvcWeb.Extensions
     @Html.AqViewBag()
-    @RenderSection("scripts", false)
+    
 
     <script src="/Content/plugins/requirejs/require.js"></script>
     <script>
@@ -36,6 +36,7 @@
             });
         });
     </script>
+    @RenderSection("scripts", false)
     @RenderSection("styles", false)
     
 </body>

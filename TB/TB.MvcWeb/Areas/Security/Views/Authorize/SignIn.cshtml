@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var forgeryToken = Html.AntiForgeryToken();
+}
+
+<div class="login-page">
+
+    <!-- BEGIN Main Content -->
+    <div class="login-wrapper">
+
+        <!-- BEGIN Login Form -->
+        @using (Html.BeginForm("SignIn", "Authorize", new { Area = "Security" }, FormMethod.Post, new { id = "form-sign-in" }))
+        {
+            <h3>HỆ THỐNG BÁN LẺ ABC</h3>
+            <hr />
+            @forgeryToken
+            <input name="ReturnUrl" type="hidden" value="@ViewBag.ReturnUrl" />
+            <div class="form-group">
+                <div class="controls">
+                    <input name="Username" type="text" class="form-control" value="@ViewBag.Username" placeholder="Tài khoản" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="controls">
+                    <input name="Password" type="password" class="form-control" placeholder="Mật khẩu" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="controls">
+                    <div class="checkbox">
+                        <label>
+                            <input name="IsRemember" type="checkbox" />
+                            Nhớ mật khẩu
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="controls">
+                    <input type="submit" class="btn btn-inverse form-control" value="Đăng nhập" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="controls">
+                    <input type="button" id="btn-goto-merchant1" class="btn btn-inverse form-control" value="Đăng nhập nhanh" />
+                </div>
+            </div>
+
+            <hr />
+            <p class="clearfix">
+                <a href="#" class="goto-forgot pull-left">Quên mật khẩu?</a>
+            </p>
+
+        }
+        <!-- END Login Form -->
+    </div>
+
+</div>
+
+@section styles {
+    <style type="text/css">
+        a {
+            color: #3e3e3e;
+        }
+
+            a:hover {
+                color: #4d4d4d;
+            }
+
+        .login-page:before {
+            background: #393940;
+        }
+
+        .field-validation-error {
+            color: #9c0000;
+        }
+
+        input.input-validation-error {
+            outline: 1px solid #9c0000;
+        }
+
+        .login-page form select {
+            border: 0;
+            background-color: #f5f6f7;
+            padding: 15px 10px !important;
+            height: auto !important;
+            font-size: 16px;
+        }
+    </style>
+}
+@section PageMainModule {
+        $(document).ready(function () {
+            if (ViewBag.ErrorMessage) {
+                $.gritter.add({
+                    text: ViewBag.ErrorMessage,
+                    title: "Lỗi"
+                });
+            }
+
+            $("#btn-goto-merchant1").click(function () {
+                $('input[name=Merchant]').val('Merchant1');
+                $('input[name=Username]').val('nhanvien01');
+                $('input[name=Password]').val('admin');
+                $('form#form-sign-in').submit();
+            });
+        });
+}

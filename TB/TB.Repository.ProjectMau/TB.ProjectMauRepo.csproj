@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LoaiHangHoaGetByIdRepository.cs" />
+    <Compile Include="LoaiHangHoaGetListRepository.cs" />
     <Compile Include="LoaiHangHoaInsertRepository.cs" />
     <Compile Include="LoaiHangHoaSearchRepository.cs" />
     <Compile Include="LoaiHangHoaDeleteRepository.cs" />

@@ -168,9 +168,9 @@
       <Project>{7749B81B-D5D0-404F-AAA0-441F22B765B0}</Project>
       <Name>TB.Repository.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\TB.Repository.LoaiHangHoa\TB.LoaiHangHoaRepo.csproj">
-      <Project>{fcc06980-057e-4b93-ad9f-0fa40467cef0}</Project>
-      <Name>TB.LoaiHangHoaRepo</Name>
+    <ProjectReference Include="..\..\..\TB.Repository.HangHoa\TB.HangHoaRepo.csproj">
+      <Project>{e2a80703-1310-4a15-962c-4c8473079cbc}</Project>
+      <Name>TB.HangHoaRepo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

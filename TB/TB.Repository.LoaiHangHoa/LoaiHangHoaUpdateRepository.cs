@@ -12,13 +12,13 @@ namespace TB.LoaiHangHoaRepo
     public class LoaiHangHoaUpdateRepository : BaseRepository<int>
     {
         public LoaiHangHoa LoaiHangHoa { get; set; }
-
+        public override void ValidateCore(Controller CurrentContext)
+        {
+            if (db.LoaiHangHoas.Count(p => p.Ma == LoaiHangHoa.Ma) > 1)
+                throw new Exception("Đã tồn tại Loại hàng hóa có mã là : " + this.LoaiHangHoa.Ma);
+        }
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
-            
-            if ( db.LoaiHangHoas.Count(p => p.Ma == LoaiHangHoa.Ma) > 1)
-                return Fail("Đã tồn tại Loại hàng hóa có mã là : " + this.LoaiHangHoa.Ma);
-
             var lhh = db.LoaiHangHoas.SingleOrDefault(p=>p.LoaiHangHoaId == this.LoaiHangHoa.LoaiHangHoaId);
             lhh.Ma = LoaiHangHoa.Ma;
             lhh.Ten = LoaiHangHoa.Ten;

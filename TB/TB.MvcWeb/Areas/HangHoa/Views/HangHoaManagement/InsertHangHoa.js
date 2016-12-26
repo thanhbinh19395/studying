@@ -10,9 +10,13 @@
         var form = widget.setting.form();
         form.setName('insertForm').setFieldPerRow(1)
             .addFields([
-            { field: 'Ma', type: 'text', required: true, caption: "Mã" },
-            { field: 'Ten', type: 'text', required: true, caption: 'Tên' }
-        ]);
+                { field: 'Ma', caption: 'Mã', type: 'text' },
+                { field: 'Ten', caption: 'Tên', type: 'text' },
+                { field: 'GiaBanThamKhao', caption: 'Giá', type: 'text' },
+                { field: 'NhaCungCap', caption: 'Nhà SX', type: 'text' },
+                { field: 'LoaiHanghoaId', caption: 'Loại HH', type: 'popupDSLoaiHangHoa', options: { caller: self } },
+                { field: 'MoTa', caption: 'Mô tả', type: 'text' },
+            ]);
         var formFooter = widget.setting.toolbar();
         formFooter.setName('insertToolbar')
             .addItem({ id: 'btnInsert', type: 'button', caption: 'Lưu', icon: 'fa-floppy-o', onClick:self.onBtnInsertClick.bind(this) })
@@ -24,12 +28,15 @@
         var self = this;
         var form = this.findElement('insertForm');
         if (!form.validate().length) {
-            $.post('/LoaiHangHoa/LoaiHangHoaManagement/ExecuteInsertLoaiHangHoa', { LoaiHangHoa: form.record }, function (data) {
+            $.post('/HangHoa/HangHoaManagement/ExecuteInsertHangHoa', { HangHoa: form.record }, function (data) {
+                if (!data.IsSuccess) {
+                    alert(data.Message);
+                    return;
+                }
                 self.sendMessage({
                     type: 'reload',
                     data: data,
                 });
-                console.log(data);
                 self.close && self.close();
             });
         }

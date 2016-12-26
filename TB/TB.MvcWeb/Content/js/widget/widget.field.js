@@ -1,4 +1,4 @@
-﻿$().w2field('addType', 'popupListCategory', function (options) {
+﻿$().w2field('addType', 'popupDSLoaiHangHoa', function (options) {
     var self = this;
     $(this.el).css('width', '30%').attr('disabled', 'disabled');
     var input = $('<input>').css({
@@ -9,9 +9,11 @@
     //this sau khi extend sẽ được chứa trong $(this.el).data('w2field')
     $.extend(self, {
         onMessageReceive: function (sender, message) {
-            $(self.el).val(message.LoaiHangHoaId);
+            if (message.type != 'popupDSLoaiHangHoa')
+                return;
+            $(self.el).val(message.data.LoaiHangHoaId);
             $(self.el).change();
-            $(input).val(message.Ten)
+            $(input).val(message.data.Ten)
             $(self.el).data('data', message);
         }
     });
@@ -19,7 +21,7 @@
     var data = {
         param: {},
         name: $(self.el).attr('name'),
-        type: self.type,
+        type: 'popupDSLoaiHangHoa',
         id: $(self.el).attr('name'),
         $el: self.el,
         field: self,
@@ -43,26 +45,28 @@
         $.extend(data.param, {
             FieldName: $(self.el).attr('name'),
             SearchOnOpen: true,
-            CommandAction: {
+            LoaiHangHoa: {
                 Ten: input.val(),
                 Or: false,
                 Page: 1
             }
         });
-        $.post('/LoaiHangHoa/LoaiHangHoaManagement/ExecuteSearch', data.param.CommandAction, function (result) {
+        $.post('/LoaiHangHoa/LoaiHangHoaManagement/ExecuteSearch', data.param, function (result) {
             var records = result.Data.Data;
             if (records.length == 0) {
                 alert("không có loại hàng hóa cần tìm");
                 return;
             }
-
             if (records.length == 1) {
-                self.onMessageReceive(null, records[0]);
+                self.onMessageReceive(null, {
+                    data: records[0],
+                    type: 'popupDSLoaiHangHoa'
+                });
                 return;
             }
             else {
                 options.caller.openPopup({
-                    name: 'themPopup',
+                    name: self.type,
                     url: '/LoaiHangHoa/LoaiHangHoaManagement/ListLoaiHangHoa',
                     width: data.width || (options.width || 600),
                     height: data.height || (options.height || 'auto'),

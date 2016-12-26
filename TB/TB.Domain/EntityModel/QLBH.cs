@@ -20,14 +20,12 @@ namespace TB.Domain.EntityModel
         public virtual DbSet<HangHoa> HangHoas { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<LoaiHangHoa> LoaiHangHoas { get; set; }
-        public virtual DbSet<MoTaThuocTinhHangHoa> MoTaThuocTinhHangHoas { get; set; }
         public virtual DbSet<NhaCungCap> NhaCungCaps { get; set; }
         public virtual DbSet<PhieuChi> PhieuChis { get; set; }
         public virtual DbSet<Quan> Quans { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<ThongTinNguoiDung> ThongTinNguoiDungs { get; set; }
         public virtual DbSet<ThuChi> ThuChis { get; set; }
-        public virtual DbSet<ThuocTinhHangHoa> ThuocTinhHangHoas { get; set; }
         public virtual DbSet<TinhThanhPho> TinhThanhPhoes { get; set; }
         public virtual DbSet<User> Users { get; set; }
 

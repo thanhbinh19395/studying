@@ -16,20 +16,18 @@ namespace TB.HangHoaRepo
         public override Result<dynamic> ExecuteCore(Controller CurrentContext)
         {
             #region Get List
+            if (HangHoa == null || Extensions.DeepEquals(HangHoa, new HangHoa()))
+            {
+                var tmp = db.HangHoas.ToPagedListForEntityFramework(s => s.HangHoaId, Convert.ToInt32(Page), PageSize);
+                var data = new
+                {
+                    Data = tmp.ToList(),
+                    PageCount = tmp.PageCount,
+                    Page = tmp.PageNumber,
+                };
+                return Success(data);
 
-
-            //if (String.IsNullOrWhiteSpace(Ma + Ten))
-            //{
-            //    var tmp = db.HangHoas.ToPagedListForEntityFramework(s => s.HangHoaId, Convert.ToInt32(Page), PageSize);
-            //    var data =  new
-            //    {
-            //        Data = tmp.ToList(),
-            //        PageCount = tmp.PageCount,
-            //        Page = tmp.PageNumber,
-            //    };
-            //    return Success(data);
-
-            //}
+            }
             #endregion
 
             #region Search

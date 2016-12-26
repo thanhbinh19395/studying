@@ -13,8 +13,7 @@ namespace TB.Domain.EntityModel
         public HangHoa()
         {
             AnhHangHoas = new HashSet<AnhHangHoa>();
-            ChiTietDonHangs = new HashSet<ChiTietDonHang>();
-            MoTaThuocTinhHangHoas = new HashSet<MoTaThuocTinhHangHoa>();
+            //ChiTietDonHangs = new HashSet<ChiTietDonHang>();
         }
 
         public long HangHoaId { get; set; }
@@ -40,14 +39,13 @@ namespace TB.Domain.EntityModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnhHangHoa> AnhHangHoas { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
 
         public virtual LoaiHangHoa LoaiHangHoa { get; set; }
 
         public virtual NhaCungCap NhaCungCap { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MoTaThuocTinhHangHoa> MoTaThuocTinhHangHoas { get; set; }
     }
 }
+

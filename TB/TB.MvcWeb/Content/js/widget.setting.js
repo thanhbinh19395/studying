@@ -544,7 +544,7 @@ define(function () {
                         //name = event.slice(0, 1).toUpperCase();
                         //var eventName = 'on' + name.concat(event.slice(1));
                         console.log(event);
-                        obj[event] = function (e) { callback(e); };
+                        obj[event] = callback;
                         return this;
                     },
                     setRowExpandHandler: function (handler) {

@@ -8,7 +8,12 @@ using System.Web.Mvc;
 
 namespace TB.BaseRepo
 {
-    public abstract class BaseRepository<T>
+    public interface IRepository<T> : IDisposable
+    {
+        string ParentId { get; set; }
+        Result<T> Execute(Controller context);
+    }
+    public abstract class BaseRepository<T>:IRepository<T>
     {
         protected QLBH db { get; set; }
         public int? Page { get; set; }
@@ -20,17 +25,23 @@ namespace TB.BaseRepo
             Page = 1;
             db = new QLBH();
         }
+        public virtual void ValidateCore(Controller CurrentContext) {
+        }
         public abstract Result<T> ExecuteCore(Controller CurrentContext);
+        public virtual void ExecutedCore(Controller CurrentContext, Result<T> Result) {
+        }
         public Result<T> Execute(Controller CurrentContext)
         {
             try
             {
+                ValidateCore(CurrentContext);
                 var result = ExecuteCore(CurrentContext);
                 if (CurrentContext != null)
                 {
                     CurrentContext.ViewBag.ParentId = this.ParentId;
                 }
                 CurrentContext.ViewBag.Message = result;
+                ExecutedCore(CurrentContext, result);
                 return result;
             }
             catch (Exception ex)
@@ -60,6 +71,10 @@ namespace TB.BaseRepo
                 IsSuccess = false,
                 Message = message ?? "fail"
             };
+        }
+
+        public void Dispose()
+        {
         }
     }
     public class Result<T>

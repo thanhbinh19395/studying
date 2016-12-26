@@ -1,6 +1,6 @@
-﻿framework.factory('addLoaiHangHoa', {
+﻿framework.factory('updateLoaiHangHoa', {
     onInitHeader: function (header) {
-        header.setName('header1').setTitle('Thêm Loại hàng hóa')
+        header.setName('header1').setTitle('Cap nhat Loại hàng hóa')
             .setIcon('fa-bar-plus');
         ;
         console.log(this.ViewBag);
@@ -38,8 +38,6 @@
                 else {
                     alert(data.Message);
                 }
-               
-                
             });
         }
     },

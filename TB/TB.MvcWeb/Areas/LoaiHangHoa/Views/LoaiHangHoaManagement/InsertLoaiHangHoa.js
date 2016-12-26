@@ -25,11 +25,14 @@
         var form = this.findElement('insertForm');
         if (!form.validate().length) {
             $.post('/LoaiHangHoa/LoaiHangHoaManagement/ExecuteInsertLoaiHangHoa', { LoaiHangHoa: form.record }, function (data) {
+                if (!data.IsSuccess) {
+                    alert(data.Message);
+                    return;
+                }
                 self.sendMessage({
                     type: 'reload',
                     data: data,
                 });
-                console.log(data);
                 self.close && self.close();
             });
         }

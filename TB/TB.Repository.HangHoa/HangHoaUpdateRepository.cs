@@ -13,15 +13,16 @@ namespace TB.HangHoaRepo
     {
         public HangHoa HangHoa { get; set; }
 
+        public override void ValidateCore(Controller CurrentContext)
+        {
+            if (db.HangHoas.Count(p => p.Ma == HangHoa.Ma) > 1)
+                throw new Exception("Đã tồn tại Loại hàng hóa có mã là : " + this.HangHoa.Ma);
+        }
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
-            
-            if ( db.HangHoas.Count(p => p.Ma == HangHoa.Ma) > 1)
-                return Fail("Đã tồn tại Loại hàng hóa có mã là : " + this.HangHoa.Ma);
-
-            var lhh = db.HangHoas.SingleOrDefault(p=>p.HangHoaId == this.HangHoa.HangHoaId);
-            lhh.Ma = HangHoa.Ma;
-            lhh.Ten = HangHoa.Ten;
+            var hh = db.HangHoas.SingleOrDefault(p => p.HangHoaId == this.HangHoa.HangHoaId);
+            hh.Ma = HangHoa.Ma;
+            hh.Ten = HangHoa.Ten;
 
             return Success(db.SaveChanges());
         }

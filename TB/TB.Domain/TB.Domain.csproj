@@ -59,7 +59,6 @@
     <Compile Include="EntityModel\HangHoa.cs" />
     <Compile Include="EntityModel\HoaDon.cs" />
     <Compile Include="EntityModel\LoaiHangHoa.cs" />
-    <Compile Include="EntityModel\MoTaThuocTinhHangHoa.cs" />
     <Compile Include="EntityModel\NhaCungCap.cs" />
     <Compile Include="EntityModel\PhieuChi.cs" />
     <Compile Include="EntityModel\QLBH.cs" />
@@ -67,7 +66,6 @@
     <Compile Include="EntityModel\sysdiagram.cs" />
     <Compile Include="EntityModel\ThongTinNguoiDung.cs" />
     <Compile Include="EntityModel\ThuChi.cs" />
-    <Compile Include="EntityModel\ThuocTinhHangHoa.cs" />
     <Compile Include="EntityModel\TinhThanhPho.cs" />
     <Compile Include="EntityModel\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

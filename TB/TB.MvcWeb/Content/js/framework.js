@@ -61,6 +61,7 @@ $.extend(framework, {
                     options.onMessageReceive(sender, message);
                 }
             }
+            
             $.extend(pageOptions.dataIn, {
                 openPopup: function (options, params) {
                     framework.common.openPopup(pageOptions.dataOut._pageId, options, params);
@@ -68,7 +69,10 @@ $.extend(framework, {
                 findElement: function (name, findAll) {
                     return framework.global.findElementByPageId(pageOptions.dataOut._pageId, name, findAll);
                 },
-                $el: layoutSetting.template,
+                $pageEl: layoutSetting.template,
+                $contentEl: layoutSetting.items[0].template,
+                $headerEl: layoutSetting.items[1].template,
+                $footerEl: layoutSetting.items[2].template,
                 pageId: pageOptions.dataOut._pageId,
                 rootPageId: framework.global.getRootPageId(),
                 reloadGridData: function (link, grid, page, param) {
@@ -92,7 +96,7 @@ $.extend(framework, {
                 //    };
                 //}
             });
-
+            
 
             //thêm data vào el sau khi vẽ xong 
             page.data('pageOptions', pageOptions);

@@ -13,7 +13,7 @@ namespace TB.Domain.EntityModel
         public TinhThanhPho()
         {
             Quans = new HashSet<Quan>();
-            ThongTinNguoiDungs = new HashSet<ThongTinNguoiDung>();
+            //ThongTinNguoiDungs = new HashSet<ThongTinNguoiDung>();
         }
 
         public long TinhThanhPhoId { get; set; }
@@ -24,7 +24,7 @@ namespace TB.Domain.EntityModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Quan> Quans { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ThongTinNguoiDung> ThongTinNguoiDungs { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<ThongTinNguoiDung> ThongTinNguoiDungs { get; set; }
     }
 }

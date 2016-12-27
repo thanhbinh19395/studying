@@ -1,5 +1,6 @@
 namespace TB.Domain.EntityModel
 {
+    using NPOI.Extension;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -15,14 +16,16 @@ namespace TB.Domain.EntityModel
             AnhHangHoas = new HashSet<AnhHangHoa>();
             //ChiTietDonHangs = new HashSet<ChiTietDonHang>();
         }
-
+        
         public long HangHoaId { get; set; }
 
         [StringLength(50)]
         [CaseSensitive]
+        [NPOI.Extension.Column(Index = 0, Title = "Mã nè", AllowMerge = true)]
         public string Ma { get; set; }
 
         [StringLength(100)]
+        [NPOI.Extension.Column(Index = 1, Title = "Tên HH nè", AllowMerge = true)]
         public string Ten { get; set; }
 
         public int? GiaBanThamKhao { get; set; }
@@ -35,6 +38,12 @@ namespace TB.Domain.EntityModel
         public long? NhaCungCapId { get; set; }
 
         public bool? IsActive { get; set; }
+
+        [NPOI.Extension.Column(Index = 2, Title = "Tên LHH nè", AllowMerge = true)]
+        public string TenLoaiHangHoa { get { return this.LoaiHangHoa.Ten; } }
+
+        [NPOI.Extension.Column(Index = 3, Title = "Tên NCC nè", AllowMerge = true)]
+        public string TenNhaCungCap { get { return this.NhaCungCap.Ten; } }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnhHangHoa> AnhHangHoas { get; set; }

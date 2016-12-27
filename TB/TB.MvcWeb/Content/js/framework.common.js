@@ -1,14 +1,24 @@
 ﻿var framework = window.framework || {};
 framework.common = framework.common || {};
 $.extend(framework.common, {
-    api: function (url, param, calback) {
-        var url = url.url || url;
-        var param = url.param || param;
-        var calback = url.calback || calback;
+    exportExcel: function (option) {
+        //option = {url, data}
+        var form = $('<form>');
+        for (var nameOfProperties in option.data) {
+            var valueOfProperties = option.data[nameOfProperties];
+            var element = $('<input>').attr({
+                'type': 'text',
+                'name': nameOfProperties,
+                'value': valueOfProperties,
+            });
 
-    },
-    openWindow: function (params) {
-
+            form.append(element);
+        }
+        form.attr({
+            'method':'POST',
+            'action':option.url
+        });
+        form.submit();
     },
     openPopup: function (parentId, options, params) {
         var defaultOptions = {
@@ -28,7 +38,7 @@ $.extend(framework.common, {
         };
 
         var defaulDialogExtendOptions = {
-            
+
             maximizable: true,
             minimizable: true,
             collapsable: false,

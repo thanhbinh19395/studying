@@ -145,7 +145,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\ExecuteSignInAction.cs" />
     <Compile Include="SecurityAreaRegistration.cs" />
     <Compile Include="Controllers\AuthorizeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -157,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extension\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\TB.Domain\TB.Domain.csproj">

@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using TB.HangHoaRepo;
 using TB.Domain;
+using System.Collections;
+using NPOI.Extension;
+
 namespace HangHoa.Controllers
 {
     public class HangHoaManagementController : Controller
@@ -51,5 +54,16 @@ namespace HangHoa.Controllers
         {
             return Json(repo.Execute(this));
         }
+        [HttpPost]
+        public ActionResult ExportExcelListHangHoa(HangHoaSearchExcelRepository repo)
+        {
+            var result = repo.Execute(this);
+            if (result.IsSuccess == false)
+            {
+                return Json(result);
+            }
+            return File(result.Data.ToExcelContent(), System.Net.Mime.MediaTypeNames.Application.Octet, "test.xls"); ;
+        }
+
     }
 }

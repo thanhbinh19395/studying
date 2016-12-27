@@ -73,7 +73,11 @@
         formFooter.addItem({
             type: 'button', id: 'btn-search', caption: 'Tìm kiếm', icon: 'fa-search',
             onClick: self.onbtnSearchClickSearchForm.bind(self)
-        });
+        }).addItem({
+            type: 'button', id: 'btn-exportExcell', caption: 'Xuat Excel', icon: 'fa-search',
+            onClick: self.onbtnExportExcelClickSearchForm.bind(self)
+        })
+        ;
 
         var formPanel = widget.setting.panel();
         formPanel.setWidth(this.commonOptions.header.searchFormPanelWidth).addClass('pull-right');
@@ -196,5 +200,26 @@
         this.reloadGridData(this.commonOptions.apiExecuteUrl.searchUrl, grid);
         this.searchParam = {};
         form.clear();
+    },
+    onbtnExportExcelClickSearchForm: function () {
+        var self = this;
+        var grid = self.findElement('grid');
+
+        var form = self.findElement('searchForm');
+        self.searchParam = form.record;
+        framework.common.exportExcel({
+            url: '/HangHoa/HangHoaManagement/ExportExcelListHangHoa',
+            data: form.record
+        });
+        //$.post('/HangHoa/HangHoaManagement/ExportExcelListHangHoa', { HangHoa: form.record }, function (d) {
+        //    //grid.clear();
+        //    //grid.add(d.Data.Data);
+        //    //console.log(d);
+        //    //// reset lai tong so trang neu so tong so trang thay doi.
+        //    //grid.pagination.reset(d.Data.Page, d.Data.PageCount);
+        //});
+
+        var headerContent = self.findElement('headerContent');
+        headerContent.toggle();
     }
 });

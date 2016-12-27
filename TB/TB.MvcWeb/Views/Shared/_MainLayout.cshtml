@@ -275,11 +275,25 @@
                     </form>
                 </li>
                 <!-- END Search Form -->
-                <li class="active">
+                @*<li class="active">
                     <a href="~/Content/flaty/index-2.html">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
+                </li>*@
+                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListHangHoa" ? "active" : "")">
+                    <a href="@Url.Action("ListHangHoa", "HangHoaManagement", new { Area = "HangHoa"})">
+                        <i class="fa fa-lock"></i>
+                        <span>Danh sach hang hoa</span>
+                    </a>
+                
+                </li>
+                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListLoaiHangHoa" ? "active" : "")">
+                    <a href="@Url.Action("ListLoaiHangHoa", "LoaiHangHoaManagement", new { Area = "LoaiHangHoa"})">
+                        <i class="fa fa-lock"></i>
+                        <span>Danh sach loai hang hoa</span>
+                    </a>
+
                 </li>
                 <li>
                     <a href="@Url.Action("Index", "HangHoa", new { Area = "HangHoa"})">

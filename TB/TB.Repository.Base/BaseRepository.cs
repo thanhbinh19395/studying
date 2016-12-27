@@ -34,13 +34,16 @@ namespace TB.BaseRepo
         {
             try
             {
+
+
                 ValidateCore(CurrentContext);
                 var result = ExecuteCore(CurrentContext);
                 if (CurrentContext != null)
                 {
                     CurrentContext.ViewBag.ParentId = this.ParentId;
                 }
-                CurrentContext.ViewBag.Message = result;
+                if(CurrentContext != null)
+                    CurrentContext.ViewBag.Message = result;
                 ExecutedCore(CurrentContext, result);
                 return result;
             }
@@ -51,7 +54,8 @@ namespace TB.BaseRepo
                     IsSuccess = false,
                     Message = ex.Message
                 };
-                CurrentContext.ViewBag.Message = failResult;
+                if (CurrentContext != null)
+                    CurrentContext.ViewBag.Message = failResult;
                 return failResult;
             }
         }

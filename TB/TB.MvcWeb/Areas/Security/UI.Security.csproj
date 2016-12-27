@@ -145,6 +145,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ExecuteSignInAction.cs" />
     <Compile Include="SecurityAreaRegistration.cs" />
     <Compile Include="Controllers\AuthorizeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -155,7 +156,7 @@
     <Content Include="Views\Authorize\SignIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Extension\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\TB.Domain\TB.Domain.csproj">
@@ -165,6 +166,14 @@
     <ProjectReference Include="..\..\..\TB.Repository.Base\TB.Repository.Base.csproj">
       <Project>{7749B81B-D5D0-404F-AAA0-441F22B765B0}</Project>
       <Name>TB.Repository.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TB.Repository.Sercurity\TB.SercurityRepo.csproj">
+      <Project>{47fbe1e9-69a0-4e2c-85cd-bca76909e64a}</Project>
+      <Name>TB.SercurityRepo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TB\TB.csproj">
+      <Project>{b0003285-cff0-45eb-ad37-d5ab69cb374a}</Project>
+      <Name>TB</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

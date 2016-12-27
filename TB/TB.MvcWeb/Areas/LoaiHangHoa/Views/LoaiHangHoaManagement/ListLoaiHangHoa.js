@@ -37,7 +37,7 @@
     onInitHeader: function (header) {
         header.setName('header');
         var self = this;
-        var form = widget.setting.form();
+        var form = widget.setting.form(); 
 
         form.setName('searchForm')
             .setFieldPerRow(1) // so cot trong form

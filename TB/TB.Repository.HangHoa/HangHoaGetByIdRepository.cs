@@ -14,7 +14,8 @@ namespace TB.HangHoaRepo
         public int HangHoaId { get; set; }
         public override Result<HangHoa> ExecuteCore(Controller CurrentContext)
         {
-            return Success(db.HangHoas.Single(p => p.HangHoaId == this.HangHoaId));
+            HangHoa hh = db.HangHoas.Single(p => p.HangHoaId == this.HangHoaId);
+            return Success(hh);
         }
     }
 }

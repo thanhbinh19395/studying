@@ -15,18 +15,37 @@
                 { field: 'GiaBanThamKhao', caption: 'Giá', type: 'text' },
                 { field: 'NhaCungCapId', caption: 'Nhà SX', type: 'text' },
                 { field: 'LoaiHangHoaId', caption: 'Loại HH', type: 'popupDSLoaiHangHoa', options: { caller: self } },
-                { field: 'MoTa', caption: 'Mô tả', type: 'text' },
             ]);
         var formFooter = widget.setting.toolbar();
         formFooter.setName('insertToolbar')
-            .addItem({ id: 'btnInsert', type: 'button', caption: 'Lưu', icon: 'fa-floppy-o', onClick:self.onBtnInsertClick.bind(this) })
-            .addItem({ id: 'btnClear', type: 'button', caption:'Nhập lại', icon:'fa-refresh', onClick:self.onBtnClearClick.bind(this) })
+            .addItem({ id: 'btnInsert', type: 'button', caption: 'Lưu', icon: 'fa-floppy-o', onClick: self.onBtnInsertClick.bind(this) })
+            .addItem({ id: 'btnClear', type: 'button', caption: 'Nhập lại', icon: 'fa-refresh', onClick: self.onBtnClearClick.bind(this) })
         ;
-        content.setName('content1').addItem(form.end()).addItem(formFooter.end());
+
+        var texteditor = widget.setting.texteditor();
+        texteditor.setName('moTaEditor')
+            .addButton('uploadimage', 'Up Ảnh', function () {
+                //self.openPopup(
+                //    {
+                //        name: 'testPopup',
+                //        url: '/Documents/UploadImages',
+                //        title: 'Choose Images',
+                //    });
+                var editor = self.findElement('moTaEditor');
+                editor.addImage({
+                    imageUrl:'/abc/cla'
+                });
+            }, 'http://simpleicon.com/wp-content/uploads/camera.png');
+        //texteditor.setHeight('80vh');
+        content.setName('content1').addItem(form.end()).addItem(texteditor.end()).addItem(formFooter.end());
     },
     onBtnInsertClick: function () {
         var self = this;
+        var editor = this.findElement('moTaEditor');
         var form = this.findElement('insertForm');
+        $.extend(form.record, {
+            MoTa: editor.getData()
+        });
         if (!form.validate().length) {
             $.post('/HangHoa/HangHoaManagement/ExecuteInsertHangHoa', { HangHoa: form.record }, function (data) {
                 if (!data.IsSuccess) {

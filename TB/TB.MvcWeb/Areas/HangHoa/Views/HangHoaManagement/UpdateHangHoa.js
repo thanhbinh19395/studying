@@ -15,7 +15,6 @@
             { field: 'GiaBanThamKhao', type: 'text', required: true, caption: 'Giá' },
             { field: 'NhaCungCapId', type: 'text', required: true, caption: 'Nhà Cung cấp' },
             { field: 'LoaiHangHoaId', type: 'popupDSLoaiHangHoa', options: { caller: self },required: true, caption: 'Loại Hàng hóa' },
-            { field: 'MoTa', type: 'text', required: false, caption: 'Mô tả' }
             ])
             .setRecord(this.Data)
         ;
@@ -25,7 +24,24 @@
             .addItem({ id: 'btnClear', type: 'button', caption: 'Nhập lại', icon: 'fa-refresh', onClick: self.onBtnClearClick.bind(this) })
 
         ;
-        content.setName('content1').addItem(form.end()).addItem(formFooter.end());
+        var texteditor = widget.setting.texteditor();
+        texteditor.setName('moTaEditor')
+            .addButton('uploadimage', 'Up Ảnh', function () {
+                //self.openPopup(
+                //    {
+                //        name: 'testPopup',
+                //        url: '/Documents/UploadImages',
+                //        title: 'Choose Images',
+                //    });
+                var editor = self.findElement('moTaEditor');
+                editor.addImage({
+                    imageUrl: '/abc/cla'
+                });
+            }, 'http://simpleicon.com/wp-content/uploads/camera.png').setData(this.Data.MoTa)
+
+        ;
+        //texteditor.setHeight('80vh');
+        content.setName('content1').addItem(form.end()).addItem(texteditor.end()).addItem(formFooter.end());
     },
     onBtnInsertClick: function () {
         var self = this;

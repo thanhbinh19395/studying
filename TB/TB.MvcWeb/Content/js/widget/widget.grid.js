@@ -4,7 +4,7 @@
     },
     _create: function () {
         var self = this;
-
+        debugger
         if (this.options.paginateOptions) {
             var pagiName = 'pagination' + '_' + this.options.name + this.options.paginateOptions.name || '';
             this.options.toolbar.items.push({ type: 'spacer'});

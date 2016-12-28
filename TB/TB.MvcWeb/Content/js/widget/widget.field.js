@@ -1,10 +1,13 @@
 ﻿$().w2field('addType', 'popupDSLoaiHangHoa', function (options) {
     var self = this;
+
+    
     $(this.el).css('width', '30%').attr('disabled', 'disabled');
     var input = $('<input>').css({
         width: '65%',
         border: '0px'
     });
+
     $(this.el).parent().append(input);
     //this sau khi extend sẽ được chứa trong $(this.el).data('w2field')
     $.extend(self, {
@@ -53,6 +56,7 @@
         });
         $.post('/LoaiHangHoa/LoaiHangHoaManagement/ExecuteSearch', data.param, function (result) {
             var records = result.Data.Data;
+            debugger
             if (records.length == 0) {
                 alert("không có loại hàng hóa cần tìm");
                 return;
@@ -94,5 +98,4 @@
     })
     buttonRemove.appendTo($(self.el).parent());
     buttonSearch.insertAfter(self.el);
-
 });

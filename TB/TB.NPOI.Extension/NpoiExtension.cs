@@ -11,6 +11,7 @@ namespace NPOI.Extension {
     using HSSF.Util;
     using SS.UserModel;
     using SS.Util;
+    using System.Globalization;
 
     /// <summary>
     /// Defines some extensions for <see cref="IEnumerable{T}"/> that using NPOI to provides excel functionality.
@@ -91,7 +92,8 @@ namespace NPOI.Extension {
                             cell.SetCellValue((bool)value);
                         }
                         else if (property.PropertyType == typeof(DateTime)) {
-                            cell.SetCellValue(Convert.ToDateTime(value));
+                            DateTimeFormatInfo vnDtfi = new CultureInfo("vi-VN", false).DateTimeFormat;
+                            cell.SetCellValue(Convert.ToDateTime(value,vnDtfi));
                         }
                         else if (property.PropertyType == typeof(Guid)) {
                             cell.SetCellValue(Convert.ToString(value));
@@ -229,13 +231,12 @@ namespace NPOI.Extension {
 
             //Create a entry of DocumentSummaryInformation
             var dsi = PropertySetFactory.CreateDocumentSummaryInformation();
-            dsi.Company = "RigoFunc (xyting)";
+            dsi.Company = "Hồ Thanh Bình";
             hssfworkbook.DocumentSummaryInformation = dsi;
-
             //Create a entry of SummaryInformation
             var si = PropertySetFactory.CreateSummaryInformation();
-            si.Author = "RigoFunc (xyting)";
-            si.Subject = "NPOI Extension";
+            si.Author = "Hồ Thanh Bình";
+            si.Subject = "K40104007";
             hssfworkbook.SummaryInformation = si;
 
             return hssfworkbook;

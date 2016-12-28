@@ -210,6 +210,8 @@
         framework.common.exportExcel({
             url: '/HangHoa/HangHoaManagement/ExportExcelListHangHoa',
             data: form.record
+        }, {
+            LoaiHangHoa: 'data'
         });
         //$.post('/HangHoa/HangHoaManagement/ExportExcelListHangHoa', { HangHoa: form.record }, function (d) {
         //    //grid.clear();

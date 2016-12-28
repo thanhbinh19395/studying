@@ -1,22 +1,37 @@
 ﻿var framework = window.framework || {};
 framework.common = framework.common || {};
 $.extend(framework.common, {
-    exportExcel: function (option) {
-        //option = {url, data}
+    exportExcel: function (option, prototypeObject) {
+        if (prototypeObject) {
+            var prefixName = '';
+            (function createPrefixName(object) {
+                $.each(object, function (k, v) {
+                    prefixName += k + '.'
+                    if (typeof v != 'string')
+                        createPrefixName(v);
+                });
+            })(prototypeObject);
+        }
+
         var form = $('<form>');
         for (var nameOfProperties in option.data) {
             var valueOfProperties = option.data[nameOfProperties];
+            var name = '';
+            if (prototypeObject)
+                name = prefixName + nameOfProperties;
+            else
+                name = nameOfProperties;
             var element = $('<input>').attr({
                 'type': 'text',
-                'name': nameOfProperties,
+                'name': name,
                 'value': valueOfProperties,
             });
 
             form.append(element);
         }
         form.attr({
-            'method':'POST',
-            'action':option.url
+            'method': 'POST',
+            'action': option.url
         });
         form.submit();
     },

@@ -1,6 +1,6 @@
-﻿framework.factory('addLoaiHangHoa', {
+﻿framework.factory('updateHangHoa', {
     onInitHeader: function (header) {
-        header.setName('header1').setTitle('Thêm Loại hàng hóa')
+        header.setName('header1').setTitle('Cập nhật Hàng hóa')
             .setIcon('fa-bar-plus');
         ;
         console.log(this.ViewBag);
@@ -11,15 +11,19 @@
         form.setName('insertForm').setFieldPerRow(1)
             .addFields([
             { field: 'Ma', type: 'text', required: true, caption: "Mã" },
-            { field: 'Ten', type: 'text', required: true, caption: 'Tên' }
+            { field: 'Ten', type: 'text', required: true, caption: 'Tên' },
+            { field: 'GiaBanThamKhao', type: 'text', required: true, caption: 'Giá' },
+            { field: 'NhaCungCapId', type: 'text', required: true, caption: 'Nhà Cung cấp' },
+            { field: 'LoaiHangHoaId', type: 'popupDSLoaiHangHoa', options: { caller: self },required: true, caption: 'Loại Hàng hóa' },
+            { field: 'MoTa', type: 'text', required: false, caption: 'Mô tả' }
             ])
             .setRecord(this.Data)
         ;
         var formFooter = widget.setting.toolbar();
         formFooter.setName('insertToolbar')
-            .addItem({ id: 'btnInsert', type: 'button', caption: 'Lưu', icon: 'fa-floppy-o', onClick:self.onBtnInsertClick.bind(this) })
+            .addItem({ id: 'btnInsert', type: 'button', caption: 'Lưu', icon: 'fa-floppy-o', onClick: self.onBtnInsertClick.bind(this) })
             .addItem({ id: 'btnClear', type: 'button', caption: 'Nhập lại', icon: 'fa-refresh', onClick: self.onBtnClearClick.bind(this) })
-            
+
         ;
         content.setName('content1').addItem(form.end()).addItem(formFooter.end());
     },
@@ -27,7 +31,7 @@
         var self = this;
         var form = this.findElement('insertForm');
         if (!form.validate().length) {
-            $.post('/LoaiHangHoa/LoaiHangHoaManagement/ExecuteUpdateLoaiHangHoa', { LoaiHangHoa: form.record }, function (data) {
+            $.post('/HangHoa/HangHoaManagement/ExecuteUpdateHangHoa', { HangHoa: form.record }, function (data) {
                 if (data.IsSuccess) {
                     self.sendMessage({
                         type: 'reload',
@@ -38,8 +42,8 @@
                 else {
                     alert(data.Message);
                 }
-               
-                
+
+
             });
         }
     },

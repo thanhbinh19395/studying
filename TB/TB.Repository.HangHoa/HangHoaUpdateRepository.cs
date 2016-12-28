@@ -23,6 +23,10 @@ namespace TB.HangHoaRepo
             var hh = db.HangHoas.SingleOrDefault(p => p.HangHoaId == this.HangHoa.HangHoaId);
             hh.Ma = HangHoa.Ma;
             hh.Ten = HangHoa.Ten;
+            hh.GiaBanThamKhao = HangHoa.GiaBanThamKhao;
+            hh.NhaCungCapId = HangHoa.NhaCungCapId;
+            hh.LoaiHangHoaId = HangHoa.LoaiHangHoaId;
+            hh.MoTa = HangHoa.MoTa;
 
             return Success(db.SaveChanges());
         }

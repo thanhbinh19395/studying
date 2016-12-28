@@ -1,6 +1,6 @@
-﻿framework.factory('addLoaiHangHoa', {
+﻿framework.factory('addHangHoa', {
     onInitHeader: function (header) {
-        header.setName('header1').setTitle('Thêm Loại hàng hóa')
+        header.setName('header1').setTitle('Thêm Hàng hóa')
             .setIcon('fa-bar-plus');
         ;
     },
@@ -13,8 +13,8 @@
                 { field: 'Ma', caption: 'Mã', type: 'text' },
                 { field: 'Ten', caption: 'Tên', type: 'text' },
                 { field: 'GiaBanThamKhao', caption: 'Giá', type: 'text' },
-                { field: 'NhaCungCap', caption: 'Nhà SX', type: 'text' },
-                { field: 'LoaiHanghoaId', caption: 'Loại HH', type: 'popupDSLoaiHangHoa', options: { caller: self } },
+                { field: 'NhaCungCapId', caption: 'Nhà SX', type: 'text' },
+                { field: 'LoaiHangHoaId', caption: 'Loại HH', type: 'popupDSLoaiHangHoa', options: { caller: self } },
                 { field: 'MoTa', caption: 'Mô tả', type: 'text' },
             ]);
         var formFooter = widget.setting.toolbar();

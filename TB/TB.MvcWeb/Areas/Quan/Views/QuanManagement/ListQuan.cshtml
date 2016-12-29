@@ -1,0 +1,10 @@
+﻿@using TB.MvcWeb.Extensions
+
+@{
+    Layout = ViewHelper.GetLayout(ViewBag.ParentId);
+}
+
+@section PageMainModule{
+    @Html.InitPageMainModule()
+}
+<div id="page"></div>

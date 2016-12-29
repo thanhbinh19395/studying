@@ -8,7 +8,7 @@
     onInitContent: function (content) {
         var self = this;
         var form = widget.setting.form();
-        form.setName('insertForm').setFieldPerRow(1)
+        form.setName('updateForm').setFieldPerRow(1)
             .addFields([
             { field: 'Ma', type: 'text', required: true, caption: "Mã" },
             { field: 'Ten', type: 'text', required: true, caption: 'Tên' },
@@ -19,8 +19,8 @@
             .setRecord(this.Data)
         ;
         var formFooter = widget.setting.toolbar();
-        formFooter.setName('insertToolbar')
-            .addItem({ id: 'btnInsert', type: 'button', caption: 'Lưu', icon: 'fa-floppy-o', onClick: self.onBtnInsertClick.bind(this) })
+        formFooter.setName('updateToolbar')
+            .addItem({ id: 'btnUpdate', type: 'button', caption: 'Lưu', icon: 'fa-floppy-o', onClick: self.onBtnUpdateClick.bind(this) })
             .addItem({ id: 'btnClear', type: 'button', caption: 'Nhập lại', icon: 'fa-refresh', onClick: self.onBtnClearClick.bind(this) })
 
         ;
@@ -43,9 +43,13 @@
         //texteditor.setHeight('80vh');
         content.setName('content1').addItem(form.end()).addItem(texteditor.end()).addItem(formFooter.end());
     },
-    onBtnInsertClick: function () {
+    onBtnUpdateClick: function () {
         var self = this;
-        var form = this.findElement('insertForm');
+        var editor = this.findElement('moTaEditor');
+        var form = this.findElement('updateForm');
+        $.extend(form.record, {
+            MoTa: editor.getData()
+        });
         if (!form.validate().length) {
             $.post('/HangHoa/HangHoaManagement/ExecuteUpdateHangHoa', { HangHoa: form.record }, function (data) {
                 if (data.IsSuccess) {
@@ -64,7 +68,7 @@
         }
     },
     onBtnClearClick: function () {
-        var form = this.findElement('insertForm');
+        var form = this.findElement('updateForm');
         form.clear();
     }
 

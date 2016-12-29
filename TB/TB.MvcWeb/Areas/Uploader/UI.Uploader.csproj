@@ -150,10 +150,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ImagesUploaderManagement\Index.js" />
+    <Content Include="Views\ImagesUploader\Index.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\ImagesUploaderManagement\Index.cshtml" />
+    <Content Include="Views\ImagesUploader\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -170,6 +170,10 @@
     <ProjectReference Include="..\..\..\TB.Repository.LoaiHangHoa\TB.LoaiHangHoaRepo.csproj">
       <Project>{fcc06980-057e-4b93-ad9f-0fa40467cef0}</Project>
       <Name>TB.LoaiHangHoaRepo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TB\TB.csproj">
+      <Project>{b0003285-cff0-45eb-ad37-d5ab69cb374a}</Project>
+      <Name>TB</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

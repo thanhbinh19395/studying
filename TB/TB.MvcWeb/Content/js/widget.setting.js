@@ -60,7 +60,7 @@ define(function () {
                 $.extend(obj, options || {});
                 $.extend(obj, { _type: "boxcontent", template: $("<div>") });
                 return {
-                    setColor:function(color){
+                    setColor: function (color) {
                         $.extend(obj, { color: color });
                         return this;
                     },
@@ -74,7 +74,7 @@ define(function () {
                         $.extend(obj, { boxCss: cssObj });
                         return this;
                     },
-                    setData:function(data){
+                    setData: function (data) {
                         $.extend(obj, { data: data });
                         return this;
                     },
@@ -97,11 +97,11 @@ define(function () {
                 $.extend(obj, options || {});
                 $.extend(obj, { _type: "tabs", template: $("<div>") });
                 return {
-                    setAttr: function(name, value){
+                    setAttr: function (name, value) {
                         if (!value) {
                             $.extend(obj, name);
                         } else {
-                            $.extend(obj[name], value );
+                            $.extend(obj[name], value);
                         }
                         return this;
                     },
@@ -109,7 +109,7 @@ define(function () {
                         obj[eventName] = handler;
                         return this;
                     },
-                    addTabs:function(tabs){
+                    addTabs: function (tabs) {
                         if (!obj.tabs)
                             obj.tabs = [];
                         if ($.isArray(tabs))
@@ -120,11 +120,11 @@ define(function () {
                             obj.tabs.push(tabs);
                         return this;
                     },
-                    setActiveTab:function(tabid){
+                    setActiveTab: function (tabid) {
                         $.extend(obj, { active: tabid });
                         return this;
                     },
-                    setOnClickHandler:function(handler){
+                    setOnClickHandler: function (handler) {
                         $.extend(obj, {
                             onClick: function (e) {
                                 handler(e);
@@ -147,14 +147,21 @@ define(function () {
                 $.extend(obj, options || {});
                 $.extend(obj, { _type: "uploader", template: $("<div>") });
                 return {
-                    onImageClick:function(handler){
+                    onImageClick: function (handler) {
                         $.extend(obj, {
                             onImageClick: function (data) {
                                 handler(data);
                             }
                         });
+                        return this;s
                     },
-                    setAttr: function(name, value){
+                    onFileUploaded: function (handler) {
+                        $.extend(obj, {
+                            onFileUploaded: handler
+                        });
+                        return this;
+                    },
+                    setAttr: function (name, value) {
                         if (!value) {
                             $.extend(obj, name);
                         } else {
@@ -462,7 +469,7 @@ define(function () {
                 $.extend(obj, {
                     _type: "grid",
                     template: $('<div style=" border-radius: 0">'),
-                    fixedBody:false,
+                    fixedBody: false,
                 });
                 return {
                     setIdColumn: function (colName) {
@@ -470,7 +477,7 @@ define(function () {
                         return this;
                     },
                     show: function () {
-                        if(!obj.show)
+                        if (!obj.show)
                             obj.show = {};
                         $.each(arguments, function (key, value) {
                             obj.show[value] = true;
@@ -515,12 +522,12 @@ define(function () {
                         else
                             if (!obj.show.toolbar)
                                 $.extend(obj.show, { toolbar: true });
-                            
+
                         if (!obj.toolbar) {
                             obj.toolbar = {};
                             obj.toolbar.items = [];
                         }
-                        if (addBreakBefore||true)
+                        if (addBreakBefore || true)
                             obj.toolbar.items.push({
                                 type: 'break',
                             });
@@ -565,7 +572,7 @@ define(function () {
                         _css(obj, css);
                         return this;
                     },
-                    setHtml:function(html){
+                    setHtml: function (html) {
                         obj.template.html(html);
                         return this;
                     },
@@ -649,7 +656,7 @@ define(function () {
                 $.extend(obj, options || {});
                 $.extend(obj, { _type: "form", template: $('<div style="border-radius: 0">') });
                 return {
-                    setLabelWidth:function(width){
+                    setLabelWidth: function (width) {
                         $.extend(obj, { labelWidth: width });
                         return this;
                     },
@@ -687,7 +694,7 @@ define(function () {
                         $.extend(obj.actions, e);
                         return this;
                     },
-                    setRecord:function(record){
+                    setRecord: function (record) {
                         $.extend(obj, { record: record });
                         return this;
                     },
@@ -763,7 +770,7 @@ define(function () {
                 _header.setName('header');
                 _content.setWidth('auto');
                 _content.addClass('collapse').css({
-                    right:'0px',
+                    right: '0px',
                     position: 'absolute',
                     zIndex: 3,
                 });

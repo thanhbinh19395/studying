@@ -70,9 +70,6 @@ $.extend(framework, {
                     return framework.global.findElementByPageId(pageOptions.dataOut._pageId, name, findAll);
                 },
                 $pageEl: layoutSetting.template,
-                $contentEl: layoutSetting.items[0].template,
-                $headerEl: layoutSetting.items[1].template,
-                $footerEl: layoutSetting.items[2].template,
                 pageId: pageOptions.dataOut._pageId,
                 rootPageId: framework.global.getRootPageId(),
                 reloadGridData: function (link, grid, page, param) {

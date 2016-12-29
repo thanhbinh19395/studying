@@ -22,9 +22,22 @@ layout.setting = function () {
             var _content = createContent();
             var _footer = createFooter();
 
-            _page.addItem(_header);
-            _page.addItem(_content);
-            _page.addItem(_footer);
+            if (options.onInitHeader) {
+                
+                _page.addItem(_header);
+                options.onInitHeader && options.onInitHeader(_header);
+                
+            }
+            if (options.onInitContent) {
+                
+                _page.addItem(_content);
+                options.onInitContent(_content);
+            }
+            if (options.onInitFooter) {
+                
+                _page.addItem(_footer);
+                options.onInitFooter(_footer)
+            }
             if (!options.parentId) {
                 _page.css({
                     'overflow': 'auto',
@@ -38,10 +51,6 @@ layout.setting = function () {
             }
            
             var _end = _page.end();
-
-            options.onInitHeader && options.onInitHeader(_header);
-            options.onInitContent && options.onInitContent(_content);
-            options.onInitFooter && options.onInitFooter(_footer);
 
             $.extend(_end, { _pageId: pageId });
             

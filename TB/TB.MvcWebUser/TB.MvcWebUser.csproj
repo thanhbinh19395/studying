@@ -166,6 +166,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ip7.jpg" />
     <Content Include="Content\Template\about.html" />
     <Content Include="Content\Template\blog.html" />
     <Content Include="Content\Template\blog_posts_table_view.html" />
@@ -861,6 +862,8 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_pvLoaiHangHoa.cshtml" />
+    <Content Include="Views\Shared\TienTestLayout.cshtml" />
+    <Content Include="Views\Home\Tientest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

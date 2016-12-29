@@ -17,15 +17,7 @@
         $('.plupload_header_title', this.element).html('Chọn ảnh')
         $('.plupload_header_text', this.element).html('Sau khi upload ảnh xong, vui lòng click vào ảnh để thêm ảnh');
 
-        var header = $('.plupload_start', this.element);
-        var htmlStr = "&nbsp";
-        htmlStr += "    <label class=\"radio-inline\">";
-        htmlStr += "        <input type=\"radio\" id=\"isPrivateImages\"  name=\"chooseUploadFolder\" checked > Ảnh cá nhân";
-        htmlStr += "    <\/label>";
-        htmlStr += "    <label class=\"radio-inline\">";
-        htmlStr += "        <input type=\"radio\" name=\"chooseUploadFolder\" > Ảnh public";
-        htmlStr += "    <\/label>";
-        var div = $('<div>').addClass('controls').css('display', 'inline-block').html(htmlStr).insertAfter(header);
+        
     },
     _createEvent: function () {
         var self = this;
@@ -33,9 +25,7 @@
             init: {
                 FileUploaded: function (up, file, info) {
                     var data = JSON.parse(info.response);
-                    console.log(data);
-                    $.extend(data, { isPrivateImages: $('#isPrivateImages', self.element).is(':checked') })
-                    $.get('/Documents/UploadImages/ImagesInsert', data);
+                    self.options.onFileUploaded && self.options.onFileUploaded(up, file, info);
                     $("#" + file.id, self.element).click(function () {
                         self.options.onImageClick(data);
                     });

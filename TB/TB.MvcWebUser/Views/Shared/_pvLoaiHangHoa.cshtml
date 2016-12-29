@@ -1,0 +1,16 @@
+﻿@{
+    Layout = null;
+}
+@using TB.Domain.EntityModel
+@model IEnumerable<LoaiHangHoa>
+
+<h3>Danh sách thể loại</h3>
+<ul class="expander-list">
+    @foreach (var item in Model)
+    {
+        <li>
+            <span class="name"> <a href="/HangHoa/XemTheoLoai/@item.LoaiHangHoaId">@item.Ten</a> </span>
+        </li>
+    }
+
+</ul>

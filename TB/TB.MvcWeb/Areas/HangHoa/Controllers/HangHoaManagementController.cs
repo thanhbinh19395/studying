@@ -36,13 +36,13 @@ namespace HangHoa.Controllers
             var list = repo.Execute(this);
             return Json(list);
         }
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult ExecuteUpdateHangHoa(HangHoaUpdateRepository repo)
         {
             return Json(repo.Execute(this));
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult ExecuteInsertHangHoa(HangHoaInsertRepository repo)
         {
             return Json(repo.Execute(this));

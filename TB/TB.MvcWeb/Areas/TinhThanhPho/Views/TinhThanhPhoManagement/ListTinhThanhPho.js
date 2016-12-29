@@ -1,38 +1,38 @@
-﻿var commonOptions = {
-    header: {
-        pageTitle: 'Danh sách Tỉnh thành phố',
-        pageIcon: 'fa fa-list',
-        fieldsSearchForm: [
-           { field: 'Ten', type: 'text', required: true, caption: "Tên" },
-        ],
-        searchFormPanelWidth: '700px',
-    },
-    content: {
-        gridColumn: [
-            { field: 'Ten', caption: 'Ten', size: '40%', sortable: true, resizable: true, test: function () { console.log(this); } },
-        ],
-    },
-    //nhớ sửa param
-    popup: {
-        insert: {
-            title: 'Thêm Tỉnh thành phố',
-            url: '/TinhThanhPho/TinhThanhPhoManagement/InsertTinhThanhPho',
-            width: 600
-        },
-        update: {
-            title: 'Cập nhật Tỉnh thành phố',
-            url: '/TinhThanhPho/TinhThanhPhoManagement/UpdateTinhThanhPho',
-            width: 600
-        },
-    },
-    //nhớ sửa param
-    apiExecuteUrl: {
-        searchUrl: '/TinhThanhPho/TinhThanhPhoManagement/ExecuteSearch',
-        deleteUrl: '/TinhThanhPho/TinhThanhPhoManagement/ExecuteDeleteTinhThanhPho',
-    }
-};
-
+﻿
 framework.factory('tinhthanhpho', {
+    commonOptions : {
+        header: {
+            pageTitle: 'Danh sách Tỉnh thành phố',
+            pageIcon: 'fa fa-list',
+            fieldsSearchForm: [
+               { field: 'Ten', type: 'text', required: true, caption: "Tên" },
+            ],
+            searchFormPanelWidth: '700px',
+        },
+        content: {
+            gridColumn: [
+                { field: 'Ten', caption: 'Ten', size: '40%', sortable: true, resizable: true, test: function () { console.log(this); } },
+            ],
+        },
+        //nhớ sửa param
+        popup: {
+            insert: {
+                title: 'Thêm Tỉnh thành phố',
+                url: '/TinhThanhPho/TinhThanhPhoManagement/InsertTinhThanhPho',
+                width: 600
+            },
+            update: {
+                title: 'Cập nhật Tỉnh thành phố',
+                url: '/TinhThanhPho/TinhThanhPhoManagement/UpdateTinhThanhPho',
+                width: 600
+            },
+        },
+        //nhớ sửa param
+        apiExecuteUrl: {
+            searchUrl: '/TinhThanhPho/TinhThanhPhoManagement/ExecuteSearch',
+            deleteUrl: '/TinhThanhPho/TinhThanhPhoManagement/ExecuteDeleteTinhThanhPho',
+        }
+    },
     onMessageReceive: function (sender, message) {
         if (message.type == 'reload')
             this.onbtnReloadClick();
@@ -44,10 +44,10 @@ framework.factory('tinhthanhpho', {
 
         form.setName('searchForm')
             .setFieldPerRow(1) // so cot trong form
-            .addFields(commonOptions.header.fieldsSearchForm)
+            .addFields(this.commonOptions.header.fieldsSearchForm)
         ;
-        header.setTitle(commonOptions.header.pageTitle)
-            .setIcon(commonOptions.header.pageIcon);
+        header.setTitle(this.commonOptions.header.pageTitle)
+            .setIcon(this.commonOptions.header.pageIcon);
 
         var formFooter = widget.setting.toolbar();
         formFooter.addItem({
@@ -56,7 +56,7 @@ framework.factory('tinhthanhpho', {
         });
 
         var formPanel = widget.setting.panel();
-        formPanel.setWidth(commonOptions.header.searchFormPanelWidth).addClass('pull-right');
+        formPanel.setWidth(this.commonOptions.header.searchFormPanelWidth).addClass('pull-right');
         formPanel.addItem(form.end());
         formPanel.addItem(formFooter.end());
 
@@ -81,18 +81,18 @@ framework.factory('tinhthanhpho', {
     },
     onInitContent: function (content) {
         var self = this;
-
+        console.log(this);
         content.setName('content');
         var pagi = widget.setting.pagination();
         pagi.setName('page')
-            .setTotalPages(self.ViewBag.PageCount)
-            .setStartPage(self.ViewBag.Page)
-        .setPageClickHandler(self.onPageClick.bind(this))
+            .setTotalPages(this.Data.PageCount)
+            .setStartPage(this.Data.Page)
+        .setPageClickHandler(this.onPageClick.bind(this))
         ;
 
         var grid = widget.setting.grid();
         grid.setName('grid')
-            .addColumns(commonOptions.content.gridColumn)
+            .addColumns(this.commonOptions.content.gridColumn)
             .addButton('btnInsert', 'Thêm', 'fa fa-plus', self.onbtnInsertClickCategoryGrid.bind(this))
             .addButton('btnUpdate', 'Cập nhật', 'fa fa-pencil', self.onbtnUpdateClickCategoryGrid.bind(this))
             .addButton('btnDelete', 'Xóa', 'fa fa-trash-o', self.onbtnDeleteClickCategoryGrid.bind(this))
@@ -112,9 +112,9 @@ framework.factory('tinhthanhpho', {
     onbtnInsertClickCategoryGrid: function () {
         this.openPopup({
             name: 'insertPopup',
-            url: commonOptions.popup.insert.url,
-            title: commonOptions.popup.insert.title,
-            width: commonOptions.popup.insert.width
+            url: this.commonOptions.popup.insert.url,
+            title: this.commonOptions.popup.insert.title,
+            width: this.commonOptions.popup.insert.width
         });
     },
     onbtnUpdateClickCategoryGrid: function () {
@@ -126,9 +126,9 @@ framework.factory('tinhthanhpho', {
         }
         this.openPopup({
             name: 'updatePopup',
-            url: commonOptions.popup.update.url,
-            title: commonOptions.popup.update.title,
-            width: commonOptions.popup.update.width
+            url: this.commonOptions.popup.update.url,
+            title: this.commonOptions.popup.update.title,
+            width: this.commonOptions.popup.update.width
         },
         {
             TinhThanhPhoId: id
@@ -140,7 +140,7 @@ framework.factory('tinhthanhpho', {
         w2confirm('Bạn có chắc chắn muốn xóa dòng này không ?').yes(function () {
             var grid = self.findElement('grid');
             var id = grid.getSelection()[0];
-            $.post(commonOptions.apiExecuteUrl.deleteUrl, { TinhThanhPhoId: id }, function (data) {
+            $.post(self.commonOptions.apiExecuteUrl.deleteUrl, { TinhThanhPhoId: id }, function (data) {
                 console.log(data);
                 self.onbtnReloadClick();
             });
@@ -153,7 +153,7 @@ framework.factory('tinhthanhpho', {
         var form = self.findElement('searchForm');
         self.searchParam = form.record;
 
-        $.post(commonOptions.apiExecuteUrl.searchUrl, { TinhThanhPho: form.record }, function (d) {
+        $.post(this.commonOptions.apiExecuteUrl.searchUrl, { TinhThanhPho: form.record }, function (d) {
             grid.clear();
             grid.add(d.Data.Data);
             console.log(d);
@@ -168,12 +168,12 @@ framework.factory('tinhthanhpho', {
         console.log(page);
         var grid = this.findElement('grid');
 
-        this.reloadGridData(commonOptions.apiExecuteUrl.searchUrl, grid, page, this.searchParam);
+        this.reloadGridData(this.commonOptions.apiExecuteUrl.searchUrl, grid, page, this.searchParam);
     },
     onbtnReloadClick: function (evt) {
         var grid = this.findElement('grid');
         var form = this.findElement('searchForm');
-        this.reloadGridData(commonOptions.apiExecuteUrl.searchUrl, grid);
+        this.reloadGridData(this.commonOptions.apiExecuteUrl.searchUrl, grid);
         this.searchParam = {};
         form.clear();
     }

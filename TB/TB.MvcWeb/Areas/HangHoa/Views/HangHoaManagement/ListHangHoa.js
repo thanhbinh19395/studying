@@ -26,7 +26,6 @@
                             return record.LoaiHangHoa.Ten;
                         }
                     },
-                    { field: 'MoTa', caption: 'Mô tả', size: '15%' },
             ],
         },
         //nhớ sửa param
@@ -34,7 +33,7 @@
             insert: {
                 title: 'Thêm Hàng hóa',
                 url: '/HangHoa/HangHoaManagement/InsertHangHoa',
-                width: 600
+                width: 650
             },
             update: {
                 title: 'Cập nhật Hàng hóa',
@@ -53,12 +52,13 @@
             this.onbtnReloadClick();
     },
     onInitHeader: function (header) {
+        console.log(this.ViewBag);
         header.setName('header');
         var self = this;
         var form = widget.setting.form();
 
         form.setName('searchForm')
-            .setFieldPerRow(1) // so cot trong form
+            .setFieldPerRow(1) // so cot trong form 
             .addFields([
                 { field: 'Ma', caption: 'Mã', type: 'text' },
                 { field: 'Ten', caption: 'Tên', type: 'text' },
@@ -120,7 +120,7 @@
             .addButton('btnInsert', 'Thêm', 'fa fa-plus', self.onbtnInsertClickCategoryGrid.bind(this))
             .addButton('btnUpdate', 'Cập nhật', 'fa fa-pencil', self.onbtnUpdateClickCategoryGrid.bind(this))
             .addButton('btnDelete', 'Xóa', 'fa fa-trash-o', self.onbtnDeleteClickCategoryGrid.bind(this))
-            .setIdColumn('LoaiHangHoaId')
+            .setIdColumn('HangHoaId')
             .addRecords(self.Data.Data)
             .setPaginateOptions(pagi.end())
         ;

@@ -19,7 +19,7 @@
                 width: 600
             },
             update: {
-                title: 'Cập Nhập Nhà Cung Cấp',
+                title: 'Cập Nhật Nhà Cung Cấp',
                 url: '/NhaCungCap/NhaCungCapManagement/UpdateNhaCungCap',
                 width: 600
             },
@@ -81,12 +81,11 @@
     },
     onInitContent: function (content) {
         var self = this;
-
         content.setName('content');
         var pagi = widget.setting.pagination();
         pagi.setName('page')
-            .setTotalPages(self.ViewBag.PageCount)
-            .setStartPage(self.ViewBag.Page)
+            .setTotalPages(this.Data.PageCount)
+            .setStartPage(this.Data.Page)
         .setPageClickHandler(self.onPageClick.bind(this))
         ;
 

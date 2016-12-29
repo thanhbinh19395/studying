@@ -85,8 +85,8 @@
         content.setName('content');
         var pagi = widget.setting.pagination();
         pagi.setName('page')
-            .setTotalPages(self.ViewBag.PageCount)
-            .setStartPage(self.ViewBag.Page)
+            .setTotalPages(this.Data.PageCount)
+            .setStartPage(this.Data.Page)
         .setPageClickHandler(self.onPageClick.bind(this))
         ;
 

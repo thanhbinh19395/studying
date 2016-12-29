@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="DonHangGetByIdRepository.cs" />
     <Compile Include="DonHangInsertRepository.cs" />
+    <Compile Include="HoaDonSearchRepository .cs" />
     <Compile Include="DonHangSearchRepository.cs" />
     <Compile Include="DonHangDeleteRepository.cs" />
     <Compile Include="DonHangUpdateRepository.cs" />

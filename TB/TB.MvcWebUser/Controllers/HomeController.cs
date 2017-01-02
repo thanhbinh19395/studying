@@ -90,6 +90,41 @@ namespace TB.MvcWebUser.Controllers
 
             }
         }
+
+        [HttpPost]
+        public void SubtractionCart(int HanghoaId)
+        {
+            List<CartItem> giohang = Session["GioHang"] as List<CartItem>;
+            CartItem item = giohang.SingleOrDefault(p => p.ProductOrder.HangHoaId == HanghoaId);
+            if (item != null && item.Quantity > 1)
+            {
+                item.Quantity--;
+            }
+            Session["GioHang"] = giohang;
+        }
+
+        [HttpPost]
+        public void UpdateCart(int HanghoaId, int soluong) {
+            List<CartItem> giohang = Session["GioHang"] as List<CartItem>;
+            CartItem item = giohang.SingleOrDefault(p => p.ProductOrder.HangHoaId == HanghoaId);
+            if (item != null && soluong > 0)
+            {
+                item.Quantity = soluong;
+            }
+            Session["GioHang"] = giohang;
+        }
+
+        [HttpPost]
+        public void DeleteCart(int HanghoaId)
+        {
+            List<CartItem> giohang = Session["GioHang"] as List<CartItem>;
+            CartItem item = giohang.SingleOrDefault(p => p.ProductOrder.HangHoaId == HanghoaId);
+            if (item != null )
+            {
+                giohang.Remove(item);
+            }
+            Session["GioHang"] = giohang;
+        }
         public ActionResult ViewCarts()
         {
             return View();

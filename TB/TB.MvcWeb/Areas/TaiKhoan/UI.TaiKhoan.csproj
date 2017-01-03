@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4A467931-457F-443C-A844-5663202AEABA}</ProjectGuid>
+    <ProjectGuid>{CAA06369-6DC3-42DE-8B0B-F94DC8628E90}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DonHang</RootNamespace>
-    <AssemblyName>DonHang</AssemblyName>
+    <RootNamespace>TaiKhoan</RootNamespace>
+    <AssemblyName>TaiKhoan</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -145,30 +145,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\POSController.cs" />
-    <Compile Include="Controllers\HoaDonManagementController.cs" />
-    <Compile Include="DonHangAreaRegistration.cs" />
-    <Compile Include="Controllers\DonHangManagementController.cs" />
+    <Compile Include="Controllers\ThongTinNDManagementController.cs" />
+    <Compile Include="TaiKhoanAreaRegistration.cs" />
+    <Compile Include="Controllers\TaiKhoanManagementController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\DonHangManagement\InsertDonHang.js" />
-    <Content Include="Views\DonHangManagement\ListDonHang.js" />
-    <Content Include="Views\DonHangManagement\ThanhToanDonHang.js" />
-    <Content Include="Views\DonHangManagement\UpdateDonHang.js" />
-    <Content Include="Views\POS\Index.js" />
+    <Content Include="Views\TaiKhoanManagement\InsertTaiKhoan.js" />
+    <Content Include="Views\TaiKhoanManagement\ListTaiKhoan.js" />
+    <Content Include="Views\TaiKhoanManagement\UpdateTaiKhoan.js" />
+    <Content Include="Views\ThongTinNDManagement\InsertThongTinND.js" />
+    <Content Include="Views\ThongTinNDManagement\ListThongTinND.js" />
+    <Content Include="Views\ThongTinNDManagement\UpdateThongTinND.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Views\HoaDonManagement\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\TB.Business.DonHang\TB.DonHangBus.csproj">
-      <Project>{0ca6b48e-4ded-432a-8ab8-5bab0a80a7dc}</Project>
-      <Name>TB.DonHangBus</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\TB.Domain\TB.Domain.csproj">
       <Project>{90f20cf0-ff8f-432c-9dd7-f2f13734a625}</Project>
       <Name>TB.Domain</Name>
@@ -177,33 +172,24 @@
       <Project>{7749B81B-D5D0-404F-AAA0-441F22B765B0}</Project>
       <Name>TB.Repository.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\TB.Repository.ChiTietDonHang\TB.ChiTietDonHangRepo.csproj">
-      <Project>{b17eebc8-44dd-41b4-8fba-03dbcd7c69dd}</Project>
-      <Name>TB.ChiTietDonHangRepo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\TB.Repository.DonHang\TB.DonHangRepo.csproj">
-      <Project>{43694d9c-9de9-4539-a350-618f9d273f15}</Project>
-      <Name>TB.DonHangRepo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\TB.Repository.HoaDon\TB.HoaDonRepo.csproj">
-      <Project>{9032e501-258a-481f-965c-356db7b81397}</Project>
-      <Name>TB.HoaDonRepo</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\DonHangManagement\InsertDonHang.cshtml" />
+    <Content Include="Views\TaiKhoanManagement\InsertTaiKhoan.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\DonHangManagement\ListDonHang.cshtml" />
+    <Content Include="Views\TaiKhoanManagement\UpdateTaiKhoan.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\DonHangManagement\UpdateDonHang.cshtml" />
+    <Content Include="Views\TaiKhoanManagement\ListTaiKhoan.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\POS\Index.cshtml" />
+    <Content Include="Views\ThongTinNDManagement\InsertThongTinND.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\DonHangManagement\ThanhToanDonHang.cshtml" />
+    <Content Include="Views\ThongTinNDManagement\UpdateThongTinND.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ThongTinNDManagement\ListThongTinND.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

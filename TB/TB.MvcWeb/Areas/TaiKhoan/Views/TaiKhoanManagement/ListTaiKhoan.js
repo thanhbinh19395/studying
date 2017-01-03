@@ -1,23 +1,33 @@
-﻿framework.factory('hoadon', {
+﻿framework.factory('loaihanghoa', {
     commonOptions: {
         header: {
-            pageTitle: 'Danh sách Hóa đơn',
+            pageTitle: 'Danh sách Loại hàng hóa',
             pageIcon: 'fa fa-list',
             searchFormPanelWidth: '700px',
         },
         content: {
             gridColumn: [
-                { field: 'HoaDonId', caption: 'Mã Hóa Đơn', size: '40%', sortable: true, resizable: true },
-                { field: 'DonHangId', caption: 'Mã Đơn Hàng', size: '40%', sortable: true, resizable: true},
-                { field: 'NguoiLapId', caption: 'Mã Người Lập', size: '50%', sortable: true, resizable: true },
-                { field: 'NgayLap', caption: 'Ngày Lập', size: '50%', sortable: true, resizable: true },
-                { field: 'ThanhTien', caption: 'Thành Tiền', size: '50%', sortable: false, resizable: true },
-                { field: 'GhiChu', caption: 'Ghi Chú', size: '50%', sortable: false, resizable: true }
+                { field: 'Ma', caption: 'Ma', size: '40%', sortable: true, resizable: true },
+                { field: 'Ten', caption: 'Ten', size: '50%', sortable: true, resizable: true },
             ],
         },
         //nhớ sửa param
+        popup: {
+            insert: {
+                title: 'Thêm Loại Hàng hóa',
+                url: '/LoaiHangHoa/LoaiHangHoaManagement/InsertLoaiHangHoa',
+                width: 600
+            },
+            update: {
+                title: 'Cập nhật Loại Hàng hóa',
+                url: '/LoaiHangHoa/LoaiHangHoaManagement/UpdateLoaiHangHoa',
+                width: 600
+            },
+        },
+        //nhớ sửa param
         apiExecuteUrl: {
-            searchUrl: '/DonHang/HoaDonManagement/ExecuteSearch'
+            searchUrl: '/LoaiHangHoa/LoaiHangHoaManagement/ExecuteSearch',
+            deleteUrl: '/LoaiHangHoa/LoaiHangHoaManagement/ExecuteDeleteLoaiHangHoa',
         }
     },
     onMessageReceive: function (sender, message) {
@@ -27,14 +37,13 @@
     onInitHeader: function (header) {
         header.setName('header');
         var self = this;
-        var form = widget.setting.form();
+        var form = widget.setting.form(); 
 
         form.setName('searchForm')
             .setFieldPerRow(1) // so cot trong form
-            .addFields([        
-               { field: 'NguoiLapId', caption: 'Mã Người Lập', size: '50%', sortable: true, resizable: true },
-               { field: 'FromDate', type: 'datetime', caption: 'Bắt đầu từ ngày', size: '50%', sortable: true, resizable: true },
-               { field: 'EndDate', type: 'datetime', caption: 'Đến ngày', size: '50%', sortable: true, resizable: true }
+            .addFields([
+               { field: 'Ma', type: 'text', required: true, caption: "Ma" },
+               { field: 'Ten', type: 'text', required: false, caption: "Ten" },
             ])
         ;
         header.setTitle(this.commonOptions.header.pageTitle)
@@ -76,15 +85,18 @@
         content.setName('content');
         var pagi = widget.setting.pagination();
         pagi.setName('page')
-            .setTotalPages(self.ViewBag.PageCount)
-            .setStartPage(self.ViewBag.Page)
+            .setTotalPages(this.Data.PageCount)
+            .setStartPage(this.Data.Page)
         .setPageClickHandler(self.onPageClick.bind(this))
         ;
 
         var grid = widget.setting.grid();
         grid.setName('grid')
             .addColumns(this.commonOptions.content.gridColumn)
-            .setIdColumn('DonHangId')
+            .addButton('btnInsert', 'Thêm', 'fa fa-plus', self.onbtnInsertClickCategoryGrid.bind(this))
+            .addButton('btnUpdate', 'Cập nhật', 'fa fa-pencil', self.onbtnUpdateClickCategoryGrid.bind(this))
+            .addButton('btnDelete', 'Xóa', 'fa fa-trash-o', self.onbtnDeleteClickCategoryGrid.bind(this))
+            .setIdColumn('LoaiHangHoaId')
             .addRecords(self.Data.Data)
             .setPaginateOptions(pagi.end())
 
@@ -102,6 +114,43 @@
 
         content.addItem(panel.end());
     },
+    onbtnInsertClickCategoryGrid: function () {
+        this.openPopup({
+            name: 'insertPopup',
+            url: this.commonOptions.popup.insert.url,
+            title: this.commonOptions.popup.insert.title,
+            width: this.commonOptions.popup.insert.width
+        });
+    },
+    onbtnUpdateClickCategoryGrid: function () {
+        var grid = this.findElement('grid');
+        var id = grid.getSelection()[0];
+        if (!id) {
+            //thong bao = noty 
+            return;
+        }
+        this.openPopup({
+            name: 'updatePopup',
+            url: this.commonOptions.popup.update.url,
+            title: this.commonOptions.popup.update.title,
+            width: this.commonOptions.popup.update.width
+        },
+        {
+            LoaiHangHoaId: id
+        });
+
+    },
+    onbtnDeleteClickCategoryGrid: function () {
+        var self = this;
+        w2confirm('Bạn có chắc chắn muốn xóa dòng này không ?').yes(function () {
+            var grid = self.findElement('grid');
+            var id = grid.getSelection()[0];
+            $.post(self.commonOptions.apiExecuteUrl.deleteUrl, { LoaiHangHoaId: id }, function (data) {
+                console.log(data);
+                self.onbtnReloadClick();
+            });
+        });
+    },
     onbtnSearchClickSearchForm: function (evt) {
         var self = this;
         var grid = self.findElement('grid');
@@ -109,7 +158,7 @@
         var form = self.findElement('searchForm');
         self.searchParam = form.record;
 
-        $.post(this.commonOptions.apiExecuteUrl.searchUrl, { HoaDon: form.record }, function (d) {
+        $.post(this.commonOptions.apiExecuteUrl.searchUrl, { LoaiHangHoa: form.record }, function (d) {
             grid.clear();
             grid.add(d.Data.Data);
             console.log(d);
@@ -138,7 +187,7 @@
         var grid = this.findElement('grid');
         var record = grid.get(e.recid);
         var mess = {
-            type: 'popupDSDonHang',
+            type: 'popupDSLoaiHangHoa',
             data: record,
             callback: function () {
                 self.close();

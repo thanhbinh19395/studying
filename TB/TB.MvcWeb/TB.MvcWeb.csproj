@@ -770,10 +770,12 @@
     <Content Include="Content\js\widget\widget-rules.txt" />
     <Content Include="Content\js\widget\widget.base.js" />
     <Content Include="Content\js\widget\widget.boxcontent.js" />
+    <Content Include="Content\js\widget\widget.boxproduct.js" />
     <Content Include="Content\js\widget\widget.field.js" />
     <Content Include="Content\js\widget\widget.form.js" />
     <Content Include="Content\js\widget\widget.gallery.js" />
     <Content Include="Content\js\widget\widget.grid.js" />
+    <Content Include="Content\js\widget\widget.listproduct.js" />
     <Content Include="Content\js\widget\widget.pagination.js" />
     <Content Include="Content\js\widget\widget.panel.js" />
     <Content Include="Content\js\widget\widget.tabs.js" />

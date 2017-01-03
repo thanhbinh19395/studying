@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{43694D9C-9DE9-4539-A350-618F9D273F15}</ProjectGuid>
+    <ProjectGuid>{B17EEBC8-44DD-41B4-8FBA-03DBCD7C69DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TB.DonHangRepo</RootNamespace>
-    <AssemblyName>TB.DonHangRepo</AssemblyName>
+    <RootNamespace>TB.ChiTietDonHangRepo</RootNamespace>
+    <AssemblyName>TB.ChiTietDonHangRepo</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -83,12 +83,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DonHangGetChuaThanhToanByIdRepository.cs" />
-    <Compile Include="DonHangGetByIdRepository.cs" />
-    <Compile Include="DonHangInsertRepository.cs" />
-    <Compile Include="DonHangSearchRepository.cs" />
-    <Compile Include="DonHangDeleteRepository.cs" />
-    <Compile Include="DonHangUpdateRepository.cs" />
+    <Compile Include="ChiTietDonHangGetByIdRepository.cs" />
+    <Compile Include="ChiTietDonHangGetListByDonHangIdRepository.cs" />
+    <Compile Include="ChiTietDonHangInsertRepository.cs" />
+    <Compile Include="ChiTietDonHangDeleteRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

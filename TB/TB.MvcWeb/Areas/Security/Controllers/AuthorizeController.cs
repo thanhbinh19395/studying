@@ -22,12 +22,11 @@ namespace Security.Controllers
         public ActionResult ExecuteSignIn(UserLoginRepository login)
         {
             var result = login.Execute(this);
-            //bool isValidUser = result.IsSuccess;
-            bool isValidUser = true;
+            bool isValidUser = result.IsSuccess;
+            //bool isValidUser = true;
             if (isValidUser)
             {
-                var validUser = new User { Username = login.Username, Password = login.Password };
-                Session.Add("LoginUser", validUser);
+                Session.Add("LoginUser", result.Data);
                 return Redirect(login.ReturnUrl);
             }
             SignIn(login.ReturnUrl);

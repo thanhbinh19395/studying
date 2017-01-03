@@ -7,14 +7,14 @@ using System.Web.Mvc;
 using TB.BaseRepo;
 using TB.Domain.EntityModel;
 
-namespace TB.DonHangRepo
+namespace TB.ChiTietDonHangRepo
 {
-    public class DonHangDeleteRepository : BaseRepository<int>
+    public class ChiTietDonHangDeleteRepository : BaseRepository<int>
     {
-        public long DonHangId { get; set; }
+        public int ChiTietDonHangId { get; set; }
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
-            db.DonHangs.Remove(db.DonHangs.Single(p => p.DonHangId == this.DonHangId));
+            db.ChiTietDonHangs.Remove(db.ChiTietDonHangs.Single(p => p.ChiTietDonHangId == this.ChiTietDonHangId));
             return Success(db.SaveChanges());
         }
     }

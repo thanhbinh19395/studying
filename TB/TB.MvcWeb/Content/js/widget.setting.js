@@ -656,6 +656,14 @@ define(function () {
                 $.extend(obj, options || {});
                 $.extend(obj, { _type: "form", template: $('<div style="border-radius: 0">') });
                 return {
+                    focusRecord: function (pos) {
+                        $.extend(obj, { focus: pos });
+                        return this;
+                    },
+                    isReadOnly: function (value) {
+                        $.extend(obj, { isReadOnlyForm: value });
+                        return this;
+                    },
                     setLabelWidth: function (width) {
                         $.extend(obj, { labelWidth: width });
                         return this;

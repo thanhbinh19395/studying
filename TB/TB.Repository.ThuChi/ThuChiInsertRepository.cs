@@ -7,18 +7,18 @@ using System.Web.Mvc;
 using TB.BaseRepo;
 using TB.Domain.EntityModel;
 
-namespace TB.DonHangRepo
+namespace TB.LoaiHangHoaRepo
 {
-    public class DonHangInsertRepository : BaseRepository<long>
+    public class ThuChiInsertRepository : BaseRepository<long>
     {
-        public DonHang DonHang { get; set; }
+        public ThuChi ThuChi { get; set; }
 
         public override Result<long> ExecuteCore(Controller CurrentContext)
         {
-            DonHang.NgayLap = DateTime.Now;
-            db.DonHangs.Add(DonHang);
+            ThuChi.Ngay = DateTime.Now;
+            db.ThuChis.Add(ThuChi);
             db.SaveChanges();
-            return Success(this.DonHang.DonHangId);
+            return Success(this.ThuChi.ThuChiId);
         }
     }
 }

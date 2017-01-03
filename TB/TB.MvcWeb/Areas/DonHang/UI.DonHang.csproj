@@ -153,6 +153,7 @@
   <ItemGroup>
     <Content Include="Views\DonHangManagement\InsertDonHang.js" />
     <Content Include="Views\DonHangManagement\ListDonHang.js" />
+    <Content Include="Views\DonHangManagement\ThanhToanDonHang.js" />
     <Content Include="Views\DonHangManagement\UpdateDonHang.js" />
     <Content Include="Views\HoaDonManagement\ListHoaDon.js" />
     <Content Include="Views\Web.config" />
@@ -162,6 +163,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\TB.Business.DonHang\TB.DonHangBus.csproj">
+      <Project>{0ca6b48e-4ded-432a-8ab8-5bab0a80a7dc}</Project>
+      <Name>TB.DonHangBus</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\TB.Domain\TB.Domain.csproj">
       <Project>{90f20cf0-ff8f-432c-9dd7-f2f13734a625}</Project>
       <Name>TB.Domain</Name>
@@ -170,9 +175,17 @@
       <Project>{7749B81B-D5D0-404F-AAA0-441F22B765B0}</Project>
       <Name>TB.Repository.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\TB.Repository.ChiTietDonHang\TB.ChiTietDonHangRepo.csproj">
+      <Project>{b17eebc8-44dd-41b4-8fba-03dbcd7c69dd}</Project>
+      <Name>TB.ChiTietDonHangRepo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\TB.Repository.DonHang\TB.DonHangRepo.csproj">
       <Project>{43694d9c-9de9-4539-a350-618f9d273f15}</Project>
       <Name>TB.DonHangRepo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TB.Repository.HoaDon\TB.HoaDonRepo.csproj">
+      <Project>{9032e501-258a-481f-965c-356db7b81397}</Project>
+      <Name>TB.HoaDonRepo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +199,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\HoaDonManagement\ListHoaDon.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DonHangManagement\ThanhToanDonHang.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

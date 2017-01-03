@@ -8,7 +8,7 @@ using TB.BaseRepo;
 using TB.Domain.EntityModel;
 using X.PagedList;
 
-namespace TB.DonHangRepo
+namespace TB.HoaDonRepo
 {
     public class HoaDonSearchRepository : BaseRepository<dynamic>
     {
@@ -16,7 +16,7 @@ namespace TB.DonHangRepo
 
         //public int NguoiLapId { get; set; }
         public DateTime FromDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime ToDate { get; set; }
 
         public override Result<dynamic> ExecuteCore(Controller CurrentContext)
         {
@@ -37,8 +37,8 @@ namespace TB.DonHangRepo
 
             #region Search
             var result = db.HoaDons.Where(
-                p =>
-                p.NguoiLapId == HoaDon.NguoiLapId || (HoaDon.NgayLap >= FromDate && HoaDon.NgayLap < EndDate)
+                p => p.NguoiLapId == HoaDon.NguoiLapId || 
+                (HoaDon.NgayLap >= FromDate && HoaDon.NgayLap < ToDate)
                  );
             var page = result.ToPagedListForEntityFramework(s => s.NguoiLapId, Convert.ToInt32(Page), PageSize);
             var dataSearch = new

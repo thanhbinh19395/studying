@@ -11,7 +11,8 @@ $.widget('widget.form', $.widget.base, {
         fields: [],
         actions: [],
         boderSpacing: 0,
-        labelWidth: 150
+        labelWidth: 150,
+        isReadOnlyForm:false,
     },
     _create: function () {
         this.element.empty();
@@ -152,6 +153,9 @@ $.widget('widget.form', $.widget.base, {
         }
         if (tmp) {
             tmp.css('width', '100%');
+            if (self.options.isReadOnlyForm) {
+                tmp.attr('disabled', 'disabled')
+            }
         }
         return tmp;
     }

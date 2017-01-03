@@ -11,7 +11,7 @@ namespace TB.DonHangRepo
 {
     public class DonHangGetByIdRepository : BaseRepository<DonHang>
     {
-        public int DonHangId { get; set; }
+        public long DonHangId { get; set; }
         public override Result<DonHang> ExecuteCore(Controller CurrentContext)
         {
             return Success(db.DonHangs.Single(p => p.DonHangId == this.DonHangId));

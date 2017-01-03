@@ -1,6 +1,67 @@
 ﻿var framework = window.framework || {};
 framework.common = framework.common || {};
 $.extend(framework.common, {
+    print: function (options) {
+        var self = this;
+
+        var width = options.width == null ? 600 : options.width;
+        var height = options.height == null ? 600 : options.height;
+       
+
+        var content = '';
+        if (options.css == null) {
+            content += '<link href="/Content/flaty/assets/bootstrap/css/bootstrap.css" rel="stylesheet"/>';
+            content += '<link href="/Content/css/invoice.css" rel="stylesheet" />';
+        }
+        else {
+            content += options.css;
+        }
+        content += "<body onload=\"window.print();\">";
+        if (options.content)
+            content += options.content;
+        if (options.headerHtml != null) {
+            content += options.headerHtml;
+        }
+        if (options.selector) {
+            $.each(options.selectors, function (index, selector) {
+                if (selector.isW2ui == true) {
+                    console.log('in');
+                    console.log(selector.selector);
+                    content += framework.common.w2uiGridToHtml(selector.selector);
+                } else {
+                    content += $(selector.selector).html();
+                }
+            });
+        }
+        if (options.footerHtml != null) {
+            content += options.footerHtml;
+        }
+        var win = window.open('', '', "left=0,top=0,width=" + width + ",height=" + height + ",toolbar=0,scrollbars=0,status =0");
+        win.document.write(content);
+        win.document.close();
+    },
+    w2uiGridToHtml: function (grid) {
+        var content = '<table class="table table-bordered table-striped"><tr>';
+        $.each(grid.columns, function (index, column) {
+            if (column.excludePrint == true)
+                return true;
+            content += "<th>" + column.caption + "</th>";
+        })
+
+        $.each(grid.records, function (index, record) {
+            content += "<tr>";
+            $.each(grid.columns, function (index, column) {
+                console.log(column);
+                if (column.excludePrint == true)
+                    return;
+                content += "<td>" + record[column.field] + "</td>";
+            })
+            content += "</tr>"
+        })
+
+        content += "</tr></table>";
+        return content;
+    },
     exportExcel: function (option, prototypeObject) {
         if (prototypeObject) {
             var prefixName = '';

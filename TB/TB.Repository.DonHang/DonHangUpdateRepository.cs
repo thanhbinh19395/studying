@@ -12,11 +12,7 @@ namespace TB.DonHangRepo
     public class DonHangUpdateRepository : BaseRepository<int>
     {
         public DonHang DonHang { get; set; }
-        public override void ValidateCore(Controller CurrentContext)
-        {
-            if (db.DonHangs.Count(p => p.DonHangId == DonHang.DonHangId) > 1)
-                throw new Exception("Đã tồn tại Đơn hàng hóa có mã là : " + this.DonHang.DonHangId);
-        }
+
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
             var lhh = db.DonHangs.SingleOrDefault(p=>p.DonHangId == this.DonHang.DonHangId);

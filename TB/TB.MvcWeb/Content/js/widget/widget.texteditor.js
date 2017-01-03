@@ -40,6 +40,3 @@
         this._saveData(this.options.editor);
     },
 });
-var addImage = function (url) {
-   
-};

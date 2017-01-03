@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{43694D9C-9DE9-4539-A350-618F9D273F15}</ProjectGuid>
+    <ProjectGuid>{0CA6B48E-4DED-432A-8AB8-5BAB0A80A7DC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TB.DonHangRepo</RootNamespace>
-    <AssemblyName>TB.DonHangRepo</AssemblyName>
+    <RootNamespace>TB.DonHangBus</RootNamespace>
+    <AssemblyName>TB.DonHangBus</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -83,12 +83,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DonHangGetChuaThanhToanByIdRepository.cs" />
-    <Compile Include="DonHangGetByIdRepository.cs" />
-    <Compile Include="DonHangInsertRepository.cs" />
-    <Compile Include="DonHangSearchRepository.cs" />
-    <Compile Include="DonHangDeleteRepository.cs" />
-    <Compile Include="DonHangUpdateRepository.cs" />
+    <Compile Include="ThanhToanDonHangBusiness.cs" />
+    <Compile Include="InsertDonHangBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +95,18 @@
     <ProjectReference Include="..\TB.Repository.Base\TB.Repository.Base.csproj">
       <Project>{7749b81b-d5d0-404f-aaa0-441f22b765b0}</Project>
       <Name>TB.Repository.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TB.Repository.ChiTietDonHang\TB.ChiTietDonHangRepo.csproj">
+      <Project>{b17eebc8-44dd-41b4-8fba-03dbcd7c69dd}</Project>
+      <Name>TB.ChiTietDonHangRepo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TB.Repository.DonHang\TB.DonHangRepo.csproj">
+      <Project>{43694d9c-9de9-4539-a350-618f9d273f15}</Project>
+      <Name>TB.DonHangRepo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TB.Repository.HoaDon\TB.HoaDonRepo.csproj">
+      <Project>{9032e501-258a-481f-965c-356db7b81397}</Project>
+      <Name>TB.HoaDonRepo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

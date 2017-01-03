@@ -1,4 +1,9 @@
 ﻿framework.factory('addHangHoa', {
+    onMessageReceive: function (sender, data) {
+        console.log(data);
+        var editor = this.findElement('moTaEditor');
+        editor.addImage(data)
+    },
     onInitHeader: function (header) {
         header.setName('header1').setTitle('Thêm Hàng hóa')
             .setIcon('fa-bar-plus');
@@ -25,16 +30,14 @@
         var texteditor = widget.setting.texteditor();
         texteditor.setName('moTaEditor')
             .addButton('uploadimage', 'Up Ảnh', function () {
-                //self.openPopup(
-                //    {
-                //        name: 'testPopup',
-                //        url: '/Documents/UploadImages',
-                //        title: 'Choose Images',
-                //    });
-                var editor = self.findElement('moTaEditor');
-                editor.addImage({
-                    imageUrl:'/abc/cla'
-                });
+                self.openPopup(
+                    {
+                        name: 'uploadImage',
+                        url: '/Uploader/ImagesUploader',
+                        title: 'Chon anh',
+                        width: 600,
+                        resizable:false
+                    });
             }, 'http://simpleicon.com/wp-content/uploads/camera.png');
         //texteditor.setHeight('80vh');
         content.setName('content1').addItem(form.end()).addItem(texteditor.end()).addItem(formFooter.end());

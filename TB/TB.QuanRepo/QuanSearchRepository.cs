@@ -1,29 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using TB.BaseRepo;
 using TB.Domain.EntityModel;
 using X.PagedList;
-
-namespace TB.DonHangRepo
+namespace TB.QuanRepo
 {
-    public class HoaDonSearchRepository : BaseRepository<dynamic>
+    public class QuanSearchRepository : BaseRepository<dynamic>
     {
-        public HoaDon HoaDon { get; set; }
-
-        //public int NguoiLapId { get; set; }
-        public DateTime FromDate { get; set; }
-        public DateTime EndDate { get; set; }
-
+        public Quan Quan { get; set; }
         public override Result<dynamic> ExecuteCore(Controller CurrentContext)
         {
             #region Get List
-            if (HoaDon == null || Extensions.DeepEquals(HoaDon, new HoaDon()))
+            if (Quan == null || Extensions.DeepEquals(Quan, new Quan()))
             {
-                var tmp = db.HoaDons.ToPagedListForEntityFramework(s => s.HoaDonId, Convert.ToInt32(Page), PageSize);
+                var tmp = db.Quans.ToPagedListForEntityFramework(s => s.QuanId, Convert.ToInt32(Page), PageSize);
                 var data = new
                 {
                     Data = tmp.ToList(),
@@ -36,11 +31,12 @@ namespace TB.DonHangRepo
             #endregion
 
             #region Search
-            var result = db.HoaDons.Where(
+            var result = db.Quans.Where(
                 p =>
-                p.NguoiLapId == HoaDon.NguoiLapId || (HoaDon.NgayLap >= FromDate && HoaDon.NgayLap < EndDate)
-                 );
-            var page = result.ToPagedListForEntityFramework(s => s.NguoiLapId, Convert.ToInt32(Page), PageSize);
+                p.Ten.Contains(Quan.Ten) ||                
+                p.TinhThanhPhoId == Quan.TinhThanhPhoId
+                );
+            var page = result.ToPagedListForEntityFramework(s => s.QuanId, Convert.ToInt32(Page), PageSize);
             var dataSearch = new
             {
                 Data = page.ToList(),
@@ -51,7 +47,5 @@ namespace TB.DonHangRepo
 
             #endregion
         }
-
-
     }
 }

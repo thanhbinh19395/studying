@@ -2,7 +2,7 @@
 
 namespace Uploader.Controllers
 {
-    public class HangHoaAreaRegistration : AreaRegistration
+    public class UploaderAreaRegistration : AreaRegistration
     {
         public override string AreaName
         {
@@ -18,7 +18,7 @@ namespace Uploader.Controllers
                 "Uploader_default",
                 "Uploader/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional },
-                new string[] { "HangHoa.Controllers" }
+                new string[] { "Uploader.Controllers" }
             );
         }
     }

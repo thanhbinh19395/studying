@@ -11,7 +11,7 @@ namespace TB.DonHangRepo
 {
     public class DonHangDeleteRepository : BaseRepository<int>
     {
-        public int DonHangId { get; set; }
+        public long DonHangId { get; set; }
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
             db.DonHangs.Remove(db.DonHangs.Single(p => p.DonHangId == this.DonHangId));

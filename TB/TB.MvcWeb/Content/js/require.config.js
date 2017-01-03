@@ -25,7 +25,7 @@
         //plugin
         ckeditor: '../plugins/ckeditor/ckeditor',
         pluploadcore: '../plugins/plupload-2.1.9/js/plupload.full.min',
-        pluploadui: '../plugins/plupload-2.1.9/js/jquery.ui.plupload/jquery.ui.plupload.min',
+        pluploadui: '../plugins/plupload-2.1.9/js/jquery.ui.plupload/jquery.ui.plupload',
         jquery: '../flaty/assets/jquery/jquery-2.1.1.min',
         bootstrap: '../plugins/bootstrap-3.3.7/js/bootstrap',
         jquerySlimscroll: '../flaty/assets/jquery-slimscroll/jquery.slimscroll.min',
@@ -47,7 +47,9 @@
     },
     shim: {
         //jquery deps
+        pluploadcore: ['jquery', 'jqueryUI'],
         bootstrap: ['jquery'],
+        pluploadui: ['jquery', 'pluploadcore', 'jqueryUI'],
         jquerySlimscroll: ['jquery'],
         flot: ['jquery'],
         sparkline: ['jquery'],
@@ -91,6 +93,6 @@
         layout: ['global', 'widget'],
 
         //plugins
-        pluploadui: ['pluploadcore']
+        
     }
 });

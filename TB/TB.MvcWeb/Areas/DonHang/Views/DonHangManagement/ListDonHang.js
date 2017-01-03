@@ -1,7 +1,7 @@
 ﻿framework.factory('donhang', {
     commonOptions: {
         header: {
-            pageTitle: 'Danh sách Đơn hàng',
+            pageTitle: 'Danh sách Đơn hàng - Chi tiết đơn hàng',
             pageIcon: 'fa fa-list',
             searchFormPanelWidth: '700px',
         },
@@ -37,88 +37,132 @@
         if (message.type == 'reload')
             this.onbtnReloadClick();
     },
-    onInitHeader: function (header) {
-        header.setName('header');
-        var self = this;
-        var form = widget.setting.form();
+    //onInitHeader: function (header) {
+    //    header.setName('header');
+    //    var self = this;
+    //    var form = widget.setting.form();
 
-        form.setName('searchForm')
-            .setFieldPerRow(1) // so cot trong form
-            .addFields([
-                { field: 'DonHangId', type: 'int', required: true, caption: "Mã Đơn hàng" },
-               { field: 'NgayLap', type: 'datetime', required: false, caption: "Ngày Lập" },
-               { field: 'ThanhTien', type: 'int', required: false, caption: "Thành Tiền" },
-               { field: 'KhachHangId', type: 'int', required: false, caption: "Khách Hàng ID" },
+    //    form.setName('searchForm')
+    //        .setFieldPerRow(1) // so cot trong form
+    //        .addFields([
+    //            { field: 'DonHangId', type: 'int', required: true, caption: "Mã Đơn hàng" },
+    //           { field: 'NgayLap', type: 'datetime', required: false, caption: "Ngày Lập" },
+    //           { field: 'ThanhTien', type: 'int', required: false, caption: "Thành Tiền" },
+    //           { field: 'KhachHangId', type: 'int', required: false, caption: "Khách Hàng ID" },
                
-            ])
-        ;
-        header.setTitle(this.commonOptions.header.pageTitle)
-            .setIcon(this.commonOptions.header.pageIcon);
+    //        ])
+    //    ;
+    //    header.setTitle(this.commonOptions.header.pageTitle)
+    //        .setIcon(this.commonOptions.header.pageIcon);
 
-        var formFooter = widget.setting.toolbar();
-        formFooter.addItem({
-            type: 'button', id: 'btn-search', caption: 'Tìm kiếm', icon: 'fa-search',
-            onClick: self.onbtnSearchClickSearchForm.bind(self)
-        });
+    //    var formFooter = widget.setting.toolbar();
+    //    formFooter.addItem({
+    //        type: 'button', id: 'btn-search', caption: 'Tìm kiếm', icon: 'fa-search',
+    //        onClick: self.onbtnSearchClickSearchForm.bind(self)
+    //    });
 
-        var formPanel = widget.setting.panel();
-        formPanel.setWidth(this.commonOptions.header.searchFormPanelWidth).addClass('pull-right');
-        formPanel.addItem(form.end());
-        formPanel.addItem(formFooter.end());
+    //    var formPanel = widget.setting.panel();
+    //    formPanel.setWidth(this.commonOptions.header.searchFormPanelWidth).addClass('pull-right');
+    //    formPanel.addItem(form.end());
+    //    formPanel.addItem(formFooter.end());
 
-        header.content().setName('headerContent').addItem(formPanel.end());
-        header.title()
-            .setName('title1')
+    //    header.content().setName('headerContent').addItem(formPanel.end());
+    //    header.title()
+    //        .setName('title1')
 
-            .addLeft({
-                type: 'button', id: 'btn-reload', caption: 'Tải lại', icon: 'fa-refresh',
-                onClick: self.onbtnReloadClick.bind(self)
-            })
-            .addRight({
-                type: 'button', id: 'btn-search', caption: 'Tìm kiếm', icon: 'fa-search',
-                onClick: function (evt) {
-                    var headerContent = self.findElement('headerContent');
-                    headerContent.toggle();
-                    var searchForm = self.findElement('searchForm');
-                    searchForm.resize();
-                }
-            })
-        ;
-    },
+    //        .addLeft({
+    //            type: 'button', id: 'btn-reload', caption: 'Tải lại', icon: 'fa-refresh',
+    //            onClick: self.onbtnReloadClick.bind(self)
+    //        })
+    //        .addRight({
+    //            type: 'button', id: 'btn-search', caption: 'Tìm kiếm', icon: 'fa-search',
+    //            onClick: function (evt) {
+    //                var headerContent = self.findElement('headerContent');
+    //                headerContent.toggle();
+    //                var searchForm = self.findElement('searchForm');
+    //                searchForm.resize();
+    //            }
+    //        })
+    //    ;
+    //},
     onInitContent: function (content) {
         var self = this;
 
         content.setName('content');
-        var pagi = widget.setting.pagination();
-        pagi.setName('page')
+
+        var donHangPanel = widget.setting.panel();
+        donHangPanel.addClass('col-md-5');
+        var donHangTitle = widget.setting.title();
+        donHangTitle.setName('donHangTitle').setIcon('fa fa-search').setTitle('Đơn hàng');
+        donHangPanel.addItem(donHangTitle.end());
+
+        var chiTietDonHangPanel = widget.setting.panel();
+        
+        chiTietDonHangPanel.addClass('col-md-7').css({'border-left':'2px solid black'});
+
+        var ctdhTitle = widget.setting.title();
+        ctdhTitle.setName('ctdhTitle').setIcon('fa fa-search').setTitle('Chi tiết đơn hàng');
+        chiTietDonHangPanel.addItem(ctdhTitle.end());
+
+        var pagiDonHang = widget.setting.pagination();
+        pagiDonHang.setName('page')
             .setTotalPages(self.ViewBag.PageCount)
             .setStartPage(self.ViewBag.Page)
         .setPageClickHandler(self.onPageClick.bind(this))
         ;
 
-        var grid = widget.setting.grid();
-        grid.setName('grid')
+        var gridDonHang = widget.setting.grid();
+        gridDonHang.setName('donHangGrid')
             .addColumns(this.commonOptions.content.gridColumn)
+            //.addButton('btnInsert', 'Thêm', 'fa fa-plus', self.onbtnInsertClickCategoryGrid.bind(this))
+            //.addButton('btnUpdate', 'Cập nhật', 'fa fa-pencil', self.onbtnUpdateClickCategoryGrid.bind(this))
+            //.addButton('btnDelete', 'Xóa', 'fa fa-trash-o', self.onbtnDeleteClickCategoryGrid.bind(this))
+            .setIdColumn('DonHangId')
+            .addRecords(self.Data.Data)
+            .setPaginateOptions(pagiDonHang.end())
+            .createEvent('onSelect', this.onDonHangGridClick.bind(this))
+            //.createEvent('onRender', this.onDonHangGridRender.bind(this))
+
+        ;
+        var pagiChiTietDonHang = widget.setting.pagination();
+        pagiChiTietDonHang.setName('page')
+            .setTotalPages(self.ViewBag.PageCount)
+            .setStartPage(self.ViewBag.Page)
+        .setPageClickHandler(self.onPageClick.bind(this))
+        ;
+        var gridChiTietDonHang = widget.setting.grid();
+        gridChiTietDonHang.setName('chiTietDonHangGrid')
+            .addColumns([
+                { field: 'HangHoa.Ten', caption: 'Hàng hóa', size: '40%', sortable: true, resizable: true },
+                { field: 'SoLuong', caption: 'Số lượng', size: '40%', sortable: true, resizable: true },
+                { field: 'GiaTien', caption: 'Giá bán', size: '40%', sortable: true, resizable: true },
+                {
+                    field: 'ThanhTien', caption: 'Thành tiền', size: '40%', sortable: true, resizable: true, render: function (r) {
+                        return r.GiaTien * r.SoLuong;
+                    }
+                },
+                { field: 'GhiChu', caption: 'Ghi chú', size: '40%', sortable: true, resizable: true },
+            ])
             .addButton('btnInsert', 'Thêm', 'fa fa-plus', self.onbtnInsertClickCategoryGrid.bind(this))
             .addButton('btnUpdate', 'Cập nhật', 'fa fa-pencil', self.onbtnUpdateClickCategoryGrid.bind(this))
             .addButton('btnDelete', 'Xóa', 'fa fa-trash-o', self.onbtnDeleteClickCategoryGrid.bind(this))
-            .setIdColumn('DonHangId')
-            .addRecords(self.Data.Data)
-            .setPaginateOptions(pagi.end())
+            .setIdColumn('ChiTietDonHangId')
+            //.addRecords(self.Data.Data)
+            .setPaginateOptions(pagiChiTietDonHang.end())
 
         ;
-
-        if (this.parentId) {
-            grid.createEvent('onDblClick', self.onDblClickGrid.bind(this));
-        }
-
-        var panel = widget.setting.panel();
-
-        panel
-        .addItem(grid.end())
-        ;
-
-        content.addItem(panel.end());
+        donHangPanel.addItem(gridDonHang.end());
+        chiTietDonHangPanel.addItem(gridChiTietDonHang.end());
+        content.addItem(donHangPanel.end()).addItem(chiTietDonHangPanel.end());
+    },
+    onDonHangGridClick: function (event) {
+        var self = this;
+        $.post('/DonHang/DonHangManagement/ExecuteGetListChiTietDonHang', { DonHangId: event.recid }, function (result) {
+            console.log(result.Data);
+            var gridChiTietDonHang = self.findElement('chiTietDonHangGrid');
+            gridChiTietDonHang.clear();
+            gridChiTietDonHang.add(result.Data);
+        });
     },
     onbtnInsertClickCategoryGrid: function () {
         this.openPopup({

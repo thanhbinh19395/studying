@@ -23,8 +23,6 @@ namespace TB.Domain.EntityModel
         [StringLength(500)]
         public string GhiChu { get; set; }
 
-        public virtual DonHang DonHang { get; set; }
-
         public virtual HangHoa HangHoa { get; set; }
     }
 }

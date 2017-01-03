@@ -27,8 +27,7 @@
         }
         this.options.editor.addImage = function (url) {
             //url = {imageUrl, thumbnailUrl}
-            var element = CKEDITOR.dom.element.createFromHtml('<img src="' + url.imageUrl + '"/>');
-            console.log(element);
+            var element = CKEDITOR.dom.element.createFromHtml('<img src="' + url.ImageUrl + '"/>');
             editor.insertElement(element);
             if (!self.options.listImages)
                 self.options.listImages = [];
@@ -41,6 +40,3 @@
         this._saveData(this.options.editor);
     },
 });
-var addImage = function (url) {
-   
-};

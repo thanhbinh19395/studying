@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TB.DonHangRepo;
+using TB.ChiTietDonHangRepo;
+using Newtonsoft.Json;
+using TB.DonHangBus;
+using TB.Domain.EntityModel;
 
 namespace DonHang.Controllers
 {
@@ -30,13 +34,42 @@ namespace DonHang.Controllers
             repo.Execute(this);
             return View();
         }
-
+        public ActionResult ThanhToanDonHang(string ParentId)
+        {
+            ViewBag.ParentId = ParentId;
+            var user = Session["LoginUser"] as User;
+            ViewBag.NhanVien = user;
+            return View();
+        }
         //API
+        [HttpPost]
+        public ActionResult ExecuteGetDonHangChuaThanhToan(DonHangGetChuaThanhToanByIdRepository repo)
+        {
+            var settings = new JsonSerializerSettings
+            {
+                DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                DateTimeZoneHandling = DateTimeZoneHandling.Unspecified,
+                DefaultValueHandling = DefaultValueHandling.Ignore
+            };
+            return Json(JsonConvert.SerializeObject(repo.Execute(this), Formatting.None, settings));
+        }
+        
+        [HttpPost]
+        public ActionResult ExecuteThanhToanDonHang(ThanhToanDonHangBusiness repo)
+        {
+            return Json(repo.Execute(this));
+        }
         [HttpPost]
         public ActionResult ExecuteSearch(DonHangSearchRepository repo)
         {
             var list = repo.Execute(this);
-            return Json(list);
+            var settings = new JsonSerializerSettings
+            {
+                DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                DateTimeZoneHandling = DateTimeZoneHandling.Unspecified,
+                DefaultValueHandling = DefaultValueHandling.Ignore
+            };
+            return Json(JsonConvert.SerializeObject(list, Formatting.None, settings));
         }
         [HttpPost]
         public ActionResult ExecuteUpdateDonHang(DonHangUpdateRepository repo)
@@ -52,6 +85,11 @@ namespace DonHang.Controllers
 
         [HttpPost]
         public ActionResult ExecuteDeleteDonHang(DonHangDeleteRepository repo)
+        {
+            return Json(repo.Execute(this));
+        }
+        [HttpPost]
+        public ActionResult ExecuteGetListChiTietDonHang(ChiTietDonHangGetListByDonHangIdRepository repo)
         {
             return Json(repo.Execute(this));
         }

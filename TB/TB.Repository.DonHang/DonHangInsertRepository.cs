@@ -9,19 +9,16 @@ using TB.Domain.EntityModel;
 
 namespace TB.DonHangRepo
 {
-    public class DonHangInsertRepository : BaseRepository<int>
+    public class DonHangInsertRepository : BaseRepository<long>
     {
         public DonHang DonHang { get; set; }
 
-        public override void ValidateCore(Controller CurrentContext)
+        public override Result<long> ExecuteCore(Controller CurrentContext)
         {
-            if (db.DonHangs.SingleOrDefault(p => p.DonHangId == this.DonHang.DonHangId) != null)
-                throw new Exception("Đã tồn tại Đơn hàng có mã là: " + this.DonHang.DonHangId);
-        }
-        public override Result<int> ExecuteCore(Controller CurrentContext)
-        {
+            DonHang.NgayLap = DateTime.Now;
             db.DonHangs.Add(DonHang);
-            return Success(db.SaveChanges());
+            db.SaveChanges();
+            return Success(this.DonHang.DonHangId);
         }
     }
 }

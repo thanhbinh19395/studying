@@ -47,8 +47,9 @@
 
         this.element.css(this.options.css || {});
         this.element.css({
-            width: this.options.width || '100%',
-            height: this.options.height || null
+            width: this.options.width || '',
+            height: this.options.height || null,
+            padding:'0px'
         });
 
         this._super();

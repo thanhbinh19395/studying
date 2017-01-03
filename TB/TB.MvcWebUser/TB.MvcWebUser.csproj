@@ -161,11 +161,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ip7.jpg" />
     <Content Include="Content\Template\about.html" />
     <Content Include="Content\Template\blog.html" />
     <Content Include="Content\Template\blog_posts_table_view.html" />
@@ -835,6 +837,7 @@
     <Content Include="Content\Template\rs-plugin\font\revicons.woff" />
     <Content Include="Content\Template\rs-plugin\js\index.php" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\giohang.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -845,6 +848,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ViewCarts.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -861,10 +865,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_pvLoaiHangHoa.cshtml" />
+    <Content Include="Views\Shared\TienTestLayout.cshtml" />
+    <Content Include="Views\Home\Tientest.cshtml" />
+    <Content Include="Views\Home\ViewCarts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\HangHoa\" />
   </ItemGroup>
   <ItemGroup>

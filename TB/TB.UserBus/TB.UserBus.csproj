@@ -68,7 +68,7 @@
       <Project>{7749b81b-d5d0-404f-aaa0-441f22b765b0}</Project>
       <Name>TB.Repository.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TB.ThongTinNguoiDung\TB.ThongTinNguoiDungRepo.csproj">
+    <ProjectReference Include="..\TB.ThongTinNguoiDungRepo\TB.ThongTinNguoiDungRepo.csproj">
       <Project>{c9a1ef6e-aa00-4a68-a5fd-c80096d6483b}</Project>
       <Name>TB.ThongTinNguoiDungRepo</Name>
     </ProjectReference>

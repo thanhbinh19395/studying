@@ -4,19 +4,21 @@ $.extend(framework.common, {
     print: function (options) {
         var self = this;
 
-        var width = options.width == null ? 600 : options.width;
-        var height = options.height == null ? 600 : options.height;
+        var width = options.width == null ? 1000 : options.width;
+        var height = options.height == null ? 800 : options.height;
        
 
         var content = '';
         if (options.css == null) {
             content += '<link href="/Content/flaty/assets/bootstrap/css/bootstrap.css" rel="stylesheet"/>';
             content += '<link href="/Content/css/invoice.css" rel="stylesheet" />';
+            content += '<script src="/Content/plugins/w2ui/w2ui-1.5.rc1.js"></script>';
+
         }
         else {
             content += options.css;
         }
-        content += "<body onload=\"window.print();\">";
+        content += "<body onload=\"\">";
         if (options.content)
             content += options.content;
         if (options.headerHtml != null) {
@@ -54,7 +56,14 @@ $.extend(framework.common, {
                 console.log(column);
                 if (column.excludePrint == true)
                     return;
-                content += "<td>" + record[column.field] + "</td>";
+                if (column.render == 'int') {
+                    debugger
+                    content += "<td>" + w2utils.formatNumber(record[column.field]) + "</td>";
+                }
+                else {
+                    content += "<td>" + record[column.field] + "</td>";
+                }
+                
             })
             content += "</tr>"
         })

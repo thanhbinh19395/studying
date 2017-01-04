@@ -25,7 +25,9 @@ namespace TB.DonHangBus
                 return Fail(ttndResult.Message);
             this.DonHang.KhachHangId = ttndResult.Data;
             InsertDonHangBusiness dhBus = new InsertDonHangBusiness { DonHang = this.DonHang, ChiTietDonHang = this.ChiTietDonHang };
-            return dhBus.Execute(CurrentContext);
+            var dhId = dhBus.Execute(CurrentContext);
+            ThanhToanDonHangBusiness ttdh = new ThanhToanDonHangBusiness { DonHangId = dhId.Data, GhiChu = DonHang.GhiChu };
+            return ttdh.Execute(CurrentContext);
         }
     }
 }

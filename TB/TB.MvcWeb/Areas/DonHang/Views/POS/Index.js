@@ -25,8 +25,8 @@
                 { field: 'ThongTinNguoiDungId', caption: 'Khách', type: 'text', span: 2 },
                 { field: 'HoTen', caption: 'Tên khách', type: 'text' },
                 { field: 'DiaChi', caption: 'Địa chỉ', type: 'text' },
-                { field: 'SoDienThoai', caption: 'Số ĐT', type: 'text', options: { caller: self } },
-                { field: 'TinhThanhPho.Ten', caption: 'Số ĐT', type: 'text', options: { caller: self } },
+                { field: 'SoDienThoai', caption: 'Số ĐT', type: 'number', options: { caller: self } },
+                { field: 'TinhThanhPho.Ten', caption: 'Tỉnh/Thành phố', type: 'text', options: { caller: self } },
                 { field: 'KhachTra', caption: 'Khách trả', type: 'int', span: 2 },
                 { field: 'TongCong', caption: 'Tổng cộng', type: 'int', span: 2, html: { attr: { 'disabled': true } } },
                 { field: 'TienThua', caption: 'Tiền thừa', type: 'int', span: 2, html: { attr: { 'disabled': true } } },
@@ -37,7 +37,7 @@
                     this.fields[7].$el.val(this.record.TienThua);
                     this.fields[7].$el.change();
                 }
-                
+
             });
         ;
 
@@ -51,12 +51,9 @@
         });
 
         donhangToolbar.setName('donhangtb').addItem({
-            type: 'button', id: 'btn-save', caption: 'Lưu', icon: 'fa-search',
-            onClick: self.onbtnSaveClickDHTB.bind(self)
-        }).addItem({
-            type: 'button', id: 'btn-thanhtoan', caption: 'Thanh toán', icon: 'fa-search',
-            onClick: self.onbtnThanhToanClickDHTB.bind(self)
-        }).addItem({
+            type: 'button', id: 'btn-save', caption: 'Thanh toán', icon: 'fa-search',
+            onClick: self.onbtnSaveClickDHTB.bind(self)})
+            .addItem({
             type: 'button', id: 'btn-print', caption: 'In hóa đơn', icon: 'fa-search',
             onClick: self.onbtnPrintClickDHTB.bind(self)
         });
@@ -107,7 +104,7 @@
             .setIdColumn('HangHoaId')
             .addRecords(self.ViewBag.ListHangHoa.Data.Data)
             .createEvent('onClick', self.onClickGridHH.bind(self))
-            //.createEvent('onDblClick', self.onDblClickGridHH.bind(self))
+        //.createEvent('onDblClick', self.onDblClickGridHH.bind(self))
         //.setPaginateOptions(pagi.end())
         ;
 
@@ -117,7 +114,7 @@
                 { field: 'Ten', caption: 'Hàng hóa', size: '40%', sortable: true, resizable: true },
                 { field: 'SoLuong', caption: 'Số lượng', size: '40%', sortable: true, resizable: true },
                 {
-                    field: 'GiaBanThamKhao', caption: 'Giá bán', size: '40%', sortable: true, resizable: true, render: 'float:0', editable: { type: 'float:0' }
+                    field: 'GiaBanThamKhao', caption: 'Giá bán', size: '40%', sortable: true, resizable: true, render: 'int', editable: { type: 'float:0' }
                 },
                 {
                     field: 'TongCong', caption: 'Tổng cộng', size: '40%', sortable: true, resizable: true, render: 'int'
@@ -157,6 +154,7 @@
 
     },
     onbtnSaveClickDHTB: function () {
+        var self = this;
         var gridDH = this.findElement('chiTietDonHangGrid');
         var gridHH = this.findElement('grid');
         var form = this.findElement('thongtinForm');
@@ -169,7 +167,7 @@
             var data = {
                 DonHang: {
                     ThanhTien: form.record.TongCong,
-                    GhiChu : form.record.GhiChu
+                    GhiChu: form.record.GhiChu
                 },
                 ChiTietDonHang: gridDH.records,
                 ThongTinNguoiDung: form.record
@@ -180,7 +178,7 @@
                 data: data,
                 success: function (data) {
                     if (data.IsSuccess) {
-                        debugger;
+                        self.HoaDonId = data.Data;
                     }
                     else {
                         alert(data.Message);
@@ -189,13 +187,41 @@
                 async: false
             });
         }
-        
-    },
-    onbtnThanhToanClickDHTB: function () {
+        //Khach quen
+        else {
+            var data = {
+                DonHang: {
+                    ThanhTien: form.record.TongCong,
+                    GhiChu: form.record.GhiChu,
+                    KhachHangId : form.ThongTinNguoiDungId
+                },
+                ChiTietDonHang: gridDH.records,
+                ThongTinNguoiDung: form.record
+            }
+            $.ajax({
+                type: 'POST',
+                url: '/DonHang/POS/ExecuteInsertDonHangKhachQuen',
+                data: data,
+                success: function (data) {
+                    if (data.IsSuccess) {
+                        self.HoaDonId = data.Data;
+                    }
+                    else {
+                        alert(data.Message);
+                    }
+                },
+                async: false
+            });
+        }
 
     },
     onbtnPrintClickDHTB: function () {
-
+        if (this.HoaDonId) {
+            this.InHoaDon();
+        }
+        else {
+            alert('Vui lòng thanh toán trước khi in Hóa đơn');
+        }
     },
     onClickGridHH: function (e) {
         if (e.column == 5) {
@@ -233,4 +259,58 @@
         form.fields[6].$el.val(tongcong);
         form.fields[6].$el.change();
     },
+    InHoaDon: function () {
+        var form = this.findElement('thongtinForm');
+        var grid = this.findElement('chiTietDonHangGrid');
+        var tongTien = 0;
+        $.each(grid.records, function (k, v) {
+            tongTien += v.TongCong;
+        });
+        var template = "";
+        template += "<div class=\"invoice-box\">";
+        template += "    <table cellpadding=\"0\" cellspacing=\"0\">";
+        template += "        <tbody>";
+        template += "            <tr class=\"top\">";
+        template += "                <td colspan=\"2\">";
+        template += "                    <table>";
+        template += "                        <tbody>";
+        template += "                            <tr>";
+        template += "                                <td class=\"title\">";
+        template += "                                    <img src=\"\/images\/logo.png\" style=\"width:100%; max-width:300px;\">";
+        template += "                                <\/td>";
+        template += "                                <td>";
+        template += "                                    <strong>Mã hóa đơn #<\/strong>: " + this.HoaDonId + "<br>";
+        template += "                                    <strong>Ngày lập<\/strong>: January 1, 2015<br>";
+        template += "                                    <strong>Người lập<\/strong>: February 1, 2015";
+        template += "                                <\/td>";
+        template += "                            <\/tr>";
+        template += "                        <\/tbody>";
+        template += "                    <\/table>";
+        template += "                <\/td>";
+        template += "            <\/tr>";
+        template += "            <tr class=\"information\">";
+        template += "                <td colspan=\"2\">";
+        template += "                    <table>";
+        template += "                        <tbody>";
+        template += "                            <tr>";
+        template += "                                <td colspan=\"2\">";
+        template += "                                    <strong>Tên khách<\/strong> : " + (form.record.HoTen || '') + "<br>";
+        template += "                                    <strong>Số điện thoại<\/strong> : " + (form.record.SoDienThoai || '') + " <br>";
+        template += "                                    <strong>Địa chỉ<\/strong> : " + (form.record.DiaChi || '');
+        template += "                                <\/td>";
+        template += "                            <\/tr>";
+        template += "                        <\/tbody>";
+        template += "                    <\/table>";
+        template += "                <\/td>";
+        template += "            <\/tr>";
+        template += "            <tr class=\"heading\">";
+        template += "                <td colspan=\"2\" class=\"text-center\">Hóa đơn bán lẻ<\/td>";
+        template += "            <\/tr>";
+        template += framework.common.w2uiGridToHtml(grid);
+        template += "<h4 class='text-right'><strong>Tổng cộng<\/strong> : " + w2utils.formatNumber(tongTien) + " vnđ<\/h4>";
+        framework.common.print({
+            content: template
+        });
+    }
+
 });

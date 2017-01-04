@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CAA06369-6DC3-42DE-8B0B-F94DC8628E90}</ProjectGuid>
+    <ProjectGuid>{C910B6DD-121B-400A-9A4E-61AFE26249CD}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TaiKhoan</RootNamespace>
-    <AssemblyName>TaiKhoan</AssemblyName>
+    <RootNamespace>User</RootNamespace>
+    <AssemblyName>User</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -145,18 +145,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ThongTinNDManagementController.cs" />
-    <Compile Include="TaiKhoanAreaRegistration.cs" />
-    <Compile Include="Controllers\TaiKhoanManagementController.cs" />
+    <Compile Include="Controllers\ThongTinNguoiDungManagementController.cs" />
+    <Compile Include="UserAreaRegistration.cs" />
+    <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\TaiKhoanManagement\InsertTaiKhoan.js" />
-    <Content Include="Views\TaiKhoanManagement\ListTaiKhoan.js" />
-    <Content Include="Views\TaiKhoanManagement\UpdateTaiKhoan.js" />
-    <Content Include="Views\ThongTinNDManagement\InsertThongTinND.js" />
-    <Content Include="Views\ThongTinNDManagement\ListThongTinND.js" />
-    <Content Include="Views\ThongTinNDManagement\UpdateThongTinND.js" />
+    <Content Include="Views\ThongTinNguoiDungManagement\InsertThongTinNguoiDung.js" />
+    <Content Include="Views\ThongTinNguoiDungManagement\ListThongTinNguoiDung.js" />
+    <Content Include="Views\ThongTinNguoiDungManagement\UpdateThongTinNguoiDung.js" />
+    <Content Include="Views\UserManagement\InsertUser.js" />
+    <Content Include="Views\UserManagement\ListUser.js" />
+    <Content Include="Views\UserManagement\UpdateUser.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
@@ -172,24 +172,32 @@
       <Project>{7749B81B-D5D0-404F-AAA0-441F22B765B0}</Project>
       <Name>TB.Repository.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\TB.ThongTinNguoiDungRepo\TB.ThongTinNguoiDungRepo.csproj">
+      <Project>{c9a1ef6e-aa00-4a68-a5fd-c80096d6483b}</Project>
+      <Name>TB.ThongTinNguoiDungRepo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TB.UserRepo\TB.UserRepo.csproj">
+      <Project>{a52c7561-bb4d-4eb6-9bb8-5aa981f7cc8e}</Project>
+      <Name>TB.UserRepo</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\TaiKhoanManagement\InsertTaiKhoan.cshtml" />
+    <Content Include="Views\ThongTinNguoiDungManagement\InsertThongTinNguoiDung.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\TaiKhoanManagement\UpdateTaiKhoan.cshtml" />
+    <Content Include="Views\ThongTinNguoiDungManagement\ListThongTinNguoiDung.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\TaiKhoanManagement\ListTaiKhoan.cshtml" />
+    <Content Include="Views\ThongTinNguoiDungManagement\UpdateThongTinNguoiDung.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ThongTinNDManagement\InsertThongTinND.cshtml" />
+    <Content Include="Views\UserManagement\UpdateUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ThongTinNDManagement\UpdateThongTinND.cshtml" />
+    <Content Include="Views\UserManagement\ListUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ThongTinNDManagement\ListThongTinND.cshtml" />
+    <Content Include="Views\UserManagement\InsertUser.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

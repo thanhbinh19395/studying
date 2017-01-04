@@ -34,13 +34,9 @@ namespace TB.UserRepo
             var result = db.Users.Where(
                 p =>
                 p.UserId == User.UserId ||
-                p.Username == User.Username ||
-                p.Password == User.Password ||
-                p.Email == User.Email ||
-                p.EmailConfirmed == User.EmailConfirmed ||
+                p.Username.Contains(User.Username) ||
                 p.Type == User.Type ||
-                p.ThongTinNguoiDungId == User.ThongTinNguoiDungId ||
-                p.IsActive == User.IsActive 
+                p.ThongTinNguoiDungId == User.ThongTinNguoiDungId
                 );
             var page = result.ToPagedListForEntityFramework(s => s.UserId, Convert.ToInt32(Page), PageSize);
             var dataSearch = new

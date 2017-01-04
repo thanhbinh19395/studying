@@ -1,33 +1,38 @@
-﻿framework.factory('loaihanghoa', {
+﻿framework.factory('thongtinnguoidung', {
     commonOptions: {
         header: {
-            pageTitle: 'Danh sách Loại hàng hóa',
+            pageTitle: 'Danh sách Thông tin người dùng',
             pageIcon: 'fa fa-list',
             searchFormPanelWidth: '700px',
         },
         content: {
             gridColumn: [
-                { field: 'Ma', caption: 'Ma', size: '40%', sortable: true, resizable: true },
-                { field: 'Ten', caption: 'Ten', size: '50%', sortable: true, resizable: true },
+                { field: 'HoTen', caption: 'Họ Tên', size: '40%', sortable: true, resizable: true },
+                { field: 'SoDienThoai', caption: 'Số Điện Thoại', size: '50%', sortable: true, resizable: true },
+                { field: 'Email', caption: 'E-mail', size: '40%', sortable: true, resizable: true },
+                { field: 'DiaChi', caption: 'Địa Chỉ', size: '40%', sortable: true, resizable: true },
+                { field: 'Quan.Ten', caption: 'Quận', size: '40%', sortable: true, resizable: true },
+                { field: 'TinhThanhPho.Ten', caption: 'Tỉnh thành phố', size: '40%', sortable: true, resizable: true },
+                { field: 'HinhAnh', caption: 'Ảnh đại diện', size: '40%', sortable: true, resizable: true }
             ],
         },
         //nhớ sửa param
         popup: {
             insert: {
-                title: 'Thêm Loại Hàng hóa',
-                url: '/LoaiHangHoa/LoaiHangHoaManagement/InsertLoaiHangHoa',
+                title: 'Thêm Thông tin người dùng',
+                url: '/User/ThongTinNguoiDungManagement/InsertThongTinNguoiDung',
                 width: 600
             },
             update: {
-                title: 'Cập nhật Loại Hàng hóa',
-                url: '/LoaiHangHoa/LoaiHangHoaManagement/UpdateLoaiHangHoa',
+                title: 'Cập nhật Thông tin người dùng',
+                url: '/User/ThongTinNguoiDungManagement/UpdateThongTinNguoiDung',
                 width: 600
             },
         },
         //nhớ sửa param
         apiExecuteUrl: {
-            searchUrl: '/LoaiHangHoa/LoaiHangHoaManagement/ExecuteSearch',
-            deleteUrl: '/LoaiHangHoa/LoaiHangHoaManagement/ExecuteDeleteLoaiHangHoa',
+            searchUrl: '/User/ThongTinNguoiDungManagement/ExecuteSearch',
+            deleteUrl: '/User/ThongTinNguoiDungManagement/ExecuteDeleteThongTinNguoiDung',
         }
     },
     onMessageReceive: function (sender, message) {
@@ -37,13 +42,14 @@
     onInitHeader: function (header) {
         header.setName('header');
         var self = this;
-        var form = widget.setting.form(); 
+        var form = widget.setting.form();
 
         form.setName('searchForm')
             .setFieldPerRow(1) // so cot trong form
             .addFields([
-               { field: 'Ma', type: 'text', required: true, caption: "Ma" },
-               { field: 'Ten', type: 'text', required: false, caption: "Ten" },
+               { field: 'ThongTinNguoiDungId', type: 'int', required: false, caption: "ID Người dùng" },
+               { field: 'HoTen', type: 'text', required: false, caption: "Họ Tên" },
+               { field: 'TinhThanhPhoId', type: 'int', required: false, caption: "Tỉnh Thành phố" },
             ])
         ;
         header.setTitle(this.commonOptions.header.pageTitle)
@@ -96,7 +102,7 @@
             .addButton('btnInsert', 'Thêm', 'fa fa-plus', self.onbtnInsertClickCategoryGrid.bind(this))
             .addButton('btnUpdate', 'Cập nhật', 'fa fa-pencil', self.onbtnUpdateClickCategoryGrid.bind(this))
             .addButton('btnDelete', 'Xóa', 'fa fa-trash-o', self.onbtnDeleteClickCategoryGrid.bind(this))
-            .setIdColumn('LoaiHangHoaId')
+            .setIdColumn('ThongTinNguoiDungId')
             .addRecords(self.Data.Data)
             .setPaginateOptions(pagi.end())
 
@@ -136,7 +142,7 @@
             width: this.commonOptions.popup.update.width
         },
         {
-            LoaiHangHoaId: id
+            ThongTinNguoiDungId: id
         });
 
     },
@@ -145,7 +151,7 @@
         w2confirm('Bạn có chắc chắn muốn xóa dòng này không ?').yes(function () {
             var grid = self.findElement('grid');
             var id = grid.getSelection()[0];
-            $.post(self.commonOptions.apiExecuteUrl.deleteUrl, { LoaiHangHoaId: id }, function (data) {
+            $.post(self.commonOptions.apiExecuteUrl.deleteUrl, { ThongTinNguoiDungId: id }, function (data) {
                 console.log(data);
                 self.onbtnReloadClick();
             });
@@ -158,7 +164,7 @@
         var form = self.findElement('searchForm');
         self.searchParam = form.record;
 
-        $.post(this.commonOptions.apiExecuteUrl.searchUrl, { LoaiHangHoa: form.record }, function (d) {
+        $.post(this.commonOptions.apiExecuteUrl.searchUrl, { ThongTinNguoiDung: form.record }, function (d) {
             grid.clear();
             grid.add(d.Data.Data);
             console.log(d);
@@ -187,7 +193,7 @@
         var grid = this.findElement('grid');
         var record = grid.get(e.recid);
         var mess = {
-            type: 'popupDSLoaiHangHoa',
+            type: 'popupDSThongTinNguoiDung',
             data: record,
             callback: function () {
                 self.close();

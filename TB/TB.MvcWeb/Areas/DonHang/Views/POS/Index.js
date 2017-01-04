@@ -312,5 +312,5 @@
             content: template
         });
     }
-
+    
 });

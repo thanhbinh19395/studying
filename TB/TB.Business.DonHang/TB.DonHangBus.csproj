@@ -83,6 +83,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InsertDonHangKhachQuenBusiness.cs" />
     <Compile Include="InsertDonHangKhachLaBusiness.cs" />
     <Compile Include="ThanhToanDonHangBusiness.cs" />
     <Compile Include="InsertDonHangBusiness.cs" />

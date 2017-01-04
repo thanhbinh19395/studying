@@ -11,7 +11,6 @@
                 { field: 'Username', caption: 'Tên Tài khoản', size: '50%', sortable: true, resizable: true },
                 { field: 'Password', caption: 'Mật khẩu', size: '50%', sortable: true, resizable: true },
                 { field: 'Email', caption: 'E-mail', size: '50%', sortable: true, resizable: true },
-                { field: 'EmailConfirmed', caption: 'Xác nhận E-mail', size: '50%', sortable: true, resizable: true },
                 { field: 'Type', caption: 'Loại Tài khoản', size: '50%', sortable: true, resizable: true },
                 { field: 'ThongTinNguoiDungId', caption: 'ID Thông Tin người dùng', size: '50%', sortable: true, resizable: true }
             ],
@@ -49,7 +48,7 @@
             .addFields([
                { field: 'UserId', type: 'int', required: true, caption: "ID Tài khoản" },
                { field: 'Username', type: 'text', required: false, caption: "Tên tài khoản" },
-               { field: 'Type', type: 'int', required: true, caption: "Loại Tài khoản" },
+               { field: 'Type', required: true, caption: "Loại Tài khoản" },
                { field: 'ThongTinNguoiDungId', type: 'int', required: true, caption: "Thông tin người dùng ID" }
             ])
         ;

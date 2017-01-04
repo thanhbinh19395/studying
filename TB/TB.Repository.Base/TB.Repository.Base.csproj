@@ -56,6 +56,10 @@
       <Project>{90f20cf0-ff8f-432c-9dd7-f2f13734a625}</Project>
       <Name>TB.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TB\TB.csproj">
+      <Project>{b0003285-cff0-45eb-ad37-d5ab69cb374a}</Project>
+      <Name>TB</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

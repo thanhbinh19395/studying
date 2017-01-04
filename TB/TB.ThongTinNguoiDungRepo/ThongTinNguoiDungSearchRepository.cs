@@ -34,13 +34,12 @@ namespace TB.ThongTinNguoiDungRepo
             var result = db.ThongTinNguoiDungs.Where(
                 p =>
                 p.ThongTinNguoiDungId == ThongTinNguoiDung.ThongTinNguoiDungId ||
-                p.HoTen == ThongTinNguoiDung.HoTen ||
-                p.SoDienThoai == ThongTinNguoiDung.SoDienThoai ||
-                p.Email == ThongTinNguoiDung.Email ||
-                p.DiaChi == ThongTinNguoiDung.DiaChi ||
+                p.HoTen.Contains(ThongTinNguoiDung.HoTen) ||
+                p.SoDienThoai.Contains(ThongTinNguoiDung.SoDienThoai) ||
+                p.Email.Contains(ThongTinNguoiDung.Email) ||
+                p.DiaChi.Contains(ThongTinNguoiDung.DiaChi) ||
                 p.TinhThanhPhoId == ThongTinNguoiDung.TinhThanhPhoId ||
-                p.QuanId == ThongTinNguoiDung.QuanId ||
-                p.HinhAnh == ThongTinNguoiDung.HinhAnh 
+                p.QuanId == ThongTinNguoiDung.QuanId
                 );
             var page = result.ToPagedListForEntityFramework(s => s.ThongTinNguoiDungId, Convert.ToInt32(Page), PageSize);
             var dataSearch = new

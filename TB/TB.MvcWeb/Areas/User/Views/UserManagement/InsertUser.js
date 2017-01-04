@@ -1,4 +1,4 @@
-﻿framework.factory('addLoaiHangHoa', {
+﻿framework.factory('addUser', {
     onInitHeader: function (header) {
         header.setName('header1').setTitle('Thêm Loại hàng hóa')
             .setIcon('fa-bar-plus');
@@ -10,13 +10,17 @@
         var form = widget.setting.form();
         form.setName('insertForm').setFieldPerRow(1)
             .addFields([
-            { field: 'Ma', type: 'text', required: true, caption: "Mã" },
-            { field: 'Ten', type: 'text', required: true, caption: 'Tên' }
-        ]);
+                { field: 'Username', type: 'text', required: true, caption: "Tài khoản" },
+                { field: 'Password', type: 'text', required: true, caption: 'Mật khẩu' },
+                { field: 'Email', type: 'text', required: true, caption: 'E-mail' },
+                { field: 'EmailConfirmed', type: 'bit', required: true, caption: 'Xác nhận E-mail' },
+                { field: 'Type', type: 'int', required: true, caption: 'Loại' },
+                { field: 'ThongTinNguoiDungId', type: 'int', required: true, caption: 'ID Thông tin người dùng' }
+            ]);
         var formFooter = widget.setting.toolbar();
         formFooter.setName('insertToolbar')
-            .addItem({ id: 'btnInsert', type: 'button', caption: 'Lưu', icon: 'fa-floppy-o', onClick:self.onBtnInsertClick.bind(this) })
-            .addItem({ id: 'btnClear', type: 'button', caption:'Nhập lại', icon:'fa-refresh', onClick:self.onBtnClearClick.bind(this) })
+            .addItem({ id: 'btnInsert', type: 'button', caption: 'Lưu', icon: 'fa-floppy-o', onClick: self.onBtnInsertClick.bind(this) })
+            .addItem({ id: 'btnClear', type: 'button', caption: 'Nhập lại', icon: 'fa-refresh', onClick: self.onBtnClearClick.bind(this) })
         ;
         content.setName('content1').addItem(form.end()).addItem(formFooter.end());
     },
@@ -24,7 +28,7 @@
         var self = this;
         var form = this.findElement('insertForm');
         if (!form.validate().length) {
-            $.post('/LoaiHangHoa/LoaiHangHoaManagement/ExecuteInsertLoaiHangHoa', { LoaiHangHoa: form.record }, function (data) {
+            $.post('/User/UserManagement/ExecuteInsertUser', { User: form.record }, function (data) {
                 if (!data.IsSuccess) {
                     alert(data.Message);
                     return;
@@ -41,6 +45,4 @@
         var form = this.findElement('insertForm');
         form.clear();
     }
-
-
 });

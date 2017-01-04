@@ -22,7 +22,6 @@ namespace TB.UserRepo
             lhh.EmailConfirmed = User.EmailConfirmed;
             lhh.Type = User.Type;
             lhh.ThongTinNguoiDungId = User.ThongTinNguoiDungId;
-            lhh.IsActive = User.IsActive;
             return Success(db.SaveChanges());
         }
     }

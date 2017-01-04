@@ -1,33 +1,38 @@
-﻿framework.factory('loaihanghoa', {
+﻿framework.factory('user', {
     commonOptions: {
         header: {
-            pageTitle: 'Danh sách Loại hàng hóa',
+            pageTitle: 'Danh sách User',
             pageIcon: 'fa fa-list',
             searchFormPanelWidth: '700px',
         },
         content: {
             gridColumn: [
-                { field: 'Ma', caption: 'Ma', size: '40%', sortable: true, resizable: true },
-                { field: 'Ten', caption: 'Ten', size: '50%', sortable: true, resizable: true },
+                { field: 'UserId', caption: 'ID Tài khoản', size: '40%', sortable: true, resizable: true },
+                { field: 'Username', caption: 'Tên Tài khoản', size: '50%', sortable: true, resizable: true },
+                { field: 'Password', caption: 'Mật khẩu', size: '50%', sortable: true, resizable: true },
+                { field: 'Email', caption: 'E-mail', size: '50%', sortable: true, resizable: true },
+                { field: 'EmailConfirmed', caption: 'Xác nhận E-mail', size: '50%', sortable: true, resizable: true },
+                { field: 'Type', caption: 'Loại Tài khoản', size: '50%', sortable: true, resizable: true },
+                { field: 'ThongTinNguoiDungId', caption: 'ID Thông Tin người dùng', size: '50%', sortable: true, resizable: true }
             ],
         },
         //nhớ sửa param
         popup: {
             insert: {
-                title: 'Thêm Loại Hàng hóa',
-                url: '/LoaiHangHoa/LoaiHangHoaManagement/InsertLoaiHangHoa',
+                title: 'Thêm User',
+                url: '/User/UserManagement/InsertUser',
                 width: 600
             },
             update: {
-                title: 'Cập nhật Loại Hàng hóa',
-                url: '/LoaiHangHoa/LoaiHangHoaManagement/UpdateLoaiHangHoa',
+                title: 'Cập nhật User',
+                url: '/User/UserManagement/UpdateUser',
                 width: 600
             },
         },
         //nhớ sửa param
         apiExecuteUrl: {
-            searchUrl: '/LoaiHangHoa/LoaiHangHoaManagement/ExecuteSearch',
-            deleteUrl: '/LoaiHangHoa/LoaiHangHoaManagement/ExecuteDeleteLoaiHangHoa',
+            searchUrl: '/User/UserManagement/ExecuteSearch',
+            deleteUrl: '/User/UserManagement/ExecuteDeleteUser',
         }
     },
     onMessageReceive: function (sender, message) {
@@ -42,8 +47,10 @@
         form.setName('searchForm')
             .setFieldPerRow(1) // so cot trong form
             .addFields([
-               { field: 'Ma', type: 'text', required: true, caption: "Ma" },
-               { field: 'Ten', type: 'text', required: false, caption: "Ten" },
+               { field: 'UserId', type: 'int', required: true, caption: "ID Tài khoản" },
+               { field: 'Username', type: 'text', required: false, caption: "Tên tài khoản" },
+               { field: 'Type', type: 'int', required: true, caption: "Loại Tài khoản" },
+               { field: 'ThongTinNguoiDungId', type: 'int', required: true, caption: "Thông tin người dùng ID" }
             ])
         ;
         header.setTitle(this.commonOptions.header.pageTitle)
@@ -96,7 +103,7 @@
             .addButton('btnInsert', 'Thêm', 'fa fa-plus', self.onbtnInsertClickCategoryGrid.bind(this))
             .addButton('btnUpdate', 'Cập nhật', 'fa fa-pencil', self.onbtnUpdateClickCategoryGrid.bind(this))
             .addButton('btnDelete', 'Xóa', 'fa fa-trash-o', self.onbtnDeleteClickCategoryGrid.bind(this))
-            .setIdColumn('LoaiHangHoaId')
+            .setIdColumn('UserId')
             .addRecords(self.Data.Data)
             .setPaginateOptions(pagi.end())
 
@@ -136,7 +143,7 @@
             width: this.commonOptions.popup.update.width
         },
         {
-            LoaiHangHoaId: id
+            UserId: id
         });
 
     },
@@ -145,7 +152,7 @@
         w2confirm('Bạn có chắc chắn muốn xóa dòng này không ?').yes(function () {
             var grid = self.findElement('grid');
             var id = grid.getSelection()[0];
-            $.post(self.commonOptions.apiExecuteUrl.deleteUrl, { LoaiHangHoaId: id }, function (data) {
+            $.post(self.commonOptions.apiExecuteUrl.deleteUrl, { UserId: id }, function (data) {
                 console.log(data);
                 self.onbtnReloadClick();
             });
@@ -158,7 +165,7 @@
         var form = self.findElement('searchForm');
         self.searchParam = form.record;
 
-        $.post(this.commonOptions.apiExecuteUrl.searchUrl, { LoaiHangHoa: form.record }, function (d) {
+        $.post(this.commonOptions.apiExecuteUrl.searchUrl, { User: form.record }, function (d) {
             grid.clear();
             grid.add(d.Data.Data);
             console.log(d);
@@ -187,7 +194,7 @@
         var grid = this.findElement('grid');
         var record = grid.get(e.recid);
         var mess = {
-            type: 'popupDSLoaiHangHoa',
+            type: 'popupDSUser',
             data: record,
             callback: function () {
                 self.close();

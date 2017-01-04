@@ -1,24 +1,24 @@
 ﻿using System.Web.Mvc;
 
-namespace TaiKhoan.Controllers
+namespace User.Controllers
 {
-    public class TaiKhoanAreaRegistration : AreaRegistration
+    public class UserAreaRegistration : AreaRegistration
     {
         public override string AreaName
         {
             get
             {
-                return "TaiKhoan";
+                return "User";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "TaiKhoan_default",
-                "TaiKhoan/{controller}/{action}/{id}",
+                "User_default",
+                "User/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional },
-                new string[] { "TaiKhoan.Controllers" }
+                new string[] { "User.Controllers" }
             );
         }
     }

@@ -12,7 +12,7 @@ namespace TB.Domain.EntityModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ThongTinNguoiDung()
         {
-            Users = new HashSet<User>();
+            //Users = new HashSet<User>();
         }
 
         public long ThongTinNguoiDungId { get; set; }
@@ -40,7 +40,7 @@ namespace TB.Domain.EntityModel
 
         public virtual TinhThanhPho TinhThanhPho { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<User> Users { get; set; }
     }
 }

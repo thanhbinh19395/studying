@@ -766,6 +766,7 @@
     <Content Include="Content\js\layout.setting.js" />
     <Content Include="Content\js\require.config.js" />
     <Content Include="Content\js\require.js" />
+    <Content Include="Content\js\w2ui.setting.js" />
     <Content Include="Content\js\widget.setting.js" />
     <Content Include="Content\js\widget\widget-rules.txt" />
     <Content Include="Content\js\widget\widget.base.js" />
@@ -1282,6 +1283,10 @@
     <Content Include="Content\plugins\requirejs\domReady.js" />
     <Content Include="Content\plugins\requirejs\require.js" />
     <Content Include="Content\plugins\twbspagination\jquery.twbsPagination.js" />
+    <Content Include="Content\plugins\w2ui-1.4.3\w2ui-1.4.3.css" />
+    <Content Include="Content\plugins\w2ui-1.4.3\w2ui-1.4.3.js" />
+    <Content Include="Content\plugins\w2ui-1.4.3\w2ui-1.4.3.min.css" />
+    <Content Include="Content\plugins\w2ui-1.4.3\w2ui-1.4.3.min.js" />
     <Content Include="Content\plugins\w2ui\w2ui-1.5.rc1.css" />
     <Content Include="Content\plugins\w2ui\w2ui-1.5.rc1.js" />
     <Content Include="Content\plugins\w2ui\w2ui-1.5.rc1.min.css" />

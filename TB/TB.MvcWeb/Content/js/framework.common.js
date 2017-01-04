@@ -206,8 +206,8 @@ $.extend(framework.common, {
         var self = this;
         try {
             count = count || 0;
-            console.log(count++);
             callback && callback();
+            return;
         }
         catch (err) {
             if (count >= (maxCount || 10)) {

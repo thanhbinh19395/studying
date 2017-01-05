@@ -7,7 +7,7 @@ using TB.PhieuChiRepo;
 using TB.ChiTietPhieuChiRepo;
 using TB.Domain.EntityModel;
 
-namespace PhieuChi.Controllers
+namespace ThuChi.Controllers
 {
     public class PhieuChiManagementController : Controller
     {

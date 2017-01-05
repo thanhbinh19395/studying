@@ -47,11 +47,12 @@
         form.setName('searchForm')
             .setFieldPerRow(1) // so cot trong form
             .addFields([
-               { field: 'HoTen', type: 'text', required: false, caption: "Họ Tên" },
-               { field: 'SoDienThoai', type: 'text', required: false, caption: "Số Điện Thoại" },
-               { field: 'DiaChi', type: 'text', required: false, caption: "Địa Chỉ" },
-               { field: 'TinhThanhPhoId', type: 'int', required: false, caption: "Tỉnh Thành phố" },
-               { field: 'QuanId', type: 'int', required: false, caption: "Quận/Huyện" },
+            { field: 'HoTen', type: 'text', required: false, caption: "Họ Tên" },
+            { field: 'SoDienThoai', type: 'text', required: false, caption: 'Số Điện Thoại' },
+            { field: 'Email', type: 'text', required: false, caption: "E-mail" },
+            { field: 'DiaChi', type: 'text', required: false, caption: "Địa Chỉ" },
+            { field: 'TinhThanhPhoId', type: 'popupDSTinhThanhPho', required: false, caption: "Tỉnh Thành Phố", options: { caller: self } },
+            { field: 'QuanId', type: 'popupDSQuan', required: false, caption: "Quận", options: { caller: self } },
             ])
         ;
         header.setTitle(this.commonOptions.header.pageTitle)
@@ -89,7 +90,6 @@
     },
     onInitContent: function (content) {
         var self = this;
-
         content.setName('content');
         var pagi = widget.setting.pagination();
         pagi.setName('page')

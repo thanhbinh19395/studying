@@ -259,13 +259,7 @@ $().w2field('addType', 'popupDSThongTinNguoiDung', function (options) {
     var input;
     if ($(self.el).parent().find('.inputSearch').length) {
         input = $(self.el).parent().find('.inputSearch');
-        if (options.data) {
-            input.val(options.data.HoTen);
-        }
-        else {
-            input.val('');
-        }
-        input.off('keydown');
+       
     }
     else {
         input = $('<input>').css({
@@ -274,7 +268,14 @@ $().w2field('addType', 'popupDSThongTinNguoiDung', function (options) {
         }).addClass('inputSearch');
         $(this.el).parent().append(input);
     }
-
+    
+    if (options.data) {
+        input.val(options.data.HoTen);
+    }
+    else {
+        input.val('');
+    }
+    input.off('keydown');
     //this sau khi extend sẽ được chứa trong $(this.el).data('w2field')
     $.extend(self, {
         onMessageReceive: function (sender, message) {
@@ -381,12 +382,7 @@ $().w2field('addType', 'popupDSQuan', function (options) {
     var input;
     if ($(self.el).parent().find('.inputSearch').length) {
         input = $(self.el).parent().find('.inputSearch');
-        if (options.data) {
-            input.val(options.data.Ten);
-        }
-        else {
-            input.val('');
-        }
+        
         input.off('keydown');
     }
     else {
@@ -396,7 +392,12 @@ $().w2field('addType', 'popupDSQuan', function (options) {
         }).addClass('inputSearch');
         $(this.el).parent().append(input);
     }
-
+    if (options.data) {
+        input.val(options.data.Ten);
+    }
+    else {
+        input.val('');
+    }
     //this sau khi extend sẽ được chứa trong $(this.el).data('w2field')
     $.extend(self, {
         onMessageReceive: function (sender, message) {
@@ -441,10 +442,6 @@ $().w2field('addType', 'popupDSQuan', function (options) {
         buttonRemove.appendTo($(self.el).parent());
     }
     buttonSearch.click(function () {
-        if (options.caller) {
-            data.eventType = 'open';
-            options.caller.onPopupHandler && options.caller.onPopupHandler(data);
-        }
         $.extend(data.param, {
             FieldName: $(self.el).attr('name'),
             SearchOnOpen: true,
@@ -452,6 +449,11 @@ $().w2field('addType', 'popupDSQuan', function (options) {
                 Ten: input.val(),
             }
         });
+        if (options.caller) {
+            data.eventType = 'open';
+            options.caller.onPopupHandler && options.caller.onPopupHandler(data);
+        }
+        
         $.post('/Quan/QuanManagement/ExecuteSearch', data.param, function (result) {
             var records = result.Data.Data;
             if (records.length == 0) {
@@ -497,17 +499,11 @@ $().w2field('addType', 'popupDSQuan', function (options) {
 });
 $().w2field('addType', 'popupDSTinhThanhPho', function (options) {
     var self = this;
-
     $(this.el).css('width', '30%').attr('disabled', 'disabled');
     var input;
     if ($(self.el).parent().find('.inputSearch').length) {
         input = $(self.el).parent().find('.inputSearch');
-        if (options.data) {
-            input.val(options.data.Ten);
-        }
-        else {
-            input.val('');
-        }
+
         input.off('keydown');
     }
     else {
@@ -517,7 +513,12 @@ $().w2field('addType', 'popupDSTinhThanhPho', function (options) {
         }).addClass('inputSearch');
         $(this.el).parent().append(input);
     }
-
+    if (options.data) {
+        input.val(options.data.Ten);
+    }
+    else {
+        input.val('');
+    }
     //this sau khi extend sẽ được chứa trong $(this.el).data('w2field')
     $.extend(self, {
         onMessageReceive: function (sender, message) {

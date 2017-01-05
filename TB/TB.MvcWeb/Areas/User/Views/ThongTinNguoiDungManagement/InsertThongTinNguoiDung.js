@@ -48,8 +48,8 @@
     onPopupHandler: function (data) {
         if (data.type == 'popupDSQuan') {
             var form = this.findElement('insertForm');
-            if (form.TinhThanhPhoId) {
-                $.extend(data.params.Quan, { TinhThanhPhoId: form.TinhThanhPhoId });
+            if (form.record.TinhThanhPhoId) {
+                $.extend(data.param.Quan, { TinhThanhPhoId: form.record.TinhThanhPhoId });
             }
         }
     }

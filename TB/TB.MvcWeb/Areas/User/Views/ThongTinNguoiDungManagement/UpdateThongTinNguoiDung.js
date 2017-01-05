@@ -11,12 +11,11 @@
         form.setName('insertForm').setFieldPerRow(1)
             .addFields([
             { field: 'HoTen', type: 'text', required: true, caption: "Họ Tên" },
-            { field: 'SoDienThoai', type: 'text', required: false, caption: 'Số điện thoại' },
+            { field: 'SoDienThoai', type: 'number', required: false, caption: 'Số Điện Thoại' },
             { field: 'Email', type: 'text', required: false, caption: "E-mail" },
-            { field: 'DiaChi', type: 'text', required: false, caption: "Địa chỉ" },
-            { field: 'QuanId', type: 'int', required: false, caption: "Quận" },
-            { field: 'TinhThanhPhoId', type: 'int', required: false, caption: "Họ Tên" },
-            { field: 'HinhAnh', type: 'text', required: false, caption: "Ảnh đại diện" },
+            { field: 'DiaChi', type: 'text', required: false, caption: "Địa Chỉ" },
+            { field: 'TinhThanhPhoId', type: 'popupDSTinhThanhPho', required: false, caption: "Tỉnh Thành Phố", options: { caller: self, data : self.Data.TinhThanhPho } },
+            { field: 'QuanId', type: 'popupDSQuan', required: false, caption: "Quận", options: { caller: self, data : self.Data.Quan } },
             ])
             .setRecord(this.Data)
         ;

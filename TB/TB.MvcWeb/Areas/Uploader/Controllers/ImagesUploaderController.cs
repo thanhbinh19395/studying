@@ -17,6 +17,43 @@ namespace Uploader.Controllers
             ViewBag.ParentId = ParentId;
             return View();
         }
+        public ActionResult UploadImageHangHoa(string name)
+        {
+            try
+            {
+                byte[] pic = Convert.FromBase64String(Request["fileHinh"]);
+                var imageStoragePath = "~/App_Data/HinhAnhHangHoa";
+                var thumbnailStoragePath = "~/App_Data/HinhAnhHangHoa/thumbnail";
+                MemoryStream ms = new MemoryStream(pic, 0, pic.Length);
+                ms.Write(pic, 0, pic.Length);
+                System.Drawing.Image img = System.Drawing.Image.FromStream(ms, true);
+                img.Save(Server.MapPath(imageStoragePath + '/' + name));
+
+                var thumbWidth = Convert.ToInt32(img.Width * 0.25);
+                var thumbHeight = Convert.ToInt32(img.Height * 0.25);
+                System.Drawing.Image thumb = img.GetThumbnailImage(thumbWidth, thumbHeight, null, IntPtr.Zero);
+                thumb.Save(Path.Combine(Server.MapPath(thumbnailStoragePath), name));
+
+                thumb.Dispose();
+                img.Dispose();
+                ms.Close();
+                var fullImagePath = String.Format("http://{0}/Uploader/ImagesUploader/GetImageHangHoa?fileName={1}", Request.Url.Host, name);
+                var fullThumbnailPath = String.Format("http://{0}/Uploader/ImagesUploader/GetThumbnailImageHangHoa?fileName={1}", Request.Url.Host, name);
+                return Json(new {
+                    ImageUrl = fullImagePath,
+                    ThumbnailUrl = fullThumbnailPath
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                });
+            }
+
+        }
         public ActionResult ImageUpload(int? chunk, string name)
         {
             var imageStoragePath = "~/App_Data/HinhAnh";
@@ -45,8 +82,8 @@ namespace Uploader.Controllers
             thumb.Dispose();
             img.Dispose();
             #endregion
-            var fullImagePath = String.Format("/Uploader/ImagesUploader/GetImage?fileName={0}",name);
-            var fullThumbnailPath = String.Format("/Uploader/ImagesUploader/GetThumbnailImage?fileName={0}", name);
+            var fullImagePath = String.Format("http://{0}/Uploader/ImagesUploader/GetImage?fileName={1}", Request.Url.Host, name);
+            var fullThumbnailPath = String.Format("http://{0}/Uploader/ImagesUploader/GetThumbnailImage?fileName={1}", Request.Url.Host, name);
             return new JsonResult()
             {
                 Data = new
@@ -66,6 +103,20 @@ namespace Uploader.Controllers
         public ActionResult GetThumbnailImage(string fileName)
         {
             var thumbnailStoragePath = "~/App_Data/HinhAnh/thumbnail";
+            var imgURL = Path.Combine(Server.MapPath(thumbnailStoragePath), fileName);
+            return File(imgURL, "image/png");
+
+        }
+        public ActionResult GetImageHangHoa(string fileName)
+        {
+            var imageStoragePath = "~/App_Data/HinhAnhHangHoa";
+            var imgURL = Path.Combine(Server.MapPath(imageStoragePath), fileName);
+            return File(imgURL, "image/png");
+
+        }
+        public ActionResult GetThumbnailImageHangHoa(string fileName)
+        {
+            var thumbnailStoragePath = "~/App_Data/HinhAnhHangHoa/thumbnail";
             var imgURL = Path.Combine(Server.MapPath(thumbnailStoragePath), fileName);
             return File(imgURL, "image/png");
 

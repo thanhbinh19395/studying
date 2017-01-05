@@ -53,7 +53,7 @@
         blockUI:['jquery'],
         pluploadcore: ['jquery', 'jqueryUI'],
         bootstrap: ['jquery'],
-        pluploadui: ['jquery', 'pluploadcore', 'jqueryUI'],
+        pluploadui: ['pluploadcore','jqueryUI'],
         jquerySlimscroll: ['jquery'],
         flot: ['jquery'],
         sparkline: ['jquery'],
@@ -79,7 +79,7 @@
         layout: ['global', 'widget'],
 
         // widget
-        base: ['w2ui', 'jqueryUI','w2uiSetting'],
+        base: ['w2ui', 'jqueryUI', 'w2uiSetting'],
         button: ['base'],
         form: ['base', 'field'],
         pagination: ['base', 'twbspagination'],
@@ -87,7 +87,7 @@
         grid: ['base', 'pagination'],
         texteditor: ['base', 'ckeditor'],
         gallery: ['base'],
-        uploader: ['base', 'pluploadcore', 'pluploadui'],
+        uploader: ['base', 'pluploadui'],
         tabs: ['base'],
         boxcontent: ['base'],
         

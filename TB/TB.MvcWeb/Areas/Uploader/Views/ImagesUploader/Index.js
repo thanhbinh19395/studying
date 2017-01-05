@@ -22,7 +22,9 @@
                 self.sendMessage(data);
             }).onFileUploaded(this.onFileUploaded.bind(this))
         ;
-        content.addItem(uploaderSetting.end());
+        var panel = widget.setting.panel();
+        panel.addItem(uploaderSetting.end());
+        content.addItem(panel.end());
     },
     onFileUploaded: function (up, file, info) {
         console.log('hello', up, file, info);

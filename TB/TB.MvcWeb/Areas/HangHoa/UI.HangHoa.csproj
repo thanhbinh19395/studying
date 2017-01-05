@@ -149,7 +149,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AnhHangHoaController.cs" />
+    <Compile Include="Controllers\AnhHangHoaManagementController.cs" />
     <Compile Include="HangHoaAreaRegistration.cs" />
     <Compile Include="Controllers\HangHoaManagementController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -173,6 +173,10 @@
     <ProjectReference Include="..\..\..\TB.NPOI.Extension\TB.NPOI.Extension.csproj">
       <Project>{5addd29d-b3af-4966-b730-5e5192d0e9df}</Project>
       <Name>TB.NPOI.Extension</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TB.Repository.AnhHangHoa\TB.AnhHangHoaRepo.csproj">
+      <Project>{19cc4ba6-1ac3-4a17-aef4-1615fcf25459}</Project>
+      <Name>TB.AnhHangHoaRepo</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\TB.Repository.Base\TB.Repository.Base.csproj">
       <Project>{7749B81B-D5D0-404F-AAA0-441F22B765B0}</Project>

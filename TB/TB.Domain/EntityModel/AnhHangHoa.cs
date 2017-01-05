@@ -19,6 +19,6 @@ namespace TB.Domain.EntityModel
         [StringLength(250)]
         public string LinkAnhMini { get; set; }
         
-        public virtual HangHoa HangHoa { get; set; }
+        //public virtual HangHoa HangHoa { get; set; }
     }
 }

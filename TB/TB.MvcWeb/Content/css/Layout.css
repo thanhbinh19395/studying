@@ -251,9 +251,10 @@ select {
 
 
 .ui-dialog-titlebar-close {
-    border-radius: 0 !important;
+     border-radius: 0 !important;
     background-color: transparent !important;
     border: 0 !important;
+    margin: -1px !important;
     
 }
 .ui-dialog-titlebar-maximize {

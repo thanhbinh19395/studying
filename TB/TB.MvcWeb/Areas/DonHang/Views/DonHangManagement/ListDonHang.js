@@ -37,54 +37,6 @@
         if (message.type == 'reload')
             this.onbtnReloadClick();
     },
-    //onInitHeader: function (header) {
-    //    header.setName('header');
-    //    var self = this;
-    //    var form = widget.setting.form();
-
-    //    form.setName('searchForm')
-    //        .setFieldPerRow(1) // so cot trong form
-    //        .addFields([
-    //            { field: 'DonHangId', type: 'int', required: true, caption: "Mã Đơn hàng" },
-    //           { field: 'NgayLap', type: 'datetime', required: false, caption: "Ngày Lập" },
-    //           { field: 'ThanhTien', type: 'int', required: false, caption: "Thành Tiền" },
-    //           { field: 'KhachHangId', type: 'int', required: false, caption: "Khách Hàng ID" },
-               
-    //        ])
-    //    ;
-    //    header.setTitle(this.commonOptions.header.pageTitle)
-    //        .setIcon(this.commonOptions.header.pageIcon);
-
-    //    var formFooter = widget.setting.toolbar();
-    //    formFooter.addItem({
-    //        type: 'button', id: 'btn-search', caption: 'Tìm kiếm', icon: 'fa-search',
-    //        onClick: self.onbtnSearchClickSearchForm.bind(self)
-    //    });
-
-    //    var formPanel = widget.setting.panel();
-    //    formPanel.setWidth(this.commonOptions.header.searchFormPanelWidth).addClass('pull-right');
-    //    formPanel.addItem(form.end());
-    //    formPanel.addItem(formFooter.end());
-
-    //    header.content().setName('headerContent').addItem(formPanel.end());
-    //    header.title()
-    //        .setName('title1')
-
-    //        .addLeft({
-    //            type: 'button', id: 'btn-reload', caption: 'Tải lại', icon: 'fa-refresh',
-    //            onClick: self.onbtnReloadClick.bind(self)
-    //        })
-    //        .addRight({
-    //            type: 'button', id: 'btn-search', caption: 'Tìm kiếm', icon: 'fa-search',
-    //            onClick: function (evt) {
-    //                var headerContent = self.findElement('headerContent');
-    //                headerContent.toggle();
-    //                var searchForm = self.findElement('searchForm');
-    //                searchForm.resize();
-    //            }
-    //        })
-    //    ;
-    //},
     onInitContent: function (content) {
         var self = this;
 

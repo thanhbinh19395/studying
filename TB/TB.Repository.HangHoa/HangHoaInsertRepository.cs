@@ -9,7 +9,7 @@ using TB.Domain.EntityModel;
 
 namespace TB.HangHoaRepo
 {
-    public class HangHoaInsertRepository : BaseRepository<int>
+    public class HangHoaInsertRepository : BaseRepository<long>
     {
         public HangHoa HangHoa { get; set; }
 
@@ -18,10 +18,11 @@ namespace TB.HangHoaRepo
             if (db.HangHoas.SingleOrDefault(p => p.Ma == this.HangHoa.Ma) != null)
                 throw new Exception("Đã tồn tại Loại hàng hóa có mã là : " + this.HangHoa.Ma);
         }
-        public override Result<int> ExecuteCore(Controller CurrentContext)
+        public override Result<long> ExecuteCore(Controller CurrentContext)
         {
             db.HangHoas.Add(HangHoa);
-            return Success(db.SaveChanges());
+            db.SaveChanges();
+            return Success(HangHoa.HangHoaId);
         }
     }
 }

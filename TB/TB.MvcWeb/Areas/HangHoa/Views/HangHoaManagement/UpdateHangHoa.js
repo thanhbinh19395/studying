@@ -1,47 +1,47 @@
-﻿framework.factory('updateHangHoa', {
+﻿framework.factory('updateHanghoa', {
+    onMessageReceive: function (sender, data) {
+        if (data.type == 'addImage') {
+            var editor = this.findElement('moTaEditor');
+            editor.addImage(data)
+        }
+    },
     onInitHeader: function (header) {
-        header.setName('header1').setTitle(' Cập Nhật Hàng hóa')
-            .setIcon('fa-pencil-square-o ');
+        header.setName('header1').setTitle(' Cập nhật Hàng Hóa')
+            .setIcon('fa-pencil-square-o');
         ;
-        console.log(this.ViewBag);
     },
     onInitContent: function (content) {
         var self = this;
+        console.log(this.ViewBag);
         var form = widget.setting.form();
         form.setName('updateForm').setFieldPerRow(1)
             .addFields([
-            { field: 'Ma', type: 'text', required: true, caption: "Mã" },
-            { field: 'Ten', type: 'text', required: true, caption: 'Tên' },
-            { field: 'GiaBanThamKhao', type: 'text', required: true, caption: 'Giá' },
-            { field: 'NhaCungCapId', type: 'text', required: true, caption: 'Nhà Sản Xuất' },
-            { field: 'LoaiHangHoaId', type: 'popupDSLoaiHangHoa', options: { caller: self },required: true, caption: 'Loại Hàng Hóa' },
-            ])
-            .setRecord(this.Data)
-        ;
+                { field: 'Ma', caption: 'Mã', required: true, type: 'text' },
+                { field: 'Ten', caption: 'Tên', required: true, type: 'text' },
+                { field: 'GiaBanThamKhao', required: true, caption: 'Giá', type: 'int' },
+                { field: 'NhaCungCapId', required: true, caption: 'Nhà Sản Xuất', type: 'popupDSNhaCungCap', options: { caller: self } },
+                { field: 'LoaiHangHoaId', required: true, caption: 'Loại Hàng Hóa', type: 'popupDSLoaiHangHoa', options: { caller: self } },
+            ]).setRecord(this.Data);
         var formFooter = widget.setting.toolbar();
         formFooter.setName('updateToolbar')
             .addItem({ id: 'btnUpdate', type: 'button', caption: 'Lưu', icon: 'fa-floppy-o', onClick: self.onBtnUpdateClick.bind(this) })
             .addItem({ id: 'btnClear', type: 'button', caption: 'Nhập lại', icon: 'fa-refresh', onClick: self.onBtnClearClick.bind(this) })
-
         ;
-        //var texteditor = widget.setting.texteditor();
-        //texteditor.setName('moTaEditor')
-        //    .addButton('uploadimage', 'Up Ảnh', function () {
-                //self.openPopup(
-                //    {
-                //        name: 'testPopup',
-                //        url: '/Documents/UploadImages',
-                //        title: 'Choose Images',
-                //    });
-        //        var editor = self.findElement('moTaEditor');
-        //        editor.addImage({
-        //            imageUrl: '/abc/cla'
-        //        });
-        //    }, 'http://simpleicon.com/wp-content/uploads/camera.png').setData(this.Data.MoTa)
 
-        //;
+        var texteditor = widget.setting.texteditor();
+        texteditor.setName('moTaEditor')
+            .addButton('uploadimage', 'Up Ảnh', function () {
+                self.openPopup(
+                    {
+                        name: 'uploadImage',
+                        url: '/Uploader/ImagesUploader',
+                        title: 'Chon anh',
+                        width: 600,
+                        resizable: false
+                    });
+            }, 'http://simpleicon.com/wp-content/uploads/camera.png').setData(this.Data.MoTa);
         //texteditor.setHeight('80vh');
-        content.setName('content1').addItem(form.end()).addItem(formFooter.end());
+        content.setName('content1').addItem(form.end()).addItem(texteditor.end()).addItem(formFooter.end());
     },
     onBtnUpdateClick: function () {
         var self = this;
@@ -52,18 +52,15 @@
         });
         if (!form.validate().length) {
             $.post('/HangHoa/HangHoaManagement/ExecuteUpdateHangHoa', { HangHoa: form.record }, function (data) {
-                if (data.IsSuccess) {
-                    self.sendMessage({
-                        type: 'reload',
-                        data: data,
-                    });
-                    self.close && self.close();
-                }
-                else {
+                if (!data.IsSuccess) {
                     alert(data.Message);
+                    return;
                 }
-
-
+                self.sendMessage({
+                    type: 'reload',
+                    data: data,
+                });
+                self.close && self.close();
             });
         }
     },

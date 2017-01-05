@@ -3,7 +3,7 @@
         header: {
             pageTitle: ' Danh Sách Hàng Hóa',
             pageIcon: 'fa fa-list',
-            searchFormPanelWidth: '700px',
+            searchFormPanelWidth: '600px',
         },
         content: {
             gridColumn: [
@@ -53,8 +53,8 @@
             .addFields([
                 { field: 'Ma', caption: 'Mã', type: 'text' },
                 { field: 'Ten', caption: 'Tên', type: 'text' },
-                { field: 'GiaBanThamKhao', caption: 'Giá Bán', type: 'int'},
-                { field: 'NhaCungCapId', caption: 'Nhà Sản Xuất', type: 'text' },
+                { field: 'GiaBanThamKhao', caption: 'Giá Bán', type: 'int' },
+                { field: 'NhaCungCapId', caption: 'Nhà Sản Xuất', type: 'popupDSNhaCungCap', options: { caller: self } },
                 { field: 'LoaiHangHoaId', caption: 'Loại Hàng Hóa', type: 'popupDSLoaiHangHoa', options: { caller: self } },
             ])
         ;

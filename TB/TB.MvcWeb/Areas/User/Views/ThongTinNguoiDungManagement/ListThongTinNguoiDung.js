@@ -13,7 +13,7 @@
                 { field: 'DiaChi', caption: 'Địa Chỉ', size: '40%', sortable: true, resizable: true },
                 { field: 'Quan.Ten', caption: 'Quận', size: '40%', sortable: true, resizable: true },
                 { field: 'TinhThanhPho.Ten', caption: 'Tỉnh thành phố', size: '40%', sortable: true, resizable: true },
-                { field: 'HinhAnh', caption: 'Ảnh đại diện', size: '40%', sortable: true, resizable: true }
+                //{ field: 'HinhAnh', caption: 'Ảnh đại diện', size: '40%', sortable: true, resizable: true }
             ],
         },
         //nhớ sửa param

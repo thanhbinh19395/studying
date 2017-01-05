@@ -40,7 +40,7 @@
         header.setName('header');
         var self = this;
         var form = widget.setting.form();
-
+        self.searchParam = { Quan: self.ViewBag.SearchParam };
         form.setName('searchForm')
             .setFieldPerRow(1) // so cot trong form 
             .addFields([
@@ -90,12 +90,11 @@
     },
     onInitContent: function (content) {
         var self = this;
-
         content.setName('content');
         var pagi = widget.setting.pagination();
         pagi.setName('page')
-            .setTotalPages(self.ViewBag.PageCount)
-            .setStartPage(self.ViewBag.Page)
+            .setTotalPages(self.Data.PageCount)
+            .setStartPage(self.Data.Page)
         .setPageClickHandler(self.onPageClick.bind(this))
         ;
 
@@ -109,7 +108,9 @@
             .addRecords(self.Data.Data)
             .setPaginateOptions(pagi.end())
         ;
-
+        if (this.parentId) {
+            grid.createEvent('onDblClick', self.onDblClickGrid.bind(this));
+        }
         var panel = widget.setting.panel();
 
         panel
@@ -160,12 +161,11 @@
         var grid = self.findElement('grid');
 
         var form = self.findElement('searchForm');
-        self.searchParam = form.record;
+        self.searchParam = { Quan: form.record };
 
         $.post(this.commonOptions.apiExecuteUrl.searchUrl, { Quan: form.record }, function (d) {
             grid.clear();
             grid.add(d.Data.Data);
-            console.log(d);
             // reset lai tong so trang neu so tong so trang thay doi.
             grid.pagination.reset(d.Data.Page, d.Data.PageCount);
         });
@@ -186,5 +186,18 @@
         this.searchParam = {};
         form.clear();
     },
-   
+    onDblClickGrid: function (e) {
+        var self = this;
+        var grid = this.findElement('grid');
+        var record = grid.get(e.recid);
+        var mess = {
+            type: 'popupDSQuan',
+            data: record,
+            callback: function () {
+                self.close();
+            }
+        }
+        this.sendMessage(mess);
+        this.close();
+    }
 });

@@ -22,7 +22,9 @@
                         if (r.ThongTinNguoiDungId) {
                             var a = $("<a>");
                             a.attr('href', '#');
+                            a.attr('type', 'click');
                             a.html('Xem thông tin');
+                            
                             return a[0].outerHTML;
                         }
                         else { return 'Trống'; }
@@ -231,13 +233,16 @@
         if (e.column == 5) {
             var self = this;
             e.onComplete = function (data) {
-                var grid = self.findElement('grid');
-                var selected = grid.get(data.recid);
-                self.openPopup({
-                    name: 'detailPopup',
-                    url: '/User/ThongTinNguoiDungManagement/XemChiTiet',
-                    title: 'Username : ' + selected.Username || "",
-                },selected);
+                if ($(data.originalEvent.srcElement).attr('type') == 'click') {
+                    var grid = self.findElement('grid');
+                    var selected = grid.get(data.recid);
+                    self.openPopup({
+                        name: 'detailPopup',
+                        url: '/User/ThongTinNguoiDungManagement/XemChiTiet',
+                        title: 'Username : ' + selected.Username || "",
+                    }, selected);
+                }
+                
             }
         }
     }

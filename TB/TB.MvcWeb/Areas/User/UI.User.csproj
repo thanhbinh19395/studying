@@ -165,6 +165,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\TB.Business.User\TB.UserBus.csproj">
+      <Project>{823e54ed-3e92-4b87-8a89-990e6933970e}</Project>
+      <Name>TB.UserBus</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\TB.Domain\TB.Domain.csproj">
       <Project>{90f20cf0-ff8f-432c-9dd7-f2f13734a625}</Project>
       <Name>TB.Domain</Name>
@@ -173,12 +177,12 @@
       <Project>{7749B81B-D5D0-404F-AAA0-441F22B765B0}</Project>
       <Name>TB.Repository.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\TB.ThongTinNguoiDungRepo\TB.ThongTinNguoiDungRepo.csproj">
-      <Project>{c9a1ef6e-aa00-4a68-a5fd-c80096d6483b}</Project>
+    <ProjectReference Include="..\..\..\TB.Repository.ThongTinNguoiDung\TB.ThongTinNguoiDungRepo.csproj">
+      <Project>{0a6582a9-e4d1-4212-97df-fe0f9f74b5bb}</Project>
       <Name>TB.ThongTinNguoiDungRepo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\TB.UserRepo\TB.UserRepo.csproj">
-      <Project>{a52c7561-bb4d-4eb6-9bb8-5aa981f7cc8e}</Project>
+    <ProjectReference Include="..\..\..\TB.Repository.User\TB.UserRepo.csproj">
+      <Project>{eeefb8c4-667a-40bd-94e0-cdff215d8cb4}</Project>
       <Name>TB.UserRepo</Name>
     </ProjectReference>
   </ItemGroup>

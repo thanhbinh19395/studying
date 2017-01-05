@@ -14,9 +14,8 @@
             { field: 'SoDienThoai', type: 'text', required: false, caption: 'Số Điện Thoại' },
             { field: 'Email', type: 'text', required: false, caption: "E-mail" },
             { field: 'DiaChi', type: 'text', required: false, caption: "Địa Chỉ" },
-            { field: 'QuanId', type: 'int', required: false, caption: "ID Quận" },
-            { field: 'TinhThanhPhoId', type: 'int', required: false, caption: "ID Tỉnh Thành Phố" },
-            { field: 'HinhAnh', type: 'text', required: false, caption: "Ảnh Đại Diện" }
+            { field: 'TinhThanhPhoId', type: 'popupDSTinhThanhPho', required: false, caption: "Tỉnh Thành Phố", options: { caller: self } },
+            { field: 'QuanId', type: 'popupDSQuan', required: false, caption: "Quận", options: { caller: self } },
             ]);
         var formFooter = widget.setting.toolbar();
         formFooter.setName('insertToolbar')
@@ -45,5 +44,13 @@
     onBtnClearClick: function () {
         var form = this.findElement('insertForm');
         form.clear();
+    },
+    onPopupHandler: function (data) {
+        if (data.type == 'popupDSQuan') {
+            var form = this.findElement('insertForm');
+            if (form.TinhThanhPhoId) {
+                $.extend(data.params.Quan, { TinhThanhPhoId: form.TinhThanhPhoId });
+            }
+        }
     }
 });

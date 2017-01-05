@@ -906,10 +906,6 @@
       <Project>{47fbe1e9-69a0-4e2c-85cd-bca76909e64a}</Project>
       <Name>TB.SercurityRepo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TB.TinhThanhPhoRepo\TB.TinhThanhPhoRepo.csproj">
-      <Project>{8bcbc3b7-26a6-4a0c-ab7e-99210050ff56}</Project>
-      <Name>TB.TinhThanhPhoRepo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TB\TB.csproj">
       <Project>{b0003285-cff0-45eb-ad37-d5ab69cb374a}</Project>
       <Name>TB</Name>

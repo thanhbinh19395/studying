@@ -15,6 +15,7 @@ namespace TinhThanhPho.Controllers
         }
         public ActionResult ListTinhThanhPho(TinhThanhPhoSearchRepository repo)
         {
+            ViewBag.SearchParam = repo.TinhThanhPho;
             repo.Page = 1;
             repo.Execute(this);
             return View();

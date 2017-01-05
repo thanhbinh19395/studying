@@ -172,6 +172,10 @@
       <Project>{6b38d59e-e15d-4077-8cb3-b491309d919f}</Project>
       <Name>TB.QuanRepo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\TB.Repository.TinhThanhPho\TB.TinhThanhPhoRepo.csproj">
+      <Project>{78402ebb-c684-48f0-bf32-809617b639c1}</Project>
+      <Name>TB.TinhThanhPhoRepo</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\QuanManagement\InsertQuan.cshtml" />

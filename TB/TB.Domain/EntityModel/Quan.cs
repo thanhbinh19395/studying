@@ -22,7 +22,7 @@ namespace TB.Domain.EntityModel
         [StringLength(100)]
         public string Ten { get; set; }
 
-        //public virtual TinhThanhPho TinhThanhPho { get; set; }
+        public virtual TinhThanhPho TinhThanhPho { get; set; }
 
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //public virtual ICollection<ThongTinNguoiDung> ThongTinNguoiDungs { get; set; }

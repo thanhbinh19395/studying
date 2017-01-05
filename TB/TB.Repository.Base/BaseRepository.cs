@@ -13,7 +13,7 @@ namespace TB.BaseRepo
         string ParentId { get; set; }
         Result<T> Execute(Controller context);
     }
-    public abstract class BaseRepository<T>:IRepository<T>
+    public abstract class BaseRepository<T> : IRepository<T>
     {
         protected QLBH db { get; set; }
         public int? Page { get; set; }
@@ -25,24 +25,25 @@ namespace TB.BaseRepo
             Page = 1;
             db = new QLBH();
         }
-        public virtual void ValidateCore(Controller CurrentContext) {
+        public virtual void ValidateCore(Controller CurrentContext)
+        {
         }
         public abstract Result<T> ExecuteCore(Controller CurrentContext);
-        public virtual void ExecutedCore(Controller CurrentContext, Result<T> Result) {
+        public virtual void ExecutedCore(Controller CurrentContext, Result<T> Result)
+        {
         }
         public Result<T> Execute(Controller CurrentContext)
         {
             try
             {
-
-
                 ValidateCore(CurrentContext);
                 var result = ExecuteCore(CurrentContext);
                 if (CurrentContext != null)
                 {
-                    CurrentContext.ViewBag.ParentId = this.ParentId;
+                    if (!String.IsNullOrWhiteSpace(this.ParentId))
+                        CurrentContext.ViewBag.ParentId = this.ParentId;
                 }
-                if(CurrentContext != null)
+                if (CurrentContext != null)
                     CurrentContext.ViewBag.Message = result;
                 ExecutedCore(CurrentContext, result);
                 return result;
@@ -87,5 +88,5 @@ namespace TB.BaseRepo
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
     }
-   
+
 }

@@ -11,7 +11,7 @@ namespace TB.TinhThanhPhoRepo
 {
     public class TinhThanhPhoGetByIdRepository : BaseRepository<TinhThanhPho>
     {
-        public int TinhThanhPhoId { get; set; }
+        public long TinhThanhPhoId { get; set; }
         public override Result<TinhThanhPho> ExecuteCore(Controller CurrentContext)
         {
             return Success(db.TinhThanhPhoes.Single(p => p.TinhThanhPhoId == this.TinhThanhPhoId));

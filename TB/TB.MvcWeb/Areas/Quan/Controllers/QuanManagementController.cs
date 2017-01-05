@@ -5,13 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using TB.Domain;
 using TB.QuanRepo;
+using TB.TinhThanhPhoRepo;
 
 namespace Quan.Controllers
 {
     public class QuanManagementController : Controller
     {
         public ActionResult Index()
-        {         
+        {
             return View();
         }
         public ActionResult ListQuan(QuanSearchRepository repo)
@@ -26,7 +27,7 @@ namespace Quan.Controllers
             ViewBag.ParentId = ParentId;
             return View();
         }
-        
+
         public ActionResult UpdateQuan(QuanGetByIdRepository repo)
         {
             repo.Execute(this);
@@ -57,6 +58,6 @@ namespace Quan.Controllers
         {
             return Json(repo.Execute(this));
         }
-        
+
     }
 }

@@ -10,8 +10,8 @@
         var form = widget.setting.form();
         form.setName('insertForm').setFieldPerRow(1)
             .addFields([
-                { field: 'TinhThanhPhoId', caption: 'Mã Tỉnh Thành Phố', type: 'popupDSQuan', options: { caller: self } },
-                { field: 'Ten', caption: 'Tên Quận/Huyện', type: 'text' },
+                { field: 'TinhThanhPhoId', caption: 'Tỉnh Thành Phố', require: true, type: 'popupDSQuan', options: { caller: self } },
+                { field: 'Ten', caption: 'Tên Quận/Huyện', require: true, type: 'text' },
             ]);
         var formFooter = widget.setting.toolbar();
         formFooter.setName('insertToolbar')

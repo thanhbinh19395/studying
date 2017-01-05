@@ -7,9 +7,8 @@
         },
         content: {
             gridColumn: [
-
-                    { field: 'TinhThanhPhoId', caption: 'Mã Tỉnh Thành Phố', size: '30%' },
-                    { field: 'Ten', caption: 'Tên Quận/Huyện', size: '70%' },              
+                    { field: 'Ten', caption: 'Tên Quận/Huyện', size: '60%' },
+                    { field: 'TinhThanhPho.Ten', caption: 'Tỉnh/Thành phố', size: '40%' },
             ],
         },
         //nhớ sửa param
@@ -44,14 +43,14 @@
         form.setName('searchForm')
             .setFieldPerRow(1) // so cot trong form 
             .addFields([
-                
+
                  //{
-                 //    field: 'TinhThanhPho', caption: 'Tỉnh Thành Phố', size: '10%', render: function (record) {
+                 //    field: 'TinhThanhPho', caption: 'Tỉnh/Thành phố', size: '10%', render: function (record) {
                  //        return record.TinhThanhPho.Ten;
                  //    }
                  //},
-                 { field: 'TinhThanhPhoId', caption: 'Mã Tỉnh Thành Phố', type: 'text', options: { caller: self } },
-                { field: 'Ten', caption: 'Tên Quận/Huyện', type: 'text' },            
+                { field: 'Ten', caption: 'Tên Quận/Huyện', type: 'text' },
+                { field: 'TinhThanhPhoId',type:'popupDSTinhThanhPho', caption: 'Tỉnh/Thành phố', options: { caller: self } },
             ])
         ;
         header.setTitle(this.commonOptions.header.pageTitle)

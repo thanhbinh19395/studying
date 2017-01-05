@@ -10,12 +10,11 @@
         var form = widget.setting.form();
         form.setName('insertForm').setFieldPerRow(1)
             .addFields([
-           
-            { field: 'TinhThanhPhoId', type: 'text', options: { caller: self },required: true, caption: 'Mã Quận/Huyện' },
+            { field: 'TinhThanhPhoId', type: 'popupDSTinhThanhPho', options: { caller: self, data: self.Data.TinhThanhPho }, required: true, caption: 'Tỉnh/Thành phố' },
              { field: 'Ten', type: 'text', required: true, caption: 'Tên Quận/Huyện' },
             ])
             .setRecord(this.Data)
-        ;
+        ; 
         var formFooter = widget.setting.toolbar();
         formFooter.setName('insertToolbar')
             .addItem({ id: 'btnInsert', type: 'button', caption: 'Lưu', icon: 'fa-floppy-o', onClick: self.onBtnInsertClick.bind(this) })

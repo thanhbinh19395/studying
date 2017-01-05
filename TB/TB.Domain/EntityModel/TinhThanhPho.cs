@@ -12,7 +12,7 @@ namespace TB.Domain.EntityModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TinhThanhPho()
         {
-            Quans = new HashSet<Quan>();
+            //Quans = new HashSet<Quan>();
             //ThongTinNguoiDungs = new HashSet<ThongTinNguoiDung>();
         }
 
@@ -21,8 +21,8 @@ namespace TB.Domain.EntityModel
         [StringLength(100)]
         public string Ten { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Quan> Quans { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<Quan> Quans { get; set; }
 
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //public virtual ICollection<ThongTinNguoiDung> ThongTinNguoiDungs { get; set; }

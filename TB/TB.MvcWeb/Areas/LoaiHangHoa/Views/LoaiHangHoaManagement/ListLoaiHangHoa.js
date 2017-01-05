@@ -1,25 +1,25 @@
 ﻿framework.factory('loaihanghoa', {
     commonOptions: {
         header: {
-            pageTitle: 'Danh sách Loại hàng hóa',
+            pageTitle: ' Danh Sách Loại Hàng Hóa',
             pageIcon: 'fa fa-list',
             searchFormPanelWidth: '700px',
         },
         content: {
             gridColumn: [
-                { field: 'Ma', caption: 'Ma', size: '40%', sortable: true, resizable: true },
-                { field: 'Ten', caption: 'Ten', size: '50%', sortable: true, resizable: true },
+                { field: 'Ma', caption: 'Mã', size: '40%', sortable: true, resizable: true },
+                { field: 'Ten', caption: 'Tên', size: '50%', sortable: true, resizable: true },
             ],
         },
         //nhớ sửa param
         popup: {
             insert: {
-                title: 'Thêm Loại Hàng hóa',
+                title: 'Thêm Loại Hàng Hóa',
                 url: '/LoaiHangHoa/LoaiHangHoaManagement/InsertLoaiHangHoa',
                 width: 600
             },
             update: {
-                title: 'Cập nhật Loại Hàng hóa',
+                title: 'Cập Nhật Loại Hàng Hóa',
                 url: '/LoaiHangHoa/LoaiHangHoaManagement/UpdateLoaiHangHoa',
                 width: 600
             },
@@ -42,8 +42,8 @@
         form.setName('searchForm')
             .setFieldPerRow(1) // so cot trong form
             .addFields([
-               { field: 'Ma', type: 'text', required: false, caption: "Ma" },
-               { field: 'Ten', type: 'text', required: false, caption: "Ten" },
+               { field: 'Ma', type: 'text', required: false, caption: "Mã" },
+               { field: 'Ten', type: 'text', required: false, caption: "Tên" },
             ])
         ;
         header.setTitle(this.commonOptions.header.pageTitle)

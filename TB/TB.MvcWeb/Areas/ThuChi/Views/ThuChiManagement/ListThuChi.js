@@ -1,15 +1,15 @@
 ﻿framework.factory('thuchi', {
     commonOptions: {
         header: {
-            pageTitle: 'Danh sách Thu chi',
+            pageTitle: ' Danh Sách Thu Chi',
             pageIcon: 'fa fa-list',
             searchFormPanelWidth: '700px',
         },
         content: {
             gridColumn: [
-                { field: 'MaPhieu', caption: 'Mã phiếu', size: '40%', sortable: true, resizable: true },
-                { field: 'TongTien', caption: 'Tổng tiền', size: '50%', sortable: true, resizable: true },
-                { field: 'Ngay', caption: 'Ngày lập phiếu', size: '50%', sortable: true, resizable: true }
+                { field: 'MaPhieu', caption: 'Mã Phiếu', size: '40%', sortable: true, resizable: true },
+                { field: 'TongTien', caption: 'Tổng Tiền', size: '50%', sortable: true, resizable: true },
+                { field: 'Ngay', caption: 'Ngày Lập Phiếu', size: '50%', sortable: true, resizable: true }
             ],
         },
         //nhớ sửa param
@@ -29,11 +29,11 @@
         form.setName('searchForm')
             .setFieldPerRow(1) // so cot trong form
             .addFields([
-               { field: 'MaPhieu', type: 'int', required: false, caption: "Mã phiếu" },
-               { field: 'TongTienTu', type: 'int', required: false, caption: "Tổng tiền từ" },
-               { field: 'TongTienDen', type: 'int', required: false, caption: "Tổng tiền đến" },
-               { field: 'TuNgay', type: 'datetime', required: false, caption: "Từ ngày" },
-               { field: 'DenNgay', type: 'datetime', required: false, caption: "Đến ngày" },
+               { field: 'MaPhieu', type: 'int', required: false, caption: "Mã Phiếu" },
+               { field: 'TongTienTu', type: 'int', required: false, caption: "Tổng Tiền Từ" },
+               { field: 'TongTienDen', type: 'int', required: false, caption: "Tổng Tiền Đến" },
+               { field: 'TuNgay', type: 'datetime', required: false, caption: "Từ Ngày" },
+               { field: 'DenNgay', type: 'datetime', required: false, caption: "Đến Ngày" },
             ])
         ;
         header.setTitle(this.commonOptions.header.pageTitle)

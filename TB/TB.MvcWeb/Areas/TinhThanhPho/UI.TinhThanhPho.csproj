@@ -150,13 +150,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\TinhThanhPhoManagement\Index.js" />
     <Content Include="Views\TinhThanhPhoManagement\InsertTinhThanhPho.js" />
     <Content Include="Views\TinhThanhPhoManagement\ListTinhThanhPho.js" />
     <Content Include="Views\TinhThanhPhoManagement\UpdateTinhThanhPho.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\TinhThanhPhoManagement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

@@ -1,14 +1,14 @@
 ﻿framework.factory('nhacungcap', {
     commonOptions: {
-        header: {
-            pageTitle: 'Danh sách Nhà cung cấp',
+        header: { 
+            pageTitle: ' Danh Sách Nhà Cung Cấp',
             pageIcon: 'fa fa-list',
             searchFormPanelWidth: '700px',
         },
         content: {
             gridColumn: [
-                { field: 'Ma', caption: 'Ma', size: '40%', sortable: true, resizable: true },
-                { field: 'Ten', caption: 'Ten', size: '50%', sortable: true, resizable: true },
+                { field: 'Ma', caption: 'Mã', size: '40%', sortable: true, resizable: true },
+                { field: 'Ten', caption: 'Tên', size: '50%', sortable: true, resizable: true },
             ],
         },
         //nhớ sửa param

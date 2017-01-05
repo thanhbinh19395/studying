@@ -1,7 +1,7 @@
 ﻿framework.factory('phieuchi', {
     commonOptions: {
         header: {
-            pageTitle: 'Danh sách Phiếu chi - Chi tiết Phiếu chi',
+            pageTitle: ' Danh Sách Phiếu Chi - Chi Tiết Phiếu Chi',
             pageIcon: 'fa fa-list',
             searchFormPanelWidth: '700px',
         },
@@ -33,7 +33,7 @@
         var phieuChiPanel = widget.setting.panel();
         phieuChiPanel.addClass('col-md-5');
         var phieuChiTitle = widget.setting.title();
-        phieuChiTitle.setName('phieuChiTitle').setIcon('fa fa-search').setTitle('Phiếu chi');
+        phieuChiTitle.setName('phieuChiTitle').setIcon('fa fa-sticky-note-o').setTitle(' Phiếu Chi');
         phieuChiPanel.addItem(phieuChiTitle.end());
 
         var chiTietPhieuChiPanel = widget.setting.panel();
@@ -41,7 +41,7 @@
         chiTietPhieuChiPanel.addClass('col-md-7').css({'border-left':'1px solid black'});
 
         var ctpcTitle = widget.setting.title();
-        ctpcTitle.setName('ctpcTitle').setIcon('fa fa-search').setTitle('Chi tiết Phiếu chi');
+        ctpcTitle.setName('ctpcTitle').setIcon('fa fa-info').setTitle(' Chi Tiết Phiếu Chi');
         chiTietPhieuChiPanel.addItem(ctpcTitle.end());
 
         var pagiPhieuChi = widget.setting.pagination();
@@ -69,11 +69,11 @@
         var gridChiTietPhieuChi = widget.setting.grid();
         gridChiTietPhieuChi.setName('chiTietPhieuChiGrid')
             .addColumns([
-                { field: 'ChiTietPhieuChiId', caption: 'ID Chi tiết phiếu', size: '40%', sortable: true, resizable: true },
-                { field: 'MoTa', caption: 'Mô tả', size: '40%', sortable: true, resizable: true },
-                { field: 'TongTien', caption: 'Tổng tiền', size: '40%', sortable: true, resizable: true },
-                { field: 'GhiChu', caption: 'Ghi chú', size: '40%', sortable: true, resizable: true },
-                { field: 'PhieuChiId', caption: 'ID Phiếu chi', size: '40%', sortable: true, resizable: true}
+                { field: 'ChiTietPhieuChiId', caption: 'ID Chi Tiết Phiếu', size: '40%', sortable: true, resizable: true },
+                { field: 'MoTa', caption: 'Mô Tả', size: '40%', sortable: true, resizable: true },
+                { field: 'TongTien', caption: 'Tổng Tiền', size: '40%', sortable: true, resizable: true },
+                { field: 'GhiChu', caption: 'Ghi Chú', size: '40%', sortable: true, resizable: true },
+                { field: 'PhieuChiId', caption: 'ID Phiếu Chi', size: '40%', sortable: true, resizable: true}
             ])
             .setIdColumn('ChiTietPhieuChiId')
             .setPaginateOptions(pagiChiTietPhieuChi.end())

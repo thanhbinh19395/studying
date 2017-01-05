@@ -1,15 +1,15 @@
 ﻿framework.factory('user', {
     commonOptions: {
         header: {
-            pageTitle: 'Danh sách User',
+            pageTitle: ' Danh Sách User',
             pageIcon: 'fa fa-list',
             searchFormPanelWidth: '700px',
         },
         content: {
             gridColumn: [
-                { field: 'UserId', caption: 'ID Tài khoản', size: '40%', sortable: true, resizable: true },
-                { field: 'Username', caption: 'Tên Tài khoản', size: '50%', sortable: true, resizable: true },
-                { field: 'Password', caption: 'Mật khẩu', size: '50%', sortable: true, resizable: true },
+                { field: 'UserId', caption: 'ID Tài Khoản', size: '40%', sortable: true, resizable: true },
+                { field: 'Username', caption: 'Tên Tài Khoản', size: '50%', sortable: true, resizable: true },
+                { field: 'Password', caption: 'Mật Khẩu', size: '50%', sortable: true, resizable: true },
                 { field: 'Email', caption: 'E-mail', size: '50%', sortable: true, resizable: true },
                 {
                     field: 'Type', caption: 'Loại Tài khoản', size: '50%', sortable: true, resizable: true, render: function (r) {
@@ -18,7 +18,7 @@
                     }
                 },
                 {
-                    field: 'ThongTinNguoiDungId', caption: 'Thông Tin người dùng', size: '50%', sortable: true, resizable: true, render: function (r) {
+                    field: 'ThongTinNguoiDungId', caption: 'Thông Tin Người Dùng', size: '50%', sortable: true, resizable: true, render: function (r) {
                         if (r.ThongTinNguoiDungId) {
                             var a = $("<a>");
                             a.attr('href', '#');
@@ -40,7 +40,7 @@
                 width: 600
             },
             update: {
-                title: 'Cập nhật User',
+                title: 'Cập Nhật User',
                 url: '/User/UserManagement/UpdateUser',
                 width: 600
             },
@@ -63,18 +63,18 @@
         form.setName('searchForm')
             .setFieldPerRow(1) // so cot trong form
             .addFields([
-               { field: 'UserId', type: 'int', required: false, caption: "ID Tài khoản" },
-               { field: 'Username', type: 'text', required: false, caption: "Tên tài khoản" },
+               { field: 'UserId', type: 'int', required: false, caption: "ID Tài Khoản" },
+               { field: 'Username', type: 'text', required: false, caption: "Tên Tài Khoản" },
                { field: 'Email', type: 'text', required: false, caption: "Email" },
                {
-                   field: 'Loai', type: 'list', required: true, caption: 'Loại tài khoản', options: {
+                   field: 'Loai', type: 'list', required: true, caption: 'Loại Tài Khoản', options: {
                        items: [
                            { id: 1, text: 'User' },
                            { id: 2, text: 'Admin' },
                        ]
                    }
                },
-               { field: 'ThongTinNguoiDungId', type: 'int', required: false, caption: "Thông tin người dùng" }
+               { field: 'ThongTinNguoiDungId', type: 'int', required: false, caption: "Thông Tin Người Dùng" }
             ])
         ;
         header.setTitle(this.commonOptions.header.pageTitle)

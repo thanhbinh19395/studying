@@ -1,7 +1,7 @@
 ﻿framework.factory('addDonHang', {
     onInitHeader: function (header) {
-        header.setName('header1').setTitle('Thêm Đơn hàng')
-            .setIcon('fa-bar-plus');
+        header.setName('header1').setTitle(' Thêm Đơn Hàng')
+            .setIcon('fa-plus');
         ;
     },
     onInitContent: function (content) {

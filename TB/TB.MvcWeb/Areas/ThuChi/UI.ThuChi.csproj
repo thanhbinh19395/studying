@@ -151,7 +151,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\PhieuChiManagement\Index.js" />
     <Content Include="Views\PhieuChiManagement\ListPhieuChi.js" />
     <Content Include="Views\ThuChiManagement\ListThuChi.js" />
     <Content Include="Views\Web.config" />
@@ -187,9 +186,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\PhieuChiManagement\ListPhieuChi.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\PhieuChiManagement\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

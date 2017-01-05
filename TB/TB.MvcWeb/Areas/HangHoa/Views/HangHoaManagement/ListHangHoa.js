@@ -1,7 +1,7 @@
 ﻿framework.factory('hanghoa', {
     commonOptions: {
         header: {
-            pageTitle: 'Danh sách Hàng hóa',
+            pageTitle: ' Danh Sách Hàng Hóa',
             pageIcon: 'fa fa-list',
             searchFormPanelWidth: '700px',
         },
@@ -14,9 +14,9 @@
                     //},
                     { field: 'Ma', caption: 'Mã', size: '10%' },
                     { field: 'Ten', caption: 'Tên', size: '15%' },
-                    { field: 'GiaBanThamKhao', caption: 'Giá', size: '10%', render: 'float:0' }, //number_format
-                    { field: 'NhaCungCap.Ten', caption: 'Nhà Cung cấp', size: '7%' },
-                    { field: 'LoaiHanghoa.Ten', caption: 'Loại HH', size: '10%' },
+                    { field: 'GiaBanThamKhao', caption: 'Giá Bán', size: '10%', render: 'float:0' }, //number_format
+                    { field: 'NhaCungCap.Ten', caption: 'Nhà Sản Xuất', size: '7%' },
+                    { field: 'LoaiHanghoa.Ten', caption: 'Loại Hàng Hóa', size: '10%' },
             ],
         },
         //nhớ sửa param
@@ -53,9 +53,9 @@
             .addFields([
                 { field: 'Ma', caption: 'Mã', type: 'text' },
                 { field: 'Ten', caption: 'Tên', type: 'text' },
-                { field: 'GiaBanThamKhao', caption: 'Giá Bán Tham Khảo', type: 'int'},
-                { field: 'NhaCungCapId', caption: 'Nhà SX', type: 'text' },
-                { field: 'LoaiHangHoaId', caption: 'Loại HH', type: 'popupDSLoaiHangHoa', options: { caller: self } },
+                { field: 'GiaBanThamKhao', caption: 'Giá Bán', type: 'int'},
+                { field: 'NhaCungCapId', caption: 'Nhà Sản Xuất', type: 'text' },
+                { field: 'LoaiHangHoaId', caption: 'Loại Hàng Hóa', type: 'popupDSLoaiHangHoa', options: { caller: self } },
             ])
         ;
         header.setTitle(this.commonOptions.header.pageTitle)
@@ -66,7 +66,7 @@
             type: 'button', id: 'btn-search', caption: 'Tìm kiếm', icon: 'fa-search',
             onClick: self.onbtnSearchClickSearchForm.bind(self)
         }).addItem({
-            type: 'button', id: 'btn-exportExcell', caption: 'Xuat Excel', icon: 'fa-search',
+            type: 'button', id: 'btn-exportExcell', caption: 'Xuat Excel', icon: 'fa-file-excel-o',
             onClick: self.onbtnExportExcelClickSearchForm.bind(self)
         })
         ;

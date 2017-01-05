@@ -1,6 +1,6 @@
 ﻿framework.factory('updateUser', {
     onInitHeader: function (header) {
-        header.setName('header1').setTitle('Cập nhật Tài khoản')
+        header.setName('header1').setTitle('Cập Nhật Tài khoản')
             .setIcon('fa-bar-plus');
         ;
         console.log(this.ViewBag);
@@ -12,8 +12,8 @@
         this.Data.Password = null;
         form.setName('updateForm').setFieldPerRow(1)
             .addFields([
-                { field: 'Username', type: 'text', required: true, caption: "Tài khoản" },
-                { field: 'Password', type: 'text', required: true, caption: 'Mật khẩu' },
+                { field: 'Username', type: 'text', required: true, caption: "Tài Khoản" },
+                { field: 'Password', type: 'text', required: true, caption: 'Mật Khẩu' },
                 { field: 'Email', type: 'email', required: false, caption: 'E-mail' },
                 {
                     field: 'Loai', type: 'list', required: true, caption: 'Loại', options: {
@@ -23,7 +23,7 @@
                         ]
                     }
                 },
-                { field: 'ThongTinNguoiDungId', type: 'popupDSThongTinNguoiDung', required: false, caption: 'Thông tin người dùng', options: { caller: self } }
+                { field: 'ThongTinNguoiDungId', type: 'popupDSThongTinNguoiDung', required: false, caption: 'Thông Tin Người Dùng', options: { caller: self } }
             ])
             .setRecord(this.Data)
         ;

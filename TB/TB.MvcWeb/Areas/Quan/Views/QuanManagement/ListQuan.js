@@ -1,26 +1,26 @@
 ﻿framework.factory('Quan', {
     commonOptions: {
         header: {
-            pageTitle: 'Danh sách Quận',
+            pageTitle: ' Danh Sách Quận/Huyện',
             pageIcon: 'fa fa-list',
             searchFormPanelWidth: '700px',
         },
         content: {
             gridColumn: [
 
-                    { field: 'TinhThanhPhoId', caption: 'Tỉnh Thành Phố', size: '30%' },
-                    { field: 'Ten', caption: 'Tên', size: '70%' },              
+                    { field: 'TinhThanhPhoId', caption: 'Mã Tỉnh Thành Phố', size: '30%' },
+                    { field: 'Ten', caption: 'Tên Quận/Huyện', size: '70%' },              
             ],
         },
         //nhớ sửa param
         popup: {
             insert: {
-                title: 'Thêm Quận',
+                title: 'Thêm Quận/Huyện',
                 url: '/Quan/QuanManagement/InsertQuan',
                 width: 650
             },
             update: {
-                title: 'Cập nhật Quận',
+                title: 'Cập Nhật Quận/Huyện',
                 url: '/Quan/QuanManagement/UpdateQuan',
                 width: 600
             },
@@ -50,8 +50,8 @@
                  //        return record.TinhThanhPho.Ten;
                  //    }
                  //},
-                 { field: 'TinhThanhPhoId', caption: 'Tỉnh Thành Phố', type: 'text', options: { caller: self } },
-                { field: 'Ten', caption: 'Tên', type: 'text' },            
+                 { field: 'TinhThanhPhoId', caption: 'Mã Tỉnh Thành Phố', type: 'text', options: { caller: self } },
+                { field: 'Ten', caption: 'Tên Quận/Huyện', type: 'text' },            
             ])
         ;
         header.setTitle(this.commonOptions.header.pageTitle)

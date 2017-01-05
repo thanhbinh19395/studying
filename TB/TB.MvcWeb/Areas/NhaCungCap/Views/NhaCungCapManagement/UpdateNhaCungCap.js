@@ -1,7 +1,7 @@
 ﻿framework.factory('updateNhaCungCap', {
     onInitHeader: function (header) {
-        header.setName('header1').setTitle('Cập nhật lại Nhà cung cấp')
-            .setIcon('fa-bar-plus');
+        header.setName('header1').setTitle(' Cập Nhật Nhà Cung Cấp')
+            .setIcon('fa-pencil-square-o');
         ;
         console.log(this.ViewBag);
     },

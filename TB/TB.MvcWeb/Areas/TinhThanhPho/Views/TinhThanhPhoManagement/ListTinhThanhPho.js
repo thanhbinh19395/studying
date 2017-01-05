@@ -1,28 +1,27 @@
-﻿
-framework.factory('tinhthanhpho', {
+﻿framework.factory('tinhthanhpho', {
     commonOptions : {
         header: {
-            pageTitle: 'Danh sách Tỉnh thành phố',
+            pageTitle: 'Danh Sách Tỉnh Thành Phố',
             pageIcon: 'fa fa-list',
             fieldsSearchForm: [
-               { field: 'Ten', type: 'text', required: true, caption: "Tên" },
+               { field: 'Ten', type: 'text', required: true, caption: "Tên Tỉnh Thành Phố" },
             ],
             searchFormPanelWidth: '700px',
         },
         content: {
             gridColumn: [
-                { field: 'Ten', caption: 'Ten', size: '40%', sortable: true, resizable: true, test: function () { console.log(this); } },
+                { field: 'Ten', caption: 'Tên Tỉnh Thành Phố', size: '40%', sortable: true, resizable: true, test: function () { console.log(this); } },
             ],
         },
         //nhớ sửa param
         popup: {
             insert: {
-                title: 'Thêm Tỉnh thành phố',
+                title: 'Thêm Tỉnh Thành Phố',
                 url: '/TinhThanhPho/TinhThanhPhoManagement/InsertTinhThanhPho',
                 width: 600
             },
             update: {
-                title: 'Cập nhật Tỉnh thành phố',
+                title: 'Cập Nhật Tỉnh Thành Phố',
                 url: '/TinhThanhPho/TinhThanhPhoManagement/UpdateTinhThanhPho',
                 width: 600
             },

@@ -1,7 +1,7 @@
 ﻿framework.factory('addNhaCungCap', {
     onInitHeader: function (header) {
-        header.setName('header1').setTitle('Thêm Nhà cung cấp')
-            .setIcon('fa-bar-plus');
+        header.setName('header1').setTitle(' Thêm Nhà Cung Cấp')
+            .setIcon('fa-plus');
         ;
     },
     onInitContent: function (content) {

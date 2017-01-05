@@ -1,7 +1,7 @@
 ﻿framework.factory('addUser', {
     onInitHeader: function (header) {
-        header.setName('header1').setTitle('Thêm Loại hàng hóa')
-            .setIcon('fa-bar-plus');
+        header.setName('header1').setTitle(' Thêm User')
+            .setIcon('fa-plus');
         ;
     },
     onInitContent: function (content) {
@@ -10,8 +10,8 @@
         var form = widget.setting.form();
         form.setName('insertForm').setFieldPerRow(1)
             .addFields([
-                { field: 'Username', type: 'text', required: true, caption: "Tài khoản" },
-                { field: 'Password', type: 'text', required: true, caption: 'Mật khẩu' },
+                { field: 'Username', type: 'text', required: true, caption: "Tài Khoản" },
+                { field: 'Password', type: 'text', required: true, caption: 'Mật Khẩu' },
                 { field: 'Email', type: 'email', required: false, caption: 'E-mail' },
                 {
                     field: 'Loai', type: 'list', required: true, caption: 'Loại', options: {
@@ -21,7 +21,7 @@
                         ]
                     }
                 },
-                { field: 'ThongTinNguoiDungId', type: 'popupDSThongTinNguoiDung', required: false, caption: 'Thông tin người dùng', options: { caller: self } }
+                { field: 'ThongTinNguoiDungId', type: 'popupDSThongTinNguoiDung', required: false, caption: 'Thông Tin Người Dùng', options: { caller: self } }
             ]);
         var formFooter = widget.setting.toolbar();
         formFooter.setName('insertToolbar')

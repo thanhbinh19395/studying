@@ -15,32 +15,7 @@ namespace TB.ThongTinNguoiDungRepo
         public ThongTinNguoiDung ThongTinNguoiDung { get; set; }
         public override Result<dynamic> ExecuteCore(Controller CurrentContext)
         {
-            #region Get List
-            //if (ThongTinNguoiDung == null || Extensions.DeepEquals(ThongTinNguoiDung, new ThongTinNguoiDung()))
-            //{
-            //    var tmp = db.ThongTinNguoiDungs.ToPagedListForEntityFramework(s => s.ThongTinNguoiDungId, Convert.ToInt32(Page), PageSize);
-            //    var data = new
-            //    {
-            //        Data = tmp.ToList(),
-            //        PageCount = tmp.PageCount,
-            //        Page = tmp.PageNumber,
-            //    };
-            //    return Success(data);
 
-            //}
-            #endregion
-
-            #region Search
-            //var result = db.ThongTinNguoiDungs.Where(
-            //    p =>
-            //    p.ThongTinNguoiDungId == ThongTinNguoiDung.ThongTinNguoiDungId ||
-            //    p.HoTen.Contains(ThongTinNguoiDung.HoTen) ||
-            //    p.SoDienThoai.Contains(ThongTinNguoiDung.SoDienThoai) ||
-            //    p.Email.Contains(ThongTinNguoiDung.Email) ||
-            //    p.DiaChi.Contains(ThongTinNguoiDung.DiaChi) ||
-            //    p.TinhThanhPhoId == ThongTinNguoiDung.TinhThanhPhoId ||
-            //    p.QuanId == ThongTinNguoiDung.QuanId
-            //    );
             if (ThongTinNguoiDung == null)
                 ThongTinNguoiDung = new ThongTinNguoiDung();
 
@@ -68,8 +43,6 @@ namespace TB.ThongTinNguoiDungRepo
                 Page = page.PageNumber,
             };
             return Success(dataSearch);
-
-            #endregion
         }
     }
 }

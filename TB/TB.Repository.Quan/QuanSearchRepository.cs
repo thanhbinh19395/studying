@@ -15,27 +15,7 @@ namespace TB.QuanRepo
         public Quan Quan { get; set; }
         public override Result<dynamic> ExecuteCore(Controller CurrentContext)
         {
-            #region Get List
-            //if (Quan == null || Extensions.DeepEquals(Quan, new Quan()))
-            //{
-            //    var tmp = db.Quans.ToPagedListForEntityFramework(s => s.QuanId, Convert.ToInt32(Page), PageSize);
-            //    var data = new
-            //    {
-            //        Data = tmp.ToList(),
-            //        PageCount = tmp.PageCount,
-            //        Page = tmp.PageNumber,
-            //    };
-            //    return Success(data);
-
-            //}
-            #endregion
-
             #region Search
-            //var result = db.Quans.Where(
-            //    p =>
-            //    p.Ten.Contains(Quan.Ten) ||                
-            //    p.TinhThanhPhoId == Quan.TinhThanhPhoId
-            //    );
             if (Quan == null)
                 Quan = new Quan();
 

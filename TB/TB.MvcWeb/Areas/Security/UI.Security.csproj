@@ -171,6 +171,10 @@
       <Project>{47fbe1e9-69a0-4e2c-85cd-bca76909e64a}</Project>
       <Name>TB.SercurityRepo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\TB.Repository.User\TB.UserRepo.csproj">
+      <Project>{eeefb8c4-667a-40bd-94e0-cdff215d8cb4}</Project>
+      <Name>TB.UserRepo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\TB\TB.csproj">
       <Project>{b0003285-cff0-45eb-ad37-d5ab69cb374a}</Project>
       <Name>TB</Name>

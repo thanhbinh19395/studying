@@ -170,8 +170,8 @@
       <Project>{7749B81B-D5D0-404F-AAA0-441F22B765B0}</Project>
       <Name>TB.Repository.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\TB.TinhThanhPhoRepo\TB.TinhThanhPhoRepo.csproj">
-      <Project>{8bcbc3b7-26a6-4a0c-ab7e-99210050ff56}</Project>
+    <ProjectReference Include="..\..\..\TB.Repository.TinhThanhPho\TB.TinhThanhPhoRepo.csproj">
+      <Project>{78402ebb-c684-48f0-bf32-809617b639c1}</Project>
       <Name>TB.TinhThanhPhoRepo</Name>
     </ProjectReference>
   </ItemGroup>

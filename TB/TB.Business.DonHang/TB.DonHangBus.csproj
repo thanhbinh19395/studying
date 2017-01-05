@@ -111,8 +111,8 @@
       <Project>{9032e501-258a-481f-965c-356db7b81397}</Project>
       <Name>TB.HoaDonRepo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TB.ThongTinNguoiDungRepo\TB.ThongTinNguoiDungRepo.csproj">
-      <Project>{c9a1ef6e-aa00-4a68-a5fd-c80096d6483b}</Project>
+    <ProjectReference Include="..\TB.Repository.ThongTinNguoiDung\TB.ThongTinNguoiDungRepo.csproj">
+      <Project>{0a6582a9-e4d1-4212-97df-fe0f9f74b5bb}</Project>
       <Name>TB.ThongTinNguoiDungRepo</Name>
     </ProjectReference>
   </ItemGroup>

@@ -41,7 +41,7 @@ framework.factory('tinhthanhpho', {
         header.setName('header');
         var self = this;
         var form = widget.setting.form();
-
+        self.searchParam = { Quan: self.ViewBag.SearchParam };
         form.setName('searchForm')
             .setFieldPerRow(1) // so cot trong form
             .addFields(this.commonOptions.header.fieldsSearchForm)
@@ -100,7 +100,9 @@ framework.factory('tinhthanhpho', {
             .addRecords(self.Data.Data)
             .setPaginateOptions(pagi.end())
         ;
-
+        if (this.parentId) {
+            grid.createEvent('onDblClick', self.onDblClickGrid.bind(this));
+        }
         var panel = widget.setting.panel();
 
         panel
@@ -151,7 +153,7 @@ framework.factory('tinhthanhpho', {
         var grid = self.findElement('grid');
 
         var form = self.findElement('searchForm');
-        self.searchParam = form.record;
+        self.searchParam = { TinhThanhPho: form.record };
 
         $.post(this.commonOptions.apiExecuteUrl.searchUrl, { TinhThanhPho: form.record }, function (d) {
             grid.clear();
@@ -176,5 +178,19 @@ framework.factory('tinhthanhpho', {
         this.reloadGridData(this.commonOptions.apiExecuteUrl.searchUrl, grid);
         this.searchParam = {};
         form.clear();
+    },
+    onDblClickGrid: function (e) {
+        var self = this;
+        var grid = this.findElement('grid');
+        var record = grid.get(e.recid);
+        var mess = {
+            type: 'popupDSTinhThanhPho',
+            data: record,
+            callback: function () {
+                self.close();
+            }
+        }
+        this.sendMessage(mess);
+        this.close();
     }
 });

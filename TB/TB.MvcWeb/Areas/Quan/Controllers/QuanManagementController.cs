@@ -16,6 +16,7 @@ namespace Quan.Controllers
         }
         public ActionResult ListQuan(QuanSearchRepository repo)
         {
+            ViewBag.SearchParam = repo.Quan;
             repo.Page = 1;
             repo.Execute(this);
             return View();

@@ -1,7 +1,7 @@
 ﻿framework.factory('donhang', {
     commonOptions: {
         header: {
-            pageTitle: 'Danh sách Đơn hàng - Chi tiết đơn hàng',
+            pageTitle: ' Danh Sách Đơn Hàng - Chi Tiết Đơn Hàng',
             pageIcon: 'fa fa-list',
             searchFormPanelWidth: '700px',
         },
@@ -22,7 +22,7 @@
                 width: 600
             },
             update: {
-                title: 'Cập nhật Đơn Hàng',
+                title: 'Cập Nhật Đơn Hàng',
                 url: '/DonHang/DonHangManagement/UpdateDonHang',
                 width: 600
             },
@@ -93,15 +93,15 @@
         var donHangPanel = widget.setting.panel();
         donHangPanel.addClass('col-md-5');
         var donHangTitle = widget.setting.title();
-        donHangTitle.setName('donHangTitle').setIcon('fa fa-search').setTitle('Đơn hàng');
+        donHangTitle.setName('donHangTitle').setIcon('fa-file-text ').setTitle(' Đơn Hàng');
         donHangPanel.addItem(donHangTitle.end());
 
         var chiTietDonHangPanel = widget.setting.panel();
         
-        chiTietDonHangPanel.addClass('col-md-7').css({'border-left':'2px solid black'});
+        chiTietDonHangPanel.addClass('col-md-7').css({'border-left':'1px solid black'});
 
         var ctdhTitle = widget.setting.title();
-        ctdhTitle.setName('ctdhTitle').setIcon('fa fa-search').setTitle('Chi tiết đơn hàng');
+        ctdhTitle.setName('ctdhTitle').setIcon('fa-info').setTitle(' Chi Tiết Đơn Hàng');
         chiTietDonHangPanel.addItem(ctdhTitle.end());
 
         var pagiDonHang = widget.setting.pagination();
@@ -133,15 +133,15 @@
         var gridChiTietDonHang = widget.setting.grid();
         gridChiTietDonHang.setName('chiTietDonHangGrid')
             .addColumns([
-                { field: 'HangHoa.Ten', caption: 'Hàng hóa', size: '40%', sortable: true, resizable: true },
-                { field: 'SoLuong', caption: 'Số lượng', size: '40%', sortable: true, resizable: true },
-                { field: 'GiaTien', caption: 'Giá bán', size: '40%', sortable: true, resizable: true },
+                { field: 'HangHoa.Ten', caption: 'Tên Hàng Hóa', size: '40%', sortable: true, resizable: true },
+                { field: 'SoLuong', caption: 'Số Lượng', size: '40%', sortable: true, resizable: true },
+                { field: 'GiaTien', caption: 'Giá Bán', size: '40%', sortable: true, resizable: true },
                 {
-                    field: 'ThanhTien', caption: 'Thành tiền', size: '40%', sortable: true, resizable: true, render: function (r) {
+                    field: 'ThanhTien', caption: 'Thành Tiền', size: '40%', sortable: true, resizable: true, render: function (r) {
                         return r.GiaTien * r.SoLuong;
                     }
                 },
-                { field: 'GhiChu', caption: 'Ghi chú', size: '40%', sortable: true, resizable: true },
+                { field: 'GhiChu', caption: 'Ghi Chú', size: '40%', sortable: true, resizable: true },
             ])
             .addButton('btnInsert', 'Thêm', 'fa fa-plus', self.onbtnInsertClickCategoryGrid.bind(this))
             .addButton('btnUpdate', 'Cập nhật', 'fa fa-pencil', self.onbtnUpdateClickCategoryGrid.bind(this))

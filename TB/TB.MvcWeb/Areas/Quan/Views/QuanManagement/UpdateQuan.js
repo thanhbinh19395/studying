@@ -1,7 +1,7 @@
 ﻿framework.factory('updateQuan', {
     onInitHeader: function (header) {
-        header.setName('header1').setTitle('Cập nhật Quận')
-            .setIcon('fa-bar-plus');
+        header.setName('header1').setTitle(' Cập Nhật Quận/Huyện')
+            .setIcon('fa-pencil-square-o ');
         ;
         console.log(this.ViewBag);
     },
@@ -11,8 +11,8 @@
         form.setName('insertForm').setFieldPerRow(1)
             .addFields([
            
-            { field: 'TinhThanhPhoId', type: 'text', options: { caller: self },required: true, caption: 'Loại Quận' },
-             { field: 'Ten', type: 'text', required: true, caption: 'Tên' },
+            { field: 'TinhThanhPhoId', type: 'text', options: { caller: self },required: true, caption: 'Mã Quận/Huyện' },
+             { field: 'Ten', type: 'text', required: true, caption: 'Tên Quận/Huyện' },
             ])
             .setRecord(this.Data)
         ;

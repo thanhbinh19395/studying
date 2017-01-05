@@ -1,7 +1,7 @@
 ﻿framework.factory('addTinhThanhPho', {
     onInitHeader: function (header) {
-        header.setName('header1').setTitle('Chỉnh sửa Tỉnh thành phố')
-            .setIcon('fa-bar-plus');
+        header.setName('header1').setTitle(' Cập Nhật Tỉnh Thành Phố')
+            .setIcon('fa-sticky-note-o');
         ;
         console.log(this.ViewBag);
     },
@@ -10,7 +10,7 @@
         var form = widget.setting.form();
         form.setName('insertForm').setFieldPerRow(1)
             .addFields([
-            { field: 'Ten', type: 'text', required: true, caption: "Tên" },
+            { field: 'Ten', type: 'text', required: true, caption: "Tên Tỉnh Thành Phố" },
             ])
             .setRecord(this.Data)
         ;

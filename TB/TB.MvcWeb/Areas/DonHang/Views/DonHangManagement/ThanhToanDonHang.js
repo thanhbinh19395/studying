@@ -1,6 +1,6 @@
 ﻿framework.factory('updateDonHang', {
     onInitHeader: function (header) {
-        header.setName('header1').setTitle('Thanh toán đơn hàng')
+        header.setName('header1').setTitle('Thanh Toán Đơn Hàng')
             .setIcon('fa-bar-plus');
         ;
     },
@@ -11,7 +11,7 @@
             .addFields([
             { field: 'NgayLap', type: 'date', caption: "Ngày Lập" },
             { field: 'KhachHangId', type: 'int', caption: 'Khách Hàng ID' },
-            { field: 'ThanhTien', type: 'int', caption: 'Tổng tiền' },
+            { field: 'ThanhTien', type: 'int', caption: 'Tổng Tiền' },
             { field: 'GhiChu', type: 'text', caption: 'Ghi Chú' }
             ]).isReadOnly(true).focusRecord(1)
         //.setRecord(this.Data)
@@ -19,14 +19,14 @@
         var formDH = widget.setting.form();
         formDH.setName('formMaDH').setFieldPerRow(1)
             .addFields([
-            { field: 'DonHangId', type: 'popupDSDonHang', required: true, caption: "Mã Đơn hàng", options: { caller: self, formName: 'form', gridName: 'chiTietDonHangGrid' } },
+            { field: 'DonHangId', type: 'popupDSDonHang', required: true, caption: "Mã Đơn Hàng", options: { caller: self, formName: 'form', gridName: 'chiTietDonHangGrid' } },
             ])
         //.setRecord(this.Data)
         ;
         var formFooter = widget.setting.toolbar();
         formFooter.setName('insertToolbar')
-            .addItem({ id: 'btnThanhToan', type: 'button', caption: 'Thanh toán', icon: 'fa-floppy-o', onClick: self.onBtnThanhToanClick.bind(this) })
-            .addItem({ id: 'btnThanhToanVaIn', type: 'button', caption: 'Thanh toán và in', icon: 'fa-refresh', onClick: self.onBtnThanhToanVaInClick.bind(this) })
+            .addItem({ id: 'btnThanhToan', type: 'button', caption: 'Thanh toán', icon: ' fa-shopping-cart', onClick: self.onBtnThanhToanClick.bind(this) })
+            .addItem({ id: 'btnThanhToanVaIn', type: 'button', caption: 'Thanh toán và in', icon: 'fa-print', onClick: self.onBtnThanhToanVaInClick.bind(this) })
 
         ;
 
@@ -34,20 +34,20 @@
         gridChiTietDonHang.setName('chiTietDonHangGrid')
             .addColumns([
                 {
-                    field: 'TenHangHoa', caption: 'Hàng hóa', size: '40%', sortable: true, resizable: true, render: function (r) {
+                    field: 'TenHangHoa', caption: 'Tên Hàng Hóa', size: '40%', sortable: true, resizable: true, render: function (r) {
                         r.TenHangHoa = r.HangHoa.Ten;
                         return r.TenHangHoa;
                     }
                 },
-                { field: 'SoLuong', caption: 'Số lượng', size: '40%', sortable: true, resizable: true },
-                { field: 'GiaTien', caption: 'Giá bán', size: '40%', sortable: true, resizable: true },
+                { field: 'SoLuong', caption: 'Số Lượng', size: '40%', sortable: true, resizable: true },
+                { field: 'GiaTien', caption: 'Giá Bán', size: '40%', sortable: true, resizable: true },
                 {
-                    field: 'ThanhTien', caption: 'Thành tiền', size: '40%', sortable: true, resizable: true, render: function (r) {
+                    field: 'ThanhTien', caption: 'Thành Tiền', size: '40%', sortable: true, resizable: true, render: function (r) {
                         r.ThanhTien = r.GiaTien * r.SoLuong
                         return r.ThanhTien;
                     }
                 },
-                { field: 'GhiChu', caption: 'Ghi chú', size: '40%', sortable: true, resizable: true, excludePrint: true },
+                { field: 'GhiChu', caption: 'Ghi Chú', size: '40%', sortable: true, resizable: true, excludePrint: true },
             ])
             .setIdColumn('ChiTietDonHangId')
         //.addRecords(self.Data.Data)

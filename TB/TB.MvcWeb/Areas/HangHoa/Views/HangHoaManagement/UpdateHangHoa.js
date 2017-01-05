@@ -1,7 +1,7 @@
 ﻿framework.factory('updateHangHoa', {
     onInitHeader: function (header) {
-        header.setName('header1').setTitle('Cập nhật Hàng hóa')
-            .setIcon('fa-bar-plus');
+        header.setName('header1').setTitle(' Cập Nhật Hàng hóa')
+            .setIcon('fa-pencil-square-o ');
         ;
         console.log(this.ViewBag);
     },
@@ -13,8 +13,8 @@
             { field: 'Ma', type: 'text', required: true, caption: "Mã" },
             { field: 'Ten', type: 'text', required: true, caption: 'Tên' },
             { field: 'GiaBanThamKhao', type: 'text', required: true, caption: 'Giá' },
-            { field: 'NhaCungCapId', type: 'text', required: true, caption: 'Nhà Cung cấp' },
-            { field: 'LoaiHangHoaId', type: 'popupDSLoaiHangHoa', options: { caller: self },required: true, caption: 'Loại Hàng hóa' },
+            { field: 'NhaCungCapId', type: 'text', required: true, caption: 'Nhà Sản Xuất' },
+            { field: 'LoaiHangHoaId', type: 'popupDSLoaiHangHoa', options: { caller: self },required: true, caption: 'Loại Hàng Hóa' },
             ])
             .setRecord(this.Data)
         ;
@@ -24,24 +24,24 @@
             .addItem({ id: 'btnClear', type: 'button', caption: 'Nhập lại', icon: 'fa-refresh', onClick: self.onBtnClearClick.bind(this) })
 
         ;
-        var texteditor = widget.setting.texteditor();
-        texteditor.setName('moTaEditor')
-            .addButton('uploadimage', 'Up Ảnh', function () {
+        //var texteditor = widget.setting.texteditor();
+        //texteditor.setName('moTaEditor')
+        //    .addButton('uploadimage', 'Up Ảnh', function () {
                 //self.openPopup(
                 //    {
                 //        name: 'testPopup',
                 //        url: '/Documents/UploadImages',
                 //        title: 'Choose Images',
                 //    });
-                var editor = self.findElement('moTaEditor');
-                editor.addImage({
-                    imageUrl: '/abc/cla'
-                });
-            }, 'http://simpleicon.com/wp-content/uploads/camera.png').setData(this.Data.MoTa)
+        //        var editor = self.findElement('moTaEditor');
+        //        editor.addImage({
+        //            imageUrl: '/abc/cla'
+        //        });
+        //    }, 'http://simpleicon.com/wp-content/uploads/camera.png').setData(this.Data.MoTa)
 
-        ;
+        //;
         //texteditor.setHeight('80vh');
-        content.setName('content1').addItem(form.end()).addItem(texteditor.end()).addItem(formFooter.end());
+        content.setName('content1').addItem(form.end()).addItem(formFooter.end());
     },
     onBtnUpdateClick: function () {
         var self = this;

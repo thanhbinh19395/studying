@@ -5,8 +5,8 @@
         editor.addImage(data)
     },
     onInitHeader: function (header) {
-        header.setName('header1').setTitle('Thêm Hàng hóa')
-            .setIcon('fa-bar-plus');
+        header.setName('header1').setTitle(' Thêm Hàng Hóa')
+            .setIcon('fa-plus');
         ;
     },
     onInitContent: function (content) {
@@ -18,8 +18,8 @@
                 { field: 'Ma', caption: 'Mã', type: 'text' },
                 { field: 'Ten', caption: 'Tên', type: 'text' },
                 { field: 'GiaBanThamKhao', caption: 'Giá', type: 'text' },
-                { field: 'NhaCungCapId', caption: 'Nhà SX', type: 'text' },
-                { field: 'LoaiHangHoaId', caption: 'Loại HH', type: 'popupDSLoaiHangHoa', options: { caller: self } },
+                { field: 'NhaCungCapId', caption: 'Nhà Sản Xuất', type: 'text' },
+                { field: 'LoaiHangHoaId', caption: 'Loại Hàng Hóa', type: 'popupDSLoaiHangHoa', options: { caller: self } },
             ]);
         var formFooter = widget.setting.toolbar();
         formFooter.setName('insertToolbar')

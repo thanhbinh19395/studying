@@ -1,7 +1,7 @@
 ﻿framework.factory('addQuan', {
     onInitHeader: function (header) {
-        header.setName('header1').setTitle('Thêm Quận')
-            .setIcon('fa-bar-plus');
+        header.setName('header1').setTitle(' Thêm Quận/Huyện')
+            .setIcon('fa-plus');
         ;
     },
     onInitContent: function (content) {
@@ -10,8 +10,8 @@
         var form = widget.setting.form();
         form.setName('insertForm').setFieldPerRow(1)
             .addFields([
-                { field: 'TinhThanhPhoId', caption: 'Tỉnh thành phố', type: 'popupDSQuan', options: { caller: self } },
-                { field: 'Ten', caption: 'Tên', type: 'text' },
+                { field: 'TinhThanhPhoId', caption: 'Mã Tỉnh Thành Phố', type: 'popupDSQuan', options: { caller: self } },
+                { field: 'Ten', caption: 'Tên Quận/Huyện', type: 'text' },
             ]);
         var formFooter = widget.setting.toolbar();
         formFooter.setName('insertToolbar')

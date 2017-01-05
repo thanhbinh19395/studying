@@ -1,7 +1,7 @@
 ﻿framework.factory('updateDonHang', {
     onInitHeader: function (header) {
-        header.setName('header1').setTitle('Cập nhật Đơn Hàng')
-            .setIcon('fa-bar-plus');
+        header.setName('header1').setTitle(' Cập Nhật Đơn Hàng')
+            .setIcon('fa-pencil-square-o ');
         ;
         console.log(this.ViewBag);
     },

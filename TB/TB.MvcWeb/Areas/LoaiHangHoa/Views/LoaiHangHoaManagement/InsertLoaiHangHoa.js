@@ -1,7 +1,7 @@
 ﻿framework.factory('addLoaiHangHoa', {
     onInitHeader: function (header) {
-        header.setName('header1').setTitle('Thêm Loại hàng hóa')
-            .setIcon('fa-bar-plus');
+        header.setName('header1').setTitle(' Thêm Loại Hàng Hóa')
+            .setIcon('fa-plus');
         ;
     },
     onInitContent: function (content) {

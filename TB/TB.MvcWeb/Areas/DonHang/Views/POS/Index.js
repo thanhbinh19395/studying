@@ -23,14 +23,14 @@
         formThongTin.setName('thongtinForm').setFieldPerRow(2) // so cot trong form 
             .addFields([
                 { field: 'ThongTinNguoiDungId', caption: 'Khách', type: 'text', span: 2 },
-                { field: 'HoTen', caption: 'Tên khách', type: 'text' },
-                { field: 'DiaChi', caption: 'Địa chỉ', type: 'text' },
-                { field: 'SoDienThoai', caption: 'Số ĐT', type: 'number', options: { caller: self } },
+                { field: 'HoTen', caption: 'Tên Khách', type: 'text' },
+                { field: 'DiaChi', caption: 'Địa Chỉ', type: 'text' },
+                { field: 'SoDienThoai', caption: 'Số Điện Thoại', type: 'number', options: { caller: self } },
                 { field: 'TinhThanhPho.Ten', caption: 'Tỉnh/Thành phố', type: 'text', options: { caller: self } },
-                { field: 'KhachTra', caption: 'Khách trả', type: 'int', span: 2 },
-                { field: 'TongCong', caption: 'Tổng cộng', type: 'int', span: 2, html: { attr: { 'disabled': true } } },
-                { field: 'TienThua', caption: 'Tiền thừa', type: 'int', span: 2, html: { attr: { 'disabled': true } } },
-                { field: 'GhiChu', caption: 'Ghi chú', type: 'textarea', span: 2 },
+                { field: 'KhachTra', caption: 'Khách Trả', type: 'int', span: 2 },
+                { field: 'TongCong', caption: 'Tổng Cộng', type: 'int', span: 2, html: { attr: { 'disabled': true } } },
+                { field: 'TienThua', caption: 'Tiền Thừa', type: 'int', span: 2, html: { attr: { 'disabled': true } } },
+                { field: 'GhiChu', caption: 'Ghi Chú', type: 'textarea', span: 2 },
             ]).createEvent('onChange', function (e) {
                 if (e.target == 'KhachTra') {
                     this.record.TienThua = e.value_new - this.record.TongCong;
@@ -46,15 +46,15 @@
             type: 'button', id: 'btn-search', caption: 'Tìm kiếm', icon: 'fa-search',
             onClick: self.onbtnSearchClickHHTB.bind(self)
         }).addItem({
-            type: 'button', id: 'btn-refresh', caption: 'Nhập lại', icon: 'fa-search',
+            type: 'button', id: 'btn-refresh', caption: 'Nhập lại', icon: 'fa-refresh',
             onClick: self.onbtnRefreshClickHHTB.bind(self)
         });
 
         donhangToolbar.setName('donhangtb').addItem({
-            type: 'button', id: 'btn-save', caption: 'Thanh toán', icon: 'fa-search',
+            type: 'button', id: 'btn-save', caption: 'Thanh toán', icon: 'fa-shopping-cart',
             onClick: self.onbtnSaveClickDHTB.bind(self)})
             .addItem({
-            type: 'button', id: 'btn-print', caption: 'In hóa đơn', icon: 'fa-search',
+            type: 'button', id: 'btn-print', caption: 'In hóa đơn', icon: 'fa-print',
             onClick: self.onbtnPrintClickDHTB.bind(self)
         });
 
@@ -66,12 +66,12 @@
 
         title.setName('title')
             .setIcon('fa-computer')
-            .setTitle('Bán lẻ')
+            .setTitle('Bán Lẻ')
         ;
         searchForm.setName('searchForm').setFieldPerRow(1)
             .addFields([
-            { field: 'Ten', type: 'popupDSHangHoa', required: true, caption: "Tên Hàng hóa", options: { caller: self, formName: 'form', gridName: 'chiTietDonHangGrid' } },
-            { field: 'LoaiHangHoaId', type: 'popupDSLoaiHangHoa', required: true, caption: "Loại Hàng hóa", options: { caller: self, formName: 'form', gridName: 'chiTietDonHangGrid' } }
+            { field: 'Ten', type: 'popupDSHangHoa', required: true, caption: "Tên Hàng Hóa", options: { caller: self, formName: 'form', gridName: 'chiTietDonHangGrid' } },
+            { field: 'LoaiHangHoaId', type: 'popupDSLoaiHangHoa', required: true, caption: "Loại Hàng Hóa", options: { caller: self, formName: 'form', gridName: 'chiTietDonHangGrid' } }
             ])
         ;
 
@@ -85,9 +85,9 @@
                     { field: 'Ma', caption: 'Mã', size: '10%' },
                     { field: 'Ten', caption: 'Tên', size: '15%' },
                     { field: 'GiaBanThamKhao', caption: 'Giá', size: '10%', render: 'int' }, //number_format
-                    { field: 'NhaCungCap.Ten', caption: 'Nhà Cung cấp', size: '7%' },
+                    { field: 'NhaCungCap.Ten', caption: 'Nhà Cung Cấp', size: '7%' },
                     {
-                        field: 'LoaiHanghoa', caption: 'Loại HH', size: '10%', render: function (record) {
+                        field: 'LoaiHanghoa', caption: 'Loại Hàng Hóa', size: '10%', render: function (record) {
                             return record.LoaiHangHoa.Ten;
                         }
                     },
@@ -111,13 +111,13 @@
 
         gridChiTietDonHang.setName('chiTietDonHangGrid')
             .addColumns([
-                { field: 'Ten', caption: 'Hàng hóa', size: '40%', sortable: true, resizable: true },
-                { field: 'SoLuong', caption: 'Số lượng', size: '40%', sortable: true, resizable: true },
+                { field: 'Ten', caption: 'Tên Hàng Hóa', size: '40%', sortable: true, resizable: true },
+                { field: 'SoLuong', caption: 'Số Lượng', size: '40%', sortable: true, resizable: true },
                 {
-                    field: 'GiaBanThamKhao', caption: 'Giá bán', size: '40%', sortable: true, resizable: true, render: 'int', editable: { type: 'float:0' }
+                    field: 'GiaBanThamKhao', caption: 'Giá Bán', size: '40%', sortable: true, resizable: true, render: 'int', editable: { type: 'float:0' }
                 },
                 {
-                    field: 'TongCong', caption: 'Tổng cộng', size: '40%', sortable: true, resizable: true, render: 'int'
+                    field: 'TongCong', caption: 'Tổng Cộng', size: '40%', sortable: true, resizable: true, render: 'int'
                 },
             ]).setIdColumn('HangHoaId')
             .setAttr({

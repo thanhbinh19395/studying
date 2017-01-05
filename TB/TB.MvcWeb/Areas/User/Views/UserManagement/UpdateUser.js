@@ -8,28 +8,38 @@
     onInitContent: function (content) {
         var self = this;
         var form = widget.setting.form();
-        form.setName('insertForm').setFieldPerRow(1)
+        this.Data.Loai = { id: this.Data.Type };
+        this.Data.Password = null;
+        form.setName('updateForm').setFieldPerRow(1)
             .addFields([
-            { field: 'Password', type: 'text', required: false, caption: "Mật khẩu mới" },
-            { field: 'Email', type: 'text', required: false, caption: "E-mail" },
-            { field: 'EmailConfirmed', type: 'bit', required: false, caption: "Xác nhận E-mail" },
-            { field: 'Type', type: 'int', required: false, caption: "Loại tài khoản" },
-            { field: 'ThongTinNguoiDungId', type: 'int', required: false, caption: "ID Thông Tin Người Dùng" },
+                { field: 'Username', type: 'text', required: true, caption: "Tài khoản" },
+                { field: 'Password', type: 'text', required: true, caption: 'Mật khẩu' },
+                { field: 'Email', type: 'email', required: false, caption: 'E-mail' },
+                {
+                    field: 'Loai', type: 'list', required: true, caption: 'Loại', options: {
+                        items: [
+                            { id: 1, text: 'User' },
+                            { id: 2, text: 'Admin' },
+                        ]
+                    }
+                },
+                { field: 'ThongTinNguoiDungId', type: 'popupDSThongTinNguoiDung', required: false, caption: 'Thông tin người dùng', options: { caller: self } }
             ])
             .setRecord(this.Data)
         ;
         var formFooter = widget.setting.toolbar();
-        formFooter.setName('insertToolbar')
-            .addItem({ id: 'btnInsert', type: 'button', caption: 'Lưu', icon: 'fa-floppy-o', onClick: self.onBtnInsertClick.bind(this) })
+        formFooter.setName('updateToolbar')
+            .addItem({ id: 'btnUpdate', type: 'button', caption: 'Lưu', icon: 'fa-floppy-o', onClick: self.onBtnUpdateClick.bind(this) })
             .addItem({ id: 'btnClear', type: 'button', caption: 'Nhập lại', icon: 'fa-refresh', onClick: self.onBtnClearClick.bind(this) })
 
         ;
         content.setName('content1').addItem(form.end()).addItem(formFooter.end());
     },
-    onBtnInsertClick: function () {
+    onBtnUpdateClick: function () {
         var self = this;
-        var form = this.findElement('insertForm');
+        var form = this.findElement('updateForm');
         if (!form.validate().length) {
+            form.record.Type = form.record.Loai.id;
             $.post('/User/UserManagement/ExecuteUpdateUser', { User: form.record }, function (data) {
                 if (data.IsSuccess) {
                     self.sendMessage({
@@ -45,7 +55,7 @@
         }
     },
     onBtnClearClick: function () {
-        var form = this.findElement('insertForm');
+        var form = this.findElement('updateForm');
         form.clear();
     }
 });

@@ -44,10 +44,13 @@
         jqueryUI: '../plugins/jquery-ui-1.11.4/jquery-ui',
         jqueryUIDiaglogExtend: '../plugins/jquery-ui-DialogExtend/jquery.dialogextend',
         noty: '../plugins/noty-2.3.8/jquery.noty',
-        notyLayoutTopRight: '../plugins/noty-2.3.8/layouts/topRight'
+        notyLayoutTopRight: '../plugins/noty-2.3.8/layouts/topRight',
+        blockUI: '../plugins/blockUI/jquery.blockUI',
+        blockUISetting: 'blockUI.setting'
     },
     shim: {
         //jquery deps
+        blockUI:['jquery'],
         pluploadcore: ['jquery', 'jqueryUI'],
         bootstrap: ['jquery'],
         pluploadui: ['jquery', 'pluploadcore', 'jqueryUI'],
@@ -95,6 +98,6 @@
         layout: ['global', 'widget'],
 
         //plugins
-        
+        blockUISetting:['blockUI']
     }
 });

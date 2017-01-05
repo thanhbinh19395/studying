@@ -24,7 +24,6 @@
         formFooter.setName('insertToolbar')
             .addItem({ id: 'btnInsert', type: 'button', caption: 'Lưu', icon: 'fa-floppy-o', onClick: self.onBtnInsertClick.bind(this) })
             .addItem({ id: 'btnClear', type: 'button', caption: 'Nhập lại', icon: 'fa-refresh', onClick: self.onBtnClearClick.bind(this) })
-
         ;
         content.setName('content1').addItem(form.end()).addItem(formFooter.end());
     },

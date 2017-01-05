@@ -26,7 +26,11 @@ namespace User.Controllers
             repo.Execute(this);
             return View();
         }
-
+        public ActionResult XemChiTiet(ThongTinNguoiDungGetByIdRepository repo)
+        {
+            repo.Execute(this);
+            return View();
+        }
         //API
         [HttpPost]
         public ActionResult ExecuteSearch(ThongTinNguoiDungSearchRepository repo)

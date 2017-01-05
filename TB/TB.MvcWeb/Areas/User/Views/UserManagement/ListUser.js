@@ -11,8 +11,23 @@
                 { field: 'Username', caption: 'Tên Tài khoản', size: '50%', sortable: true, resizable: true },
                 { field: 'Password', caption: 'Mật khẩu', size: '50%', sortable: true, resizable: true },
                 { field: 'Email', caption: 'E-mail', size: '50%', sortable: true, resizable: true },
-                { field: 'Type', caption: 'Loại Tài khoản', size: '50%', sortable: true, resizable: true },
-                { field: 'ThongTinNguoiDungId', caption: 'ID Thông Tin người dùng', size: '50%', sortable: true, resizable: true }
+                {
+                    field: 'Type', caption: 'Loại Tài khoản', size: '50%', sortable: true, resizable: true, render: function (r) {
+                        if (r.Type == 1) { return 'User'; }
+                        else { return 'Admin'; }
+                    }
+                },
+                {
+                    field: 'ThongTinNguoiDungId', caption: 'Thông Tin người dùng', size: '50%', sortable: true, resizable: true, render: function (r) {
+                        if (r.ThongTinNguoiDungId) {
+                            var a = $("<a>");
+                            a.attr('href', '#');
+                            a.html('Xem thông tin');
+                            return a[0].outerHTML;
+                        }
+                        else { return 'Trống'; }
+                    }
+                }
             ],
         },
         //nhớ sửa param
@@ -41,15 +56,23 @@
     onInitHeader: function (header) {
         header.setName('header');
         var self = this;
-        var form = widget.setting.form(); 
+        var form = widget.setting.form();
 
         form.setName('searchForm')
             .setFieldPerRow(1) // so cot trong form
             .addFields([
-               { field: 'UserId', type: 'int', required: true, caption: "ID Tài khoản" },
+               { field: 'UserId', type: 'int', required: false, caption: "ID Tài khoản" },
                { field: 'Username', type: 'text', required: false, caption: "Tên tài khoản" },
-               { field: 'Type', required: true, caption: "Loại Tài khoản" },
-               { field: 'ThongTinNguoiDungId', type: 'int', required: true, caption: "Thông tin người dùng ID" }
+               { field: 'Email', type: 'text', required: false, caption: "Email" },
+               {
+                   field: 'Loai', type: 'list', required: true, caption: 'Loại tài khoản', options: {
+                       items: [
+                           { id: 1, text: 'User' },
+                           { id: 2, text: 'Admin' },
+                       ]
+                   }
+               },
+               { field: 'ThongTinNguoiDungId', type: 'int', required: false, caption: "Thông tin người dùng" }
             ])
         ;
         header.setTitle(this.commonOptions.header.pageTitle)
@@ -105,6 +128,7 @@
             .setIdColumn('UserId')
             .addRecords(self.Data.Data)
             .setPaginateOptions(pagi.end())
+            .createEvent('onClick', self.onGridClick.bind(self))
 
         ;
 
@@ -162,6 +186,7 @@
         var grid = self.findElement('grid');
 
         var form = self.findElement('searchForm');
+        form.record.Type = form.record.Loai.id;
         self.searchParam = form.record;
 
         $.post(this.commonOptions.apiExecuteUrl.searchUrl, { User: form.record }, function (d) {
@@ -201,5 +226,19 @@
         }
         this.sendMessage(mess);
         this.close();
+    },
+    onGridClick: function (e) {
+        if (e.column == 5) {
+            var self = this;
+            e.onComplete = function (data) {
+                var grid = self.findElement('grid');
+                var selected = grid.get(data.recid);
+                self.openPopup({
+                    name: 'detailPopup',
+                    url: '/User/ThongTinNguoiDungManagement/XemChiTiet',
+                    title: 'Username : ' + selected.Username || "",
+                },selected);
+            }
+        }
     }
 });

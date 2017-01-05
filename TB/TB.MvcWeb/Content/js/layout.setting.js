@@ -23,20 +23,22 @@ layout.setting = function () {
             var _footer = createFooter();
 
             if (options.onInitHeader) {
-                
                 _page.addItem(_header);
-                options.onInitHeader && options.onInitHeader(_header);
-                
+                $.extend(options, {
+                    $headerEl: _header.getTemplateEl()
+                });
             }
             if (options.onInitContent) {
-                
                 _page.addItem(_content);
-                options.onInitContent(_content);
+                $.extend(options, {
+                    $contentEl: _content.getTemplateEl()
+                });
             }
             if (options.onInitFooter) {
-                
                 _page.addItem(_footer);
-                options.onInitFooter(_footer)
+                $.extend(options, {
+                    $footerEl: _footer.getTemplateEl()
+                });
             }
             if (!options.parentId) {
                 _page.css({
@@ -44,17 +46,20 @@ layout.setting = function () {
                     height: 'auto'
                 });
             }
-            else{
+            else {
                 _page.css({
                     'overflow': 'auto',
                 });
             }
-           
+
+            options.onInitHeader && options.onInitHeader(_header);
+            options.onInitContent && options.onInitContent(_content);
+            options.onInitFooter && options.onInitFooter(_footer);
             var _end = _page.end();
 
             $.extend(_end, { _pageId: pageId });
-            
-            
+
+
             return _end;
         },
 

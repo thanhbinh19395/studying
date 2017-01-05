@@ -579,6 +579,9 @@ define(function () {
                 $.extend(obj, options || {});
                 $.extend(obj, { _type: "panel", template: $("<div>") });
                 return {
+                    getTemplateEl: function () {
+                        return obj.template;
+                    },
                     css: function (css) {
                         _css(obj, css);
                         return this;

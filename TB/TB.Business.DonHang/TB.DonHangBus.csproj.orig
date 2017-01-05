@@ -83,7 +83,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InsertDonHangKhachQuenBusiness.cs" />
     <Compile Include="InsertDonHangKhachLaBusiness.cs" />
     <Compile Include="ThanhToanDonHangBusiness.cs" />
     <Compile Include="InsertDonHangBusiness.cs" />
@@ -111,7 +110,11 @@
       <Project>{9032e501-258a-481f-965c-356db7b81397}</Project>
       <Name>TB.HoaDonRepo</Name>
     </ProjectReference>
+<<<<<<< HEAD
+    <ProjectReference Include="..\TB.ThongTinNguoiDung\TB.ThongTinNguoiDungRepo.csproj">
+=======
     <ProjectReference Include="..\TB.ThongTinNguoiDungRepo\TB.ThongTinNguoiDungRepo.csproj">
+>>>>>>> 4202d88291267fde41b47260e8fb43dc1278a67a
       <Project>{c9a1ef6e-aa00-4a68-a5fd-c80096d6483b}</Project>
       <Name>TB.ThongTinNguoiDungRepo</Name>
     </ProjectReference>

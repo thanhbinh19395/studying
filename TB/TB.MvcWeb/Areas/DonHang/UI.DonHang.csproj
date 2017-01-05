@@ -185,6 +185,10 @@
       <Project>{43694d9c-9de9-4539-a350-618f9d273f15}</Project>
       <Name>TB.DonHangRepo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\TB.Repository.HangHoa\TB.HangHoaRepo.csproj">
+      <Project>{e2a80703-1310-4a15-962c-4c8473079cbc}</Project>
+      <Name>TB.HangHoaRepo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\TB.Repository.HoaDon\TB.HoaDonRepo.csproj">
       <Project>{9032e501-258a-481f-965c-356db7b81397}</Project>
       <Name>TB.HoaDonRepo</Name>
@@ -204,6 +208,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\DonHangManagement\ThanhToanDonHang.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

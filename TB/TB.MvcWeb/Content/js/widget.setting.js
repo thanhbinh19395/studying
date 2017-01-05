@@ -472,6 +472,17 @@ define(function () {
                     fixedBody: false,
                 });
                 return {
+                    getTemplate: function () {
+                        return obj.template;
+                    },
+                    setAttr: function (name, value) {
+                        if (!value) {
+                            $.extend(obj, name);
+                        } else {
+                            $.extend(obj[name], value);
+                        }
+                        return this;
+                    },
                     setIdColumn: function (colName) {
                         $.extend(obj, { recid: colName });
                         return this;
@@ -707,11 +718,10 @@ define(function () {
                         return this;
                     },
                     createEvent: function (event, callback) {
-                        name = event.slice(0, 1).toUpperCase();
-                        var eventName = 'on' + name.concat(event.slice(1));
-                        obj[eventName] = function () { callback(); };
+                        obj[event] = callback;
                         return this;
                     },
+
                     end: function () {
                         return obj;
                     }

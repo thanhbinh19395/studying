@@ -98,6 +98,10 @@
       <Project>{7749b81b-d5d0-404f-aaa0-441f22b765b0}</Project>
       <Name>TB.Repository.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TB\TB.csproj">
+      <Project>{b0003285-cff0-45eb-ad37-d5ab69cb374a}</Project>
+      <Name>TB</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

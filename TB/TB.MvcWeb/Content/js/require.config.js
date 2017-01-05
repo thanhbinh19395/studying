@@ -8,6 +8,7 @@
         listpage: 'framework.layout.listpage',
         widget: 'widget.setting',
         layout: 'layout.setting',
+        w2uiSetting:'w2ui.setting',
         domReady: '../plugins/requirejs/domReady',
         // widgets
         base: 'widget/widget.base',
@@ -55,6 +56,7 @@
         sparkline: ['jquery'],
         flatyScript: ['jquery', 'jquerySlimscroll', 'bootstrap'],
         w2ui: ['jquery'],
+        w2uiSetting:['w2ui'],
         jqueryUI: ['jquery'],
         jqueryUIDiaglogExtend: ['jquery', 'jqueryUI'],
         //flot
@@ -74,7 +76,7 @@
         layout: ['global', 'widget'],
 
         // widget
-        base: ['w2ui', 'jqueryUI'],
+        base: ['w2ui', 'jqueryUI','w2uiSetting'],
         button: ['base'],
         form: ['base', 'field'],
         pagination: ['base', 'twbspagination'],

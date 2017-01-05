@@ -1,12 +1,16 @@
 ﻿using System.Web.Mvc;
+using TB.DonHangBus;
+using TB.HangHoaRepo;
 using TB.HoaDonRepo;
 
 namespace DonHang.Controllers
 {
     public class POSController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(HangHoaSearchRepository repo )
         {
+            repo.Page = 1;
+            ViewBag.ListHangHoa = repo.Execute(this);
             return View();
         }
         public ActionResult ListHoaDon(HoaDonSearchRepository repo)
@@ -18,10 +22,9 @@ namespace DonHang.Controllers
 
         //API
         [HttpPost]
-        public ActionResult ExecuteSearch(HoaDonSearchRepository repo)
+        public ActionResult ExecuteInsertDonHangKhachLa(InsertDonHangKhachLaBusiness bus)
         {
-            var list = repo.Execute(this);
-            return Json(list);
+            return Json(bus.Execute(this));
         }
     }
 }

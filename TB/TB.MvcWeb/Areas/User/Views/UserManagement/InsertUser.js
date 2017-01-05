@@ -12,10 +12,16 @@
             .addFields([
                 { field: 'Username', type: 'text', required: true, caption: "Tài khoản" },
                 { field: 'Password', type: 'text', required: true, caption: 'Mật khẩu' },
-                { field: 'Email', type: 'text', required: true, caption: 'E-mail' },
-                { field: 'EmailConfirmed', type: 'bit', required: true, caption: 'Xác nhận E-mail' },
-                { field: 'Type', type: 'int', required: true, caption: 'Loại' },
-                { field: 'ThongTinNguoiDungId', type: 'int', required: true, caption: 'ID Thông tin người dùng' }
+                { field: 'Email', type: 'email', required: true, caption: 'E-mail' },
+                {
+                    field: 'Type', type: 'list', required: true, caption: 'Loại', options: {
+                        items: [
+                            { id: 0, text: 'User' },
+                            { id: 1, text: 'Admin' },
+                        ]
+                    }
+                },
+                { field: 'ThongTinNguoiDungId', type: 'popupDSThongTin', required: true, caption: 'Thông tin người dùng', options: { caller: self } }
             ]);
         var formFooter = widget.setting.toolbar();
         formFooter.setName('insertToolbar')

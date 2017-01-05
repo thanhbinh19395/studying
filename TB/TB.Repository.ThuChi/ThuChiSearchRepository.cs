@@ -22,25 +22,38 @@ namespace TB.ThuChiRepo
         public override Result<dynamic> ExecuteCore(Controller CurrentContext)
         {
             #region Get List
-            if (ThuChi == null || Extensions.DeepEquals(ThuChi, new ThuChi()))
-            {
-                var tmp = db.ThuChis.ToPagedListForEntityFramework(s => s.ThuChiId, Convert.ToInt32(Page), PageSize);
-                var data = new
-                {
-                    Data = tmp.ToList(),
-                    PageCount = tmp.PageCount,
-                    Page = tmp.PageNumber,
-                };
-                return Success(data);
+            //if (ThuChi == null || Extensions.DeepEquals(ThuChi, new ThuChi()))
+            //{
+            //    var tmp = db.ThuChis.ToPagedListForEntityFramework(s => s.ThuChiId, Convert.ToInt32(Page), PageSize);
+            //    var data = new
+            //    {
+            //        Data = tmp.ToList(),
+            //        PageCount = tmp.PageCount,
+            //        Page = tmp.PageNumber,
+            //    };
+            //    return Success(data);
 
-            }
+            //}
             #endregion
 
             #region Search
-            var result = db.ThuChis.Where(
-                p =>
-                p.MaPhieu == ThuChi.MaPhieu);
-            var page = result.ToPagedListForEntityFramework(s => s.ThuChiId, Convert.ToInt32(Page), PageSize);
+            //var result = db.ThuChis.Where(
+            //    p =>
+            //    p.MaPhieu == ThuChi.MaPhieu);
+            if (ThuChi == null)
+                ThuChi = new ThuChi();
+
+            var result = db.ThuChis.AsQueryable();
+
+            if (ThuChi.MaPhieu != null)
+                result = result.Where(p => p.MaPhieu == ThuChi.MaPhieu);
+            if (ThuChi.TongTien != null)
+                result = result.Where(p => p.TongTien == ThuChi.TongTien);
+            if (ThuChi.Ngay != null)
+                result = result.Where(p => p.Ngay == ThuChi.Ngay);
+
+            int curPage = Page != null ? Convert.ToInt32(Page) : 1;
+            var page = result.ToPagedListForEntityFramework(s => s.ThuChiId, curPage, PageSize);
             var dataSearch = new
             {
                 Data = page.ToList(),

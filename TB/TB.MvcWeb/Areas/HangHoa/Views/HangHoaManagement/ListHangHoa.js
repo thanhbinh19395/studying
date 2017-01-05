@@ -15,17 +15,8 @@
                     { field: 'Ma', caption: 'Mã', size: '10%' },
                     { field: 'Ten', caption: 'Tên', size: '15%' },
                     { field: 'GiaBanThamKhao', caption: 'Giá', size: '10%', render: 'float:0' }, //number_format
-                    {
-                        field: 'NhaCungCap.Ten', caption: 'Nhà Cung cấp', size: '7%'// render: function (record) {
-                        // console.log(record);
-                        //return record.NhaCungCap.Ten;
-                        // }
-                    },
-                    {
-                        field: 'LoaiHanghoa', caption: 'Loại HH', size: '10%', render: function (record) {
-                            return record.LoaiHangHoa.Ten;
-                        }
-                    },
+                    { field: 'NhaCungCap.Ten', caption: 'Nhà Cung cấp', size: '7%' },
+                    { field: 'LoaiHanghoa.Ten', caption: 'Loại HH', size: '10%' },
             ],
         },
         //nhớ sửa param
@@ -62,6 +53,7 @@
             .addFields([
                 { field: 'Ma', caption: 'Mã', type: 'text' },
                 { field: 'Ten', caption: 'Tên', type: 'text' },
+                { field: 'GiaBanThamKhao', caption: 'Giá Bán Tham Khảo', type: 'int'},
                 { field: 'NhaCungCapId', caption: 'Nhà SX', type: 'text' },
                 { field: 'LoaiHangHoaId', caption: 'Loại HH', type: 'popupDSLoaiHangHoa', options: { caller: self } },
             ])

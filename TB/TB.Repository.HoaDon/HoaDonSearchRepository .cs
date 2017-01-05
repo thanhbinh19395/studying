@@ -21,26 +21,37 @@ namespace TB.HoaDonRepo
         public override Result<dynamic> ExecuteCore(Controller CurrentContext)
         {
             #region Get List
-            if (HoaDon == null || Extensions.DeepEquals(HoaDon, new HoaDon()))
-            {
-                var tmp = db.HoaDons.ToPagedListForEntityFramework(s => s.HoaDonId, Convert.ToInt32(Page), PageSize);
-                var data = new
-                {
-                    Data = tmp.ToList(),
-                    PageCount = tmp.PageCount,
-                    Page = tmp.PageNumber,
-                };
-                return Success(data);
+            //if (HoaDon == null || Extensions.DeepEquals(HoaDon, new HoaDon()))
+            //{
+            //    var tmp = db.HoaDons.ToPagedListForEntityFramework(s => s.HoaDonId, Convert.ToInt32(Page), PageSize);
+            //    var data = new
+            //    {
+            //        Data = tmp.ToList(),
+            //        PageCount = tmp.PageCount,
+            //        Page = tmp.PageNumber,
+            //    };
+            //    return Success(data);
 
-            }
+            //}
             #endregion
 
             #region Search
-            var result = db.HoaDons.Where(
-                p => p.NguoiLapId == HoaDon.NguoiLapId || 
-                (HoaDon.NgayLap >= FromDate && HoaDon.NgayLap < ToDate)
-                 );
-            var page = result.ToPagedListForEntityFramework(s => s.NguoiLapId, Convert.ToInt32(Page), PageSize);
+            //var result = db.HoaDons.Where(
+            //    p => p.NguoiLapId == HoaDon.NguoiLapId || 
+            //    (HoaDon.NgayLap >= FromDate && HoaDon.NgayLap < ToDate)
+            //     );
+            if (HoaDon == null)
+                HoaDon = new HoaDon();
+
+            var result = db.HoaDons.AsQueryable();
+
+            if (HoaDon.NguoiLapId != null)
+                result = result.Where(p => p.NguoiLapId == HoaDon.NguoiLapId);
+            if (HoaDon.NgayLap != null)
+                result = result.Where(p => p.NgayLap == HoaDon.NgayLap);
+
+            int curPage = Page != null ? Convert.ToInt32(Page) : 1;
+            var page = result.ToPagedListForEntityFramework(s => s.NguoiLapId, curPage, PageSize);
             var dataSearch = new
             {
                 Data = page.ToList(),

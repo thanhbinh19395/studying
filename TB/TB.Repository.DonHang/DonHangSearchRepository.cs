@@ -16,29 +16,42 @@ namespace TB.DonHangRepo
         public override Result<dynamic> ExecuteCore(Controller CurrentContext)
         {
             #region Get List
-            if (DonHang == null || Extensions.DeepEquals(DonHang, new DonHang()))
-            {
-                var tmp = db.DonHangs.ToPagedListForEntityFramework(s => s.DonHangId, Convert.ToInt32(Page), PageSize);
-                var data = new
-                {
-                    Data = tmp.ToList(),
-                    PageCount = tmp.PageCount,
-                    Page = tmp.PageNumber,
-                };
-                return Success(data);
+            //if (DonHang == null || Extensions.DeepEquals(DonHang, new DonHang()))
+            //{
+            //    var tmp = db.DonHangs.ToPagedListForEntityFramework(s => s.DonHangId, Convert.ToInt32(Page), PageSize);
+            //    var data = new
+            //    {
+            //        Data = tmp.ToList(),
+            //        PageCount = tmp.PageCount,
+            //        Page = tmp.PageNumber,
+            //    };
+            //    return Success(data);
 
-            }
-            #endregion
+            //}
+            //#endregion
 
-            #region Search
-            var result = db.DonHangs.Where(
-                p =>
-                p.DonHangId == DonHang.DonHangId ||
-                p.NgayLap == DonHang.NgayLap ||
-                p.KhachHangId == DonHang.KhachHangId ||
-                p.ThanhTien == DonHang.ThanhTien 
-                 );
-            var page = result.ToPagedListForEntityFramework(s => s.DonHangId, Convert.ToInt32(Page), PageSize);
+            //#region Search
+            //var result = db.DonHangs.Where(
+            //    p =>
+            //    p.DonHangId == DonHang.DonHangId ||
+            //    p.NgayLap == DonHang.NgayLap ||
+            //    p.KhachHangId == DonHang.KhachHangId ||
+            //    p.ThanhTien == DonHang.ThanhTien 
+            //     );
+            if (DonHang == null)
+                DonHang = new DonHang();
+
+            var result = db.DonHangs.AsQueryable();
+
+            if (DonHang.NgayLap != null)
+                result = result.Where(p => p.NgayLap == DonHang.NgayLap);
+            if (DonHang.ThanhTien != null)
+                result = result.Where(p => p.ThanhTien == DonHang.ThanhTien);
+            if (DonHang.KhachHangId != null)
+                result = result.Where(p => p.KhachHangId == DonHang.KhachHangId);
+
+            int curPage = Page != null ? Convert.ToInt32(Page) : 1;
+            var page = result.ToPagedListForEntityFramework(s => s.DonHangId, curPage, PageSize);
             var dataSearch = new
             {
                 Data = page.ToList(),

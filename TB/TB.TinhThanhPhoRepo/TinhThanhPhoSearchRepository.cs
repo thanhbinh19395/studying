@@ -15,25 +15,34 @@ namespace TB.TinhThanhPhoRepo
         public override Result<dynamic> ExecuteCore(Controller CurrentContext)
         {
             #region Get List
-            if (TinhThanhPho == null || Extensions.DeepEquals(TinhThanhPho, new TinhThanhPho()))
-            {
-                var tmp = db.TinhThanhPhoes.ToPagedListForEntityFramework(s => s.TinhThanhPhoId, Convert.ToInt32(Page), PageSize);
-                var data = new
-                {
-                    Data = tmp.ToList(),
-                    PageCount = tmp.PageCount,
-                    Page = tmp.PageNumber,
-                };
-                return Success(data);
+            //if (TinhThanhPho == null || Extensions.DeepEquals(TinhThanhPho, new TinhThanhPho()))
+            //{
+            //    var tmp = db.TinhThanhPhoes.ToPagedListForEntityFramework(s => s.TinhThanhPhoId, Convert.ToInt32(Page), PageSize);
+            //    var data = new
+            //    {
+            //        Data = tmp.ToList(),
+            //        PageCount = tmp.PageCount,
+            //        Page = tmp.PageNumber,
+            //    };
+            //    return Success(data);
 
-            }
+            //}
             #endregion
 
             #region Search
-            var result = db.TinhThanhPhoes.Where(
-                p =>
-                p.Ten.Contains(TinhThanhPho.Ten) );
-            var page = result.ToPagedListForEntityFramework(s => s.TinhThanhPhoId, Convert.ToInt32(Page), PageSize);
+            //var result = db.TinhThanhPhoes.Where(
+            //    p =>
+            //    p.Ten.Contains(TinhThanhPho.Ten) );
+            if (TinhThanhPho == null)
+                TinhThanhPho = new TinhThanhPho();
+
+            var result = db.TinhThanhPhoes.AsQueryable();
+
+            if (!String.IsNullOrWhiteSpace(TinhThanhPho.Ten))
+                result = result.Where(p => p.Ten.Contains(TinhThanhPho.Ten));
+
+            int curPage = Page != null ? Convert.ToInt32(Page) : 1;
+            var page = result.ToPagedListForEntityFramework(s => s.TinhThanhPhoId, curPage, PageSize);
             var dataSearch = new
             {
                 Data = page.ToList(),

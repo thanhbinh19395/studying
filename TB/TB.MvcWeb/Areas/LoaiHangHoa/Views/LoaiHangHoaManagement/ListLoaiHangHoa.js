@@ -42,7 +42,7 @@
         form.setName('searchForm')
             .setFieldPerRow(1) // so cot trong form
             .addFields([
-               { field: 'Ma', type: 'text', required: true, caption: "Ma" },
+               { field: 'Ma', type: 'text', required: false, caption: "Ma" },
                { field: 'Ten', type: 'text', required: false, caption: "Ten" },
             ])
         ;

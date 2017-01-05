@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using TB.BaseRepo;
 using TB.Domain.EntityModel;
+using TB.Sercurity;
 
 namespace TB.UserRepo
 {
@@ -15,13 +16,12 @@ namespace TB.UserRepo
 
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
-            var lhh = db.Users.SingleOrDefault(p => p.UserId == this.User.UserId);
-            lhh.Username = User.Username;
-            lhh.Password = User.Password;
-            lhh.Email = User.Email;
-            lhh.EmailConfirmed = User.EmailConfirmed;
-            lhh.Type = User.Type;
-            lhh.ThongTinNguoiDungId = User.ThongTinNguoiDungId;
+            var user = db.Users.SingleOrDefault(p => p.UserId == this.User.UserId);
+            //user.Username = User.Username;
+            user.Password = AESHandler.Encrypt(User.Password);
+            user.Email = User.Email;
+            user.Type = User.Type;
+            user.ThongTinNguoiDungId = User.ThongTinNguoiDungId;
             return Success(db.SaveChanges());
         }
     }

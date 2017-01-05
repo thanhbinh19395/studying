@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using TB.BaseRepo;
 using TB.Domain.EntityModel;
+using TB.Sercurity;
 
 namespace TB.UserRepo
 {
@@ -15,6 +16,7 @@ namespace TB.UserRepo
 
         public override Result<long> ExecuteCore(Controller CurrentContext)
         {
+            User.Password = AESHandler.Encrypt(User.Password);
             db.Users.Add(User);
             db.SaveChanges();
             return Success(this.User.UserId);

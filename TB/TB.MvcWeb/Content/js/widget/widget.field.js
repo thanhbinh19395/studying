@@ -3,12 +3,20 @@
 
 
     $(this.el).css('width', '30%').attr('disabled', 'disabled');
-    var input = $('<input>').css({
-        width: '65%',
-        border: '0px'
-    });
+    var input;
+    if ($(self.el).parent().find('.inputSearch').length) {
+        input = $(self.el).parent().find('.inputSearch');
+        input.val('');
+        input.off('keydown');
+    }
+    else {
+        input = $('<input>').css({
+            width: '65%',
+            border: '0px'
+        }).addClass('inputSearch');
+        $(this.el).parent().append(input);
+    }
 
-    $(this.el).parent().append(input);
     //this sau khi extend sẽ được chứa trong $(this.el).data('w2field')
     $.extend(self, {
         onMessageReceive: function (sender, message) {
@@ -30,15 +38,28 @@
         field: self,
         eventType: ''
     }
-    console.log($(self.el).parent().data());
-    var buttonSearch = $('<button>')
+
+    var buttonSearch, buttonRemove;
+    if ($(self.el).parent().find('.buttonSearch').length) {
+        buttonSearch = $(self.el).parent().find('.buttonSearch');
+    }
+    else {
+        buttonSearch = $('<button>')
         .attr('style', 'margin-left:auto !important; font-size:small;')
-        .addClass('input-icon')
+        .addClass('input-icon buttonSearch')
         .append($('<span>').addClass('fa fa-search'));
-    var buttonRemove = $('<button>')
-        //.attr('style', 'margin-left:auto !important; font-size:small;')
-        .addClass('input-icon')
-        .append($('<span>').addClass('fa fa-times'));
+        buttonSearch.insertAfter(self.el);
+    }
+    if ($(self.el).parent().find('.buttonRemove').length) {
+        buttonRemove = $(self.el).parent().find('.buttonRemove');
+    }
+    else {
+        buttonRemove = $('<button>')
+            .attr('style', 'font-size:small;')
+            .addClass('input-icon buttonRemove')
+            .append($('<span>').addClass('fa fa-times'));
+        buttonRemove.appendTo($(self.el).parent());
+    }
 
     buttonSearch.click(function () {
         if (options.caller) {
@@ -103,11 +124,19 @@ $().w2field('addType', 'popupDSDonHang', function (options) {
     var self = this;
 
     $(this.el).css('width', '30%').attr('disabled', 'disabled');
-    var input = $('<input>').css({
-        width: '65%',
-        border: '0px'
-    });
-
+    var input;
+    if ($(self.el).parent().find('.inputSearch').length) {
+        input = $(self.el).parent().find('.inputSearch');
+        input.val('');
+        input.off('keydown');
+    }
+    else {
+        input = $('<input>').css({
+            width: '65%',
+            border: '0px'
+        }).addClass('inputSearch');
+        $(this.el).parent().append(input);
+    }
     $(this.el).parent().append(input);
     //this sau khi extend sẽ được chứa trong $(this.el).data('w2field')
     $.extend(self, {
@@ -141,15 +170,27 @@ $().w2field('addType', 'popupDSDonHang', function (options) {
         field: self,
         eventType: ''
     }
-    console.log($(self.el).parent().data());
-    var buttonSearch = $('<button>')
+    var buttonSearch, buttonRemove;
+    if ($(self.el).parent().find('.buttonSearch').length) {
+        buttonSearch = $(self.el).parent().find('.buttonSearch');
+    }
+    else {
+        buttonSearch = $('<button>')
         .attr('style', 'margin-left:auto !important; font-size:small;')
-        .addClass('input-icon')
+        .addClass('input-icon buttonSearch')
         .append($('<span>').addClass('fa fa-search'));
-    var buttonRemove = $('<button>')
-        //.attr('style', 'margin-left:auto !important; font-size:small;')
-        .addClass('input-icon')
-        .append($('<span>').addClass('fa fa-times'));
+        buttonSearch.insertAfter(self.el);
+    }
+    if ($(self.el).parent().find('.buttonRemove').length) {
+        buttonRemove = $(self.el).parent().find('.buttonRemove');
+    }
+    else {
+        buttonRemove = $('<button>')
+            .attr('style', 'font-size:small;')
+            .addClass('input-icon buttonRemove')
+            .append($('<span>').addClass('fa fa-times'));
+        buttonRemove.appendTo($(self.el).parent());
+    }
 
     buttonSearch.click(function () {
         if (options.caller) {
@@ -210,26 +251,38 @@ $().w2field('addType', 'popupDSDonHang', function (options) {
     buttonRemove.appendTo($(self.el).parent());
     buttonSearch.insertAfter(self.el);
 });
-
-$().w2field('addType', 'popupDSThongTin', function (options) {
+$().w2field('addType', 'popupDSThongTinNguoiDung', function (options) {
     var self = this;
 
 
     $(this.el).css('width', '30%').attr('disabled', 'disabled');
-    var input = $('<input>').css({
-        width: '65%',
-        border: '0px'
-    });
+    var input;
+    if ($(self.el).parent().find('.inputSearch').length) {
+        input = $(self.el).parent().find('.inputSearch');
+        if (options.data) {
+            input.val(options.data.HoTen);
+        }
+        else {
+            input.val('');
+        }
+        input.off('keydown');
+    }
+    else {
+        input = $('<input>').css({
+            width: '65%',
+            border: '0px'
+        }).addClass('inputSearch');
+        $(this.el).parent().append(input);
+    }
 
-    $(this.el).parent().append(input);
     //this sau khi extend sẽ được chứa trong $(this.el).data('w2field')
     $.extend(self, {
         onMessageReceive: function (sender, message) {
-            if (message.type != 'popupDSThongTin')
+            if (message.type != 'popupDSThongTinNguoiDung')
                 return;
-            $(self.el).val(message.data.LoaiHangHoaId);
+            $(self.el).val(message.data.ThongTinNguoiDungId);
             $(self.el).change();
-            $(input).val(message.data.Ten)
+            $(input).val(message.data.HoTen)
             $(self.el).data('data', message);
         }
     });
@@ -237,22 +290,34 @@ $().w2field('addType', 'popupDSThongTin', function (options) {
     var data = {
         param: {},
         name: $(self.el).attr('name'),
-        type: 'popupDSThongTin',
+        type: 'popupDSThongTinNguoiDung',
         id: $(self.el).attr('name'),
         $el: self.el,
         field: self,
         eventType: ''
     }
-    console.log($(self.el).parent().data());
-    var buttonSearch = $('<button>')
-        .attr('style', 'margin-left:auto !important; font-size:small;')
-        .addClass('input-icon')
-        .append($('<span>').addClass('fa fa-search'));
-    var buttonRemove = $('<button>')
-        //.attr('style', 'margin-left:auto !important; font-size:small;')
-        .addClass('input-icon')
-        .append($('<span>').addClass('fa fa-times'));
 
+    var buttonSearch, buttonRemove;
+    if ($(self.el).parent().find('.buttonSearch').length) {
+        buttonSearch = $(self.el).parent().find('.buttonSearch');
+    }
+    else {
+        buttonSearch = $('<button>')
+        .attr('style', 'margin-left:auto !important; font-size:small;')
+        .addClass('input-icon buttonSearch')
+        .append($('<span>').addClass('fa fa-search'));
+        buttonSearch.insertAfter(self.el);
+    }
+    if ($(self.el).parent().find('.buttonRemove').length) {
+        buttonRemove = $(self.el).parent().find('.buttonRemove');
+    }
+    else {
+        buttonRemove = $('<button>')
+            .attr('style', 'font-size:small;')
+            .addClass('input-icon buttonRemove')
+            .append($('<span>').addClass('fa fa-times'));
+        buttonRemove.appendTo($(self.el).parent());
+    }
     buttonSearch.click(function () {
         if (options.caller) {
             data.eventType = 'open';
@@ -263,7 +328,6 @@ $().w2field('addType', 'popupDSThongTin', function (options) {
             SearchOnOpen: true,
             ThongTinNguoiDung: {
                 HoTen: input.val(),
-                SoDienThoai:input.val(),
                 Page: 1
             }
         });
@@ -276,15 +340,16 @@ $().w2field('addType', 'popupDSThongTin', function (options) {
             if (records.length == 1) {
                 self.onMessageReceive(null, {
                     data: records[0],
-                    type: 'popupDSThongTin'
+                    type: 'popupDSThongTinNguoiDung'
                 });
                 return;
             }
             else {
                 options.caller.openPopup({
                     name: self.type,
+                    title:'Chọn thông tin người dùng',
                     url: '/User/ThongTinNguoiDungManagement/ListThongTinNguoiDung',
-                    width: data.width || (options.width || 600),
+                    width: data.width || (options.width || 800),
                     height: data.height || (options.height || 'auto'),
                     resizable: true
 
@@ -308,6 +373,4 @@ $().w2field('addType', 'popupDSThongTin', function (options) {
             buttonSearch.click();
         }
     })
-    buttonRemove.appendTo($(self.el).parent());
-    buttonSearch.insertAfter(self.el);
 });

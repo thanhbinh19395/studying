@@ -153,6 +153,7 @@
   <ItemGroup>
     <Content Include="Views\ThongTinNguoiDungManagement\InsertThongTinNguoiDung.js" />
     <Content Include="Views\ThongTinNguoiDungManagement\ListThongTinNguoiDung.js" />
+    <Content Include="Views\ThongTinNguoiDungManagement\XemChiTiet.js" />
     <Content Include="Views\ThongTinNguoiDungManagement\UpdateThongTinNguoiDung.js" />
     <Content Include="Views\UserManagement\InsertUser.js" />
     <Content Include="Views\UserManagement\ListUser.js" />
@@ -203,6 +204,7 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\ThongTinNguoiDungManagement\XemChiTiet.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

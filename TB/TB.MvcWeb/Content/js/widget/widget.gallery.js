@@ -4,7 +4,8 @@
         buttons: null,
         title: null,
         height: '300px',
-        width:''
+        width: '',
+        urlColName: 'imageUrl'
     },
     _create: function () {
         var self = this;
@@ -19,7 +20,7 @@
         this.options.galleryContainer = $('<ul>').addClass('gallery col-xs-12 col-sm-12 col-md-12 col-lg-12').appendTo(boxContent);
         $(this.options.galleryContainer).slimScroll({
             width: this.options.width,
-            height:this.options.height,
+            height: this.options.height,
             touchScrollStep: 30
         });
         //$(this.options.galleryContainer).css('width', '');
@@ -27,27 +28,30 @@
 
         if (this.options.images)
             this._addImages(this.options.images);
-        
+
         self.setWidgetFunction();
-        
+
     },
     _init: function () {
         this._super();
         this._saveData(($(this.element).data("widget-gallery")).options);
-        
+
     },
-    test:function(){},
+    test: function () { },
     _addImage: function (url, thumbUrl) {
 
         var self = this;
-        var liTag = $('<li>').addClass('col-xs-2 col-sm-2 col-md-2 col-lg-2').css('margin', '10px 0px').appendTo(this.options.galleryContainer);
+        var liTag = $('<li>').addClass('col-xs-2 col-sm-2 col-md-2 col-lg-2')
+            .css('margin', '10px 0px')
+            .data('data', data)
+            .appendTo(this.options.galleryContainer);
         var divTag = $('<div>').css({
             height: '100px',
             'display': 'flex',
             'align-items': 'center',
             'justify-content': 'center',
         }).appendTo(liTag);
-        var imgTag = $('<img>').attr('src', thumbUrl).attr('imageUrl', url).css('max-height', '100px')
+        var imgTag = $('<img>').attr('src', url).css('max-height', '100px')
             .addClass('img-responsive')
             .appendTo(divTag);
         if (this.options.buttons) {
@@ -56,7 +60,7 @@
                 var aTag = $('<a>').appendTo(toolContainer);
                 var icon = $('<i>').addClass(value.icon).appendTo(aTag);
                 $(aTag).click(function () {
-                    value.onclick(url, thumbUrl, liTag);
+                    value.onclick(url, data, liTag);
                 });
             })
         }
@@ -67,7 +71,7 @@
             this.options.images = [];
         $.each(images, function (key, value) {
             $.extend(self.options.images, value);
-            self._addImage(value.ImageUrl, value.ThumbnailUrl);
+            self._addImage(value[urlColName], value);
         });
     },
     _clear: function (images) {
@@ -76,8 +80,8 @@
     },
     setWidgetFunction: function () {
         var self = this;
-        this.options.addImage = function (url, thumbUrl) {
-            self._addImage(url, thumbUrl);
+        this.options.addImage = function (url, data) {
+            self._addImage(url, data);
         }
         this.options.clear = function () { self._clear(); }
         this.options.addImages = function (images) { self._addImages(images); }

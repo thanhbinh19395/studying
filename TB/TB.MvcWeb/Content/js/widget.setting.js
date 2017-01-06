@@ -147,7 +147,7 @@ define(function () {
                 $.extend(obj, options || {});
                 $.extend(obj, { _type: "uploader", template: $("<div>") });
                 return {
-                    generateUniqueName:function(v){
+                    generateUniqueName: function (v) {
                         $.extend(obj, { unique_names: v });
                         return this;
                     },
@@ -157,7 +157,7 @@ define(function () {
                                 handler(data);
                             }
                         });
-                        return this;s
+                        return this; s
                     },
                     onFileUploaded: function (handler) {
                         $.extend(obj, {
@@ -235,6 +235,10 @@ define(function () {
                 $.extend(obj, options || {});
                 $.extend(obj, { _type: "gallery", template: $("<div>") });
                 return {
+                    setUrlColName: function (name) {
+                        $.extend(obj, { urlColName: name });
+                        return this;
+                    },
                     setName: function (name) {
                         $.extend(obj, { name: name });
                         return this;

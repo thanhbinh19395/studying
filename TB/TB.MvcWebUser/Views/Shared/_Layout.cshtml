@@ -32,6 +32,7 @@
     <link href="~/Content/Template/css/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet">
     <link href="~/Content/Template/css/jquery.fancybox.css" rel="stylesheet">
     <link href="~/Content/Template/css/hoverfold.css" rel="stylesheet">
+    @RenderSection("styles", false)
 </head>
 <body class="responsive">
     <div class="loader">
@@ -255,6 +256,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- //end Secondary menu -->
+                            <!-- Search -->
+                            <form class="navbar-search form-inline hidden-xs pull-right" role="form">
+                                <div class="form-group">
+                                    <button type="submit" class="button"><span class="icon-search-2"></span></button>
+                                    <input type="text" class="form-control" value="Search" onblur="if (this.value == '') {this.value = 'Search';}" onfocus="if(this.value == 'Search') {this.value = '';}">
+                                </div>
+                            </form>
+                            <!-- //end Search -->
                             <!-- Secondary menu mobile -->
                             <div class="navbar-secondary-menu pull-right  compact-hidden visible-xs">
                                 <div class="btn-group visible-xs">
@@ -463,18 +473,7 @@
                 <div class="row">
 
                     <!-- Left column -->
-                    <h3> Tìm kiếm theo Tên</h3>
                     <aside class="col-sm-4 col-md-3 col-lg-3 content-aside">
-                        <section>
-                            <form class="navbar-search form-inline hidden-xs pull-left" role="form" action="/Sach/TimKiemTheoTen">
-                                <div class="form-group">
-                                    <button type="submit" class="button"><span class="icon-search-2"></span></button>
-                                    <input name="id" id="id" type="text" class="form-control" value="Search" onblur="if (this.value == '') {this.value = 'Search';}" onfocus="if(this.value == 'Search') {this.value = '';}">
-                                </div>
-
-                            </form>
-                        </section>
-                        <div class="section-divider"></div>
                         <!-- Shop by categories -->
                         <section>
                             @{
@@ -638,6 +637,7 @@
     <script src="~/Content/Template/js/jquery.countdown.js"></script>
     <script src="~/Content/Template/js/jquery.carouFredSel-6.2.1-packed.js"></script>
     <script src="~/Content/Template/js/megatron.js"></script>
+    @*<script src="~/Scripts/giohang.js"></script>*@
     @RenderSection("scripts", false)
 </body>
 </html>

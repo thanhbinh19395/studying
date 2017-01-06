@@ -25,7 +25,7 @@
 	font-weight: 400;
 	font-style: normal
 }
-f @font-face {
+@font-face {
 	font-family: Mavenpro-bold;
 	src: url(../fonts/Mavenpro/mavenpro-bold-webfont.eot);
 	src: url(../fonts/Mavenpro/mavenpro-bold-webfont.eot?#iefix) format('embedded-opentype'), url(../fonts/Mavenpro/mavenpro-bold-webfont.woff) format('woff'), url(../fonts/Mavenpro/mavenpro-bold-webfont.ttf) format('truetype'), url(../fonts/Mavenpro/mavenpro-bold-webfont.svg#maven_probold) format('svg');
@@ -109,13 +109,13 @@ h1 {
 h2 {
 	margin: 0;
 	padding: 0 0 1.3em;
-	font: 2em Mavenpro, Arial, Helvetica, sans-serif;
+	font: 2em Arial, Helvetica, sans-serif;
 	color: #4a4a4a
 }
 h3 {
 	margin: 0;
 	padding: 0 0 0.95em;
-	font: 1.692em Mavenpro, Arial, Helvetica, sans-serif;
+	font: 1.692em Arial, Helvetica, sans-serif;
 	text-transform: uppercase;
 	color: #2b2b2b
 }
@@ -290,7 +290,7 @@ label {
 .btn-mega.btn-lg {
 	padding: 15px 35px;
 	border-radius: 4px;
-	font: 1.077em Mavenpro-black, Arial, Helvetica, sans-serif
+	font: 1.077em Arial, Helvetica, sans-serif
 }
 .btn-mega.btn-xlg {
 	padding: 1.5em 3em;
@@ -4013,7 +4013,7 @@ _:valid\0, .contacts-form input.form-control, .contacts-form textarea.form-contr
 	border-radius: 3px 3px 0 0;
 	text-transform: uppercase;
 	padding: 10px 15px 8px;
-	font: 1em/1.5em Mavenpro, Arial, Helvetica, sans-serif
+	/*font: 1em/1.5em Mavenpro, Arial, Helvetica, sans-serif*/
 }
 .nav-tabs>li>a:hover {
 	border-color: #eee #eee #ddd

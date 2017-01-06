@@ -93,13 +93,9 @@
 }
 @section PageMainModule {
         $(document).ready(function () {
-            if (ViewBag.ErrorMessage) {
-                $.gritter.add({
-                    text: ViewBag.ErrorMessage,
-                    title: "Lỗi"
-                });
+            if (ViewBag.Result) {
+                alert(ViewBag.Result.Message);
             }
-
             $("#btn-goto-merchant1").click(function () {
                 $('input[name=Username]').val('nhanvien01');
                 $('input[name=Password]').val('admin');

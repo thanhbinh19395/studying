@@ -1,5 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    TB.Domain.EntityModel.User LoginUser = Session["LoginUser"] as TB.Domain.EntityModel.User;
+    DateTime LoginDate = (DateTime)Session["LoginDate"];
 }
 @section scripts{
     @if (true)
@@ -15,7 +17,7 @@
 }
 @section PageMainModule{
     @RenderSection("PageMainModule", false)
-    }
+}
 <div class="skin-black">
     <!-- BEGIN Navbar -->
     <div id="navbar" class="navbar">
@@ -24,8 +26,8 @@
         </button>
         <a class="navbar-brand" href="#">
             <small>
-                <i class="fa fa-desktop"></i>
-                FLATY Admin
+                <i style="font-size:1.5em" class="fa fa-rocket"></i>
+                Hệ thống bán lẻ
             </small>
         </a>
         <!-- BEGIN Navbar Buttons -->
@@ -201,27 +203,37 @@
             <li class="user-profile">
                 <a data-toggle="dropdown" href="#" class="user-menu dropdown-toggle">
                     <img class="nav-user-photo" src="~/Content/flaty/img/demo/avatar/avatar2.jpg" alt="Penny's Photo" />
-                    <span class="hhh" id="user_info">Penny</span>
+                    <span class="hhh" id="user_info">
+                        Xin chào! 
+                        @if (LoginUser.ThongTinNguoiDung != null)
+                        {
+                            @LoginUser.ThongTinNguoiDung.HoTen
+                        }
+                        else
+                        {
+                            @LoginUser.Username
+                        }
+                    </span>
                     <i class="fa fa-caret-down"></i>
                 </a>
                 <!-- BEGIN User Dropdown -->
                 <ul class="dropdown-menu dropdown-navbar" id="user_menu">
                     <li class="nav-header">
-                        <i class="fa fa-clock-o"></i> Logined From 20:45
+                        <i class="fa fa-clock-o"></i> Đăng nhập lúc @LoginDate.ToString("hh:mm")
                     </li>
                     <li>
                         <a href="#">
-                            <i class="fa fa-cog"></i> Account Settings
+                            <i class="fa fa-cog"></i> Tùy chỉnh
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class="fa fa-user"></i> Edit Profile
+                            <i class="fa fa-user"></i> Thông tin cá nhân
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class="fa fa-question"></i> Help
+                            <i class="fa fa-question"></i> Trợ giúp
                         </a>
                     </li>
                     <li class="divider visible-xs"></li>
@@ -245,8 +257,8 @@
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="#">
-                            <i class="fa fa-off"></i> Logout
+                        <a href="/Security/Authorize/SignOut">
+                            <i class="fa fa-off"></i> Đăng xuất
                         </a>
                     </li>
                 </ul>
@@ -276,17 +288,17 @@
                 </li>
                 <!-- END Search Form -->
                 @*<li class="active">
-                    <a href="~/Content/flaty/index-2.html">
-                        <i class="fa fa-dashboard"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>*@
+                        <a href="~/Content/flaty/index-2.html">
+                            <i class="fa fa-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>*@
                 <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListHangHoa" ? "active" : "")">
                     <a href="@Url.Action("ListHangHoa", "HangHoaManagement", new { Area = "HangHoa"})">
                         <i class="fa fa-lock"></i>
                         <span>Danh sach hang hoa</span>
                     </a>
-                
+
                 </li>
                 <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListLoaiHangHoa" ? "active" : "")">
                     <a href="@Url.Action("ListLoaiHangHoa", "LoaiHangHoaManagement", new { Area = "LoaiHangHoa"})">

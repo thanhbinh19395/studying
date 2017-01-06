@@ -27,10 +27,31 @@ namespace Security.Controllers
             if (isValidUser)
             {
                 Session.Add("LoginUser", result.Data);
-                return Redirect(login.ReturnUrl);
+                Session.Add("LoginDate", DateTime.Now);
+                if (String.IsNullOrWhiteSpace(login.ReturnUrl))
+                {
+                    return Redirect("/");
+                }
+                else
+                {
+                    return Redirect(login.ReturnUrl);
+                }
+
             }
-            SignIn(login.ReturnUrl);
-            return null;
+            else
+            {
+                ViewBag.ReturnUrl = login.ReturnUrl;
+                ViewBag.Result = result;
+                return View("SignIn");
+            }
+        }
+
+        public ActionResult SignOut()
+        {
+            Session.Remove("LoginUser");
+            Session.Remove("LoginDate");
+            ViewBag.ReturnUrl = "";
+            return View("SignIn");
         }
     }
 }

@@ -28,7 +28,7 @@
         [NPOI.Extension.Column(Index = 1, Title = "Tên", AllowMerge = false)]
         public string Ten { get; set; }
 
-        [NPOI.Extension.Column(Index = 4, Title = "Giá bán", AllowMerge = false]
+        [NPOI.Extension.Column(Index = 4, Title = "Giá bán", AllowMerge = false)]
         public int? GiaBanThamKhao { get; set; }
 
         [StringLength(500)]

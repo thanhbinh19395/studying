@@ -119,7 +119,6 @@ namespace Uploader.Controllers
             var thumbnailStoragePath = "~/App_Data/HinhAnhHangHoa/thumbnail";
             var imgURL = Path.Combine(Server.MapPath(thumbnailStoragePath), fileName);
             return File(imgURL, "image/png");
-
         }
     }
 }

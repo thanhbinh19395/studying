@@ -83,6 +83,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnhHangHoaDeleteByHangHoaIdRepository.cs" />
     <Compile Include="AnhHangHoaInsertRepository.cs" />
     <Compile Include="AnhHangHoaSearchRepository.cs" />
     <Compile Include="AnhHangHoaDeleteRepository.cs" />

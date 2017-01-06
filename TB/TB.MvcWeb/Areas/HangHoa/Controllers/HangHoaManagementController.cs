@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using TB.HangHoaRepo;
 using TB.Domain;
 using NPOI.Extension;
+using TB.DonHangBus;
 
 namespace HangHoa.Controllers
 {
@@ -49,7 +50,7 @@ namespace HangHoa.Controllers
         }
 
         [HttpPost]
-        public ActionResult ExecuteDeleteHangHoa(HangHoaDeleteRepository repo)
+        public ActionResult ExecuteDeleteHangHoa(DeleteHangHoaBusiness repo)
         {
             return Json(repo.Execute(this));
         }

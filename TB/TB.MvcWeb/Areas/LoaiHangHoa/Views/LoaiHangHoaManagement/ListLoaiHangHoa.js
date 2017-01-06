@@ -38,7 +38,7 @@
         header.setName('header');
         var self = this;
         var form = widget.setting.form(); 
-
+        debugger
         form.setName('searchForm')
             .setFieldPerRow(1) // so cot trong form
             .addFields([

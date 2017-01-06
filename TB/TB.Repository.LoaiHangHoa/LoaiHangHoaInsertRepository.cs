@@ -20,6 +20,10 @@ namespace TB.LoaiHangHoaRepo
         }
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
+            //them 2 dong nay
+            LoaiHangHoa.CreatedDate = DateTime.Now;
+            LoaiHangHoa.UpdatedDate = DateTime.Now;
+
             db.LoaiHangHoas.Add(LoaiHangHoa);
             return Success(db.SaveChanges());
         }

@@ -43,8 +43,8 @@
         twbspagination: '../plugins/twbspagination/jquery.twbsPagination',
         jqueryUI: '../plugins/jquery-ui-1.11.4/jquery-ui',
         jqueryUIDiaglogExtend: '../plugins/jquery-ui-DialogExtend/jquery.dialogextend',
-        noty: '../plugins/noty-2.3.8/jquery.noty',
-        notyLayoutTopRight: '../plugins/noty-2.3.8/layouts/topRight',
+        noty: '../plugins/noty-2.3.11/js/noty/packaged/jquery.noty.packaged.min',
+        notySetting: 'noty.setting',
         blockUI: '../plugins/blockUI/jquery.blockUI',
         blockUISetting: 'blockUI.setting'
     },
@@ -69,7 +69,7 @@
         flotCrosshair: ['flot'],
         flotTooltip: ['flot'],
         noty: ['jquery'],
-        notyLayoutTopRight:['noty'],
+        notySetting: ['noty'],
         //framework
         framework: ['widget', 'global', 'common'],
 

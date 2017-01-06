@@ -156,9 +156,12 @@
         w2confirm('Bạn có chắc chắn muốn xóa dòng này không ?').yes(function () {
             var grid = self.findElement('grid');
             var id = grid.getSelection()[0];
-            $.post(self.commonOptions.apiExecuteUrl.deleteUrl, { LoaiHangHoaId: id }, function (data) {
-                console.log(data);
-                self.onbtnReloadClick();
+            $.post(self.commonOptions.apiExecuteUrl.deleteUrl, { HangHoaId: id }, function (data) {
+                if (data.IsSuccess)
+                    self.onbtnReloadClick();
+                else
+                    alert(data.Message);
+                
             });
         });
     },

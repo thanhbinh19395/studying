@@ -17,10 +17,9 @@
                     active: 'thumbs'
                 },
             }).onImageClick(function (data) {
-                console.log(data);
                 $.extend(data, { type: 'addImage' });
                 self.sendMessage(data);
-            }).onFileUploaded(this.onFileUploaded.bind(this))
+            }).onFileUploaded(this.onFileUploaded.bind(this)).generateUniqueName(true)
         ;
         var panel = widget.setting.panel();
         panel.addItem(uploaderSetting.end());

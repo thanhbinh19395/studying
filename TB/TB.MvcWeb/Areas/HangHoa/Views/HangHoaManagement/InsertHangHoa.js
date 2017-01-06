@@ -57,7 +57,6 @@
         if (!form.validate().length) {
             $.post('/HangHoa/HangHoaManagement/ExecuteInsertHangHoa', { HangHoa: form.record }, function (data) {
                 if (!data.IsSuccess) {
-                    debugger;
                     alert(data.Message);
                     return;
                 }
@@ -104,7 +103,6 @@
                 contentType: false,
                 data: data,
                 success: function (response) {
-                    console.log(response);
                     successHandler && successHandler.call(self, response);
                 },
                 error: function (er) {

@@ -8,10 +8,10 @@
 
 .table-form .w2ui-field-helper.w2ui-list {
     margin-left: -1px !important;
-    width: 100% !important;
+    /*width: 100% !important;*/
     border-radius: 0px;
     border-color: #cfcfcf;
-    height: 28px !important;
+    /*height: 28px !important;*/
     outline: 0 !important;
 }
 

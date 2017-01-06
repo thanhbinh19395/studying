@@ -83,6 +83,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeleteHangHoaBusiness.cs" />
     <Compile Include="InsertDonHangKhachQuenBusiness.cs" />
     <Compile Include="InsertDonHangKhachLaBusiness.cs" />
     <Compile Include="ThanhToanDonHangBusiness.cs" />
@@ -95,6 +96,10 @@
       <Project>{90F20CF0-FF8F-432C-9DD7-F2F13734A625}</Project>
       <Name>TB.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TB.Repository.AnhHangHoa\TB.AnhHangHoaRepo.csproj">
+      <Project>{19cc4ba6-1ac3-4a17-aef4-1615fcf25459}</Project>
+      <Name>TB.AnhHangHoaRepo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TB.Repository.Base\TB.Repository.Base.csproj">
       <Project>{7749b81b-d5d0-404f-aaa0-441f22b765b0}</Project>
       <Name>TB.Repository.Base</Name>
@@ -106,6 +111,10 @@
     <ProjectReference Include="..\TB.Repository.DonHang\TB.DonHangRepo.csproj">
       <Project>{43694d9c-9de9-4539-a350-618f9d273f15}</Project>
       <Name>TB.DonHangRepo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TB.Repository.HangHoa\TB.HangHoaRepo.csproj">
+      <Project>{e2a80703-1310-4a15-962c-4c8473079cbc}</Project>
+      <Name>TB.HangHoaRepo</Name>
     </ProjectReference>
     <ProjectReference Include="..\TB.Repository.HoaDon\TB.HoaDonRepo.csproj">
       <Project>{9032e501-258a-481f-965c-356db7b81397}</Project>

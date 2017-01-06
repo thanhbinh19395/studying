@@ -22,7 +22,8 @@ namespace TB.LoaiHangHoaRepo
             var lhh = db.LoaiHangHoas.SingleOrDefault(p=>p.LoaiHangHoaId == this.LoaiHangHoa.LoaiHangHoaId);
             lhh.Ma = LoaiHangHoa.Ma;
             lhh.Ten = LoaiHangHoa.Ten;
-
+            //them dong nay
+            lhh.UpdatedDate = DateTime.Now;
             return Success(db.SaveChanges());
         }
     }

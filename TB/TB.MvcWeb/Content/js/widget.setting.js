@@ -147,6 +147,10 @@ define(function () {
                 $.extend(obj, options || {});
                 $.extend(obj, { _type: "uploader", template: $("<div>") });
                 return {
+                    generateUniqueName:function(v){
+                        $.extend(obj, { unique_names: v });
+                        return this;
+                    },
                     onImageClick: function (handler) {
                         $.extend(obj, {
                             onImageClick: function (data) {

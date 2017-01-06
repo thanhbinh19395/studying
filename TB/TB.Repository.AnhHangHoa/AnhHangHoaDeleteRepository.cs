@@ -11,7 +11,7 @@ namespace TB.AnhHangHoaRepo
 {
     public class AnhHangHoaDeleteRepository : BaseRepository<int>
     {
-        public int AnhHangHoaId { get; set; }
+        public long AnhHangHoaId { get; set; }
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
             db.AnhHangHoas.Remove(db.AnhHangHoas.Single(p => p.AnhHangHoaId == this.AnhHangHoaId));

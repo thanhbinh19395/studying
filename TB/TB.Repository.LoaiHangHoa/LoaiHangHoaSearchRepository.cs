@@ -15,20 +15,6 @@ namespace TB.LoaiHangHoaRepo
         public LoaiHangHoa LoaiHangHoa { get; set; }
         public override Result<dynamic> ExecuteCore(Controller CurrentContext)
         {
-            #region Get List
-            //if (LoaiHangHoa == null || Extensions.DeepEquals(LoaiHangHoa, new LoaiHangHoa()))
-            //{
-            //    var tmp = db.LoaiHangHoas.ToPagedListForEntityFramework(s => s.LoaiHangHoaId, Convert.ToInt32(Page), PageSize);
-            //    var data = new
-            //    {
-            //        Data = tmp.ToList(),
-            //        PageCount = tmp.PageCount,
-            //        Page = tmp.PageNumber,
-            //    };
-            //    return Success(data);
-
-            //}
-            #endregion
 
             #region Search
             //var result = db.LoaiHangHoas.Where(
@@ -44,6 +30,9 @@ namespace TB.LoaiHangHoaRepo
                 result = result.Where(p => p.Ma.Contains(LoaiHangHoa.Ma));
             if (!String.IsNullOrWhiteSpace(LoaiHangHoa.Ten))
                 result = result.Where(p => p.Ten.Contains(LoaiHangHoa.Ten));
+
+            //them dong nay
+            result = result.OrderByDescending(p => p.UpdatedDate);
 
             int curPage = Page != null ? Convert.ToInt32(Page) : 1;
             var page = result.ToPagedListForEntityFramework(s => s.LoaiHangHoaId, curPage, PageSize);

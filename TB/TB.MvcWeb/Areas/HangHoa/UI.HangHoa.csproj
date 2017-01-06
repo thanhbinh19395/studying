@@ -155,6 +155,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\AnhHangHoa\ListHangHoa.cshtml" />
+    <Content Include="Views\AnhHangHoa\ListHangHoa.js" />
     <Content Include="Views\HangHoaManagement\InsertHangHoa.js" />
     <Content Include="Views\HangHoaManagement\ListHangHoa.js" />
     <Content Include="Views\HangHoaManagement\UpdateHangHoa.js" />
@@ -162,7 +164,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\AnhHangHoa\" />
     <Folder Include="Views\Models\" />
   </ItemGroup>
   <ItemGroup>

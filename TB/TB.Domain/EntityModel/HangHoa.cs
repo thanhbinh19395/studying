@@ -31,7 +31,6 @@
         [NPOI.Extension.Column(Index = 4, Title = "Giá bán", AllowMerge = false)]
         public int? GiaBanThamKhao { get; set; }
 
-        [StringLength(500)]
         public string MoTa { get; set; }
 
         public long? LoaiHangHoaId { get; set; }

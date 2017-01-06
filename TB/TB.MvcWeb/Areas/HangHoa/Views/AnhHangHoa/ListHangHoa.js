@@ -16,7 +16,7 @@
                     { field: 'Ten', caption: 'Tên', size: '15%' },
                     { field: 'GiaBanThamKhao', caption: 'Giá Bán', size: '10%', render: 'float:0' }, //number_format
                     { field: 'NhaCungCap.Ten', caption: 'Nhà Sản Xuất', size: '7%' },
-                    { field: 'LoaiHangHoa.Ten', caption: 'Loại Hàng Hóa', size: '10%' },
+                    { field: 'LoaiHanghoa.Ten', caption: 'Loại Hàng Hóa', size: '10%' },
             ],
         },
         //nhớ sửa param

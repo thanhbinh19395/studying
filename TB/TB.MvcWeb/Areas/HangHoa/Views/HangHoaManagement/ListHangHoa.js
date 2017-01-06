@@ -63,11 +63,11 @@
 
         var formFooter = widget.setting.toolbar();
         formFooter.addItem({
+            type: 'button', id: 'btn-exportExcell', caption: 'Xuất Excel', icon: 'fa-file-excel-o',
+            onClick: self.onbtnExportExcelClickSearchForm.bind(self)
+        }).addItem({
             type: 'button', id: 'btn-search', caption: 'Tìm kiếm', icon: 'fa-search',
             onClick: self.onbtnSearchClickSearchForm.bind(self)
-        }).addItem({
-            type: 'button', id: 'btn-exportExcell', caption: 'Xuat Excel', icon: 'fa-file-excel-o',
-            onClick: self.onbtnExportExcelClickSearchForm.bind(self)
         })
         ;
 
@@ -206,7 +206,7 @@
             url: '/HangHoa/HangHoaManagement/ExportExcelListHangHoa',
             data: form.record
         }, {
-            LoaiHangHoa: 'data'
+            HangHoa: 'data'
         });
         //$.post('/HangHoa/HangHoaManagement/ExportExcelListHangHoa', { HangHoa: form.record }, function (d) {
         //    //grid.clear();

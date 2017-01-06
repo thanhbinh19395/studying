@@ -21,14 +21,14 @@
 
         [StringLength(50)]
         [CaseSensitive]
-        [NPOI.Extension.Column(Index = 0, Title = "Mã", AllowMerge = true)]
+        [NPOI.Extension.Column(Index = 0, Title = "Mã", AllowMerge = false)]
         public string Ma { get; set; }
 
         [StringLength(100)]
-        [NPOI.Extension.Column(Index = 1, Title = "Tên HH", AllowMerge = true)]
+        [NPOI.Extension.Column(Index = 1, Title = "Tên", AllowMerge = false)]
         public string Ten { get; set; }
 
-        [NPOI.Extension.Column(Index = 3, Title = "Giá bán", AllowMerge = true)]
+        [NPOI.Extension.Column(Index = 4, Title = "Giá bán", AllowMerge = false]
         public int? GiaBanThamKhao { get; set; }
 
         [StringLength(500)]
@@ -40,7 +40,7 @@
 
         public bool? IsActive { get; set; }
 
-        [NPOI.Extension.Column(Index = 2, Title = "Loại Hàng hóa", AllowMerge = true)]
+        [NPOI.Extension.Column(Index = 2, Title = "Loại Hàng hóa", AllowMerge = false)]
         public string TenLoaiHangHoa
         {
             get
@@ -52,7 +52,7 @@
             }
         }
 
-        [NPOI.Extension.Column(Index = 3, Title = "Nhà cung cấp", AllowMerge = true)]
+        [NPOI.Extension.Column(Index = 3, Title = "Nhà cung cấp", AllowMerge = false)]
         public string TenNhaCungCap
         {
             get

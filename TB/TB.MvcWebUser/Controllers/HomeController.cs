@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TB.Domain.EntityModel;
+using TB.DonHangBus;
 using TB.MvcWebUser.Models;
 
 namespace TB.MvcWebUser.Controllers
@@ -61,7 +62,7 @@ namespace TB.MvcWebUser.Controllers
             Session["GioHang"] = giohang;
             //trả về tổng số lượng hàng hòa            
 
-            
+
         }
         [HttpPost]
         public JsonResult getInfoCart()
@@ -119,15 +120,50 @@ namespace TB.MvcWebUser.Controllers
         {
             List<CartItem> giohang = Session["GioHang"] as List<CartItem>;
             CartItem item = giohang.SingleOrDefault(p => p.ProductOrder.HangHoaId == HanghoaId);
-            if (item != null )
+            if (item != null)
             {
                 giohang.Remove(item);
             }
             Session["GioHang"] = giohang;
         }
+
         public ActionResult ViewCarts()
         {
             return View();
+        }
+
+        public ActionResult CheckOut()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult GetQuanhuyen(long TinhThanhphoId)
+        {
+            List<Quan> Quan = db.Quans.Where(p => p.TinhThanhPhoId == TinhThanhphoId).ToList();
+            return Json(Quan);
+        }
+
+        [HttpPost]
+        public ActionResult ThemDonHangKhachLa(bool optionsRadios, InsertDonHangKhachLaBusiness repo)
+        {
+            List<CartItem> giohang = Session["GioHang"] as List<CartItem>;
+            List<ChiTietDonHang> Listctdh = new List<ChiTietDonHang>();
+            foreach (var item in giohang)
+            {
+                var ctdh = new ChiTietDonHang();
+                ctdh.HangHoaId = item.ProductOrder.HangHoaId;
+                ctdh.GiaTien = item.ProductOrder.GiaBanThamKhao;
+                ctdh.SoLuong = item.Quantity;
+                Listctdh.Add(ctdh);
+            }
+            if (!optionsRadios) {// khach la
+                repo.DonHang = new DonHang();
+                repo.ChiTietDonHang = Listctdh;
+                repo.Execute(this);
+                Session.Remove("GioHang");
+            }
+            return RedirectToAction( "Tientest", "Home");
         }
     }
 }

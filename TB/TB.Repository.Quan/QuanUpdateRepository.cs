@@ -19,11 +19,12 @@ namespace TB.QuanRepo
         }
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
-            var lhh = db.Quans.SingleOrDefault(p => p.QuanId == this.Quan.QuanId);
-            lhh.QuanId = Quan.QuanId;
-            lhh.TinhThanhPhoId = Quan.TinhThanhPhoId;
-            lhh.Ten = Quan.Ten;
+            var quan = db.Quans.SingleOrDefault(p => p.QuanId == this.Quan.QuanId);
+            quan.QuanId = Quan.QuanId;
+            quan.TinhThanhPhoId = Quan.TinhThanhPhoId;
+            quan.Ten = Quan.Ten;
 
+            quan.UpdatedDate = DateTime.Now;
             return Success(db.SaveChanges());
         }
     }

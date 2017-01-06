@@ -20,6 +20,9 @@ namespace TB.NhaCungCapRepo
         }
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
+            NhaCungCap.CreatedDate = DateTime.Now;
+            NhaCungCap.UpdatedDate = DateTime.Now;
+
             db.NhaCungCaps.Add(NhaCungCap);
             return Success(db.SaveChanges());
         }

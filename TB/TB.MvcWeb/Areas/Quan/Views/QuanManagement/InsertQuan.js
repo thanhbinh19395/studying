@@ -30,6 +30,7 @@
                     alert(data.Message);
                     return;
                 }
+                alertSuccess('Thêm quận/huyện thành công');
                 self.sendMessage({
                     type: 'reload',
                     data: data,

@@ -36,6 +36,9 @@ namespace TB.Domain.EntityModel
         [StringLength(250)]
         public string HinhAnh { get; set; }
 
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+
         public virtual Quan Quan { get; set; }
 
         public virtual TinhThanhPho TinhThanhPho { get; set; }

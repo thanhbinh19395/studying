@@ -15,6 +15,9 @@ namespace TB.LoaiHangHoaRepo
 
         public override Result<long> ExecuteCore(Controller CurrentContext)
         {
+            ThuChi.CreatedDate = DateTime.Now;
+            ThuChi.UpdatedDate = DateTime.Now;
+
             ThuChi.Ngay = DateTime.Now;
             db.ThuChis.Add(ThuChi);
             db.SaveChanges();

@@ -15,12 +15,7 @@ namespace TB.LoaiHangHoaRepo
         public LoaiHangHoa LoaiHangHoa { get; set; }
         public override Result<dynamic> ExecuteCore(Controller CurrentContext)
         {
-
             #region Search
-            //var result = db.LoaiHangHoas.Where(
-            //    p =>
-            //    p.Ma.Contains(LoaiHangHoa.Ma) ||
-            //    p.Ten.Contains(LoaiHangHoa.Ten));
             if (LoaiHangHoa == null)
                 LoaiHangHoa = new LoaiHangHoa();
 

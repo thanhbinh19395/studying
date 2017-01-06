@@ -52,15 +52,19 @@
         });
         if (!form.validate().length) {
             $.post('/HangHoa/HangHoaManagement/ExecuteUpdateHangHoa', { HangHoa: form.record }, function (data) {
-                if (!data.IsSuccess) {
-                    alert(data.Message);
-                    return;
+                if (data.IsSuccess) {
+                    alertSuccess('Cập nhật hàng hóa thành công');
+                    self.sendMessage({
+                        type: 'reload',
+                        data: data,
+                    });
+                    self.close && self.close();
                 }
-                self.sendMessage({
-                    type: 'reload',
-                    data: data,
-                });
-                self.close && self.close();
+                else
+                {
+                    alert(data.Message);
+                }
+                    
             });
         }
     },

@@ -146,8 +146,15 @@
             var grid = self.findElement('grid');
             var id = grid.getSelection()[0];
             $.post(self.commonOptions.apiExecuteUrl.deleteUrl, { LoaiHangHoaId: id }, function (data) {
-                console.log(data);
-                self.onbtnReloadClick();
+                //Thanh cong
+                if (data.IsSuccess) {
+                    alertSuccess("Xóa loại hàng hóa thành công");
+                    self.onbtnReloadClick();
+                }
+                //Loi
+                else {
+                    alert(data.Message);
+                }
             });
         });
     },

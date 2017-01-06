@@ -31,6 +31,7 @@
         if (!form.validate().length) {
             $.post('/DonHang/DonHangManagement/ExecuteUpdateDonHang', { DonHang: form.record }, function (data) {
                 if (data.IsSuccess) {
+                    alertSuccess('Cập nhật đơn hàng thành công');
                     self.sendMessage({
                         type: 'reload',
                         data: data,

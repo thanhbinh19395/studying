@@ -46,6 +46,7 @@
         if (!form.validate().length) {
             $.post('/Quan/QuanManagement/ExecuteUpdateQuan', { Quan: form.record }, function (data) {
                 if (data.IsSuccess) {
+                    alertSuccess('Cập nhật quận/huyện thành công');
                     self.sendMessage({
                         type: 'reload',
                         data: data,

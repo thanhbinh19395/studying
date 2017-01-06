@@ -157,8 +157,10 @@
             var grid = self.findElement('grid');
             var id = grid.getSelection()[0];
             $.post(self.commonOptions.apiExecuteUrl.deleteUrl, { HangHoaId: id }, function (data) {
-                if (data.IsSuccess)
+                if (data.IsSuccess) {
+                    alertSuccess('Xóa hàng hóa thành công');
                     self.onbtnReloadClick();
+                }
                 else
                     alert(data.Message);
                 

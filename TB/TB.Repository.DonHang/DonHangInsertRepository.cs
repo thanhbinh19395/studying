@@ -15,6 +15,9 @@ namespace TB.DonHangRepo
 
         public override Result<long> ExecuteCore(Controller CurrentContext)
         {
+            DonHang.CreatedDate = DateTime.Now;
+            DonHang.UpdatedDate = DateTime.Now;
+
             DonHang.NgayLap = DateTime.Now;
             db.DonHangs.Add(DonHang);
             db.SaveChanges();

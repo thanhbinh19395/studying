@@ -20,6 +20,9 @@ namespace TB.HangHoaRepo
         }
         public override Result<long> ExecuteCore(Controller CurrentContext)
         {
+            HangHoa.CreatedDate = DateTime.Now;
+            HangHoa.UpdatedDate = DateTime.Now;
+
             db.HangHoas.Add(HangHoa);
             db.SaveChanges();
             return Success(HangHoa.HangHoaId);

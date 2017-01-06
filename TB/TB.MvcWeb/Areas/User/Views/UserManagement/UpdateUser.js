@@ -42,6 +42,7 @@
             form.record.Type = form.record.Loai.id;
             $.post('/User/UserManagement/ExecuteUpdateUser', { User: form.record }, function (data) {
                 if (data.IsSuccess) {
+                    alertSuccess('Cập nhật tài khoản thành công');
                     self.sendMessage({
                         type: 'reload',
                         data: data,

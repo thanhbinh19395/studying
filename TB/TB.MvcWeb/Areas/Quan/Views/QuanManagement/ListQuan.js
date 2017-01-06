@@ -150,8 +150,12 @@
             var grid = self.findElement('grid');
             var id = grid.getSelection()[0];
             $.post(self.commonOptions.apiExecuteUrl.deleteUrl, { LoaiQuanId: id }, function (data) {
-                console.log(data);
-                self.onbtnReloadClick();
+                if (data.IsSuccess) {
+                    alertSuccess('Xóa quận/huyện thành công');
+                    self.onbtnReloadClick();
+                }
+                else
+                    alert(data.Message);
             });
         });
     },

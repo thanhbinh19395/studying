@@ -29,6 +29,9 @@ namespace TB.ThongTinNguoiDungRepo
         }
         public override Result<long> ExecuteCore(Controller CurrentContext)
         {
+            ThongTinNguoiDung.CreatedDate = DateTime.Now;
+            ThongTinNguoiDung.UpdatedDate = DateTime.Now;
+
             db.ThongTinNguoiDungs.Add(ThongTinNguoiDung);
             db.SaveChanges();
             return Success(this.ThongTinNguoiDung.ThongTinNguoiDungId);

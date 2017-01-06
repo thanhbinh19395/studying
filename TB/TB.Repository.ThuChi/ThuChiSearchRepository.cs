@@ -52,6 +52,8 @@ namespace TB.ThuChiRepo
             if (ThuChi.Ngay != null)
                 result = result.Where(p => p.Ngay == ThuChi.Ngay);
 
+            result = result.OrderByDescending(p => p.UpdatedDate);
+
             int curPage = Page != null ? Convert.ToInt32(Page) : 1;
             var page = result.ToPagedListForEntityFramework(s => s.ThuChiId, curPage, PageSize);
             var dataSearch = new

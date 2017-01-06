@@ -21,6 +21,7 @@ namespace TB.DonHangRepo
             lhh.KhachHangId = DonHang.KhachHangId;
             lhh.GhiChu = DonHang.GhiChu;
 
+            lhh.UpdatedDate = DateTime.Now;
             return Success(db.SaveChanges());
         }
     }

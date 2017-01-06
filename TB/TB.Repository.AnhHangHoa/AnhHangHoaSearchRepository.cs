@@ -19,6 +19,8 @@ namespace TB.AnhHangHoaRepo
             if (HangHoaId != null)
                 result = result.Where(p => p.HangHoaId == HangHoaId);
 
+            result = result.OrderByDescending(p => p.UpdatedDate);
+
             int curPage = Page != null ? Convert.ToInt32(Page) : 1;
             var page = result.ToPagedListForEntityFramework(s => s.AnhHangHoaId, curPage, PageSize);
             var dataSearch = new

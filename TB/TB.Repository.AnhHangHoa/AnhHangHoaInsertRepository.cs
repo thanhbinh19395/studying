@@ -15,6 +15,10 @@ namespace TB.AnhHangHoaRepo
 
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
+            AnhHangHoa.CreatedDate = DateTime.Now;
+            AnhHangHoa.UpdatedDate = DateTime.Now;
+
+
             db.AnhHangHoas.Add(AnhHangHoa);
             return Success(db.SaveChanges());
         }

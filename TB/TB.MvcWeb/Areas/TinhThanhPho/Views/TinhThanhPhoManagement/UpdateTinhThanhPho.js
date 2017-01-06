@@ -28,6 +28,7 @@
         if (!form.validate().length) {
             $.post('/TinhThanhPho/TinhThanhPhoManagement/ExecuteUpdateTinhThanhPho', { TinhThanhPho: form.record }, function (data) {
                 if (data.IsSuccess) {
+                    alertSuccess('Cập nhật tỉnh/thành phố thành công');
                     self.sendMessage({
                         type: 'reload',
                         data: data,

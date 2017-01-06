@@ -29,6 +29,7 @@
         if (!form.validate().length) {
             $.post('/NhaCungCap/NhaCungCapManagement/ExecuteUpdateNhaCungCap', { NhaCungCap: form.record }, function (data) {
                 if (data.IsSuccess) {
+                    alertSuccess('Cập nhật nhà cung cấp thành công');
                     self.sendMessage({
                         type: 'reload',
                         data: data,

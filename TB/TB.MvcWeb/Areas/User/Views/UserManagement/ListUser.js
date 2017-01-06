@@ -178,8 +178,12 @@
             var grid = self.findElement('grid');
             var id = grid.getSelection()[0];
             $.post(self.commonOptions.apiExecuteUrl.deleteUrl, { UserId: id }, function (data) {
-                console.log(data);
-                self.onbtnReloadClick();
+                if (data.IsSuccess) {
+                    alertSuccess('Xóa tài khoản thành công');
+                    self.onbtnReloadClick();
+                }
+                else
+                    alert(data.Message);
             });
         });
     },

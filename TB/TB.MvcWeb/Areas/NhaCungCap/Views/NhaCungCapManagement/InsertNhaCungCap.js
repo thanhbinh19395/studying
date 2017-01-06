@@ -29,6 +29,7 @@
                     alert(data.Message);
                     return;
                 }
+                alertSuccess('Thêm nhà cung cấp thành công');
                 self.sendMessage({
                     type: 'reload',
                     data: data,

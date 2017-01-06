@@ -17,5 +17,9 @@ namespace TB.Domain.EntityModel
 
         [Column(TypeName = "date")]
         public DateTime? Ngay { get; set; }
+
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+
     }
 }

@@ -33,6 +33,7 @@
                     alert(data.Message);
                     return;
                 }
+                alertSuccess('Thêm thông tin người dùng thành công');
                 self.sendMessage({
                     type: 'reload',
                     data: data,

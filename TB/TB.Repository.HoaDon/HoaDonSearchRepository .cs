@@ -50,6 +50,8 @@ namespace TB.HoaDonRepo
             if (HoaDon.NgayLap != null)
                 result = result.Where(p => p.NgayLap == HoaDon.NgayLap);
 
+            result = result.OrderByDescending(p => p.UpdatedDate);
+
             int curPage = Page != null ? Convert.ToInt32(Page) : 1;
             var page = result.ToPagedListForEntityFramework(s => s.NguoiLapId, curPage, PageSize);
             var dataSearch = new

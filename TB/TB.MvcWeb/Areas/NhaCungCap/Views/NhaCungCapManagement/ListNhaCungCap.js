@@ -145,8 +145,12 @@
             var grid = self.findElement('grid');
             var id = grid.getSelection()[0];
             $.post(self.commonOptions.apiExecuteUrl.deleteUrl, { NhaCungCapId: id }, function (data) {
-                console.log(data);
-                self.onbtnReloadClick();
+                if (data.IsSuccess) {
+                    alertSuccess('Xóa nhà cung cấp thành công');
+                    self.onbtnReloadClick();
+                }
+                else
+                    alert(data.Message);
             });
         });
     },

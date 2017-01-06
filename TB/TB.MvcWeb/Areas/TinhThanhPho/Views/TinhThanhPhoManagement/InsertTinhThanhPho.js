@@ -28,7 +28,7 @@
                     type: 'reload',
                     data: data,
                 });
-                console.log(data);
+                alertSuccess('Thêm tỉnh/thành phố thành công');
                 self.close && self.close();
             });
         }

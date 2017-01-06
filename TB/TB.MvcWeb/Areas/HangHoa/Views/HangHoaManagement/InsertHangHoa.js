@@ -61,18 +61,19 @@
                     return;
                 }
                 else {
+                    alertSuccess('Thêm hàng hóa thành công');
                     self.requestUploadImage(data.Data, hinhAnh, function (respone) {
-                            var ahh = {
-                                HangHoaId: data.Data,
-                                LinkAnh: respone.ImageUrl,
-                                LinkAnhMini: respone.ThumbnailUrl
-                            };
-                            $.post('/HangHoa/AnhHangHoaManagement/ExecuteInsertAnhHangHoa', { AnhHangHoa: ahh }, function (data) {
-                                if (!data.IsSuccess) {
-                                    alert(data.Message);
-                                    return;
-                                }
-                            });
+                        var ahh = {
+                            HangHoaId: data.Data,
+                            LinkAnh: respone.ImageUrl,
+                            LinkAnhMini: respone.ThumbnailUrl
+                        };
+                        $.post('/HangHoa/AnhHangHoaManagement/ExecuteInsertAnhHangHoa', { AnhHangHoa: ahh }, function (data) {
+                            if (!data.IsSuccess) {
+                                alert(data.Message);
+                                return;
+                            }
+                        });
                     });
                     self.sendMessage({
                         type: 'reload',

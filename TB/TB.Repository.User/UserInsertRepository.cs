@@ -16,6 +16,9 @@ namespace TB.UserRepo
 
         public override Result<long> ExecuteCore(Controller CurrentContext)
         {
+            User.CreatedDate = DateTime.Now;
+            User.UpdatedDate = DateTime.Now;
+
             User.Password = AESHandler.Encrypt(User.Password);
             db.Users.Add(User);
             db.SaveChanges();

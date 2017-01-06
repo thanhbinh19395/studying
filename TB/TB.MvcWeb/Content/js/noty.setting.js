@@ -10,7 +10,7 @@
 
   template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
 
-  timeout: false,//1900, // delay for closing event in milliseconds. Set false for sticky notifications
+  timeout: 1900, // delay for closing event in milliseconds. Set false for sticky notifications
   animation: {
     open: {height: 'toggle'}, // or Animate.css class names like: 'animated bounceInLeft'
     close: {height: 'toggle'}, // or Animate.css class names like: 'animated bounceOutLeft'

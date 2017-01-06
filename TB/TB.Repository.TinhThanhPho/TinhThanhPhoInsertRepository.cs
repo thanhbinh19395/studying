@@ -20,6 +20,9 @@ namespace TB.TinhThanhPhoRepo
         }
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
+            TinhThanhPho.CreatedDate = DateTime.Now;
+            TinhThanhPho.UpdatedDate = DateTime.Now;
+
             db.TinhThanhPhoes.Add(TinhThanhPho);
             return Success(db.SaveChanges());
         }

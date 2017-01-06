@@ -19,10 +19,11 @@ namespace TB.NhaCungCapRepo
         }
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
-            var lhh = db.NhaCungCaps.SingleOrDefault(p=>p.NhaCungCapId == this.NhaCungCap.NhaCungCapId);
-            lhh.Ma = NhaCungCap.Ma;
-            lhh.Ten = NhaCungCap.Ten;
+            var ncc = db.NhaCungCaps.SingleOrDefault(p=>p.NhaCungCapId == this.NhaCungCap.NhaCungCapId);
+            ncc.Ma = NhaCungCap.Ma;
+            ncc.Ten = NhaCungCap.Ten;
 
+            ncc.UpdatedDate = DateTime.Now;
             return Success(db.SaveChanges());
         }
     }

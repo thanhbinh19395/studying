@@ -28,14 +28,16 @@ namespace TB.ThongTinNguoiDungRepo
         }
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
-            var lhh = db.ThongTinNguoiDungs.SingleOrDefault(p => p.ThongTinNguoiDungId == this.ThongTinNguoiDung.ThongTinNguoiDungId);
-            lhh.HoTen = ThongTinNguoiDung.HoTen;
-            lhh.SoDienThoai = ThongTinNguoiDung.SoDienThoai;
-            lhh.Email = ThongTinNguoiDung.Email;
-            lhh.DiaChi = ThongTinNguoiDung.DiaChi;
-            lhh.TinhThanhPhoId = ThongTinNguoiDung.TinhThanhPhoId;
-            lhh.QuanId = ThongTinNguoiDung.QuanId;
-            lhh.HinhAnh = ThongTinNguoiDung.HinhAnh;
+            var ttnd = db.ThongTinNguoiDungs.SingleOrDefault(p => p.ThongTinNguoiDungId == this.ThongTinNguoiDung.ThongTinNguoiDungId);
+            ttnd.HoTen = ThongTinNguoiDung.HoTen;
+            ttnd.SoDienThoai = ThongTinNguoiDung.SoDienThoai;
+            ttnd.Email = ThongTinNguoiDung.Email;
+            ttnd.DiaChi = ThongTinNguoiDung.DiaChi;
+            ttnd.TinhThanhPhoId = ThongTinNguoiDung.TinhThanhPhoId;
+            ttnd.QuanId = ThongTinNguoiDung.QuanId;
+            ttnd.HinhAnh = ThongTinNguoiDung.HinhAnh;
+
+            ttnd.UpdatedDate = DateTime.Now;
             return Success(db.SaveChanges());
         }
     }

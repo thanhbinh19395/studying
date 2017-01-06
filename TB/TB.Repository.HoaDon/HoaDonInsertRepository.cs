@@ -16,6 +16,9 @@ namespace TB.HoaDonRepo
 
         public override Result<long> ExecuteCore(Controller CurrentContext)
         {
+            HoaDon.CreatedDate = DateTime.Now;
+            HoaDon.UpdatedDate = DateTime.Now;
+
             var user = CurrentContext.Session["LoginUser"] as User;
             HoaDon.NguoiLapId = user.UserId;
             HoaDon.NgayLap = DateTime.Now;

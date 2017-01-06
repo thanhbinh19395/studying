@@ -26,6 +26,8 @@ namespace TB.QuanRepo
             if (!String.IsNullOrWhiteSpace(Quan.Ten))
                 result = result.Where(p => p.Ten.Contains(Quan.Ten));
 
+            result = result.OrderByDescending(p => p.UpdatedDate);
+
             int curPage = Page != null ? Convert.ToInt32(Page) : 1;
             var page = result.ToPagedListForEntityFramework(s => s.QuanId, curPage, PageSize);
             var dataSearch = new

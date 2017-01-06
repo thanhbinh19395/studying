@@ -41,6 +41,8 @@ namespace TB.TinhThanhPhoRepo
             if (!String.IsNullOrWhiteSpace(TinhThanhPho.Ten))
                 result = result.Where(p => p.Ten.Contains(TinhThanhPho.Ten));
 
+            result = result.OrderByDescending(p => p.UpdatedDate);
+
             int curPage = Page != null ? Convert.ToInt32(Page) : 1;
             var page = result.ToPagedListForEntityFramework(s => s.TinhThanhPhoId, curPage, PageSize);
             var dataSearch = new

@@ -31,6 +31,7 @@
                     alert(data.Message);
                     return;
                 }
+                alertSuccess('Thêm đơn hàng thành công')
                 self.sendMessage({
                     type: 'reload',
                     data: data,

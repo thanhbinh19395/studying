@@ -32,6 +32,7 @@
         if (!form.validate().length) {
             $.post('/User/ThongTinNguoiDungManagement/ExecuteUpdateThongTinNguoiDung', { ThongTinNguoiDung: form.record }, function (data) {
                 if (data.IsSuccess) {
+                    alertSuccess('Cập nhật thông tin người dùng thành công');
                     self.sendMessage({
                         type: 'reload',
                         data: data,

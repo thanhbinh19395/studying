@@ -28,6 +28,7 @@ namespace TB.HangHoaRepo
             hh.LoaiHangHoaId = HangHoa.LoaiHangHoaId;
             hh.MoTa = HangHoa.MoTa;
 
+            hh.UpdatedDate = DateTime.Now;
             return Success(db.SaveChanges());
         }
     }

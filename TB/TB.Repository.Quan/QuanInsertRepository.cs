@@ -20,6 +20,9 @@ namespace TB.QuanRepo
         }
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
+            Quan.CreatedDate = DateTime.Now;
+            Quan.UpdatedDate = DateTime.Now;
+
             db.Quans.Add(Quan);
             return Success(db.SaveChanges());
         }

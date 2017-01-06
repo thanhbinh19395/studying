@@ -22,6 +22,8 @@ namespace TB.UserRepo
             user.Email = User.Email;
             user.Type = User.Type;
             user.ThongTinNguoiDungId = User.ThongTinNguoiDungId;
+
+            user.UpdatedDate = DateTime.Now;
             return Success(db.SaveChanges());
         }
     }

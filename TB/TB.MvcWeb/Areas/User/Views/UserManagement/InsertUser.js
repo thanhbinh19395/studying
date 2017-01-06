@@ -40,6 +40,7 @@
                     alert(data.Message);
                     return;
                 }
+                alertSuccess('Thêm tài khoản thành công');
                 self.sendMessage({
                     type: 'reload',
                     data: data,

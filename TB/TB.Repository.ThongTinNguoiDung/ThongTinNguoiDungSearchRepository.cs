@@ -34,6 +34,8 @@ namespace TB.ThongTinNguoiDungRepo
             if (ThongTinNguoiDung.QuanId != null)
                 result = result.Where(p => p.QuanId == ThongTinNguoiDung.QuanId);
 
+            result = result.OrderByDescending(p => p.UpdatedDate);
+
             int curPage = Page != null ? Convert.ToInt32(Page) : 1;
             var page = result.ToPagedListForEntityFramework(s => s.ThongTinNguoiDungId, curPage, PageSize);
             var dataSearch = new

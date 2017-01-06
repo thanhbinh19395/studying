@@ -19,10 +19,11 @@ namespace TB.TinhThanhPhoRepo
         }
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
-            var lhh = db.TinhThanhPhoes.SingleOrDefault(p => p.TinhThanhPhoId == this.TinhThanhPho.TinhThanhPhoId);
-            lhh.TinhThanhPhoId = TinhThanhPho.TinhThanhPhoId;
-            lhh.Ten = TinhThanhPho.Ten;
+            var ttp = db.TinhThanhPhoes.SingleOrDefault(p => p.TinhThanhPhoId == this.TinhThanhPho.TinhThanhPhoId);
+            ttp.TinhThanhPhoId = TinhThanhPho.TinhThanhPhoId;
+            ttp.Ten = TinhThanhPho.Ten;
 
+            ttp.UpdatedDate = DateTime.Now;
             return Success(db.SaveChanges());
         }
     }

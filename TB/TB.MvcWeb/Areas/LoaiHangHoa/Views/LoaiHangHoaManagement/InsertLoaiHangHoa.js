@@ -25,10 +25,13 @@
         var form = this.findElement('insertForm');
         if (!form.validate().length) {
             $.post('/LoaiHangHoa/LoaiHangHoaManagement/ExecuteInsertLoaiHangHoa', { LoaiHangHoa: form.record }, function (data) {
+                //Lỗi 
                 if (!data.IsSuccess) {
                     alert(data.Message);
                     return;
                 }
+                //Thành công
+                alertSuccess('Thêm loại hàng hóa thành công');
                 self.sendMessage({
                     type: 'reload',
                     data: data,

@@ -15,6 +15,9 @@ namespace TB.ChiTietDonHangRepo
 
         public override Result<int> ExecuteCore(Controller CurrentContext)
         {
+            ChiTietDonHang.CreatedDate = DateTime.Now;
+            ChiTietDonHang.UpdatedDate = DateTime.Now;
+
             db.ChiTietDonHangs.Add(ChiTietDonHang);
             return Success(db.SaveChanges());
         }

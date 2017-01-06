@@ -45,6 +45,8 @@ namespace TB.NhaCungCapRepo
             if (!String.IsNullOrWhiteSpace(NhaCungCap.Ten))
                 result = result.Where(p => p.Ten.Contains(NhaCungCap.Ten));
 
+            result = result.OrderByDescending(p => p.UpdatedDate);
+
             int curPage = Page != null ? Convert.ToInt32(Page) : 1;
             var page = result.ToPagedListForEntityFramework(s => s.NhaCungCapId, curPage, PageSize);
             var dataSearch = new

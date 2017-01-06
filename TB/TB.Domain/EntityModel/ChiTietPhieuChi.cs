@@ -21,6 +21,9 @@ namespace TB.Domain.EntityModel
 
         public long? PhieuChiId { get; set; }
 
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+
         public virtual PhieuChi PhieuChi { get; set; }
     }
 }

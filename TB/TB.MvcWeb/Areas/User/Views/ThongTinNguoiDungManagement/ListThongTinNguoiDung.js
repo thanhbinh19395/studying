@@ -154,8 +154,12 @@
             var grid = self.findElement('grid');
             var id = grid.getSelection()[0];
             $.post(self.commonOptions.apiExecuteUrl.deleteUrl, { ThongTinNguoiDungId: id }, function (data) {
-                console.log(data);
-                self.onbtnReloadClick();
+                if (data.IsSuccess) {
+                    alertSuccess('Xóa thông tin người dùng thành công');
+                    self.onbtnReloadClick();
+                }
+                else
+                    alert(data.Message);
             });
         });
     },

@@ -19,7 +19,7 @@ namespace TB.SercurityRepo
         public override Result<User> ExecuteCore(Controller CurrentContext)
         {
             //Username = AESHandler.Encrypt(Username);
-            //Password = AESHandler.Encrypt(Password);
+            Password = AESHandler.Encrypt(Password);
             var user = db.Users.SingleOrDefault(p => p.Username == Username && p.Password == Password);
             if (user == null)
             {

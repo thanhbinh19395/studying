@@ -71,19 +71,6 @@
             }
         });
     },
-    UpdateCart: function (HanghoaId) {
-        var seft = this;
-        var Soluong = $('.updateCart').val();      
-        $.ajax({
-            type: "POST",
-            url: "/Home/UpdateCart",
-            data: { HanghoaId: HanghoaId, soluong:Soluong },
-            success: function (data) {
-                seft.getInfoCart();
-            }
-        });
-        
-    },
     DeleteCart: function (HanghoaId) {
         var seft = this;
         $.ajax({
@@ -98,5 +85,24 @@
 }
 $(document).ready(function () {
     cart.getInfoCart();
+    GetQuanhuyen();
 });
+function GetQuanhuyen()
+{
+    var TinhThanhPhoId = $("#TinhThanhPho").val()
+    $.ajax({
+        type: "POST",
+        url: "/Home/GetQuanhuyen",
+        data: { TinhThanhPhoId: TinhThanhPhoId },
+        success: function (data) {
+            $('#quanhuyen').html('');
+            $.each(data, function (key, value) {
+                $('#quanhuyen').append('<option value="' + value.QuanId + '">' + value.Ten + '</option>');
+            })
+            $('#quanhuyen').selectpicker('render');
+            $('#quanhuyen').selectpicker('refresh');
+        }
+    });
+}
+
 

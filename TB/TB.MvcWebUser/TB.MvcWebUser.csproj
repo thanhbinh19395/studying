@@ -848,7 +848,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\ViewCarts.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -868,6 +867,7 @@
     <Content Include="Views\Shared\TienTestLayout.cshtml" />
     <Content Include="Views\Home\Tientest.cshtml" />
     <Content Include="Views\Home\ViewCarts.cshtml" />
+    <Content Include="Views\Home\CheckOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -882,9 +882,17 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TB.Business.DonHang\TB.DonHangBus.csproj">
+      <Project>{0ca6b48e-4ded-432a-8ab8-5bab0a80a7dc}</Project>
+      <Name>TB.DonHangBus</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TB.Domain\TB.Domain.csproj">
       <Project>{90f20cf0-ff8f-432c-9dd7-f2f13734a625}</Project>
       <Name>TB.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TB.Repository.Base\TB.Repository.Base.csproj">
+      <Project>{7749b81b-d5d0-404f-aaa0-441f22b765b0}</Project>
+      <Name>TB.Repository.Base</Name>
     </ProjectReference>
     <ProjectReference Include="..\TB.Repository.DonHang\TB.DonHangRepo.csproj">
       <Project>{43694d9c-9de9-4539-a350-618f9d273f15}</Project>

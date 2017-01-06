@@ -16,9 +16,9 @@ namespace TB.MvcWeb
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                defaults: new { controller = "POS", action = "Index", id = UrlParameter.Optional },
                 namespaces: new string[] { "TB.MvcWeb.Controllers" }
-            );
+            ).DataTokens.Add("area", "DonHang");
         }
     }
 }

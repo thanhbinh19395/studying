@@ -63,7 +63,7 @@ namespace HangHoa.Controllers
             {
                 return Json(result);
             }
-            return File(result.Data.ToExcelContent(), System.Net.Mime.MediaTypeNames.Application.Octet, "test.xls"); ;
+            return File(result.Data.ToExcelContent(), System.Net.Mime.MediaTypeNames.Application.Octet, String.Format("DSHangHoa_{0}.xls", DateTime.Now.ToString("MM-dd-yyyy_hh-mm-ss")));
         }
     }
 }

@@ -12,19 +12,19 @@
                 if (data.Giohang) {
                     $.each(data.Giohang, function (key, value) {
                         s += "<li class='item'>";
-                        s += "  <a href='product_default.html' class='preview-image'><img class='preview' src='/Content/ip7.jpg' alt=''></a>";
+                        s += "  <a href='product_default.html' class='preview-image'><img class='preview' src='" + value.ProductOrder.AnhHangHoas[0].LinkAnhMini + "' alt=''></a>";
                         s += "  <div class='description'> <a href='#'>" + value.ProductOrder.Ten + "</a> <strong class='price'>" + value.Quantity + " x " + value.ProductOrder.GiaBanThamKhao + "</strong> </div>";
                         s += "</li>";
 
                         htmlBigCart += "<tr>";
                         htmlBigCart += "<td><a onClick='cart.DeleteCart(" + value.ProductOrder.HangHoaId + ")'style='cursor:pointer' class='remove-button hidden-xs'><span class='icon-cancel-2 '></span></a></td>";
-                        htmlBigCart += "    <td><a onClick='cart.DeleteCart(" + value.ProductOrder.HangHoaId + ")'style='cursor:pointer' class='remove-button visible-xs'><span class='icon-cancel-2 '></span></a><a href=''><img class='preview' src='/Content/ip7.jpg'></a></td>";
+                        htmlBigCart += "    <td><a onClick='cart.DeleteCart(" + value.ProductOrder.HangHoaId + ")'style='cursor:pointer' class='remove-button visible-xs'><span class='icon-cancel-2 '></span></a><a href=''><img class='preview' src='" + value.ProductOrder.AnhHangHoas[0].LinkAnhMini + "'></a></td>";
                         htmlBigCart += "<td><span class='td-name visible-xs'>Product</span><a href='#'>" + value.ProductOrder.Ten + "</a></td>";
                         htmlBigCart += "<td><span class='td-name visible-xs'>Price</span>" + value.ProductOrder.GiaBanThamKhao + "</td>";
                         htmlBigCart += "<td>";
                         htmlBigCart += "<span class='td-name visible-xs'>Quantity</span><div class='input-group quantity-control'>";
                         htmlBigCart += "    <span class='input-group-addon' onClick='cart.Subtraction(" + value.ProductOrder.HangHoaId + ")'>&minus;</span>";
-                        htmlBigCart += "    <input type='text' class='form-control updateCart' value='" + value.Quantity + "' onfocusout='cart.UpdateCart(" + value.ProductOrder.HangHoaId + ")'>";
+                        htmlBigCart += "    <input type='text' class='form-control updateCart' value='" + value.Quantity + "' onfocusout='cart.UpdateCart(" + value.ProductOrder.HangHoaId + ")' disabled>";
                         htmlBigCart += "    <span class='input-group-addon' onClick='cart.Addition(" + value.ProductOrder.HangHoaId + ")'>+</span>";
                         htmlBigCart += "</div>";
                         htmlBigCart += "</td>"
@@ -74,7 +74,7 @@
     },
     UpdateCart: function (HanghoaId) {
         var seft = this;
-        var Soluong = $('.updateCart').val();
+        var Soluong = $('.updateCart').val();       
         $.ajax({
             type: "POST",
             url: "/Home/UpdateCart",

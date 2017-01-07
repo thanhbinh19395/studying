@@ -1,7 +1,6 @@
 ﻿$().w2field('addType', 'popupDSLoaiHangHoa', function (options) {
     var self = this;
 
-
     $(this.el).css('width', '30%').attr('disabled', 'disabled');
     var input;
     if ($(self.el).parent().find('.inputSearch').length) {

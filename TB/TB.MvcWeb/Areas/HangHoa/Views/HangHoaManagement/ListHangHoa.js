@@ -17,6 +17,15 @@
                     { field: 'GiaBanThamKhao', caption: 'Giá Bán', size: '10%', render: 'float:0' }, //number_format
                     { field: 'NhaCungCap.Ten', caption: 'Nhà Sản Xuất', size: '7%' },
                     { field: 'LoaiHangHoa.Ten', caption: 'Loại Hàng Hóa', size: '10%' },
+                    {
+                        field: 'HinhAnh', caption: 'Hình ảnh', size: '10%', sortable: true, resizable: true, render: function (r) {
+                            var a = $("<a>");
+                            a.attr('href', '#');
+                            a.attr('type', 'click');
+                            a.html('Quản lý ảnh');
+                            return a[0].outerHTML;
+                        }
+                    }
             ],
         },
         //nhớ sửa param
@@ -115,6 +124,7 @@
             .setIdColumn('HangHoaId')
             .addRecords(self.Data.Data)
             .setPaginateOptions(pagi.end())
+            .createEvent('onClick', self.onGridClick.bind(this))
         ;
 
         var panel = widget.setting.panel();
@@ -163,7 +173,7 @@
                 }
                 else
                     alert(data.Message);
-                
+
             });
         });
     },
@@ -210,15 +220,24 @@
         }, {
             HangHoa: 'data'
         });
-        //$.post('/HangHoa/HangHoaManagement/ExportExcelListHangHoa', { HangHoa: form.record }, function (d) {
-        //    //grid.clear();
-        //    //grid.add(d.Data.Data);
-        //    //console.log(d);
-        //    //// reset lai tong so trang neu so tong so trang thay doi.
-        //    //grid.pagination.reset(d.Data.Page, d.Data.PageCount);
-        //});
-
         var headerContent = self.findElement('headerContent');
         headerContent.toggle();
+    },
+    onGridClick: function (e) {
+        if (e.column == 5) {
+            var self = this;
+            e.onComplete = function (data) {
+                if ($(data.originalEvent.srcElement).attr('type') == 'click') {
+                    var grid = self.findElement('grid');
+                    var selected = grid.get(data.recid);
+                    self.openPopup({
+                        name: 'detailPopup',
+                        url: '/HangHoa/AnhHangHoaManagement/ListAnhHangHoa',
+                        title: 'Hàng hóa : ' + selected.Ten || "",
+                    }, selected);
+                }
+
+            }
+        }
     }
 });

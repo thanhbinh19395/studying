@@ -149,7 +149,7 @@
         w2confirm('Bạn có chắc chắn muốn xóa dòng này không ?').yes(function () {
             var grid = self.findElement('grid');
             var id = grid.getSelection()[0];
-            $.post(self.commonOptions.apiExecuteUrl.deleteUrl, { LoaiQuanId: id }, function (data) {
+            $.post(self.commonOptions.apiExecuteUrl.deleteUrl, { QuanId: id }, function (data) {
                 if (data.IsSuccess) {
                     alertSuccess('Xóa quận/huyện thành công');
                     self.onbtnReloadClick();

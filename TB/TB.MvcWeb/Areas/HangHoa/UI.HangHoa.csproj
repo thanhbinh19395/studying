@@ -155,8 +155,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\AnhHangHoa\ListHangHoa.cshtml" />
-    <Content Include="Views\AnhHangHoa\ListHangHoa.js" />
+    <Content Include="Views\AnhHangHoaManagement\ListAnhHangHoa.cshtml" />
+    <Content Include="Views\AnhHangHoaManagement\ListAnhHangHoa.js" />
     <Content Include="Views\HangHoaManagement\InsertHangHoa.js" />
     <Content Include="Views\HangHoaManagement\ListHangHoa.js" />
     <Content Include="Views\HangHoaManagement\UpdateHangHoa.js" />

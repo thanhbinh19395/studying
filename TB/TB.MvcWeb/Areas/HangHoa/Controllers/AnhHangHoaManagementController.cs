@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TB.AnhHangHoaRepo;
+using TB.HangHoaRepo;
 
 namespace HangHoa.Controllers
 {
@@ -15,6 +16,14 @@ namespace HangHoa.Controllers
             return View();
         }
 
+        public ActionResult ListAnhHangHoa(AnhHangHoaSearchRepository repo)
+        {
+            HangHoaGetByIdRepository hhRepo = new HangHoaGetByIdRepository { HangHoaId = Convert.ToInt32(repo.HangHoaId) };
+            ViewBag.HangHoa = hhRepo.Execute(this).Data;
+            repo.Execute(this);
+
+            return View();
+        }
 
         //API
         [HttpPost]

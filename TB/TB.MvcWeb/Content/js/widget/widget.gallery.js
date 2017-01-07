@@ -38,7 +38,7 @@
 
     },
     test: function () { },
-    _addImage: function (url, thumbUrl) {
+    _addImage: function (url, data) {
 
         var self = this;
         var liTag = $('<li>').addClass('col-xs-2 col-sm-2 col-md-2 col-lg-2')
@@ -71,7 +71,7 @@
             this.options.images = [];
         $.each(images, function (key, value) {
             $.extend(self.options.images, value);
-            self._addImage(value[urlColName], value);
+            self._addImage(value[self.options.urlColName], value);
         });
     },
     _clear: function (images) {

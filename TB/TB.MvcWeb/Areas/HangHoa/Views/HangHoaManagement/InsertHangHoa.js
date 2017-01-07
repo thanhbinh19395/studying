@@ -61,7 +61,6 @@
                     return;
                 }
                 else {
-                    alertSuccess('Thêm hàng hóa thành công');
                     self.requestUploadImage(data.Data, hinhAnh, function (respone) {
                         var ahh = {
                             HangHoaId: data.Data,
@@ -75,6 +74,7 @@
                             }
                         });
                     });
+                    alertSuccess('Thêm hàng hóa thành công');
                     self.sendMessage({
                         type: 'reload',
                         data: data,

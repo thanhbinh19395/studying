@@ -22,20 +22,8 @@
         $(document).ready(function () {
             //bỏ code trong đây
         });
-        function AddCart(HanghoaId) {
-            var seft = this;
-            $.ajax({
-                type: "POST",
-                url: "/Home/AddCart",
-                data: { HanghoaId: HanghoaId },
-                success: function (data) {
-                    alert('Đã thêm vào giỏ hàng');
-                    seft.getInfoCart();
-                }
-            });
-        }
-        function Buy(HanghoaId) {
-            AddCart(HanghoaId);
+        function Buy(HangHoaId) {
+            cart.Addition(HangHoaId);
             // Chuyen ve trang Home/CheckOut, javascript t mò ko ra, nên chế luôn
             document.getElementById('checkOutButton').click();
         }
@@ -104,17 +92,9 @@
                     <div class="product-description">
                         <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span>
                         <div>
-                            <div class="option">
-                                <b>Quantity:</b>
-                                <div class="input-group quantity-control">
-                                    <span class="input-group-addon">&minus;</span>
-                                    <input type="text" class="form-control" value="1">
-                                    <span class="input-group-addon">+</span>
-                                </div>
-                            </div>
                             <div class="clearfix visible-xs"></div>
                             <br />
-                            <span class="btn btn-mega btn-lg" onclick="AddCart(@Model.HangHoaId)">Thêm vào giỏ hàng</span>
+                            <span class="btn btn-mega btn-lg" onclick="cart.AddCart(@Model.HangHoaId);">Thêm vào giỏ hàng</span>
                             <span class="btn btn-mega btn-lg" onclick="Buy(@Model.HangHoaId)">Mua ngay</span>
                         </div>
                     </div>

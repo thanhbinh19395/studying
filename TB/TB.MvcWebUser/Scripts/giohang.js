@@ -57,8 +57,7 @@
             url: "/Home/AddCart",
             data: { HanghoaId: HanghoaId },
             success: function (data) {
-                seft.getInfoCart();
-                
+                seft.getInfoCart();            
             }
         });
     },

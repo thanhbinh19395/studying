@@ -7,6 +7,8 @@ using TB.LoaiHangHoaRepo;
 using TB.Domain;
 using System.IO;
 using TB.Data;
+using TB.Extension;
+using System.Drawing;
 
 namespace Uploader.Controllers
 {
@@ -26,12 +28,13 @@ namespace Uploader.Controllers
                 var thumbnailStoragePath = "~/App_Data/HinhAnhHangHoa/thumbnail";
                 MemoryStream ms = new MemoryStream(pic, 0, pic.Length);
                 ms.Write(pic, 0, pic.Length);
-                System.Drawing.Image img = System.Drawing.Image.FromStream(ms, true);
-                img.Save(Server.MapPath(imageStoragePath + '/' + name));
+                Image img = Image.FromStream(ms, true);
 
-                var thumbWidth = Convert.ToInt32(img.Width * 0.25);
-                var thumbHeight = Convert.ToInt32(img.Height * 0.25);
-                System.Drawing.Image thumb = img.GetThumbnailImage(thumbWidth, thumbHeight, null, IntPtr.Zero);
+                //chinh o day
+                Image thumb = img.FixedSize(220, 220);
+                img = img.FixedSize(888, 1080);
+
+                img.Save(Server.MapPath(imageStoragePath + '/' + name));
                 thumb.Save(Path.Combine(Server.MapPath(thumbnailStoragePath), name));
 
                 thumb.Dispose();

@@ -1,7 +1,7 @@
 ﻿framework.factory('updateDonHang', {
     onInitHeader: function (header) {
         header.setName('header1').setTitle('Thanh Toán Đơn Hàng')
-            .setIcon('fa-bar-plus');
+            .setIcon('fa-credit-card');
         ;
     },
     onInitContent: function (content) {
@@ -98,11 +98,23 @@
             });
         }
     },
-    InHoaDon: function (hoadonId) {
+    InHoaDon: function (HoaDonId) {
+        var form = this.findElement('form');
         var grid = this.findElement('chiTietDonHangGrid');
+        if (form.record.KhachHangId) {
+            $.ajax({
+                type: 'POST',
+                url: '/User/ThongTinNguoiDungManagement/ExecuteGetById',
+                data: { ThongTinNguoiDungId: form.record.KhachHangId },
+                success: function (respone) {
+                    $.extend(form.record, respone.Data);
+                },
+                async: false
+            });
+        }
         var tongTien = 0;
         $.each(grid.records, function (k, v) {
-            tongTien += v.ThanhTien;
+            tongTien += v.TongCong;
         });
         var template = "";
         template += "<div class=\"invoice-box\">";
@@ -114,12 +126,12 @@
         template += "                        <tbody>";
         template += "                            <tr>";
         template += "                                <td class=\"title\">";
-        template += "                                    <img src=\"\/images\/logo.png\" style=\"width:100%; max-width:300px;\">";
+        template += "                                    <img src=\"\/Content\/images\/header-logo.png\" style=\"width:100%; max-width:300px;\">";
         template += "                                <\/td>";
         template += "                                <td>";
-        template += "                                    Invoice #: " + hoadonId + "<br>";
-        template += "                                    Created: January 1, 2015<br>";
-        template += "                                    Due: February 1, 2015";
+        template += "                                    <strong>Mã hóa đơn #<\/strong>: " + HoaDonId + "<br>";
+        template += "                                    <strong>Ngày lập<\/strong>: January 1, 2015<br>";
+        template += "                                    <strong>Người lập<\/strong>: February 1, 2015";
         template += "                                <\/td>";
         template += "                            <\/tr>";
         template += "                        <\/tbody>";
@@ -131,15 +143,10 @@
         template += "                    <table>";
         template += "                        <tbody>";
         template += "                            <tr>";
-        template += "                                <td>";
-        template += "                                    Next Step Webs, Inc.<br>";
-        template += "                                    12345 Sunny Road<br>";
-        template += "                                    Sunnyville, TX 12345";
-        template += "                                <\/td>";
-        template += "                                <td>";
-        template += "                                    Acme Corp.<br>";
-        template += "                                    John Doe<br>";
-        template += "                                    john@example.com";
+        template += "                                <td colspan=\"2\">";
+        template += "                                    <strong>Tên khách<\/strong> : " + (form.record.HoTen || '') + "<br>";
+        template += "                                    <strong>Số điện thoại<\/strong> : " + (form.record.SoDienThoai || '') + " <br>";
+        template += "                                    <strong>Địa chỉ<\/strong> : " + (form.record.DiaChi || '');
         template += "                                <\/td>";
         template += "                            <\/tr>";
         template += "                        <\/tbody>";
@@ -147,10 +154,10 @@
         template += "                <\/td>";
         template += "            <\/tr>";
         template += "            <tr class=\"heading\">";
-        template += "                <td colspan=\"2\" class=\"text-center\">hoa Don<\/td>";
+        template += "                <td colspan=\"2\" class=\"text-center\">Hóa đơn bán lẻ<\/td>";
         template += "            <\/tr>";
         template += framework.common.w2uiGridToHtml(grid);
-        template += "<h4 class='text-right'>Tong cong : " + w2utils.formatNumber(tongTien) + " vnd<\/h4>";
+        template += "<h4 class='text-right'><strong>Tổng cộng<\/strong> : " + w2utils.formatNumber(tongTien) + " vnđ<\/h4>";
         framework.common.print({
             content: template
         });

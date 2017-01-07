@@ -12,7 +12,7 @@
         input = $('<input>').css({
             width: '65%',
             border: '0px'
-        }).addClass('inputSearch');
+        }).attr('placeholder', 'Tìm theo tên loại hàng hóa').addClass('inputSearch');
         $(this.el).parent().append(input);
     }
 
@@ -133,7 +133,7 @@ $().w2field('addType', 'popupDSDonHang', function (options) {
         input = $('<input>').css({
             width: '65%',
             border: '0px'
-        }).addClass('inputSearch');
+        }).attr('placeholder', 'Tìm kiếm theo mã đơn hàng').addClass('inputSearch');
         $(this.el).parent().append(input);
     }
     $(this.el).parent().append(input);
@@ -209,7 +209,7 @@ $().w2field('addType', 'popupDSDonHang', function (options) {
             }
             var records = result.Data;
             if (records == null) {
-                alert('Khong co don hang can tim');
+                alert('Không có đơn hàng cần tìm');
                 return;
             }
 
@@ -264,7 +264,7 @@ $().w2field('addType', 'popupDSThongTinNguoiDung', function (options) {
         input = $('<input>').css({
             width: '65%',
             border: '0px'
-        }).addClass('inputSearch');
+        }).attr('placeholder','Tìm kiếm theo tên').addClass('inputSearch');
         $(this.el).parent().append(input);
     }
     
@@ -284,6 +284,12 @@ $().w2field('addType', 'popupDSThongTinNguoiDung', function (options) {
             $(self.el).change();
             $(input).val(message.data.HoTen)
             $(self.el).data('data', message);
+            if (options.formName) {
+                var form = options.caller.findElement(options.formName);
+                form.record = message.data;
+                form.refresh();
+                $(input).val(message.data.HoTen)
+            }
         }
     });
 
@@ -388,7 +394,7 @@ $().w2field('addType', 'popupDSQuan', function (options) {
         input = $('<input>').css({
             width: '65%',
             border: '0px'
-        }).addClass('inputSearch');
+        }).attr('placeholder', 'Tìm kiếm theo tên Quận/Huyện').addClass('inputSearch');
         $(this.el).parent().append(input);
     }
     if (options.data) {
@@ -469,7 +475,7 @@ $().w2field('addType', 'popupDSQuan', function (options) {
             else {
                 options.caller.openPopup({
                     name: self.type,
-                    title: 'Chọn quận',
+                    title: 'Chọn Quận/Huyện',
                     url: '/Quan/QuanManagement/ListQuan',
                     width: data.width || (options.width || 800),
                     height: data.height || (options.height || 'auto'),
@@ -509,7 +515,7 @@ $().w2field('addType', 'popupDSTinhThanhPho', function (options) {
         input = $('<input>').css({
             width: '65%',
             border: '0px'
-        }).addClass('inputSearch');
+        }).attr('placeholder', 'Tìm kiếm theo tên Tỉnh/Thành phố').addClass('inputSearch');
         $(this.el).parent().append(input);
     }
     if (options.data) {
@@ -589,7 +595,7 @@ $().w2field('addType', 'popupDSTinhThanhPho', function (options) {
             else {
                 options.caller.openPopup({
                     name: self.type,
-                    title: 'Chọn quận',
+                    title: 'Chọn Tỉnh/Thành phố',
                     url: '/TinhThanhPho/TinhThanhPhoManagement/ListTinhThanhPho',
                     width: data.width || (options.width || 800),
                     height: data.height || (options.height || 'auto'),
@@ -630,7 +636,7 @@ $().w2field('addType', 'popupDSNhaCungCap', function (options) {
             width: '65%',
             border: '0px'
         }).addClass('inputSearch');
-        $(this.el).parent().append(input);
+        $(this.el).attr('placeholder', 'Tìm theo tên Nhà cung cấp').parent().append(input);
     }
     if (options.data) {
         input.val(options.data.Ten);

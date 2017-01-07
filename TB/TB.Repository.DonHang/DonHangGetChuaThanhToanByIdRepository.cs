@@ -15,7 +15,7 @@ namespace TB.DonHangRepo
         public override void ValidateCore(Controller CurrentContext)
         {
             if (db.HoaDons.Count(p => p.DonHangId == this.DonHangId) == 1)
-                throw new Exception("Don hang nay da duoc thanh toan");
+                throw new Exception("Đơn hàng này đã được thanh toán");
         }
         public override Result<DonHang> ExecuteCore(Controller CurrentContext)
         {

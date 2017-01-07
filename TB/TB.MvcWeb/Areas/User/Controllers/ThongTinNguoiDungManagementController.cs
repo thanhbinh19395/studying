@@ -39,6 +39,12 @@ namespace User.Controllers
             return Json(list);
         }
         [HttpPost]
+        public ActionResult ExecuteGetById(ThongTinNguoiDungGetByIdRepository repo)
+        {
+            var list = repo.Execute(this);
+            return Json(list);
+        }
+        [HttpPost]
         public ActionResult ExecuteUpdateThongTinNguoiDung(ThongTinNguoiDungUpdateRepository repo)
         {
             return Json(repo.Execute(this));

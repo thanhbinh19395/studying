@@ -96,6 +96,8 @@ namespace Uploader.Controllers
                 }
             };
         }
+
+        [AllowAnonymous]
         public ActionResult GetImage(string fileName)
         {
             var imageStoragePath = "~/App_Data/HinhAnh";
@@ -103,6 +105,7 @@ namespace Uploader.Controllers
             return File(imgURL, "image/png");
 
         }
+        [AllowAnonymous]
         public ActionResult GetThumbnailImage(string fileName)
         {
             var thumbnailStoragePath = "~/App_Data/HinhAnh/thumbnail";
@@ -110,6 +113,7 @@ namespace Uploader.Controllers
             return File(imgURL, "image/png");
 
         }
+        [AllowAnonymous]
         public ActionResult GetImageHangHoa(string fileName)
         {
             var imageStoragePath = "~/App_Data/HinhAnhHangHoa";
@@ -117,6 +121,7 @@ namespace Uploader.Controllers
             return File(imgURL, "image/png");
 
         }
+        [AllowAnonymous]
         public ActionResult GetThumbnailImageHangHoa(string fileName)
         {
             var thumbnailStoragePath = "~/App_Data/HinhAnhHangHoa/thumbnail";

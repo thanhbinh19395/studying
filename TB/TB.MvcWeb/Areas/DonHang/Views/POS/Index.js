@@ -22,11 +22,11 @@
 
         formThongTin.setName('thongtinForm').setFieldPerRow(2) // so cot trong form 
             .addFields([
-                { field: 'ThongTinNguoiDungId', caption: 'Khách', type: 'text', span: 2 },
-                { field: 'HoTen', caption: 'Tên Khách', type: 'text' },
+                { field: 'ThongTinNguoiDungId', type: 'popupDSThongTinNguoiDung', caption: 'Thông Tin Người Dùng', options: { caller: self, formName: 'thongtinForm' }, span: 2 },
+                { field: 'HoTen', required: true, caption: 'Tên Khách', type: 'text' },
                 { field: 'DiaChi', caption: 'Địa Chỉ', type: 'text' },
-                { field: 'SoDienThoai', caption: 'Số Điện Thoại', type: 'number', options: { caller: self } },
-                { field: 'TinhThanhPho.Ten', caption: 'Tỉnh/Thành phố', type: 'text', options: { caller: self } },
+                { field: 'SoDienThoai', required: true, caption: 'Số Điện Thoại', type: 'number', options: { caller: self } },
+                { field: 'TinhThanhPhoId', caption: 'Tỉnh/Thành phố', type: 'popupDSTinhThanhPho', options: { caller: self } },
                 { field: 'KhachTra', caption: 'Khách Trả', type: 'int', span: 2 },
                 { field: 'TongCong', caption: 'Tổng Cộng', type: 'int', span: 2, html: { attr: { 'disabled': true } } },
                 { field: 'TienThua', caption: 'Tiền Thừa', type: 'int', span: 2, html: { attr: { 'disabled': true } } },
@@ -52,11 +52,12 @@
 
         donhangToolbar.setName('donhangtb').addItem({
             type: 'button', id: 'btn-save', caption: 'Thanh toán', icon: 'fa-shopping-cart',
-            onClick: self.onbtnSaveClickDHTB.bind(self)})
+            onClick: self.onbtnSaveClickDHTB.bind(self)
+        })
             .addItem({
-            type: 'button', id: 'btn-print', caption: 'In hóa đơn', icon: 'fa-print',
-            onClick: self.onbtnPrintClickDHTB.bind(self)
-        });
+                type: 'button', id: 'btn-print', caption: 'In hóa đơn', icon: 'fa-print',
+                onClick: self.onbtnPrintClickDHTB.bind(self)
+            });
 
         donhangBottomToolbar.setName('donhangbtb').addItem({
             type: 'button', id: 'btn-delete', caption: 'Xóa', icon: 'fa-search',
@@ -65,7 +66,7 @@
         ;
 
         title.setName('title')
-            .setIcon('fa-computer')
+            .setIcon('fa-television')
             .setTitle('Bán Lẻ')
         ;
         searchForm.setName('searchForm').setFieldPerRow(1)
@@ -76,9 +77,9 @@
         ;
 
         pagi.setName('page')
-        //.setTotalPages(self.ViewBag.PageCount)
-        //.setStartPage(self.ViewBag.Page)
-        //.setPageClickHandler(self.onPageClick.bind(this))
+        .setTotalPages(self.ViewBag.PageCount)
+        .setStartPage(self.ViewBag.Page)
+        .setPageClickHandler(self.onPageClick.bind(this))
         ;
         grid.setName('grid')
             .addColumns([
@@ -86,11 +87,7 @@
                     { field: 'Ten', caption: 'Tên', size: '15%' },
                     { field: 'GiaBanThamKhao', caption: 'Giá', size: '10%', render: 'int' }, //number_format
                     { field: 'NhaCungCap.Ten', caption: 'Nhà Cung Cấp', size: '7%' },
-                    {
-                        field: 'LoaiHanghoa', caption: 'Loại Hàng Hóa', size: '10%', render: function (record) {
-                            return record.LoaiHangHoa.Ten;
-                        }
-                    },
+                    { field: 'LoaiHangHoa.Ten', caption: 'Loại Hàng Hóa', size: '10%' },
                     {
                         field: "ThemButton", caption: "Thêm", size: "10%",
                         render: function (record) {
@@ -105,7 +102,7 @@
             .addRecords(self.ViewBag.ListHangHoa.Data.Data)
             .createEvent('onClick', self.onClickGridHH.bind(self))
         //.createEvent('onDblClick', self.onDblClickGridHH.bind(self))
-        //.setPaginateOptions(pagi.end())
+        .setPaginateOptions(pagi.end())
         ;
 
 
@@ -135,7 +132,7 @@
         //.addRecords(self.Data.Data)
         //.setPaginateOptions(pagiChiTietDonHang.end())
         ;
-
+        this.searchParam = {};
         leftPanel.addItem(title.end()).addItem(searchForm.end()).addItem(hanghoaToolbar.end()).addItem(grid.end());
         rightPanel.addItem(formThongTin.end()).addItem(donhangToolbar.end()).addItem(gridChiTietDonHang.end()).addItem(donhangBottomToolbar.end());
 
@@ -144,20 +141,35 @@
     onPageClick: function (event, page) {
         console.log(page);
         var grid = this.findElement('grid');
-
-        this.reloadGridData(this.commonOptions.apiExecuteUrl.searchUrl, grid, page, this.searchParam);
+        this.reloadGridData('/HangHoa/HangHoaManagement/ExecuteSearch', grid, page, this.searchParam);
     },
     onbtnRefreshClickHHTB: function () {
-
+        var form = this.findElement('searchForm');
+        var gridHH = this.findElement('grid');
+        $.post('/HangHoa/HangHoaManagement/ExecuteSearch', {}, function (respone) {
+            gridHH.clear();
+            gridHH.add(respone.Data.Data);
+        });
     },
     onbtnSearchClickHHTB: function () {
-
+        var form = this.findElement('searchForm');
+        var gridHH = this.findElement('grid');
+        this.searchParam = { HangHoa: form.record };
+        $.post('/HangHoa/HangHoaManagement/ExecuteSearch', { HangHoa: form.record }, function (respone) {
+            gridHH.clear();
+            gridHH.add(respone.Data.Data);
+        });
     },
     onbtnSaveClickDHTB: function () {
         var self = this;
         var gridDH = this.findElement('chiTietDonHangGrid');
         var gridHH = this.findElement('grid');
         var form = this.findElement('thongtinForm');
+        
+        if (form.validate().length > 0) {
+            alert("vui lòng điền đầy đủ thông tin");
+            return;
+        }
 
         $.each(gridDH.records, function (k, v) {
             v.GiaTien = v.GiaBanThamKhao;
@@ -187,13 +199,13 @@
                 async: false
             });
         }
-        //Khach quen
+            //Khach quen
         else {
             var data = {
                 DonHang: {
                     ThanhTien: form.record.TongCong,
                     GhiChu: form.record.GhiChu,
-                    KhachHangId : form.ThongTinNguoiDungId
+                    KhachHangId: form.ThongTinNguoiDungId
                 },
                 ChiTietDonHang: gridDH.records,
                 ThongTinNguoiDung: form.record
@@ -276,7 +288,7 @@
         template += "                        <tbody>";
         template += "                            <tr>";
         template += "                                <td class=\"title\">";
-        template += "                                    <img src=\"\/images\/logo.png\" style=\"width:100%; max-width:300px;\">";
+        template += "                                    <img src=\"\/Content\/images\/header-logo.png\" style=\"width:100%; max-width:300px;\">";
         template += "                                <\/td>";
         template += "                                <td>";
         template += "                                    <strong>Mã hóa đơn #<\/strong>: " + this.HoaDonId + "<br>";
@@ -312,5 +324,5 @@
             content: template
         });
     }
-    
+
 });

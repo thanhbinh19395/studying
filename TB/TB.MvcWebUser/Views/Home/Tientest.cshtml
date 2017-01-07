@@ -4,6 +4,7 @@
     ViewBag.Title = "Tientest";
     Layout = "~/Views/Shared/TienTestLayout.cshtml";
 }
+
      <!-- Slider -->
 <section id="slider">
     <a class="scroll-down animate-move-down" href="#"> <span class="icon icon-arrow-down-5"></span> scroll to view content </a>
@@ -302,7 +303,14 @@
                 {
                     <div class="product-preview category1">
                         <div class="preview animate scale">
-                            <a href="product_default.html" class="preview-image"><img class="img-responsive animate scale" src="~/Content/ip7.jpg" width="270" height="328" alt=""></a>
+                          
+                            @if (tmp.AnhHangHoas != null && tmp.AnhHangHoas.Count != 0)
+                            {
+                                @*<a href="product_default.html" class="preview-image"><img class="img-responsive animate scale" src="@tmp.AnhHangHoas.First().LinkAnhMini" width="300" height="800" alt=""></a>*@
+                                <div class="thumbnail">
+                                    <img src="@tmp.AnhHangHoas.First().LinkAnhMini" class="portrait" alt="Image" />
+                                </div>
+                            }
                             <ul class="product-controls-list right">
                                 <li><span class="label label-sale">SALE</span></li>
                                 <li><span class="label">-20%</span></li>

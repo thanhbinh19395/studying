@@ -3,6 +3,7 @@
     QLBH db = new QLBH();
 }
 @model List<TB.Domain.EntityModel.HangHoa>
+
 <!-- Slider -->
 <section class="main-slider container hidden-xs">
     <div class="owl-slider-outer">
@@ -116,7 +117,17 @@
                         {
                             <div class="product-preview category1">
                                 <div class="preview animate scale">
-                                    <a href="~/HangHoa/XemChiTiet/@tmp.HangHoaId" class="preview-image"><img class="img-responsive animate scale" src="~/Content/ip7.jpg" width="270" height="328" alt=""></a>
+                                    <a href="~/HangHoa/XemChiTiet/@tmp.HangHoaId" class="preview-image">
+                                        @if (tmp.AnhHangHoas != null && tmp.AnhHangHoas.Count != 0)
+                                        { 
+                                                <img class="img-responsive animate scale" src="@tmp.AnhHangHoas.First().LinkAnhMini" width="270" height="328" alt="">
+                                        }
+                                        else
+                                        {
+                                            <img class="img-responsive animate scale" src="~/Content/ip7.jpg" width="270" height="328" alt="">
+                                            @*kiem anhr Khong co anh, bo vo dday*@
+                                        }
+                                    </a>
                                     <ul class="product-controls-list right">
                                         <li><span class="label label-sale">SALE</span></li>
                                         <li><span class="label">-20%</span></li>

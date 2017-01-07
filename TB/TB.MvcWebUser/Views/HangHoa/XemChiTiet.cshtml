@@ -1,5 +1,8 @@
 ﻿@model TB.Domain.EntityModel.HangHoa
-
+@using TB.Domain.EntityModel;
+@{
+    QLBH db = new QLBH();
+}
 @{
     ViewBag.Title = "XemChiTiet";
 }
@@ -19,7 +22,7 @@
         $(document).ready(function () {
             //bỏ code trong đây
         });
-        function AddCart (HanghoaId) {
+        function AddCart(HanghoaId) {
             var seft = this;
             $.ajax({
                 type: "POST",
@@ -31,87 +34,112 @@
                 }
             });
         }
-        function Buy(HanghoaId){
+        function Buy(HanghoaId) {
             AddCart(HanghoaId);
-            // Chuyen ve trang Home/CheckOut, javascript t mò ko ra, nên chế luôn 
+            // Chuyen ve trang Home/CheckOut, javascript t mò ko ra, nên chế luôn
             document.getElementById('checkOutButton').click();
         }
     </script>
 }
 <!-- One column content -->
 <!-- Product view -->
-<a href="~/Home/CheckOut" id="checkOutButton" style="visibility:hidden">
-    <a>
-        <div class="product-view row">
+<a href="~/Home/CheckOut" id="checkOutButton" style="visibility:hidden">    </a>
+<section class="container content">
+    <div class="row">
+        <aside class="col-sm-4 col-md-3 col-lg-3 content-aside">
+            <!-- Shop by categories -->
+            <section>
+                @{
+                    Html.RenderPartial("~/Views/Shared/_pvLoaiHangHoa.cshtml", db.LoaiHangHoas);
+                }
+            </section>
+            <!-- //end Shop by categories -->
 
-            <div class="col-sm-6 col-md-6 col-lg-6">
-                <div class="large-image"> <img alt="#" class="cloudzoom" src="@Model.AnhHangHoas.FirstOrDefault().LinkAnhMini" data-cloudzoom="zoomImage: '@Model.AnhHangHoas.FirstOrDefault().LinkAnh', autoInside : 991"> </div>
-                <div class="flexslider flexslider-thumb">
-                    <div class="flex-viewport" style="overflow: hidden; position: relative;">
-                        <ul class="previews-list slides" style="width: 1000%; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
-                            @foreach (var image in Model.AnhHangHoas)
-                            {
-                                <li style="width: 76px; float: left; display: block;"><img class="cloudzoom-gallery" alt="#" src="@image.LinkAnhMini" data-cloudzoom="useZoom: '.cloudzoom', image: '@image.LinkAnhMini', zoomImage: '@image.LinkAnh', autoInside : 991" draggable="false"></li>
-                            }
+            <div class="section-divider"></div>
+        </aside>
+        <section class="col-sm-8 col-md-9 col-lg-9 content-center">
+            <div class="product-view row">
+
+                @if (Model.AnhHangHoas != null && Model.AnhHangHoas.Count != 0)
+            {
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="large-image"> <img alt="#" class="cloudzoom" src="@Model.AnhHangHoas.FirstOrDefault().LinkAnhMini" data-cloudzoom="zoomImage: '@Model.AnhHangHoas.FirstOrDefault().LinkAnh', autoInside : 991"> </div>
+                        <div class="flexslider flexslider-thumb">
+                            <div class="flex-viewport" style="overflow: hidden; position: relative;">
+                                <ul class="previews-list slides" style="width: 1000%; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+                                    @foreach (var image in Model.AnhHangHoas)
+                                    {
+                                        <li style="width: 76px; float: left; display: block;"><img class="cloudzoom-gallery" alt="#" src="@image.LinkAnhMini" data-cloudzoom="useZoom: '.cloudzoom', image: '@image.LinkAnhMini', zoomImage: '@image.LinkAnh', autoInside : 991" draggable="false"></li>
+                                    }
 
 
-                        </ul>
-                    </div><ul class="flex-direction-nav"><li><a class="flex-prev flex-disabled" href="#" tabindex="-1"></a></li><li><a class="flex-next" href="#"></a></li></ul>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-6">
-                <!-- Product label -->
-                <div class="product-label">
-                    <div class="box-wrap">
-                        <div class="box-wrap-top"></div>
-                        <div class="box-wrap-bot"></div>
-                        <div class="box-wrap-center"></div>
-                        <div class="box">
-                            <div class="box-content">
-                                <h2>@Model.Ten</h2>
-                                <span class="price new">@Convert.ToDouble(Model.GiaBanThamKhao).ToString("N0") vnđ</span> <br>
+                                </ul>
+                            </div><ul class="flex-direction-nav"><li><a class="flex-prev flex-disabled" href="#" tabindex="-1"></a></li><li><a class="flex-next" href="#"></a></li></ul>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <span style="font-size:x-large"> Không có ảnh </span> @*fix dùm t*@
+                    </div>
+                }
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <!-- Product label -->
+                    <div class="product-label">
+                        <div class="box-wrap">
+                            <div class="box-wrap-top"></div>
+                            <div class="box-wrap-bot"></div>
+                            <div class="box-wrap-center"></div>
+                            <div class="box">
+                                <div class="box-content">
+                                    <h2>@Model.Ten</h2>
+                                    <span class="price new">@Convert.ToDouble(Model.GiaBanThamKhao).ToString("N0") vnđ</span> <br>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- //end Product label -->
-                <!-- Description -->
-                <div class="product-description">
-                    <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span>
-                    <div>
-                        <div class="option">
-                            <b>Quantity:</b>
-                            <div class="input-group quantity-control">
-                                <span class="input-group-addon">&minus;</span>
-                                <input type="text" class="form-control" value="1">
-                                <span class="input-group-addon">+</span>
+                    <!-- //end Product label -->
+                    <!-- Description -->
+                    <div class="product-description">
+                        <span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span>
+                        <div>
+                            <div class="option">
+                                <b>Quantity:</b>
+                                <div class="input-group quantity-control">
+                                    <span class="input-group-addon">&minus;</span>
+                                    <input type="text" class="form-control" value="1">
+                                    <span class="input-group-addon">+</span>
+                                </div>
                             </div>
+                            <div class="clearfix visible-xs"></div>
+                            <br />
+                            <span class="btn btn-mega btn-lg" onclick="AddCart(@Model.HangHoaId)">Thêm vào giỏ hàng</span>
+                            <span class="btn btn-mega btn-lg" onclick="Buy(@Model.HangHoaId)">Mua ngay</span>
                         </div>
-                        <div class="clearfix visible-xs"></div>
-                        <br />
-                        <span class="btn btn-mega btn-lg" onclick="AddCart(@Model.HangHoaId)">Thêm vào giỏ hàng</span>
-                        <span class="btn btn-mega btn-lg" onclick="Buy(@Model.HangHoaId)">Mua ngay</span>
+                    </div>
+                    <!-- //end Description -->
+
+                </div>
+            </div>
+            <!-- //end Product view -->
+            <!-- Tabs -->
+            <section class="producttab">
+                <div class="tabsslider">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#motaContent">Mô tả</a></li>
+                    </ul>
+                    <a href="#" class="carousel-prev"></a><a href="#" class="carousel-next"></a>
+                </div>
+                <div class="tab-content">
+                    <div id="motaContent" class="tab-pane fade active in">
+                        @MvcHtmlString.Create(Model.MoTa)
                     </div>
                 </div>
-                <!-- //end Description -->
-
-            </div>
-        </div>
-        <!-- //end Product view -->
-        <!-- Tabs -->
-        <section class="producttab">
-            <div class="tabsslider">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#motaContent">Mô tả</a></li>
-                </ul>
-                <a href="#" class="carousel-prev"></a><a href="#" class="carousel-next"></a>
-            </div>
-            <div class="tab-content">
-                <div id="motaContent" class="tab-pane fade active in">
-                    @MvcHtmlString.Create(Model.MoTa)
-                </div>
-            </div>
+            </section>
         </section>
 
-        <!-- //end Tabs -->
-        <!-- //end Two columns content -->
+</section>
+
+<!-- //end Tabs -->
+<!-- //end Two columns content -->

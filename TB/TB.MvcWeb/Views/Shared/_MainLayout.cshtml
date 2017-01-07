@@ -357,131 +357,191 @@
                                     <span>Tỉnh/Thành phố</span>
                                 </a>
                             </li>
-                            <li><a href="~/Content/flaty/ui_button.html">Button</a></li>
-                            <li><a href="~/Content/flaty/ui_tabs.html">Tab & Accordion</a></li>
-                            <li><a href="~/Content/flaty/ui_slider.html">Slider</a></li>
-                            <li><a href="~/Content/flaty/ui_tile.html">Tile</a></li>
-                            <li><a href="~/Content/flaty/ui_timeline.html">Timeline</a></li>
-                            <li><a href="~/Content/flaty/ui_chart.html">Chart</a></li>
-                            <li><a href="~/Content/flaty/ui_message.html">Conversation</a></li>
-                            <li><a href="~/Content/flaty/ui_horizontal-menu.html">Horizontal Menu</a></li>
-                            <li><a href="~/Content/flaty/ui_icon.html">Icon</a></li>
                         </ul>
                         <!-- END Submenu -->
                         </li>
+                        <li@{
+                    switch (ViewContext.RouteData.Values["Action"].ToString()) {
+                        case "ListHangHoa":
+                        case "ListNhaCungCap":
+                        case "ListLoaiHangHoa":
+                            @:class ="active" ;
+                                                                break; } }>
+                            <a href="#" class="dropdown-toggle">
+                                <i class="fa fa-desktop"></i>
+                                <span>Quản lí Hàng hóa</span>
+                                <b class="arrow fa fa-angle-right"></b>
+                            </a>
+                            <!-- BEGIN Submenu -->
+                            <ul class="submenu">
+                                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListHangHoa" ? "active" : "")">
+                                    <a href="@Url.Action("ListHangHoa", "HangHoaManagement", new { Area = "HangHoa" })">
+                                        <i class="fa fa-lock"></i>
+                                        <span>Hàng hóa</span>
+                                    </a>
 
-                        <li>
-                            <a href="#" class="dropdown-toggle">
-                                <i class="fa fa-edit"></i>
-                                <span>Forms</span>
-                                <b class="arrow fa fa-angle-right"></b>
-                            </a>
-                            <!-- BEGIN Submenu -->
-                            <ul class="submenu">
-                                <li><a href="~/Content/flaty/form_layout.html">Layout</a></li>
-                                <li><a href="~/Content/flaty/form_component.html">Component</a></li>
-                                <li><a href="~/Content/flaty/form_wizard.html">Wizard</a></li>
-                                <li><a href="~/Content/flaty/form_validation.html">Validation</a></li>
-                            </ul>
-                            <!-- END Submenu -->
-                        </li>
-                        <li>
-                            <a href="#" class="dropdown-toggle">
-                                <i class="fa fa-list"></i>
-                                <span>Tables</span>
-                                <b class="arrow fa fa-angle-right"></b>
-                            </a>
-                            <!-- BEGIN Submenu -->
-                            <ul class="submenu">
-                                <li><a href="~/Content/flaty/table_basic.html">Basic</a></li>
-                                <li><a href="~/Content/flaty/table_advance.html">Advance</a></li>
-                                <li><a href="~/Content/flaty/table_dynamic.html">Dynamic</a></li>
-                            </ul>
-                            <!-- END Submenu -->
-                        </li>
-                        <li>
-                            <a href="#" class="dropdown-toggle">
-                                <i class="fa fa-globe"></i>
-                                <span>Maps</span>
-                                <b class="arrow fa fa-angle-right"></b>
-                            </a>
-                            <!-- BEGIN Submenu -->
-                            <ul class="submenu">
-                                <li><a href="~/Content/flaty/map_google.html">Google Maps</a></li>
-                                <li><a href="~/Content/flaty/map_vector.html">Vector Maps</a></li>
-                            </ul>
-                            <!-- END Submenu -->
-                        </li>
-                        <li>
-                            <a href="~/Content/flaty/box.html">
-                                <i class="fa fa-list-alt"></i>
-                                <span>Box</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="~/Content/flaty/calendar.html">
-                                <i class="fa fa-calendar"></i>
-                                <span>Calendar</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="~/Content/flaty/gallery.html">
-                                <i class="fa fa-picture-o"></i>
-                                <span>Gallery</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="~/Content/flaty/grid.html">
-                                <i class="fa fa-th"></i>
-                                <span>Griding System</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="dropdown-toggle">
-                                <i class="fa fa-file-text-o"></i>
-                                <span>Sample Pages</span>
-                                <b class="arrow fa fa-angle-right"></b>
-                            </a>
-                            <!-- BEGIN Submenu -->
-                            <ul class="submenu">
-                                <li><a href="~/Content/flaty/extra_login.html">Login &amp; Register</a></li>
-                                <li>
-                                    <span>Email</span>
-                                    <ul>
-                                        <li><a href="~/Content/flaty/extra_mail-list.html">Inbox</a></li>
-                                        <li><a href="~/Content/flaty/extra_mail-msg.html">Mail Thread</a></li>
-                                        <li><a href="~/Content/flaty/extra_mail-compose.html">Compose</a></li>
-                                    </ul>
                                 </li>
-                                <li><a href="~/Content/flaty/extra_profile.html">User Profile</a></li>
-                                <li><a href="~/Content/flaty/extra_invoice.html">Invoice</a></li>
-                                <li><a href="~/Content/flaty/extra_search.html">Search Results</a></li>
-                            </ul>
-                            <!-- END Submenu -->
-                        </li>
-                        <li>
-                            <a href="#" class="dropdown-toggle">
-                                <i class="fa fa-file"></i>
-                                <span>Other Pages</span>
-                                <b class="arrow fa fa-angle-right"></b>
-                            </a>
-                            <!-- BEGIN Submenu -->
-                            <ul class="submenu">
-                                <li><a href="~/Content/flaty/more_blank.html">Blank Page</a></li>
-                                <li><a href="~/Content/flaty/more_full-width.html">Full Width Page</a></li>
-                                <li>
-                                    <span>Errors</span>
-                                    <ul>
-                                        <li><a href="~/Content/flaty/more_error-404.html">Error 404</a></li>
-                                        <li><a href="~/Content/flaty/more_error-500.html">Error 500</a></li>
-                                    </ul>
+                                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListNhaCungCap" ? "active" : "")">
+                                    <a href="@Url.Action("ListNhaCungCap", "NhaCungCapManagement", new { Area = "NhaCungCap" })">
+                                        <i class="fa fa-lock"></i>
+                                        <span>Nhà cung cấp</span>
+                                    </a>
                                 </li>
-                                <li><a href="~/Content/flaty/more_set-skin.html">Skin</a></li>
-                                <li><a href="~/Content/flaty/more_set-sidebar-navbar-color.html">Sidebar &amp; Navbar</a></li>
-                                <li><a href="~/Content/flaty/more_sidebar-collapsed.html">Collapsed Sidebar</a></li>
+                                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListLoaiHangHoa" ? "active" : "")">
+                                    <a href="@Url.Action("ListLoaiHangHoa", "LoaiHangHoaManagement", new { Area = "LoaiHangHoa" })">
+                                        <i class="fa fa-lock"></i>
+                                        <span>Loại Hàng hóa</span>
+                                    </a>
+                                </li>
                             </ul>
                             <!-- END Submenu -->
-                        </li>
+                            <li@{
+                    switch (ViewContext.RouteData.Values["Action"].ToString()) {
+                        case "ListHangHoa":
+                        case "ListNhaCungCap":
+                        case "ListLoaiHangHoa":
+                            @:class ="active" ;
+                                                                                                    break; } }>
+                                <a href="#" class="dropdown-toggle">
+                                    <i class="fa fa-desktop"></i>
+                                    <span>Quản lí Hàng hóa</span>
+                                    <b class="arrow fa fa-angle-right"></b>
+                                </a>
+                                <!-- BEGIN Submenu -->
+                                <ul class="submenu">
+                                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListHangHoa" ? "active" : "")">
+                                        <a href="@Url.Action("ListHangHoa", "HangHoaManagement", new { Area = "HangHoa" })">
+                                            <i class="fa fa-lock"></i>
+                                            <span>Hàng hóa</span>
+                                        </a>
+
+                                    </li>
+                                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListNhaCungCap" ? "active" : "")">
+                                        <a href="@Url.Action("ListNhaCungCap", "NhaCungCapManagement", new { Area = "NhaCungCap" })">
+                                            <i class="fa fa-lock"></i>
+                                            <span>Nhà cung cấp</span>
+                                        </a>
+                                    </li>
+                                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListLoaiHangHoa" ? "active" : "")">
+                                        <a href="@Url.Action("ListLoaiHangHoa", "LoaiHangHoaManagement", new { Area = "LoaiHangHoa" })">
+                                            <i class="fa fa-lock"></i>
+                                            <span>Loại Hàng hóa</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- END Submenu -->
+                                <li>
+                                    <a href="#" class="dropdown-toggle">
+                                        <i class="fa fa-edit"></i>
+                                        <span>Forms</span>
+                                        <b class="arrow fa fa-angle-right"></b>
+                                    </a>
+                                    <!-- BEGIN Submenu -->
+                                    <ul class="submenu">
+                                        <li><a href="~/Content/flaty/form_layout.html">Layout</a></li>
+                                        <li><a href="~/Content/flaty/form_component.html">Component</a></li>
+                                        <li><a href="~/Content/flaty/form_wizard.html">Wizard</a></li>
+                                        <li><a href="~/Content/flaty/form_validation.html">Validation</a></li>
+                                    </ul>
+                                    <!-- END Submenu -->
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-toggle">
+                                        <i class="fa fa-list"></i>
+                                        <span>Tables</span>
+                                        <b class="arrow fa fa-angle-right"></b>
+                                    </a>
+                                    <!-- BEGIN Submenu -->
+                                    <ul class="submenu">
+                                        <li><a href="~/Content/flaty/table_basic.html">Basic</a></li>
+                                        <li><a href="~/Content/flaty/table_advance.html">Advance</a></li>
+                                        <li><a href="~/Content/flaty/table_dynamic.html">Dynamic</a></li>
+                                    </ul>
+                                    <!-- END Submenu -->
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-toggle">
+                                        <i class="fa fa-globe"></i>
+                                        <span>Maps</span>
+                                        <b class="arrow fa fa-angle-right"></b>
+                                    </a>
+                                    <!-- BEGIN Submenu -->
+                                    <ul class="submenu">
+                                        <li><a href="~/Content/flaty/map_google.html">Google Maps</a></li>
+                                        <li><a href="~/Content/flaty/map_vector.html">Vector Maps</a></li>
+                                    </ul>
+                                    <!-- END Submenu -->
+                                </li>
+                                <li>
+                                    <a href="~/Content/flaty/box.html">
+                                        <i class="fa fa-list-alt"></i>
+                                        <span>Box</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="~/Content/flaty/calendar.html">
+                                        <i class="fa fa-calendar"></i>
+                                        <span>Calendar</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="~/Content/flaty/gallery.html">
+                                        <i class="fa fa-picture-o"></i>
+                                        <span>Gallery</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="~/Content/flaty/grid.html">
+                                        <i class="fa fa-th"></i>
+                                        <span>Griding System</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-toggle">
+                                        <i class="fa fa-file-text-o"></i>
+                                        <span>Sample Pages</span>
+                                        <b class="arrow fa fa-angle-right"></b>
+                                    </a>
+                                    <!-- BEGIN Submenu -->
+                                    <ul class="submenu">
+                                        <li><a href="~/Content/flaty/extra_login.html">Login &amp; Register</a></li>
+                                        <li>
+                                            <span>Email</span>
+                                            <ul>
+                                                <li><a href="~/Content/flaty/extra_mail-list.html">Inbox</a></li>
+                                                <li><a href="~/Content/flaty/extra_mail-msg.html">Mail Thread</a></li>
+                                                <li><a href="~/Content/flaty/extra_mail-compose.html">Compose</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="~/Content/flaty/extra_profile.html">User Profile</a></li>
+                                        <li><a href="~/Content/flaty/extra_invoice.html">Invoice</a></li>
+                                        <li><a href="~/Content/flaty/extra_search.html">Search Results</a></li>
+                                    </ul>
+                                    <!-- END Submenu -->
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-toggle">
+                                        <i class="fa fa-file"></i>
+                                        <span>Other Pages</span>
+                                        <b class="arrow fa fa-angle-right"></b>
+                                    </a>
+                                    <!-- BEGIN Submenu -->
+                                    <ul class="submenu">
+                                        <li><a href="~/Content/flaty/more_blank.html">Blank Page</a></li>
+                                        <li><a href="~/Content/flaty/more_full-width.html">Full Width Page</a></li>
+                                        <li>
+                                            <span>Errors</span>
+                                            <ul>
+                                                <li><a href="~/Content/flaty/more_error-404.html">Error 404</a></li>
+                                                <li><a href="~/Content/flaty/more_error-500.html">Error 500</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="~/Content/flaty/more_set-skin.html">Skin</a></li>
+                                        <li><a href="~/Content/flaty/more_set-sidebar-navbar-color.html">Sidebar &amp; Navbar</a></li>
+                                        <li><a href="~/Content/flaty/more_sidebar-collapsed.html">Collapsed Sidebar</a></li>
+                                    </ul>
+                                    <!-- END Submenu -->
+                                </li>
 </ul>
             <!-- END Navlist -->
             <!-- BEGIN Sidebar Collapse Button -->

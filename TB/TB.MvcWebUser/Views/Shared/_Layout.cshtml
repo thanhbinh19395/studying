@@ -32,6 +32,7 @@
     <link href="~/Content/Template/css/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet">
     <link href="~/Content/Template/css/jquery.fancybox.css" rel="stylesheet">
     <link href="~/Content/Template/css/hoverfold.css" rel="stylesheet">
+    <link href="~/Content/Template/css/bootstrap-select.css" rel="stylesheet">
     @RenderSection("styles", false)
 </head>
 <body class="responsive">
@@ -240,21 +241,20 @@
                                 <div class="btn-group compact-hidden">
                                     <a href="#" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown"> <span class="icon icon-vcard"></span> Đăng ký </a>
                                 </div>
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown"> <span class="compact-hidden">Giỏ hàng - <strong>$245</strong></span> <span class="icon-xcart-animate"><span class="box">3</span><span class="handle"></span></span> </a>
+                                <!--Gio hang-->
+                                <div class="btn-group shoppingcart">
+                                    <a href="~/Home/ViewCarts" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown"> <span class="compact-hidden">Giỏ Hàng - <strong class="Total"></strong></span> <span class="icon-xcart-animate"><span class="box" id="ItemCount"></span><span class="handle"></span></span> </a>
                                     <div class="dropdown-menu pull-right shoppingcart-box" role="menu">
-                                        Recently added item(s)
-                                        <ul class="list">
-                                            <li class="item">
-                                                <a href="product_default.html" class="preview-image"><img class="preview" src="~/Content/Template/images/products/product-07-small.jpg" alt=""></a>
-                                                <div class="description"> <a href="#">Mauris et ligula quis</a> <strong class="price">1 x $44.95</strong> </div>
-                                            </li>
-                                        </ul>
-                                        <div class="total">Total: <strong>$44.95</strong></div>
-                                        <a href="#" class="btn btn-mega">Proceed to Checkout</a>
-                                        <div class="view-link"><a href="shopping_cart.html">View shopping cart </a></div>
+                                        <div class="view-link"><a href="~/Home/ViewCarts"><h5>Xem chi tiết Giỏ hàng</h5></a></div>
+                                        Danh sách sản phẩm
+                                        <ul class="list" id="ListCartitem"></ul>
+                                        <div class="total">Total: <strong class="Total"></strong></div>
+                                        <a href="~/Home/CheckOut"><button type="submit" class="btn btn-mega">Thanh toán</button></a>
+                                        
                                     </div>
                                 </div>
+                                <!--Ket thuc Gio hang-->>
+
                             </div>
                             <!-- //end Secondary menu -->
                             <!-- Search -->
@@ -388,148 +388,7 @@
 
             </header>
             <!-- //end Navbar -->
-            <!-- Slider -->
-            <section class="main-slider container hidden-xs">
-                <div class="owl-slider-outer">
-                    <a class="owl-slider-prev"></a> <a class="owl-slider-next"></a>
-                    <div class="owl-slider">
-                        <div class="item"><img src="~/Content/Template/images/home_boxed_slider1-798x268.jpg" alt=""> <a href="index.html" class="title-slide-01"> <span class="big">Sale</span> <span class="middle">up to 40% OFF</span> </a></div>
-                        <div class="item"><img src="~/Content/Template/images/home_boxed_slider2-798x268.jpg" alt=""> <a href="index.html" class="title-slide-02"> <span class="big">New</span> <span class="small">collection</span> <span class="middle">AUTUMN 2014</span> </a> </div>
-                        <div class="item"><img src="~/Content/Template/images/home_boxed_slider3-798x268.jpg" alt=""> <a href="index.html" class="title-slide-03"> <span class="big">Special offer</span> <span class="middle">Save money with Lingerie SALE</span> </a></div>
-                    </div>
-                </div>
-                <div class="banners-block">
-                    <div class="item">
-                        <a href="#">
-                            <img src="~/Content/Template/images/banner1.jpg" alt="">
-                            <div class="banner-text black">
-                                100%<br>
-                                RETINA READY
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="#">
-                            <img src="~/Content/Template/images/banner2.jpg" alt="">
-                            <div class="banner-text">
-                                <div class="inside">
-                                    RESPONSIVE<br>
-                                    LAYOUT
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- //end Slider -->
-            <!-- Social widgets -->
-            <section class="social-widgets hidden-xs">
-                <ul class="items">
-                    <li class="item item-01 facebook">
-                        <a href="social/facebook.html" class="tab-icon"><span class="icon-facebook-3"></span></a>
-                        <div class="tab-content">
-                            <div class="title">FACEBOOK</div>
-                            <div class="loading"><img src="~/Content/Template/images/ajax-loader.gif" class="ajaxloader" alt="loader"></div>
-                        </div>
-                    </li>
-                    <li class="item item-02 twitter">
-                        <a href="social/twitter.html" class="tab-icon"><span class="icon-twitter-3"></span></a>
-                        <div class="tab-content">
-                            <div class="title">TWITTER FEEDS</div>
-                            <div class="loading"><img src="~/Content/Template/images/ajax-loader.gif" class="ajaxloader" alt="loader"></div>
-                        </div>
-                    </li>
-                    <li class="item item-03 youtube">
-                        <a href="social/youtubevideo.html" class="tab-icon"><span class="icon icon-youtube-3"></span></a>
-                        <div class="tab-content">
-                            <div class="title">Video</div>
-                            <div class="loading"><img src="~/Content/Template/images/ajax-loader.gif" class="ajaxloader" alt="loader"></div>
-                        </div>
-                    </li>
-                    <li class="item item-04 contacts">
-                        <a href="social/googlemap.html" class="tab-icon"><span class="icon-globe"></span></a>
-                        <div class="tab-content">
-                            <div class="title">Find Us</div>
-                            <div class="loading"><img src="~/Content/Template/images/ajax-loader.gif" class="ajaxloader" alt="loader"></div>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-            <!-- //end Social widgets -->
-            <!-- Services -->
-            <section class="services-block hidden-xs">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 col-lg-4 divider-right"> <a href="index.html" class="item"> <span class="icon icon-airplane-2"></span> <span class="title">Free shipping</span> <span class="description">on orders over $200</span> </a> </div>
-                        <div class="col-xs-12 col-sm-4 col-lg-4 divider-right"> <a href="index.html" class="item"> <span class="icon icon-clock"></span> <span class="title">30-day returns</span> <span class="description">moneyback guarantee</span> </a> </div>
-                        <div class="col-xs-12 col-sm-4 col-lg-4"> <a href="index.html" class="item"> <span class="icon icon-umbrella "></span> <span class="title">24/7 Support </span> <span class="description">online consultations</span> </a> </div>
-                    </div>
-                </div>
-            </section>
-            <!-- //end Services -->
-            <!-- Two columns content -->
-            <section class="container content">
-                <div class="row">
-
-                    <!-- Left column -->
-                    <aside class="col-sm-4 col-md-3 col-lg-3 content-aside">
-                        <!-- Shop by categories -->
-                        <section>
-                            @{
-                                Html.RenderPartial("~/Views/Shared/_pvLoaiHangHoa.cshtml", db.LoaiHangHoas);
-                            }
-                        </section>
-                        <!-- //end Shop by categories -->
-
-                        <div class="section-divider"></div>
-                    </aside>
-                    <!-- //end Left column -->
-                    <!-- Right column -->
-                    <section class="col-sm-8 col-md-9 col-lg-9 content-center">
-                        @RenderBody()
-                    </section>
-                    <!-- //end Right column -->
-
-                </div>
-            </section>
-            <!-- //end Two columns content --> <!-- Social navbar -->
-            <section class="content content-border nopad-xs social-widget">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6  col-lg-6 newsletter collapsed-block">
-                            <div class="row">
-                                <div class="col-lg-5  col-md-12 col-sm-12 ">
-                                    <h3>NEWSLETTER SIGNUP <a class="expander visible-xs" href="#TabBlock-1">+</a></h3>
-                                </div>
-                                <div class="col-sm-12 col-md-12 col-lg-6 tabBlock" id="TabBlock-1">
-                                    <p>Enter your email and we'll send you a coupon with 10% off your next order.</p>
-                                    <form class="form-inline" role="form">
-                                        <div class="form-group input-control">
-                                            <button type="submit" class="button"><span class="icon-envelop"></span></button>
-                                            <input type="text" class="form-control" value="Your E-mail..." onblur="if (this.value == '') {this.value = 'Your E-mail...';}" onfocus="if(this.value == 'Your E-mail...') {this.value = '';}">
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-6 collapsed-block">
-                            <h3>FIND US ON<a class="expander visible-xs" href="#TabBlock-2">+</a></h3>
-                            <div class="tabBlock" id="TabBlock-2">
-                                <ul class="find-us">
-                                    <li class="divider"><a href="#" class="animate-scale"><span class="icon icon-facebook-3"></span></a></li>
-                                    <li class="divider"><a href="#" class="animate-scale"><span class="icon icon-twitter-3"></span></a></li>
-                                    <li class="divider"><a href="#" class="animate-scale"><span class="icon icon-linkedin-2"></span></a></li>
-                                    <li class="divider"><a href="#" class="animate-scale"><span class="icon icon-youtube-3"></span></a></li>
-                                    <li class="divider"><a href="#" class="animate-scale"><span class="icon icon-pinterest-2"></span></a></li>
-                                    <li class="divider"><a href="#" class="animate-scale"><span class="icon icon-googleplus-2"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- //end Social navbar -->
+            @RenderBody()
             <!-- Footer -->
             <footer>
                 <section class="footer-navbar dark">
@@ -636,8 +495,9 @@
     <script src="~/Content/Template/js/jquery.plugin.js"></script>
     <script src="~/Content/Template/js/jquery.countdown.js"></script>
     <script src="~/Content/Template/js/jquery.carouFredSel-6.2.1-packed.js"></script>
+    <script src="~/Content/Template/js/bootstrap-select.js"></script> 
     <script src="~/Content/Template/js/megatron.js"></script>
-    @*<script src="~/Scripts/giohang.js"></script>*@
+    <script src="~/Scripts/giohang.js"></script>
     @RenderSection("scripts", false)
 </body>
 </html>

@@ -14,7 +14,7 @@ namespace TB.MvcWebUser.Controllers
         private QLBH db = new QLBH();
         public ActionResult Index()
         {
-            return View();
+            return View(db.HangHoas.ToList());
         }
         public ActionResult Tientest()
         {

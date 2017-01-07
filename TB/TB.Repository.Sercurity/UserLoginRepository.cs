@@ -20,7 +20,7 @@ namespace TB.SercurityRepo
         {
             //Username = AESHandler.Encrypt(Username);
             Password = AESHandler.Encrypt(Password);
-            var user = db.Users.SingleOrDefault(p => p.Username == Username && p.Password == Password);
+            var user = db.Users.SingleOrDefault(p => p.Username == Username && p.Password == Password && p.Type == 2);
             if (user == null)
             {
                 throw new Exception("Tên đăng nhập hoặc mật khẩu không đúng");

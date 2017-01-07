@@ -18,7 +18,7 @@ $.extend(framework.common, {
         else {
             content += options.css;
         }
-        content += "<body onload=\"\">";
+        content += "<body onload=\"window.print();\">";
         if (options.content)
             content += options.content;
         if (options.headerHtml != null) {

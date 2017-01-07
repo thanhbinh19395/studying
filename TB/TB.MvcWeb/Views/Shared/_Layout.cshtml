@@ -17,10 +17,9 @@
     <link rel="stylesheet" href="~/Content/flaty/css/flaty.css">
     <link rel="stylesheet" href="~/Content/flaty/css/flaty-responsive.css">
     <link rel="shortcut icon" href="~/Content/flaty/img/favicon.html">
-    <link href="~/Content/css/framework.css" rel="stylesheet" />
-    <link href="~/Content/plugins/jquery-ui-1.11.4/jquery-ui.css" rel="stylesheet" />
-    <link href="~/Content/css/Layout.css" rel="stylesheet" />
-    <link href="~/Content/plugins/plupload-2.1.9/js/jquery.ui.plupload/css/jquery.ui.plupload.css" rel="stylesheet" />
+    <link href="~/Content/css/Layout.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
+    <link href="~/Content/css/framework.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
+    <link href="~/Content/plugins/jquery-ui-1.11.4/jquery-ui.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
 
 </head>
 <body>
@@ -32,7 +31,7 @@
     <script src="/Content/plugins/requirejs/require.js"></script>
     <script>
         require(['/Content/js/require.config.js'], function () {
-            require(['jquery', 'jqueryUIDiaglogExtend', 'blockUISetting','flatyScript', 'jqueryCookie', 'jquerySlimscroll', 'bootstrap', 'noty', 'notySetting'], function () {
+            require(['jquery', 'jqueryUIDiaglogExtend', 'blockUISetting','flatyScript', 'jqueryCookie', 'jquerySlimscroll', 'bootstrap', 'noty', 'notySetting','pluploadui'], function () {
                 require(['framework'], function () {
                         @RenderSection("PageMainModule", false)
                 });

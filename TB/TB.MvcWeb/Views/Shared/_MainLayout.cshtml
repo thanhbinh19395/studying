@@ -131,7 +131,7 @@
                         }  
                        }>
                         <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-desktop"></i>
+                            <i class="fa fa-users"></i>
                             <span>Quản lí người dùng</span>
                             <b class="arrow fa fa-angle-right"></b>
                         </a>
@@ -139,26 +139,26 @@
                         <ul class="submenu">
                             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListUser" ? "active" : "")">
                                 <a href="@Url.Action("ListUser", "UserManagement", new { Area = "User"})">
-                                    <i class="fa fa-lock"></i>
+                                    <i class="fa-users"></i>
                                     <span>Tài khoản người dùng</span>
                                 </a>
 
                             </li>
                             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListThongTinNguoiDung" ? "active" : "")">
                                 <a href="@Url.Action("ListThongTinNguoiDung", "ThongTinNguoiDungManagement", new { Area = "User"})">
-                                    <i class="fa fa-lock"></i>
+                                    <i class="fa-id-card-o"></i>
                                     <span>Thông tin người dùng</span>
                                 </a>
                             </li>
                             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListQuan" ? "active" : "")">
                                 <a href="@Url.Action("ListQuan", "QuanManagement", new { Area = "Quan"})">
-                                    <i class="fa fa-lock"></i>
+                                    <i class="fa-map-marker"></i>
                                     <span>Quận/Huyện</span>
                                 </a>
                             </li>
                             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListTinhThanhPho" ? "active" : "")">
                                 <a href="@Url.Action("ListTinhThanhPho", "TinhThanhPhoManagement", new { Area = "TinhThanhPho"})">
-                                    <i class="fa fa-lock"></i>
+                                    <i class="fa-map-marker"></i>
                                     <span>Tỉnh/Thành phố</span>
                                 </a>
                             </li>
@@ -173,7 +173,7 @@
                             @:class ="active" ;
                                                                 break; } }>
                             <a href="#" class="dropdown-toggle">
-                                <i class="fa fa-desktop"></i>
+                                <i class="fa-shopping-bag"></i>
                                 <span>Quản lí Hàng hóa</span>
                                 <b class="arrow fa fa-angle-right"></b>
                             </a>
@@ -181,20 +181,20 @@
                             <ul class="submenu">
                                 <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListHangHoa" ? "active" : "")">
                                     <a href="@Url.Action("ListHangHoa", "HangHoaManagement", new { Area = "HangHoa" })">
-                                        <i class="fa fa-lock"></i>
+                                        <i class="fa-mobile"></i>
                                         <span>Hàng hóa</span>
                                     </a>
 
                                 </li>
                                 <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListNhaCungCap" ? "active" : "")">
                                     <a href="@Url.Action("ListNhaCungCap", "NhaCungCapManagement", new { Area = "NhaCungCap" })">
-                                        <i class="fa fa-lock"></i>
+                                        <i class="fa-mobile"></i>
                                         <span>Nhà cung cấp</span>
                                     </a>
                                 </li>
                                 <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListLoaiHangHoa" ? "active" : "")">
                                     <a href="@Url.Action("ListLoaiHangHoa", "LoaiHangHoaManagement", new { Area = "LoaiHangHoa" })">
-                                        <i class="fa fa-lock"></i>
+                                        <i class="fa-shopping-bag"></i>
                                         <span>Loại Hàng hóa</span>
                                     </a>
                                 </li>
@@ -207,7 +207,7 @@
                             @:class ="active" ;
                                                                                                     break; } }>
                                 <a href="#" class="dropdown-toggle">
-                                    <i class="fa fa-desktop"></i>
+                                    <i class="fa-file-text-o"></i>
                                     <span>Quản lí Đơn hàng</span>
                                     <b class="arrow fa fa-angle-right"></b>
                                 </a>
@@ -215,14 +215,14 @@
                                 <ul class="submenu">
                                     <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListDonHang" ? "active" : "")">
                                         <a href="@Url.Action("ListDonHang", "DonHangManagement", new { Area = "DonHang" })">
-                                            <i class="fa fa-lock"></i>
+                                            <i class="fa-file-text-o"></i>
                                             <span>Đơn hàng</span>
                                         </a>
 
                                     </li>
                                     <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ListHoaDon" ? "active" : "")">
                                         <a href="@Url.Action("ListHoaDon", "HoaDonManagement", new { Area = "DonHang" })">
-                                            <i class="fa fa-lock"></i>
+                                            <i class="fa-file-text-o"></i>
                                             <span>Hóa đơn</span>
                                         </a>
                                     </li>

@@ -4,7 +4,9 @@
     Layout = ViewHelper.GetLayout(ViewBag.ParentId);
 }
 
+    <link href="~/Content/plugins/plupload-2.1.9/js/jquery.ui.plupload/css/jquery.ui.plupload.css" rel="stylesheet" />
+
 @section PageMainModule{
-    @Html.InitPageMainModule(null, "pluploadui")
+    @Html.InitPageMainModule(null)
 }
 <div id="page"></div>

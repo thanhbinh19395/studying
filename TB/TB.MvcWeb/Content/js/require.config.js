@@ -51,9 +51,9 @@
     shim: {
         //jquery deps
         blockUI:['jquery'],
-        pluploadcore: ['jquery', 'jqueryUI'],
+        pluploadcore: ['jquery'],
         bootstrap: ['jquery'],
-        pluploadui: ['pluploadcore','jqueryUI'],
+        pluploadui: ['pluploadcore', 'jqueryUI'],
         jquerySlimscroll: ['jquery'],
         flot: ['jquery'],
         sparkline: ['jquery'],

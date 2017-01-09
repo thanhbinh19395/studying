@@ -160,7 +160,7 @@ namespace TB.MvcWebUser.Controllers
             if (!optionsRadios) {// khach la
                 repo.DonHang = new DonHang();
                 repo.ChiTietDonHang = Listctdh;
-                repo.Execute(this);
+                var dhid = repo.Execute(this);
                 Session.Remove("GioHang");
             }
             return RedirectToAction( "Tientest", "Home");

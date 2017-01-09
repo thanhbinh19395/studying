@@ -267,7 +267,7 @@ label {
 .btn-mega {
 	background: #ee3b27;
 	color: #fff!important;
-	font: .9em Mavenpro-black, Arial, Helvetica, sans-serif;
+	/*font: .9em Mavenpro-black, Arial, Helvetica, sans-serif;*/
 	padding: 12px 14px;
 	text-transform: uppercase;
 	border-radius: 4px

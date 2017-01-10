@@ -9,7 +9,7 @@
             gridColumn: [
                 { field: 'DonHangId', caption: 'Mã Đơn Hàng', size: '40%', sortable: true, resizable: true },
                 { field: 'NgayLap', caption: 'Ngày Lập', size: '40%', sortable: true, resizable: true, format: 'mm/dd/yyyy' },
-                { field: 'ThanhTien', caption: 'Thành Tiền', size: '50%', sortable: true, resizable: true },
+                { field: 'ThanhTien', caption: 'Thành Tiền', size: '50%', sortable: true, resizable: true, render:'int' },
                 { field: 'KhachHangId', caption: 'Khách Hàng ID', size: '50%', sortable: true, resizable: true },
                 { field: 'GhiChu', caption: 'Ghi Chú', size: '50%', sortable: false, resizable: true },
             ],
@@ -86,8 +86,8 @@
         gridChiTietDonHang.setName('chiTietDonHangGrid')
             .addColumns([
                 { field: 'HangHoa.Ten', caption: 'Tên Hàng Hóa', size: '40%', sortable: true, resizable: true },
-                { field: 'SoLuong', caption: 'Số Lượng', size: '40%', sortable: true, resizable: true },
-                { field: 'GiaTien', caption: 'Giá Bán', size: '40%', sortable: true, resizable: true },
+                { field: 'SoLuong', caption: 'Số Lượng', size: '40%', sortable: true, resizable: true, render: 'int' },
+                { field: 'GiaTien', caption: 'Giá Bán', size: '40%', sortable: true, resizable: true, render: 'int' },
                 {
                     field: 'ThanhTien', caption: 'Thành Tiền', size: '40%', sortable: true, resizable: true, render: function (r) {
                         return r.GiaTien * r.SoLuong;

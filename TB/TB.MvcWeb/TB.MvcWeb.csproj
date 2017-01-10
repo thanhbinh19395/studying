@@ -760,6 +760,7 @@
     <Content Include="Content\flaty\ui_tabs.html" />
     <Content Include="Content\flaty\ui_tile.html" />
     <Content Include="Content\flaty\ui_timeline.html" />
+    <Content Include="Content\images\header-logo.png" />
     <Content Include="Content\images\loader.gif" />
     <Content Include="Content\js\framework.common.js" />
     <Content Include="Content\js\framework.global.js" />
@@ -770,7 +771,6 @@
     <Content Include="Content\js\require.js" />
     <Content Include="Content\js\w2ui.setting.js" />
     <Content Include="Content\js\widget.setting.js" />
-    <Content Include="Content\js\widget\JavaScript.js" />
     <Content Include="Content\js\widget\widget-rules.txt" />
     <Content Include="Content\js\widget\widget.base.js" />
     <Content Include="Content\js\widget\widget.boxcontent.js" />

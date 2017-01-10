@@ -26,5 +26,10 @@ namespace DonHang.Controllers
         {
             return Json(bus.Execute(this));
         }
+        [HttpPost]
+        public ActionResult ExecuteInsertDonHangKhachQuen(InsertDonHangKhachQuenBusiness bus)
+        {
+            return Json(bus.Execute(this));
+        }
     }
 }

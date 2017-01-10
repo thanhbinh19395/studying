@@ -635,8 +635,8 @@ $().w2field('addType', 'popupDSNhaCungCap', function (options) {
         input = $('<input>').css({
             width: '65%',
             border: '0px'
-        }).addClass('inputSearch');
-        $(this.el).attr('placeholder', 'Tìm theo tên Nhà cung cấp').parent().append(input);
+        }).attr('placeholder', 'Tìm theo tên Nhà cung cấp').addClass('inputSearch');
+        $(this.el).parent().append(input);
     }
     if (options.data) {
         input.val(options.data.Ten);

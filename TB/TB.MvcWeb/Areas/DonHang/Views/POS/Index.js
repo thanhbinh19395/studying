@@ -17,8 +17,8 @@
             donhangBottomToolbar = widget.setting.toolbar()
         ;
         this.curRecid = 1;
-        leftPanel.setName('leftPn').addClass('col-md-7');
-        rightPanel.setName('rightPn').addClass('col-md-5');
+        leftPanel.setName('leftPn').addClass('col-md-6');
+        rightPanel.setName('rightPn').addClass('col-md-6');
 
         formThongTin.setName('thongtinForm').setFieldPerRow(2) // so cot trong form 
             .addFields([
@@ -128,7 +128,7 @@
                 self.recalTongCong();
             })
 
-            .getTemplate().height('65vh');
+            .getTemplate().height('50vh');
         //.addRecords(self.Data.Data)
         //.setPaginateOptions(pagiChiTietDonHang.end())
         ;
@@ -191,6 +191,7 @@
                 success: function (data) {
                     if (data.IsSuccess) {
                         self.HoaDonId = data.Data;
+                        alertSuccess("Thanh toán thành công");
                     }
                     else {
                         alert(data.Message);
@@ -205,7 +206,7 @@
                 DonHang: {
                     ThanhTien: form.record.TongCong,
                     GhiChu: form.record.GhiChu,
-                    KhachHangId: form.ThongTinNguoiDungId
+                    KhachHangId: form.record.ThongTinNguoiDungId
                 },
                 ChiTietDonHang: gridDH.records,
                 ThongTinNguoiDung: form.record
@@ -217,6 +218,7 @@
                 success: function (data) {
                     if (data.IsSuccess) {
                         self.HoaDonId = data.Data;
+                        alertSuccess("Thanh toán thành công");
                     }
                     else {
                         alert(data.Message);

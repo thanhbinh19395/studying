@@ -13,7 +13,7 @@
         <!-- BEGIN Login Form -->
         @using (Html.BeginForm("ExecuteSignIn", "Authorize", new { Area = "Security" }, FormMethod.Post, new { id = "form-sign-in" }))
         {
-            <h3>HỆ THỐNG BÁN LẺ ABC</h3>
+            <h3>HỆ THỐNG BÁN LẺ MEGATRON</h3>
             <hr />
             @forgeryToken
             <input name="ReturnUrl" type="hidden" value="@ViewBag.ReturnUrl" />
@@ -43,11 +43,11 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            @*<div class="form-group">
                 <div class="controls">
                     <input type="button" id="btn-goto-merchant1" class="btn btn-inverse form-control" value="Đăng nhập nhanh" />
                 </div>
-            </div>
+            </div>*@
 
             <hr />
             <p class="clearfix">
@@ -96,10 +96,10 @@
             if (ViewBag.Result) {
                 alert(ViewBag.Result.Message);
             }
-            $("#btn-goto-merchant1").click(function () {
+            @*$("#btn-goto-merchant1").click(function () {
                 $('input[name=Username]').val('nhanvien01');
                 $('input[name=Password]').val('admin');
                 $('form#form-sign-in').submit();
-            });
+            });*@
         });
 }

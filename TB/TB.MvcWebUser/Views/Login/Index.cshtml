@@ -4,39 +4,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <section class="container" style="margin-top: 0px;">
-    <nav class="breadcrumbs"> <a href="#">Home</a> <span class="divider">›</span> Account Login </nav>
+    <nav class="breadcrumbs"> <a href="~/">Trang chủ</a> <span class="divider">›</span> Đăng nhập </nav>
 </section>
 
 <section class="container">
     <div class="row">
         <section class="col-sm-6 col-md-6 col-lg-6">
             <section class="container-with-large-icon login-form">
-                <div class="large-icon"><img src="images/large-icon-user.png" alt=""></div>
+                <div class="large-icon"><img src="~/Content/Template/images/large-icon-user.png" alt=""></div>
                 <div class="wrap">
-                    <h3>NEW CUSTOMER</h3>
-                    <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p>
+                    <h3>KHÁCH HÀNG MỚI</h3>
+                    <p>Đăng ký tài khoảng để dễ dàng nhận được nhiều ưu đãi hơn, dễ dàng kiểm tra thông tin mua hàng hơn</p>
                     <br>
-                    <button class="btn btn-mega" onclick="location.href='#';">CONTINUE</button>
+                    <button class="btn btn-mega" onclick="location.href='~/Login/Register';">ĐĂNG KÝ</button>
                 </div>
             </section>
         </section>
         <section class="col-sm-6 col-md-6 col-lg-6">
             <section class="container-with-large-icon login-form">
-                <div class="large-icon"><img src="images/large-icon-lock.png" alt=""></div>
+                <div class="large-icon"><img src="~/Content/Template/images/large-icon-lock.png" alt=""></div>
                 <div class="wrap">
-                    <h3>RETURNING CUSTOMER</h3>
-                    <form action="#" id="form-returning">
+                    <h3>ĐĂNG NHẬP</h3>
+                    <form action="~/Login/Index" id="form-returning" method="post">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true,null,new { @class = "alert alert-danger"});
                         <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" class="form-control" id="email">
+                            <label for="text">Tài khoản</label>
+                            <input type="text" class="form-control" name="taikhoan">
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password">
+                            <label for="password">Mật khẩu</label>
+                            <input type="password" class="form-control" name="matkhau">
                         </div>
-                        <div class="form-link"> <a href="#">Forgot Your Password?</a> </div>
-                        <button type="submit" class="btn btn-mega" onclick="document.getElementById('form-returning').submit();">Login</button>
-                    </form>
+                        <div class="form-link"> <a href="#">Quên mật khẩu?</a> </div>
+                        <button type="submit" class="btn btn-mega" onclick="document.getElementById('form-returning').submit();">Đăng nhập</button>
+                    </form>     
                 </div>
             </section>
         </section>

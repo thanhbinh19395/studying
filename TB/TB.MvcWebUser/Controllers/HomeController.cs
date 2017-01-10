@@ -134,6 +134,27 @@ namespace TB.MvcWebUser.Controllers
 
         public ActionResult CheckOut()
         {
+            if (Session["taikhoan"] != null)
+            {
+                var user = Session["taikhoan"] as User;
+                List<CartItem> giohang = Session["GioHang"] as List<CartItem>;
+                List<ChiTietDonHang> Listctdh = new List<ChiTietDonHang>();
+                foreach (var item in giohang)
+                {
+                    var ctdh = new ChiTietDonHang();
+                    ctdh.HangHoaId = item.ProductOrder.HangHoaId;
+                    ctdh.GiaTien = item.ProductOrder.GiaBanThamKhao;
+                    ctdh.SoLuong = item.Quantity;
+                    Listctdh.Add(ctdh);
+                }
+                DonHang donhang = new DonHang();
+                donhang.KhachHangId = user.ThongTinNguoiDungId;
+                InsertDonHangKhachQuenBusiness repo = new InsertDonHangKhachQuenBusiness { DonHang = donhang ,ChiTietDonHang = Listctdh};
+                var dhId = repo.Execute(this);
+                Session.Remove("GioHang");
+                Session["MaDH"] = dhId.Data;
+                return View("CheckOutAlert");
+            }
             return View();
         }
 
@@ -160,8 +181,10 @@ namespace TB.MvcWebUser.Controllers
             if (!optionsRadios) {// khach la
                 repo.DonHang = new DonHang();
                 repo.ChiTietDonHang = Listctdh;
-                repo.Execute(this);
+                var dhId = repo.Execute(this);
                 Session.Remove("GioHang");
+                Session["MaDH"] = dhId.Data;
+                return View("CheckOutAlert");
             }
             return RedirectToAction( "Tientest", "Home");
         }

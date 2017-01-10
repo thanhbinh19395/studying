@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "CheckOutAlert";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+
+    <div class="container" width="100%">
+        <div id="box" style="text-align: center; margin-top:70px ">
+            <img src="~/Content/Template/images/success-icon-10.png" style="margin: 0 auto" width="150px" height="150px">
+            <strong><h2 style="font-size: 55px">Thank you!</h2></strong>
+            <p style="font-size: 20px;">Đơn hàng của bạn đã được ghi nhận, chúng tôi sẽ liên lạc sớm</p>
+            @{
+                if (Session["MaDH"] != null)
+                {
+                    <strong><h3 style="margin-top:37px ">Mã đơn hàng: @Session["MaDH"].ToString()</h3></strong>
+                }
+            }
+            <a href="~/">
+            <button type="button" class="btn btn-success" style="font-size: 20px; margin-top:15px; margin-bottom:20px">Tiếp tục mua hàng</button>  <br>
+            </a>
+        </div>
+
+    </div>
+
+
+
+</body>
+

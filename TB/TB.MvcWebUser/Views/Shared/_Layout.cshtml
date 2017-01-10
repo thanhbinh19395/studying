@@ -33,7 +33,7 @@
     <link href="~/Content/Template/css/jquery.fancybox.css" rel="stylesheet">
     <link href="~/Content/Template/css/hoverfold.css" rel="stylesheet">
     <link href="~/Content/Template/css/bootstrap-select.css" rel="stylesheet">
-   
+
     @RenderSection("styles", false)
 </head>
 <body class="responsive">
@@ -231,16 +231,38 @@
                         <div class="container">
                             <!-- Logo -->
                             <div class="navbar-logo pull-left"> <a href="~/"><img src="~/Content/Template/images/header-logo.png" alt="Megatron"></a></div>
-                            <div class="navbar-welcome pull-left compact-hidden hidden-xs">Chào khách !</div>
+
+                            @{
+                                if (Session["taikhoan"] != null)
+                                {
+                                    var user = Session["taikhoan"] as User;
+                                    <div class="navbar-welcome pull-left compact-hidden hidden-xs">Chào @user.ThongTinNguoiDung.HoTen !</div>
+                                }
+                                else
+                                {
+                                    <div class="navbar-welcome pull-left compact-hidden hidden-xs">Chào khách !</div>
+                                }
+                            }
+
                             <div class="clearfix visible-sm"></div>
                             <!-- //end Logo -->
                             <!-- Secondary menu -->
                             <div class="navbar-secondary-menu pull-right hidden-xs">
                                 <div class="btn-group compact-hidden">
-                                    <a href="#" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown"> <span class="icon icon-vcard"></span> Đăng nhập </a>
+                                    @{
+                                        if (Session["taikhoan"] != null)
+                                        {
+                                            <a href ="/Login/LogOut" class="btn btn-xs btn-default dropdown-toggle" data-toggle=""> <span class="icon icon-cancel-3"></span> Đăng xuất</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="~/Login/" class="btn btn-xs btn-default dropdown-toggle" data-toggle=""> <span class="icon icon-vcard"></span> Đăng nhập </a>
+                                        }
+                                    }
+
                                 </div>
                                 <div class="btn-group compact-hidden">
-                                    <a href="#" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown"> <span class="icon icon-vcard"></span> Đăng ký </a>
+                                    <a href="#" class="btn btn-xs btn-default dropdown-toggle" data-toggle=""> <span class="icon icon-vcard"></span> Đăng ký </a>
                                 </div>
                                 <!--Gio hang-->
                                 <div class="btn-group shoppingcart">
@@ -251,7 +273,7 @@
                                         <ul class="list" id="ListCartitem"></ul>
                                         <div class="total">Total: <strong class="Total"></strong></div>
                                         <a href="~/Home/CheckOut"><button type="submit" class="btn btn-mega">Thanh toán</button></a>
-                                        
+
                                     </div>
                                 </div>
                                 <!--Ket thuc Gio hang-->>
@@ -302,7 +324,7 @@
                                         <li>
                                             <a href="/" class="btn-main"><span class="icon icon-home"></span> Trang chủ</a>
                                         </li>
-                                 
+
                                     </ul>
                                 </dt>
                                 <dd></dd>
@@ -311,80 +333,78 @@
                             <!-- //end Main menu -->
 
                         </div>
+            </div>
+            <!-- Mobile menu -->
+            <div class="container visible-xs">
+                <div class="mobile-nav row">
+                    <div class="nav-item item-01"><a href="#" id="off-canvas-menu-toggle"><span class="icon icon-list-4"></span></a></div>
+                    <div class="nav-item item-02">
+                        <a href="#"><span class="icon icon-vcard"></span></a>
+                        <div class="tab-content">
+                            <ul class="menu-list">
+                                <li><a href="#">Account</a></li>
+                                <li><a href="#">Wishlist</a></li>
+                                <li><a href="#">Checkout</a></li>
+                                <li><a href="login.html">Log In</a></li>
+                                <li><a href="login.html">Sign Up</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <!-- Mobile menu -->
-                    <div class="container visible-xs">
-                        <div class="mobile-nav row">
-                            <div class="nav-item item-01"><a href="#" id="off-canvas-menu-toggle"><span class="icon icon-list-4"></span></a></div>
-                            <div class="nav-item item-02">
-                                <a href="#"><span class="icon icon-vcard"></span></a>
-                                <div class="tab-content">
-                                    <ul class="menu-list">
-                                        <li><a href="#">Account</a></li>
-                                        <li><a href="#">Wishlist</a></li>
-                                        <li><a href="#">Checkout</a></li>
-                                        <li><a href="login.html">Log In</a></li>
-                                        <li><a href="login.html">Sign Up</a></li>
-                                    </ul>
+                    <div class="nav-item item-03">
+                        <a href="#"><span class="icon icon-search-2"></span></a>
+                        <div class="tab-content">
+                            <!-- Search -->
+                            <form class="navbar-search form-inline" role="form">
+                                <div class="form-group">
+                                    <button type="submit" class="button"><span class="icon-search-2"></span></button>
+                                    <input type="text" class="form-control" value="Search" onblur="if (this.value == '') {this.value = 'Search';}" onfocus="if(this.value == 'Search') {this.value = '';}">
                                 </div>
-                            </div>
-                            <div class="nav-item item-03">
-                                <a href="#"><span class="icon icon-search-2"></span></a>
-                                <div class="tab-content">
-                                    <!-- Search -->
-                                    <form class="navbar-search form-inline" role="form">
-                                        <div class="form-group">
-                                            <button type="submit" class="button"><span class="icon-search-2"></span></button>
-                                            <input type="text" class="form-control" value="Search" onblur="if (this.value == '') {this.value = 'Search';}" onfocus="if(this.value == 'Search') {this.value = '';}">
-                                        </div>
-                                    </form>
-                                    <!-- //end Search -->
-                                </div>
-                            </div>
-                            <div class="nav-item item-04">
-                                <a href="#"><span class="icon-xcart-white">3</span></a>
-                                <div class="tab-content">
-                                    <div class="shoppingcart-box">
-                                        <div class="title">Recently added item(s)</div>
-                                        <ul class="list">
-                                            <li class="item">
-                                                <div class="icon-product-edit"><a class="icon icon-edit" href="#"></a></div>
-                                                <div class="icon-product-delete"><a class="icon icon-trash-2" href="#"></a></div>
-                                                <a href="product_default.html" class="preview-image"><img class="preview" src="~/Content/Template/images/products/product-02-small.jpg" alt=""></a>
-                                                <div class="description"> <a href="#">Mauris et ligula quis</a> <strong class="price">1 x $44.95</strong> </div>
-                                            </li>
-                                            <li class="item">
-                                                <div class="icon-product-edit"><a class="icon icon-edit" href="#"></a></div>
-                                                <div class="icon-product-delete"><a class="icon icon-trash-2" href="#"></a></div>
-                                                <a href="product_default.html" class="preview-image"><img class="preview" src="~/Content/Template/images/products/product-03-small.jpg" alt=""></a>
-                                                <div class="description"> <a href="#">Mauris et ligula quis</a> <strong class="price">1 x $44.95</strong> </div>
-                                            </li>
-                                        </ul>
-                                        <div class="total">Total: <strong>$44.95</strong></div>
-                                        <a href="#" class="btn btn-mega">Proceed to Checkout</a>
-                                        <div class="view-link"><a href="shopping_cart.html">View shopping cart </a></div>
-                                    </div>
-                                </div>
+                            </form>
+                            <!-- //end Search -->
+                        </div>
+                    </div>
+                    <div class="nav-item item-04">
+                        <a href="#"><span class="icon-xcart-white">3</span></a>
+                        <div class="tab-content">
+                            <div class="shoppingcart-box">
+                                <div class="title">Recently added item(s)</div>
+                                <ul class="list">
+                                    <li class="item">
+                                        <div class="icon-product-edit"><a class="icon icon-edit" href="#"></a></div>
+                                        <div class="icon-product-delete"><a class="icon icon-trash-2" href="#"></a></div>
+                                        <a href="product_default.html" class="preview-image"><img class="preview" src="~/Content/Template/images/products/product-02-small.jpg" alt=""></a>
+                                        <div class="description"> <a href="#">Mauris et ligula quis</a> <strong class="price">1 x $44.95</strong> </div>
+                                    </li>
+                                    <li class="item">
+                                        <div class="icon-product-edit"><a class="icon icon-edit" href="#"></a></div>
+                                        <div class="icon-product-delete"><a class="icon icon-trash-2" href="#"></a></div>
+                                        <a href="product_default.html" class="preview-image"><img class="preview" src="~/Content/Template/images/products/product-03-small.jpg" alt=""></a>
+                                        <div class="description"> <a href="#">Mauris et ligula quis</a> <strong class="price">1 x $44.95</strong> </div>
+                                    </li>
+                                </ul>
+                                <div class="total">Total: <strong>$44.95</strong></div>
+                                <a href="#" class="btn btn-mega">Proceed to Checkout</a>
+                                <div class="view-link"><a href="shopping_cart.html">View shopping cart </a></div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- //end Mobile menu -->
-                    <!-- Navbar switcher -->
-                    <div class="navbar-switcher-container">
-                        <div class="navbar-switcher"> <span class="i-inactive"><img src="~/Content/Template/images/icon-megatron.png" width="35" height="35" alt=""></span> <span class="i-active icon-cancel-3"></span> </div>
-                    </div>
-                    <!-- //end Navbar switcher -->
+            <!-- //end Mobile menu -->
+            <!-- Navbar switcher -->
+            <div class="navbar-switcher-container">
+                <div class="navbar-switcher"> <span class="i-inactive"><img src="~/Content/Template/images/icon-megatron.png" width="35" height="35" alt=""></span> <span class="i-active icon-cancel-3"></span> </div>
+            </div>
+            <!-- //end Navbar switcher -->
+            </section>
 
-                </section>
-
-                <!-- Navbar height -->
-                <div class="navbar-height-inner"></div>
-                <!-- Navbar height -->
-                <!-- Navbar height -->
-                <div class="navbar-height"></div>
-                <!-- Navbar height -->
-
+            <!-- Navbar height -->
+            <div class="navbar-height-inner"></div>
+            <!-- Navbar height -->
+            <!-- Navbar height -->
+            <div class="navbar-height"></div>
+            <!-- Navbar height -->
             </header>
             <!-- //end Navbar -->
             @RenderBody()
@@ -467,36 +487,36 @@
             </footer>
             <div id="outer-overlay"></div>
         </div>
-    </div>
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="~/Content/Template/js/html5shiv.js"></script>
-        <script src="~/Content/Template/js/respond.min.js"></script>
-        <![endif]-->
-    <script src="~/Content/Template/js/jquery-1.10.2.min.js"></script>
-    <!-- //end Footer -->
-    <script src="~/Content/Template/js/jquery.easing.1.3.js"></script>
-    <script src="~/Content/Template/js/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="~/Content/Template/js/jquery.ui.touch-punch.min.js"></script>
-    <script src="~/Content/Template/js/jquery.mousewheel.min.js"></script>
-    <script src="~/Content/Template/js/bootstrap.min.js"></script>
-    <script src="~/Content/Template/js/jquery.flexslider.js"></script>
-    <script src="~/Content/Template/js/owl.carousel.js"></script>
-    <script src="~/Content/Template/js/jquery.jcarousel.min.js"></script>
-    <script src="~/Content/Template/js/cloudzoom.js"></script>
-    <script src="~/Content/Template/js/jquery.isotope.min.js"></script>
-    <script src="~/Content/Template/js/jquery.parallax.js"></script>
-    <script src="~/Content/Template/js/jquery.fancybox.js?v=2.1.5"></script>
-    <script src="~/Content/Template/js/jquery.inview.js"></script>
-    <script src="~/Content/Template/js/hoverIntent.js"></script>
-    <script src="~/Content/Template/js/superfish.js"></script>
-    <script src="~/Content/Template/js/supersubs.js"></script>
-    <script src="~/Content/Template/js/jquery.plugin.js"></script>
-    <script src="~/Content/Template/js/jquery.countdown.js"></script>
-    <script src="~/Content/Template/js/jquery.carouFredSel-6.2.1-packed.js"></script>
-    <script src="~/Content/Template/js/bootstrap-select.js"></script> 
-    <script src="~/Content/Template/js/megatron.js"></script>
-    <script src="~/Scripts/giohang.js"></script>
-    @RenderSection("scripts", false)
-</body>
+        </div>
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="~/Content/Template/js/html5shiv.js"></script>
+            <script src="~/Content/Template/js/respond.min.js"></script>
+            <![endif]-->
+        <script src="~/Content/Template/js/jquery-1.10.2.min.js"></script>
+        <!-- //end Footer -->
+        <script src="~/Content/Template/js/jquery.easing.1.3.js"></script>
+        <script src="~/Content/Template/js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script src="~/Content/Template/js/jquery.ui.touch-punch.min.js"></script>
+        <script src="~/Content/Template/js/jquery.mousewheel.min.js"></script>
+        <script src="~/Content/Template/js/bootstrap.min.js"></script>
+        <script src="~/Content/Template/js/jquery.flexslider.js"></script>
+        <script src="~/Content/Template/js/owl.carousel.js"></script>
+        <script src="~/Content/Template/js/jquery.jcarousel.min.js"></script>
+        <script src="~/Content/Template/js/cloudzoom.js"></script>
+        <script src="~/Content/Template/js/jquery.isotope.min.js"></script>
+        <script src="~/Content/Template/js/jquery.parallax.js"></script>
+        <script src="~/Content/Template/js/jquery.fancybox.js?v=2.1.5"></script>
+        <script src="~/Content/Template/js/jquery.inview.js"></script>
+        <script src="~/Content/Template/js/hoverIntent.js"></script>
+        <script src="~/Content/Template/js/superfish.js"></script>
+        <script src="~/Content/Template/js/supersubs.js"></script>
+        <script src="~/Content/Template/js/jquery.plugin.js"></script>
+        <script src="~/Content/Template/js/jquery.countdown.js"></script>
+        <script src="~/Content/Template/js/jquery.carouFredSel-6.2.1-packed.js"></script>
+        <script src="~/Content/Template/js/bootstrap-select.js"></script>
+        <script src="~/Content/Template/js/megatron.js"></script>
+        <script src="~/Scripts/giohang.js"></script>
+        @RenderSection("scripts", false)
+    </body>
 </html>

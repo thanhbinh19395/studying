@@ -26,6 +26,8 @@
                 <div class="wrap">
                     <h3>ĐĂNG NHẬP</h3>
                     <form action="~/Login/Index" id="form-returning" method="post">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true,null,new { @class = "alert alert-danger"});
                         <div class="form-group">
                             <label for="text">Tài khoản</label>
                             <input type="text" class="form-control" name="taikhoan">

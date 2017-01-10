@@ -17,6 +17,8 @@ namespace TB.MvcWebUser.Controllers
         {
             return View();
         }
+
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Index(string taikhoan, string matkhau)
         {
@@ -28,9 +30,11 @@ namespace TB.MvcWebUser.Controllers
                 return RedirectToAction("Index", "Home");
             }
             else {
-                Content("<script language='javascript' type='text/javascript'>alert('Tên đăng nhập và mật khẩu không đúng');</script>");
-                return View();
+                //Content("<script language='javascript' type='text/javascript'>alert('Tên đăng nhập và mật khẩu không đúng');</script>");
+                //return View();
+                ModelState.AddModelError("","Tên đăng nhập và mật khẩu không đúng");
             }
+            return View();
         }
 
         public ActionResult LogOut()

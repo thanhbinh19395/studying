@@ -15,7 +15,8 @@ namespace TB.DonHangBus
             InsertDonHangBusiness dhBus = new InsertDonHangBusiness { DonHang = this.DonHang, ChiTietDonHang = this.ChiTietDonHang };
             var dhId = dhBus.Execute(CurrentContext);
             ThanhToanDonHangBusiness ttdh = new ThanhToanDonHangBusiness { DonHangId = dhId.Data, GhiChu = DonHang.GhiChu };
-            return ttdh.Execute(CurrentContext);
+            ttdh.Execute(CurrentContext);
+            return dhId;
         }
     }
 }

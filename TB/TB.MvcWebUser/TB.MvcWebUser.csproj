@@ -156,6 +156,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\HangHoaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -1189,6 +1190,7 @@
     <Content Include="Views\Home\CheckOut.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Home\CheckOutAlert.cshtml" />
+    <Content Include="Views\DonHang\ListDonHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

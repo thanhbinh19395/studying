@@ -252,18 +252,19 @@
                                     @{
                                         if (Session["taikhoan"] != null)
                                         {
-                                            <a href ="/Login/LogOut" class="btn btn-xs btn-default dropdown-toggle" data-toggle=""> <span class="icon icon-cancel-3"></span> Đăng xuất</a>
+                                            <a href="~/DonHang/ListDonHang" class="btn btn-xs btn-default dropdown-toggle" data-toggle=""> <span class="icon icon-cart"></span> Lịch sử mua hàng </a>
+                                            <a href="~/Login/LogOut" class="btn btn-xs btn-default dropdown-toggle" data-toggle=""> <span class="icon icon-cancel-3"></span> Đăng xuất</a>
+                                            
                                         }
                                         else
                                         {
                                             <a href="~/Login/" class="btn btn-xs btn-default dropdown-toggle" data-toggle=""> <span class="icon icon-vcard"></span> Đăng nhập </a>
+                                            <a href="#" class="btn btn-xs btn-default dropdown-toggle" data-toggle=""> <span class="icon icon-vcard"></span> Đăng ký </a>
                                         }
                                     }
 
                                 </div>
-                                <div class="btn-group compact-hidden">
-                                    <a href="#" class="btn btn-xs btn-default dropdown-toggle" data-toggle=""> <span class="icon icon-vcard"></span> Đăng ký </a>
-                                </div>
+                            
                                 <!--Gio hang-->
                                 <div class="btn-group shoppingcart">
                                     <a href="~/Home/ViewCarts" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown"> <span class="compact-hidden">Giỏ Hàng - <strong class="Total"></strong></span> <span class="icon-xcart-animate"><span class="box" id="ItemCount"></span><span class="handle"></span></span> </a>

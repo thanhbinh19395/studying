@@ -1,0 +1,110 @@
+﻿@using TB.Domain.EntityModel;
+@{
+    QLBH db = new QLBH();
+}
+@{
+    ViewBag.Title = "ListDonHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="container-widget">
+    <h3>DANH SÁCH ĐƠN HÀNG</h3>
+    <div class="row">
+        <div class="col-md-3">
+            <form role="form">
+                <div class="form-label">Chọn mã đơn hàng: </div>
+                <select name="select" class="selectpicker" id="ListDonhang" data-width="50%" onchange="GetChitietDonhang()">
+                    @{
+                        if (Session["taikhoan"] != null)
+                        {
+                            User user = Session["taikhoan"] as User;
+                            List<DonHang> ListDh = db.DonHangs.Where(p => p.KhachHangId == user.ThongTinNguoiDungId).ToList();
+                            ListDh.Reverse();
+                            foreach (var item in ListDh)
+                            {
+                                <option value="@item.DonHangId">@item.DonHangId</option>
+                            }
+                        }
+                    }
+                </select>
+            </form>
+        </div>
+    </div>
+    <div class="row" >
+        <div class="shopping-cart col-md-6">
+            <img class="back img-responsive" src="~/Content/Template/images/shopping-cart-back.png" alt="">
+            <div class="box">
+                <h3 id="madh"></h3>
+                <h5 id="ngaydat"></h5>
+                <table>
+                    <thead>
+                        <tr class="hidden-xs">
+                            <th></th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ListChitietDonhang">
+                    </tbody>
+                </table>
+                <div class="pull-left"> <b class="title">Giao hàng:</b> Miễn phí </div>
+                <div class="pull-right">
+                    <p><b class="title">Tổng Cộng:</b> <span class="price gia"></span></p>                   
+                </div>
+                <div class="clearfix"></div>
+            </div>           
+        </div>   
+        <div class="col-md-6 ">    
+            <div class="box">
+            <h3>THÔNG TIN NGƯỜI DÙNG</h3>       
+            <div id="ThongtinDonhang"></div>
+            </div>
+        </div>  
+    </div>
+</section>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        GetChitietDonhang();
+    });   
+    function GetChitietDonhang() {
+        var madh = $('#ListDonhang').val();
+        $.ajax({
+            type: "POST",
+            url: "/DonHang/GetThongtinDH",
+            data: { DonHangId: madh },
+            success: function (data) {
+                if (data != null) {
+                    console.log(data);
+                    $('.gia').html(data.DonHang.ThanhTien);
+                    $('#madh').html("Đơn hàng: " + data.DonHang.DonHangId);
+                    var html = '';
+                    $.each(data.ListCtdh, function (key, value) {
+                        html += "<tr>";
+                        html += "   <td><img class='preview' src='" + value.HangHoa.AnhHangHoas[0].LinkAnhMini + "'></td>";
+                        html += "   <td><span class='td-name visible-xs'>Product</span><a href='#'>" + value.HangHoa.Ten + "</a></td>";
+                        html += "   <td><span class='td-name visible-xs'>Price</span>" + value.GiaTien + "</td>";
+                        html += "   <td>";
+                        html += "       <span class='td-name visible-xs'>Quantity</span><div class='input-group quantity-control'>";
+                        html += "       <span>" + value.SoLuong + "</span>";
+                        html += "   </td>"
+                        html += "<td><span class='td-name visible-xs'>Total</span>" + (value.SoLuong * value.GiaTien) + "</td>";
+                        html += "</tr>";
+                    })
+                    $('#ListChitietDonhang').html(html);
+                    var html2 = '';
+                    html2 += "<p>Người đặt: " + data.ThongTinNguoiDung.HoTen + "</p>";
+                    html2 += "<p>Số điện thoại: "+data.ThongTinNguoiDung.SoDienThoai + "</p>";
+                    html2 += "<p>Email: " + data.ThongTinNguoiDung.Email + "</p>";
+                    html2 += "<p>Địa chỉ: " + data.ThongTinNguoiDung.DiaChi + "</p>";
+                    html2 += "<p>Quận/Huyện: " + data.ThongTinNguoiDung.Quan.Ten + "</p>";
+                    html2 += "<p>Tỉnh/Thành phố: " + data.ThongTinNguoiDung.TinhThanhPho.Ten + "</p>";
+                    $('#ThongtinDonhang').html(html2);
+                    $('#ngaydat').html('Ngày đặt hàng: '+data.Ngaydat);
+                }
+            }
+        });
+    }
+    
+</script>

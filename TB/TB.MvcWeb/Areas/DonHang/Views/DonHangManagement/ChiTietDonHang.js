@@ -7,15 +7,16 @@
     onInitContent: function (content) {
         var self = this;
         var form = widget.setting.form();
-        this.ViewBag.DonHang.TenKhachHang = this.ViewBag.thongTinND.HoTen
+        if (this.ViewBag.thongTinND)
+            this.ViewBag.DonHang.TenKhachHang = this.ViewBag.thongTinND.HoTen;
         form.setName('form').setFieldPerRow(1)
             .addFields([
+            { field: 'ThanhTien', type: 'int', required: true, caption: 'Tổng Tiền' },
             { field: 'NgayLap', type: 'datetime', required: true, caption: "Ngày Lập" },
-            { field: 'ThanhTien', type: 'int', required: true, caption: 'Thành Tiền' },
-            { field: 'TenKhachHang', type: 'int', required: true, caption: 'Khách Hàng' },
+            { field: 'TenKhachHang', type: 'text', required: true, caption: 'Khách Hàng' },
             { field: 'GhiChu', type: 'text', required: false, caption: 'Ghi Chú' }
             ])
-            .setRecord(this.Data)
+            .setRecord(this.ViewBag.DonHang).isReadOnly(true)
         ;
         var pagiChiTietDonHang = widget.setting.pagination();
         pagiChiTietDonHang.setName('page')
@@ -31,7 +32,7 @@
                 { field: 'GiaTien', caption: 'Giá Bán', size: '40%', sortable: true, resizable: true, render: 'int' },
                 {
                     field: 'ThanhTien', caption: 'Thành Tiền', size: '40%', sortable: true, resizable: true, render: function (r) {
-                        return r.GiaTien * r.SoLuong;
+                        return w2utils.formatNumber(r.GiaTien * r.SoLuong);
                     }
                 },
                 { field: 'GhiChu', caption: 'Ghi Chú', size: '40%', sortable: true, resizable: true },

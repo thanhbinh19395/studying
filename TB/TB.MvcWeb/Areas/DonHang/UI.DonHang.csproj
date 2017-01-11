@@ -152,7 +152,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\DonHangManagement\InsertDonHang.js" />
+    <Content Include="Views\DonHangManagement\ChiTietDonHang.js" />
     <Content Include="Views\DonHangManagement\ListDonHang.js" />
     <Content Include="Views\DonHangManagement\ThanhToanDonHang.js" />
     <Content Include="Views\DonHangManagement\UpdateDonHang.js" />
@@ -193,9 +193,13 @@
       <Project>{9032e501-258a-481f-965c-356db7b81397}</Project>
       <Name>TB.HoaDonRepo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\TB.Repository.ThongTinNguoiDung\TB.ThongTinNguoiDungRepo.csproj">
+      <Project>{0a6582a9-e4d1-4212-97df-fe0f9f74b5bb}</Project>
+      <Name>TB.ThongTinNguoiDungRepo</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\DonHangManagement\InsertDonHang.cshtml" />
+    <Content Include="Views\DonHangManagement\ChiTietDonHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\DonHangManagement\ListDonHang.cshtml" />
@@ -233,7 +237,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65185</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

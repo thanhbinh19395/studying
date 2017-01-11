@@ -9,9 +9,17 @@
             gridColumn: [
                 { field: 'DonHangId', caption: 'Mã Đơn Hàng', size: '40%', sortable: true, resizable: true },
                 { field: 'NgayLap', caption: 'Ngày Lập', size: '40%', sortable: true, resizable: true, format: 'mm/dd/yyyy' },
-                { field: 'ThanhTien', caption: 'Thành Tiền', size: '50%', sortable: true, resizable: true, render:'int' },
+                { field: 'ThanhTien', caption: 'Thành Tiền', size: '50%', sortable: true, resizable: true, render: 'int' },
                 { field: 'KhachHangId', caption: 'Khách Hàng ID', size: '50%', sortable: true, resizable: true },
                 { field: 'GhiChu', caption: 'Ghi Chú', size: '50%', sortable: false, resizable: true },
+                {
+                    field: 'XemChiTiet', caption: 'Xem Chi tiết', size: '50%', sortable: false, resizable: true, render: function (record) {
+                        var a = $("<a>");
+                        a.attr('href', '#');
+                        a.html('Xem chi tiết đơn');
+                        return a[0].outerHTML;
+                    }
+                },
             ],
         },
         //nhớ sửa param
@@ -39,22 +47,11 @@
     },
     onInitContent: function (content) {
         var self = this;
-
         content.setName('content');
-
         var donHangPanel = widget.setting.panel();
-        donHangPanel.addClass('col-md-5');
         var donHangTitle = widget.setting.title();
         donHangTitle.setName('donHangTitle').setIcon('fa-file-text ').setTitle(' Đơn Hàng');
         donHangPanel.addItem(donHangTitle.end());
-
-        var chiTietDonHangPanel = widget.setting.panel();
-        
-        chiTietDonHangPanel.addClass('col-md-7').css({'border-left':'1px solid black'});
-
-        var ctdhTitle = widget.setting.title();
-        ctdhTitle.setName('ctdhTitle').setIcon('fa-info').setTitle(' Chi Tiết Đơn Hàng');
-        chiTietDonHangPanel.addItem(ctdhTitle.end());
 
         var pagiDonHang = widget.setting.pagination();
         pagiDonHang.setName('page')
@@ -72,40 +69,12 @@
             .setIdColumn('DonHangId')
             .addRecords(self.Data.Data)
             .setPaginateOptions(pagiDonHang.end())
-            .createEvent('onSelect', this.onDonHangGridClick.bind(this))
-            //.createEvent('onRender', this.onDonHangGridRender.bind(this))
+            .createEvent('onClick', this.onClickGrid.bind(this))
+        //.createEvent('onRender', this.onDonHangGridRender.bind(this))
+        ;
 
-        ;
-        var pagiChiTietDonHang = widget.setting.pagination();
-        pagiChiTietDonHang.setName('page')
-            .setTotalPages(self.ViewBag.PageCount)
-            .setStartPage(self.ViewBag.Page)
-        .setPageClickHandler(self.onPageClick.bind(this))
-        ;
-        var gridChiTietDonHang = widget.setting.grid();
-        gridChiTietDonHang.setName('chiTietDonHangGrid')
-            .addColumns([
-                { field: 'HangHoa.Ten', caption: 'Tên Hàng Hóa', size: '40%', sortable: true, resizable: true },
-                { field: 'SoLuong', caption: 'Số Lượng', size: '40%', sortable: true, resizable: true, render: 'int' },
-                { field: 'GiaTien', caption: 'Giá Bán', size: '40%', sortable: true, resizable: true, render: 'int' },
-                {
-                    field: 'ThanhTien', caption: 'Thành Tiền', size: '40%', sortable: true, resizable: true, render: function (r) {
-                        return r.GiaTien * r.SoLuong;
-                    }
-                },
-                { field: 'GhiChu', caption: 'Ghi Chú', size: '40%', sortable: true, resizable: true },
-            ])
-            .addButton('btnInsert', 'Thêm', 'fa fa-plus', self.onbtnInsertClickCategoryGrid.bind(this))
-            .addButton('btnUpdate', 'Cập nhật', 'fa fa-pencil', self.onbtnUpdateClickCategoryGrid.bind(this))
-            .addButton('btnDelete', 'Xóa', 'fa fa-trash-o', self.onbtnDeleteClickCategoryGrid.bind(this))
-            .setIdColumn('ChiTietDonHangId')
-            //.addRecords(self.Data.Data)
-            .setPaginateOptions(pagiChiTietDonHang.end())
-
-        ;
         donHangPanel.addItem(gridDonHang.end());
-        chiTietDonHangPanel.addItem(gridChiTietDonHang.end());
-        content.addItem(donHangPanel.end()).addItem(chiTietDonHangPanel.end());
+        content.addItem(donHangPanel.end());
     },
     onDonHangGridClick: function (event) {
         var self = this;
@@ -201,5 +170,17 @@
         }
         this.sendMessage(mess);
         this.close();
+    },
+    onClickGrid: function (e) {
+        if (e.column == 5) {
+            var gridDH = this.findElement('donHangGrid');
+            var item = gridDH.get(e.recid);
+            this.openPopup({
+                name: 'ctdhPopup',
+                url: '/DonHang/DonHangManagement/ChiTietDonHang',
+                title: 'Chi tiết đơn hàng',
+                width: 600
+            }, { DonHangId: item.DonHangId });
+        }
     }
 });

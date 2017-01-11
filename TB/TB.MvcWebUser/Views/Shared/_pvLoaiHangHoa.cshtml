@@ -9,7 +9,7 @@
     @foreach (var item in Model)
     {
         <li>
-            <span class="name"> <a href="/HangHoa/XemTheoLoai/@item.LoaiHangHoaId">@item.Ten</a> </span>
+            <span class="name"> <a href="/Home/XemTheoLoai?id=@item.LoaiHangHoaId">@item.Ten</a> </span>
         </li>
     }
 

@@ -188,9 +188,8 @@ namespace TB.MvcWebUser.Controllers
                 return View("CheckOutAlert");
             }
             else {
-                RedirectToAction("Index","Login");
+                return RedirectToAction("Index","Login");
             }
-            return RedirectToAction( "Tientest", "Home");
         }
     }
 }

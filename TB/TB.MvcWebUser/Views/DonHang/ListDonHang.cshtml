@@ -77,25 +77,25 @@
             success: function (data) {
                 if (data != null) {
                     console.log(data);
-                    $('.gia').html(data.DonHang.ThanhTien);
+                    $('.gia').html(w2utils.formatNumber(data.DonHang.ThanhTien));
                     $('#madh').html("Đơn hàng: " + data.DonHang.DonHangId);
                     var html = '';
                     $.each(data.ListCtdh, function (key, value) {
                         html += "<tr>";
                         html += "   <td><img class='preview' src='" + value.HangHoa.AnhHangHoas[0].LinkAnhMini + "'></td>";
                         html += "   <td><span class='td-name visible-xs'>Product</span><a href='#'>" + value.HangHoa.Ten + "</a></td>";
-                        html += "   <td><span class='td-name visible-xs'>Price</span>" + value.GiaTien + "</td>";
+                        html += "   <td><span class='td-name visible-xs'>Price</span>" + w2utils.formatNumber(value.GiaTien) + "</td>";
                         html += "   <td>";
                         html += "       <span class='td-name visible-xs'>Quantity</span><div class='input-group quantity-control'>";
                         html += "       <span>" + value.SoLuong + "</span>";
                         html += "   </td>"
-                        html += "<td><span class='td-name visible-xs'>Total</span>" + (value.SoLuong * value.GiaTien) + "</td>";
+                        html += "<td><span class='td-name visible-xs'>Total</span>" + w2utils.formatNumber(value.SoLuong * value.GiaTien) + "</td>";
                         html += "</tr>";
                     })
                     $('#ListChitietDonhang').html(html);
                     var html2 = '';
                     html2 += "<p>Người đặt: " + data.ThongTinNguoiDung.HoTen + "</p>";
-                    html2 += "<p>Số điện thoại: "+data.ThongTinNguoiDung.SoDienThoai + "</p>";
+                    html2 += "<p>Số điện thoại: "+data.ThongTinNguoiDung.SoDienThoai + "</sp>";
                     html2 += "<p>Email: " + data.ThongTinNguoiDung.Email + "</p>";
                     html2 += "<p>Địa chỉ: " + data.ThongTinNguoiDung.DiaChi + "</p>";
                     html2 += "<p>Quận/Huyện: " + data.ThongTinNguoiDung.Quan.Ten + "</p>";

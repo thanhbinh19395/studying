@@ -1191,6 +1191,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Home\CheckOutAlert.cshtml" />
     <Content Include="Views\DonHang\ListDonHang.cshtml" />
+    <Content Include="Views\DonHang\TimkiemDH.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

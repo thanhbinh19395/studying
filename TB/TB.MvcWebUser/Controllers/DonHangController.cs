@@ -23,17 +23,30 @@ namespace TB.MvcWebUser.Controllers
         [HttpPost]
         public JsonResult GetThongtinDH(int DonHangId) {
             var dh = db.DonHangs.Find(DonHangId);
-            var ListCtdh = db.ChiTietDonHangs.Where(p => p.DonHangId == dh.DonHangId).ToList();
-            var Ttnd = db.ThongTinNguoiDungs.Find(dh.KhachHangId);
-            return Json(
-                new
-                {
-                    DonHang = dh,
-                    ThongTinNguoiDung = Ttnd,
-                    ListCtdh= ListCtdh,  
-                    Ngaydat = dh.NgayLap.ToString()              
-                }
-            );
+            if (dh == null) return null;
+            else
+            {
+                var ListCtdh = db.ChiTietDonHangs.Where(p => p.DonHangId == dh.DonHangId).ToList();
+                var Ttnd = db.ThongTinNguoiDungs.Find(dh.KhachHangId);
+                return Json(
+                    new
+                    {
+                        DonHang = dh,
+                        ThongTinNguoiDung = Ttnd,
+                        ListCtdh = ListCtdh,
+                        Ngaydat = dh.NgayLap.ToString()
+                    }
+                );
+            }
+        }
+
+        public ActionResult TimkiemDH() {
+            return View();
+        }
+        [HttpPost]
+        public JsonResult TimkiemDH(int DonHangId)
+        {
+            return GetThongtinDH(DonHangId);
         }
     }
 }

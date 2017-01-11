@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "TimkiemDH";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="height:auto; margin-top:50px">
+<h3>MÃ ĐƠN HÀNG </h3>
+<input type="text" id="madh"></input>
+<button id="timkiem" onclick="GetChitietDonhang()">Tìm kiếm</button>
+    
+</div>
+<div class="container" style="height:auto; visibility:hidden; margin-bottom:10px" id="thungchua">
+    <div class="row" style="">
+        <div class="shopping-cart col-md-6">
+            <img class="back img-responsive" src="~/Content/Template/images/shopping-cart-back.png" alt="">
+            <div class="box">
+                <h3 id="madh"></h3>
+                <h5 id="ngaydat"></h5>
+                <table>
+                    <thead>
+                        <tr class="hidden-xs">
+                            <th></th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ListChitietDonhang"></tbody>
+                </table>
+                <div class="pull-left"> <b class="title">Giao hàng:</b> Miễn phí </div>
+                <div class="pull-right">
+                    <p><b class="title">Tổng Cộng:</b> <span class="price gia"></span></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            <div class="box">
+                <h3>THÔNG TIN NGƯỜI DÙNG</h3>
+                <div id="ThongtinDonhang"></div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<script>
+    function GetChitietDonhang() {
+        var madh = $('#madh').val();
+        $.ajax({
+            type: "POST",
+            url: "/DonHang/GetThongtinDH",
+            data: { DonHangId: madh },
+            success: function (data) {
+                console.log(data);
+                if (data != "") {
+                    $('.gia').html(data.DonHang.ThanhTien);
+                    $('#madh').html("Đơn hàng: " + data.DonHang.DonHangId);
+                    var html = '';
+                    $.each(data.ListCtdh, function (key, value) {
+                        html += "<tr>";
+                        html += "   <td><img class='preview' src='" + value.HangHoa.AnhHangHoas[0].LinkAnhMini + "'></td>";
+                        html += "   <td><span class='td-name visible-xs'>Product</span><a href='#'>" + value.HangHoa.Ten + "</a></td>";
+                        html += "   <td><span class='td-name visible-xs'>Price</span>" + value.GiaTien + "</td>";
+                        html += "   <td>";
+                        html += "       <span class='td-name visible-xs'>Quantity</span><div class='input-group quantity-control'>";
+                        html += "       <span>" + value.SoLuong + "</span>";
+                        html += "   </td>"
+                        html += "<td><span class='td-name visible-xs'>Total</span>" + (value.SoLuong * value.GiaTien) + "</td>";
+                        html += "</tr>";
+                    })
+                    $('#ListChitietDonhang').html(html);
+                    var html2 = '';
+                    html2 += "<p>Người đặt: " + data.ThongTinNguoiDung.HoTen + "</p>";
+                    html2 += "<p>Số điện thoại: " + data.ThongTinNguoiDung.SoDienThoai + "</p>";
+                    html2 += "<p>Email: " + data.ThongTinNguoiDung.Email + "</p>";
+                    html2 += "<p>Địa chỉ: " + data.ThongTinNguoiDung.DiaChi + "</p>";
+                    html2 += "<p>Quận/Huyện: " + data.ThongTinNguoiDung.Quan.Ten + "</p>";
+                    html2 += "<p>Tỉnh/Thành phố: " + data.ThongTinNguoiDung.TinhThanhPho.Ten + "</p>";
+                    $('#ThongtinDonhang').html(html2);
+                    $('#ngaydat').html('Ngày đặt hàng: ' + data.Ngaydat);
+                    $('#thungchua').css("visibility", "unset")
+                }
+                else if(data == "") { alert("Mã đơn hàng không hợp lệ ") }
+            }
+        });
+    }
+</script>

@@ -178,13 +178,17 @@ namespace TB.MvcWebUser.Controllers
                 ctdh.SoLuong = item.Quantity;
                 Listctdh.Add(ctdh);
             }
-            if (!optionsRadios) {// khach la
+            if (!optionsRadios)
+            {// khach la
                 repo.DonHang = new DonHang();
                 repo.ChiTietDonHang = Listctdh;
                 var dhId = repo.Execute(this);
                 Session.Remove("GioHang");
                 Session["MaDH"] = dhId.Data;
                 return View("CheckOutAlert");
+            }
+            else {
+                RedirectToAction("Index","Login");
             }
             return RedirectToAction( "Tientest", "Home");
         }

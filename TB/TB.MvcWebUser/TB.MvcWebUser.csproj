@@ -573,6 +573,11 @@
     <Content Include="Content\Template\images\back-bg.jpg" />
     <Content Include="Content\Template\images\banner1.jpg" />
     <Content Include="Content\Template\images\banner2.jpg" />
+    <Content Include="Content\Template\images\banner\banner_3.jpg" />
+    <Content Include="Content\Template\images\banner\banner_1.jpg" />
+    <Content Include="Content\Template\images\banner\banner_2.jpg" />
+    <Content Include="Content\Template\images\banner\banner_4.jpg" />
+    <Content Include="Content\Template\images\banner\banner_5.jpg" />
     <Content Include="Content\Template\images\black-transparent.png" />
     <Content Include="Content\Template\images\blank.gif" />
     <Content Include="Content\Template\images\blank.png" />
@@ -1167,6 +1172,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\w2ui-1.4.3.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

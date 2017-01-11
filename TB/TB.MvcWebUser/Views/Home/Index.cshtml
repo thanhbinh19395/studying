@@ -39,40 +39,6 @@
 </section>
 
 <!-- //end Slider -->
-<!-- Social widgets -->
-<section class="social-widgets hidden-xs">
-    <ul class="items">
-        <li class="item item-01 facebook">
-            <a href="social/facebook.html" class="tab-icon"><span class="icon-facebook-3"></span></a>
-            <div class="tab-content">
-                <div class="title">FACEBOOK</div>
-                <div class="loading"><img src="~/Content/Template/images/ajax-loader.gif" class="ajaxloader" alt="loader"></div>
-            </div>
-        </li>
-        <li class="item item-02 twitter">
-            <a href="social/twitter.html" class="tab-icon"><span class="icon-twitter-3"></span></a>
-            <div class="tab-content">
-                <div class="title">TWITTER FEEDS</div>
-                <div class="loading"><img src="~/Content/Template/images/ajax-loader.gif" class="ajaxloader" alt="loader"></div>
-            </div>
-        </li>
-        <li class="item item-03 youtube">
-            <a href="social/youtubevideo.html" class="tab-icon"><span class="icon icon-youtube-3"></span></a>
-            <div class="tab-content">
-                <div class="title">Video</div>
-                <div class="loading"><img src="~/Content/Template/images/ajax-loader.gif" class="ajaxloader" alt="loader"></div>
-            </div>
-        </li>
-        <li class="item item-04 contacts">
-            <a href="social/googlemap.html" class="tab-icon"><span class="icon-globe"></span></a>
-            <div class="tab-content">
-                <div class="title">Find Us</div>
-                <div class="loading"><img src="~/Content/Template/images/ajax-loader.gif" class="ajaxloader" alt="loader"></div>
-            </div>
-        </li>
-    </ul>
-</section>
-<!-- //end Social widgets -->
 <!-- Services -->
 <section class="services-block hidden-xs">
     <div class="container">
@@ -107,8 +73,6 @@
             <!-- Products list -->
             <div class="row">
                 <div class="products-list-isotope">
-
-
                     @{
 
                         foreach (var tmp in Model)
@@ -117,8 +81,8 @@
                                 <div class="preview animate scale">
                                     <a href="~/HangHoa/XemChiTiet/@tmp.HangHoaId" class="preview-image">
                                         @if (tmp.AnhHangHoas != null && tmp.AnhHangHoas.Count != 0)
-                                        { 
-                                                <img class="img-responsive animate scale" src="@tmp.AnhHangHoas.First().LinkAnhMini" width="270" height="328" alt="" >
+                                        {
+                                            <img class="img-responsive animate scale" src="@tmp.AnhHangHoas.First().LinkAnhMini" width="270" height="328" alt="">
                                         }
                                         else
                                         {
@@ -143,11 +107,48 @@
                                 <span class="price new">@Convert.ToDouble(tmp.GiaBanThamKhao).ToString("N0") Vnd</span>
                             </div>
                         }
-
                     }
 
                 </div>
             </div>
+            <div class="filters-panel">
+                <div class="divider"></div>
+                <div class="pull-right hidden-xs" style="font-size:large">
+                    <div class="pagination">
+                        @for (int i = 1; i <= ViewBag.PageCount; i++)
+                        {
+                            string link = "";
+                            if (ViewBag.LHHId != null)
+                            {
+                                link = "/Home/XemTheoLoai?id=" + ViewBag.LHHId + "&";
+                            }
+                            else if (ViewBag.TenHH != null)
+                            {
+                                link = "/Home/TimKiemTheoTen?Ten=" + ViewBag.TenHH + "&";
+                            }
+                            else
+                            {
+                                link = "/Home/Index?";
+                            }
+                            link += "Page=" + i;
+                            if (i == ViewBag.Page)
+                            {
+                                <a href="@link" class="icon">@i</a>
+                            }
+                            else
+                            {
+                                <a href="@link" class="active">@i</a>
+                            }
+
+                        }
+                        <a href="/Home/Index?Page=@ViewBag.PageCount">
+                            <span class="icon-arrow-right-3 "></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
             <!-- //end Products list -->
         </section>
         <!-- //end Right column -->

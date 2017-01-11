@@ -5,16 +5,50 @@ using System.Web;
 using System.Web.Mvc;
 using TB.Domain.EntityModel;
 using TB.DonHangBus;
+using TB.HangHoaRepo;
 using TB.MvcWebUser.Models;
+using X.PagedList;
 
 namespace TB.MvcWebUser.Controllers
 {
     public class HomeController : Controller
     {
         private QLBH db = new QLBH();
-        public ActionResult Index()
+        public ActionResult Index(int? Page)
         {
-            return View(db.HangHoas.ToList());
+            int PageSize = 9;
+
+            var result = db.HangHoas.AsQueryable();
+            int curPage = Page != null ? Convert.ToInt32(Page) : 1;
+            var page = result.ToPagedListForEntityFramework(s => s.HangHoaId, curPage, PageSize);
+            ViewBag.PageCount = page.PageCount;
+            ViewBag.Page = page.PageNumber;
+            return View(page.ToList());
+        }
+        public ActionResult XemTheoLoai(int id, int? Page)
+        {
+            int PageSize = 9;
+            var result = db.HangHoas.AsQueryable();
+            result = result.Where(p => p.LoaiHangHoaId == id);
+            int curPage = Page != null ? Convert.ToInt32(Page) : 1;
+            var page = result.ToPagedListForEntityFramework(s => s.HangHoaId, curPage, PageSize);
+            ViewBag.LHHId = id;
+            ViewBag.PageCount = page.PageCount;
+            ViewBag.Page = page.PageNumber;
+            return View("Index",page.ToList());
+        }
+        public ActionResult TimKiemTheoTen(string Ten, int? Page)
+        {
+            int PageSize = 9;
+
+            var result = db.HangHoas.AsQueryable();
+            result = result.Where(p => p.Ten.Contains(Ten));
+            int curPage = Page != null ? Convert.ToInt32(Page) : 1;
+            var page = result.ToPagedListForEntityFramework(s => s.HangHoaId, curPage, PageSize);
+            ViewBag.TenHH = Ten;
+            ViewBag.PageCount = page.PageCount;
+            ViewBag.Page = page.PageNumber;
+            return View("Index", page.ToList());
         }
         public ActionResult Tientest()
         {

@@ -95,11 +95,7 @@
                 },
                 { field: 'GhiChu', caption: 'Ghi Chú', size: '40%', sortable: true, resizable: true },
             ])
-            .addButton('btnInsert', 'Thêm', 'fa fa-plus', self.onbtnInsertClickCategoryGrid.bind(this))
-            .addButton('btnUpdate', 'Cập nhật', 'fa fa-pencil', self.onbtnUpdateClickCategoryGrid.bind(this))
-            .addButton('btnDelete', 'Xóa', 'fa fa-trash-o', self.onbtnDeleteClickCategoryGrid.bind(this))
             .setIdColumn('ChiTietDonHangId')
-            //.addRecords(self.Data.Data)
             .setPaginateOptions(pagiChiTietDonHang.end())
 
         ;

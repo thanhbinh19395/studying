@@ -8,6 +8,7 @@ using TB.ChiTietDonHangRepo;
 using Newtonsoft.Json;
 using TB.DonHangBus;
 using TB.Domain.EntityModel;
+using TB.ThongTinNguoiDungRepo;
 
 namespace DonHang.Controllers
 {
@@ -24,9 +25,12 @@ namespace DonHang.Controllers
             repo.Execute(this);
             return View();
         }
-        public ActionResult InsertDonHang(string ParentId)
+        public ActionResult ChiTietDonHang(DonHangGetByIdRepository repo)
         {
-            ViewBag.ParentId = ParentId;
+            var result = repo.Execute(this);
+            ThongTinNguoiDungGetByIdRepository ttndRepo = new ThongTinNguoiDungGetByIdRepository { ThongTinNguoiDungId = Convert.ToInt32(result.Data.KhachHangId) };
+            ViewBag.thongTinND = ttndRepo.Execute(this).Data;
+            ViewBag.DonHang = result.Data;
             return View();
         }
         public ActionResult UpdateDonHang(DonHangGetByIdRepository repo)

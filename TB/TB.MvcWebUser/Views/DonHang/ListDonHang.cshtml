@@ -83,13 +83,13 @@
                     $.each(data.ListCtdh, function (key, value) {
                         html += "<tr>";
                         html += "   <td><img class='preview' src='" + value.HangHoa.AnhHangHoas[0].LinkAnhMini + "'></td>";
-                        html += "   <td><span class='td-name visible-xs'>Product</span><a href='#'>" + value.HangHoa.Ten + "</a></td>";
-                        html += "   <td><span class='td-name visible-xs'>Price</span>" + w2utils.formatNumber(value.GiaTien) + "</td>";
+                        html += "   <td><span class='td-name visible-xs'>Tên sản phẩm</span><a href='/HangHoa/XemChiTiet/"+ value.HangHoaId +"'>" + value.HangHoa.Ten + "</a></td>";
+                        html += "   <td><span class='td-name visible-xs'>Giá</span>" + w2utils.formatNumber(value.GiaTien) + "</td>";
                         html += "   <td>";
-                        html += "       <span class='td-name visible-xs'>Quantity</span><div class='input-group quantity-control'>";
+                        html += "       <span class='td-name visible-xs'>Số lượng</span><div class='input-group quantity-control'>";
                         html += "       <span>" + value.SoLuong + "</span>";
                         html += "   </td>"
-                        html += "<td><span class='td-name visible-xs'>Total</span>" + w2utils.formatNumber(value.SoLuong * value.GiaTien) + "</td>";
+                        html += "<td><span class='td-name visible-xs'>Tổng cộng :</span>" + w2utils.formatNumber(value.SoLuong * value.GiaTien) + "</td>";
                         html += "</tr>";
                     })
                     $('#ListChitietDonhang').html(html);

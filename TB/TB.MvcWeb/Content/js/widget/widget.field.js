@@ -15,7 +15,12 @@
         }).attr('placeholder', 'Tìm theo tên loại hàng hóa').addClass('inputSearch');
         $(this.el).parent().append(input);
     }
-
+    if (options.data) {
+        input.val(options.data.Ten);
+    }
+    else {
+        input.val('');
+    }
     //this sau khi extend sẽ được chứa trong $(this.el).data('w2field')
     $.extend(self, {
         onMessageReceive: function (sender, message) {

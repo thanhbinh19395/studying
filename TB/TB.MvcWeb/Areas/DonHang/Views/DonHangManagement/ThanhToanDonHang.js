@@ -130,8 +130,6 @@
         template += "                                <\/td>";
         template += "                                <td>";
         template += "                                    <strong>Mã hóa đơn #<\/strong>: " + HoaDonId + "<br>";
-        template += "                                    <strong>Ngày lập<\/strong>: January 1, 2015<br>";
-        template += "                                    <strong>Người lập<\/strong>: February 1, 2015";
         template += "                                <\/td>";
         template += "                            <\/tr>";
         template += "                        <\/tbody>";

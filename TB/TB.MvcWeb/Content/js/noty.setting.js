@@ -41,7 +41,7 @@ window.alert = function (alertMessage) {
 window.alertSuccess = function (alertMessage) {
     noty({
         message: 'Thông báo',
-        text: '<h3>Thông báo<\/h3>' + alertMessage,
+        text: '<h3><i class="fa fa-exclamation-circle"><\/i> Thông báo<\/h3>' + alertMessage,
         type: 'information',
     });
 }

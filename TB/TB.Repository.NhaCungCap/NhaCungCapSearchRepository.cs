@@ -15,26 +15,7 @@ namespace TB.NhaCungCapRepo
         public NhaCungCap NhaCungCap { get; set; }
         public override Result<dynamic> ExecuteCore(Controller CurrentContext)
         {
-            #region Get List
-            //if (NhaCungCap == null || Extensions.DeepEquals(NhaCungCap, new NhaCungCap()))
-            //{
-            //    var tmp = db.NhaCungCaps.ToPagedListForEntityFramework(s => s.NhaCungCapId, Convert.ToInt32(Page), PageSize);
-            //    var data = new
-            //    {
-            //        Data = tmp.ToList(),
-            //        PageCount = tmp.PageCount,
-            //        Page = tmp.PageNumber,
-            //    };
-            //    return Success(data);
-
-            //}
-            #endregion
-
-            #region Search
-            //var result = db.NhaCungCaps.Where(
-            //    p =>
-            //    p.Ma.Contains(NhaCungCap.Ma) ||
-            //    p.Ten.Contains(NhaCungCap.Ten));
+           
             if (NhaCungCap == null)
                 NhaCungCap = new NhaCungCap();
 
@@ -57,7 +38,6 @@ namespace TB.NhaCungCapRepo
             };
             return Success(dataSearch);
 
-            #endregion
         }
 
 

@@ -478,6 +478,7 @@ define(function () {
                     _type: "grid",
                     template: $('<div style=" border-radius: 0">'),
                     fixedBody: false,
+                    show: { lineNumbers: true }
                 });
                 return {
                     getTemplate: function () {

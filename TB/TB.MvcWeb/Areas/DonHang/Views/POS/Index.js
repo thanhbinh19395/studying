@@ -68,7 +68,13 @@
         title.setName('title')
             .setIcon('fa-television')
             .setTitle('Bán Lẻ')
+            .addLeft({
+                type: 'button', id: 'btn-reload', caption: 'Lập đơn mới', icon: 'fa-refresh',
+                onClick: function () { location.reload(); }
+            })
         ;
+
+            
         searchForm.setName('searchForm').setFieldPerRow(1)
             .addFields([
             { field: 'Ten', type: 'popupDSHangHoa', required: true, caption: "Tên Hàng Hóa", options: { caller: self, formName: 'form', gridName: 'chiTietDonHangGrid' } },
@@ -175,7 +181,7 @@
             v.GiaTien = v.GiaBanThamKhao;
         });
         //Khach la
-        if (form.record.ThongTinNguoiDungId == null) {
+        if (form.record.ThongTinNguoiDungId == null || form.record.ThongTinNguoiDungId =='') {
             var data = {
                 DonHang: {
                     ThanhTien: form.record.TongCong,
@@ -294,8 +300,6 @@
         template += "                                <\/td>";
         template += "                                <td>";
         template += "                                    <strong>Mã hóa đơn #<\/strong>: " + this.HoaDonId + "<br>";
-        template += "                                    <strong>Ngày lập<\/strong>: January 1, 2015<br>";
-        template += "                                    <strong>Người lập<\/strong>: February 1, 2015";
         template += "                                <\/td>";
         template += "                            <\/tr>";
         template += "                        <\/tbody>";

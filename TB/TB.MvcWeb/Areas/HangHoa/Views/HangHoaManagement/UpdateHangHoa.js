@@ -19,8 +19,8 @@
                 { field: 'Ma', caption: 'Mã', required: true, type: 'text' },
                 { field: 'Ten', caption: 'Tên', required: true, type: 'text' },
                 { field: 'GiaBanThamKhao', required: true, caption: 'Giá', type: 'int' },
-                { field: 'NhaCungCapId', required: true, caption: 'Nhà Sản Xuất', type: 'popupDSNhaCungCap', options: { caller: self } },
-                { field: 'LoaiHangHoaId', required: true, caption: 'Loại Hàng Hóa', type: 'popupDSLoaiHangHoa', options: { caller: self } },
+                { field: 'NhaCungCapId', required: true, caption: 'Nhà Sản Xuất', type: 'popupDSNhaCungCap', options: { caller: self, data:self.Data.NhaCungCap } },
+                { field: 'LoaiHangHoaId', required: true, caption: 'Loại Hàng Hóa', type: 'popupDSLoaiHangHoa', options: { caller: self, data: self.Data.LoaiHangHoa } },
             ]).setRecord(this.Data);
         var formFooter = widget.setting.toolbar();
         formFooter.setName('updateToolbar')
